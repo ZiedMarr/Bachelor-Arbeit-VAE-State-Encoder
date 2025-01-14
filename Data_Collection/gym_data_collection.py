@@ -1,10 +1,16 @@
 import gymnasium as gym
 import numpy as np
 from stable_baselines3 import PPO  # Import stable-baselines3 for pre-trained policy
+from datetime import datetime
 
 
 
-def random_collect(path='./collected data/cartpole_data_random_10.npz', num_episodes =10) :
+def random_collect( num_episodes =10) :
+
+    # Generate dynamic path
+    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+    path = f'./collected data/random_{num_episodes}_{timestamp}.npz'
+
     #create env
     env = gym.make('CartPole-v1')
 
@@ -60,7 +66,11 @@ def random_collect(path='./collected data/cartpole_data_random_10.npz', num_epis
     return all_observations, episode_starts , episode_lengths
 ################################################
 ################################################
-def expert_collect(path='./collected data/cartpole_data_expert.npz', policy_path="path_to_expert_policy.zip", num_episodes =20) :
+def expert_collect( policy_path="path_to_expert_policy.zip", num_episodes =20) :
+    # Generate dynamic path
+    policy_name = policy_path.split('/')[-1].split('.')[0]
+    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+    path = f'./collected data/{policy_name}_{num_episodes}_{timestamp}.npz'
 
     # Load a pre-trained policy
     pretrained_policy = PPO.load(policy_path)
@@ -138,7 +148,7 @@ def load_data(path='/collected data/cartpole_data.npz') :
     return reconstructed_episodes, episode_starts_loaded,episode_lengths_loaded
 
 
-#expert_collect(policy_path="../PPO_cartpole/PPO_cartpole_trained/ppo_cartpole_0.zip")
+expert_collect(policy_path="../PPO_cartpole/logs_20000_20250114_171244/best_model/best_model.zip", num_episodes=10)
 #episodes , _ , _ = load_data()
 #print(f"len of episode 1 is {len(episodes[1])}. \n episode 0 is :  {episodes[0]}" )
 #random_collect()

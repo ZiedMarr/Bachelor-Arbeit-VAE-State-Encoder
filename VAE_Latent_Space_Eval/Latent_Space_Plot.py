@@ -6,7 +6,7 @@ from Data_Collection.gym_data_collection import load_data  # Import the load_dat
 import os
 
 # Load the pretrained VAE model
-model_path = "../VAE_pretrain/pretrained_vae/vae_offline_expert"
+model_path = "../VAE_PPO_train/trained_vae/vae_15000_vae_offline_expert_20250114_165817"
 num_input_states = 5  # Number of input states
 state_dim = 4  # Each state has 4 elements
 input_dim = state_dim * num_input_states  # Total dimension of the stacked input states

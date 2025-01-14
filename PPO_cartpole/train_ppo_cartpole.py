@@ -17,9 +17,11 @@ total_timesteps = 20000
 # Generate a log directory name
 log_dir = f"logs_{total_timesteps}_{timestamp}"
 
-
+# set a random seed
+seed = 42
 # Create the evaluation environment
 eval_env = gym.make("CartPole-v1")
+eval_env.reset(seed=seed)
 eval_env = Monitor(eval_env)  # Monitor to log evaluation statistics
 
 # Initialize the PPO model
@@ -46,7 +48,6 @@ model.learn(total_timesteps=total_timesteps, callback=[eval_callback])
 
 
 eval_env.close()
-# Save the final model
-model.save("ppo_cartpole_final")
+
 
 print("Training completed and model saved.")

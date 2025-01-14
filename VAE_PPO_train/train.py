@@ -16,18 +16,22 @@ from datetime import datetime
 #get timestamp :
 timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
 #define number of total training time steps :
-total_timesteps = 5000
+total_timesteps = 20000
 #define vae model path
-vae_model_path = "../VAE_pretrain/pretrained_vae/vae_offline_expert"
+vae_model_path = "./trained_vae/vae_15000_vae_offline_expert_20250114_165817"
+
 
 # Extract the VAE model name from its path
 vae_model_name = os.path.basename(vae_model_path)  # Get the last element of the path
+
+#define vae model save path after training
+vae_save_path = f"./trained_vae/vae_{total_timesteps}_{vae_model_name}_{timestamp}"
 
 # Generate a log directory name
 log_dir = f"logs_{total_timesteps}_{vae_model_name}_{timestamp}"
 
 
-# Define the VAE   : TODO : replace with load VAE
+# Define the VAE   :
 vae = VAE(input_dim=20, latent_dim=2, output_dim=8)  # Example dimensions
 vae_optimizer = torch.optim.Adam(vae.parameters(), lr=1e-3)
 #load vae wights
@@ -80,6 +84,8 @@ eval_callback = EvalCallback(
 # Train PPO with VAE training in the callback
 ppo_model.learn(total_timesteps=total_timesteps, callback=[vae_callback, eval_callback])
 
+torch.save(vae.state_dict(), vae_save_path)
+print(f"VAE model saved to {vae_save_path}")
 
 print("Training and periodic saving completed!")
 
