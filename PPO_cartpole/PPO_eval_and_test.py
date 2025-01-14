@@ -6,7 +6,7 @@ from stable_baselines3.common.evaluation import evaluate_policy
 
 # Load the environment and model
 env = gym.make("CartPole-v1", render_mode="human")
-model = PPO.load("/PPO_cartpole_trained/ppo_cartpole_0")
+model = PPO.load("./PPO_cartpole_trained/rl_model_2048_steps")
 
 # Evaluate the model
 mean_reward, std_reward = evaluate_policy(model, env, n_eval_episodes=10)

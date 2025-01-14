@@ -4,7 +4,7 @@ from stable_baselines3 import PPO  # Import stable-baselines3 for pre-trained po
 
 
 
-def random_collect(path='./collected data/cartpole_data_random.npz', num_episodes =20) :
+def random_collect(path='./collected data/cartpole_data_random_10.npz', num_episodes =10) :
     #create env
     env = gym.make('CartPole-v1')
 
@@ -123,7 +123,7 @@ def expert_collect(path='./collected data/cartpole_data_expert.npz', policy_path
 ################################################
 ################################################
 
-def load_data(path='./collected data/cartpole_data.npz') :
+def load_data(path='/collected data/cartpole_data.npz') :
     data = np.load(path)
 
     # Extract the data
@@ -138,6 +138,7 @@ def load_data(path='./collected data/cartpole_data.npz') :
     return reconstructed_episodes, episode_starts_loaded,episode_lengths_loaded
 
 
-#expert_collect()
+#expert_collect(policy_path="../PPO_cartpole/PPO_cartpole_trained/ppo_cartpole_0.zip")
 #episodes , _ , _ = load_data()
 #print(f"len of episode 1 is {len(episodes[1])}. \n episode 0 is :  {episodes[0]}" )
+#random_collect()

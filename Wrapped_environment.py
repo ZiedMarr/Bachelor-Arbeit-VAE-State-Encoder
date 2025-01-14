@@ -42,6 +42,10 @@ class VAEWrapperWithHistory(gym.ObservationWrapper):
         #print("First observation at reset:", obs)
         for _ in range(self.n + self.m):  # Fill buffer with initial observation
             self.buffer_obs.append(obs)
+        ##########test############
+        #combined_obs = self._get_combined_observation()
+        #print("Step combined observation shape:", combined_obs.shape)  # Debug shape
+        ##########testä###########
         return self._get_combined_observation(), info
 
     def observation(self, obs):
@@ -49,6 +53,10 @@ class VAEWrapperWithHistory(gym.ObservationWrapper):
         Update the buffer with the new observation.
         """
         self.buffer_obs.append(obs)
+        ###########test###########
+        #combined_obs = self._get_combined_observation()
+        #print("Step combined observation shape:", combined_obs.shape)  # Debug shape
+        ###########test###########
         return self._get_combined_observation()
 
     def _get_combined_observation(self):

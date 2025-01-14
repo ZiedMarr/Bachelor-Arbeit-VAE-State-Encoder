@@ -8,7 +8,7 @@ import torch
 
 
 # Define saving path for pretrained vae :
-vae_save_path = "/pretrained_vae/vae_0"
+vae_save_path = "/pretrained_vae/vae_1"
 
 # Define the VAE
 vae = VAE(input_dim=20, latent_dim=2, output_dim=8)  # Example dimensions
@@ -21,11 +21,11 @@ env = gym.make("CartPole-v1")
 wrapped_env = VAEWrapperWithHistory(env, vae, n=n, m=m, vae_optimizer=vae_optimizer)
 
 # Load a pre-trained policy
-policy_path = "path_to_expert_policy.zip"  # Replace with the actual path to your policy
+policy_path = "../PPO_cartpole/PPO_cartpole_trained/ppo_cartpole_0.zip"  # Replace with the actual path to your policy
 pretrained_policy = PPO.load(policy_path)
 
 # Training parameters
-num_episodes = 20
+num_episodes = 30
 vae_train_frequency = 3  # Train VAE every X steps
 
 # Tensorboard initialization

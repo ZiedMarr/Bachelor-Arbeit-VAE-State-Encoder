@@ -5,8 +5,8 @@ import numpy as np
 
 
 #Define Paths :
-vae_save_path = "./pretrained_vae/vae_offline_0" # Define saving path for pretrained vae :
-data_path = "../Data_Collection/collected data/cartpole_data.npz" # Define Data Path #
+vae_save_path = "./pretrained_vae/vae_offline_expert" # Define saving path for pretrained vae :
+data_path = "../Data_Collection/collected data/cartpole_data_expert.npz" # Define Data Path #
 
 #Hyperparameters
 # define training frequency :

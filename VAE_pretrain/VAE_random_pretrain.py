@@ -7,7 +7,7 @@ import torch
 
 
 # Define saving path for pretrained vae :
-vae_save_path = "./pretrained_vae/vae_0"
+vae_save_path = "./pretrained_vae/vae_random_10"
 
 
 
@@ -22,7 +22,7 @@ env = gym.make("CartPole-v1")
 wrapped_env = VAEWrapperWithHistory(env, vae, n=n, m=m, vae_optimizer=vae_optimizer)
 print(wrapped_env.observation_space.shape[0])
 # Training parameters
-num_episodes = 2
+num_episodes = 10
 vae_train_frequency = 3  # Train VAE every X steps
 
 #Tensorboard initialization
