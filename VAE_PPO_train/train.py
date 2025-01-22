@@ -13,6 +13,10 @@ import os
 from datetime import datetime
 
 def train(vae_model_path, vae_save_folder, log_batch_dir,total_timesteps = 20000):
+    # Get the current script's directory
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+
+
     #set up gpu or cpu
     device = torch.device("cuda" if torch.cuda.is_available()  else "cpu")
     print(f"Using device: {device}")
@@ -28,10 +32,10 @@ def train(vae_model_path, vae_save_folder, log_batch_dir,total_timesteps = 20000
     vae_model_name = os.path.basename(vae_model_path)  # Get the last element of the path
 
     #define vae model save path after training
-    vae_save_path = f"{vae_save_folder}/{total_timesteps}_{vae_model_name}_{timestamp}"
+    vae_save_path = os.path.join(vae_save_folder,f"{total_timesteps}_{vae_model_name}_{timestamp}")
 
     # Generate a log directory name
-    log_dir = f"./{log_batch_dir}/logs_{total_timesteps}_{vae_model_name}_{timestamp}"
+    log_dir = os.path.join(script_dir,log_batch_dir,f"logs_{total_timesteps}_{vae_model_name}_{timestamp}")
 
 
     # Define the VAE   :
@@ -61,7 +65,7 @@ def train(vae_model_path, vae_save_folder, log_batch_dir,total_timesteps = 20000
     # Define PPO model
     ppo_model = PPO("MlpPolicy", wrapped_env, verbose=1, device=device)
     # Set up TensorBoard logger
-    ppo_model.set_logger(configure(f"{log_dir}/tensorboard_logs", ["tensorboard"]))
+    ppo_model.set_logger(configure(os.path.join(log_dir,"tensorboard_logs"), ["tensorboard"]))
 
     # Initialize Callbacks
     vae_callback = VAETrainingCallback(
