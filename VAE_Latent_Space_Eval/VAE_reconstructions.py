@@ -31,7 +31,7 @@ def stack_data_per_episode(episodes, n, m):
 def main():
     # File paths
     data_path = '../Data_collection/collected data/cartpole_data_expert.npz'  # Path to data file
-    vae_model_path = '../VAE_pretrain/pretrained_vae/vae_offline_0'  # Path to pretrained VAE model
+    vae_model_path = '../VAE_pretrain/pretrained_vae/5_in_2_out/vae_offline_0'  # Path to pretrained VAE model
 
     # Load the data
     reconstructed_episodes, _, _ = load_data(data_path)

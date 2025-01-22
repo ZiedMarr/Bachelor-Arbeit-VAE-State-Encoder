@@ -148,7 +148,7 @@ def load_data(path='/collected data/cartpole_data.npz') :
     return reconstructed_episodes, episode_starts_loaded,episode_lengths_loaded
 
 
-expert_collect(policy_path="../PPO_cartpole/logs_20000_20250114_171244/best_model/best_model.zip", num_episodes=10)
-#episodes , _ , _ = load_data()
-#print(f"len of episode 1 is {len(episodes[1])}. \n episode 0 is :  {episodes[0]}" )
-#random_collect()
+if __name__ == "__main__":
+    # Example calls for testing
+    expert_collect(policy_path="../PPO_cartpole/logs_20000_20250114_171244/best_model/best_model.zip", num_episodes=10)
+    # random_collect()

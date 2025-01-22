@@ -5,7 +5,7 @@ import numpy as np
 
 
 #Define Paths :
-vae_save_path = "./pretrained_vae/vae_offline_expert" # Define saving path for pretrained vae :
+vae_save_path = "pretrained_vae/5_in_2_out/vae_offline_expert"  # Define saving path for pretrained vae :
 data_path = "../Data_Collection/collected data/cartpole_data_expert.npz" # Define Data Path #
 
 #Hyperparameters

@@ -7,7 +7,7 @@ import torch
 
 
 # Define saving path for pretrained vae :
-vae_save_path = "./pretrained_vae/vae_random_10"
+vae_save_path = "pretrained_vae/5_in_2_out/vae_random_10"
 
 
 
