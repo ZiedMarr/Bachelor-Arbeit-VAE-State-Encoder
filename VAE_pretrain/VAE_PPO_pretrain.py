@@ -5,10 +5,13 @@ from Wrapped_environment import VAEWrapperWithHistory
 from stable_baselines3 import PPO  # Import stable-baselines3 for pre-trained policy
 from torch.utils.tensorboard import SummaryWriter
 import torch
+import os
 
 
-# Define saving path for pretrained vae :
-vae_save_path = "/pretrained_vae/vae_1"
+# Define base path (the directory of the current script)
+base_dir = os.path.dirname(os.path.abspath(__file__))
+# Define the path for saving the pretrained VAE
+vae_save_path = os.path.join(base_dir, "pretrained_vae", "vae_1")
 
 # Define the VAE
 vae = VAE(input_dim=20, latent_dim=2, output_dim=8)  # Example dimensions

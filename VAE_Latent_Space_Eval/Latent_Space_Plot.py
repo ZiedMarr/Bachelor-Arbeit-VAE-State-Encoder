@@ -5,8 +5,11 @@ from VAE import VAE  # Import the VAE class from VAE.py
 from Data_Collection.gym_data_collection import load_data  # Import the load_data function
 import os
 
+#get base_dir path
+base_dir = os.path.dirname(os.path.abspath(__file__))
+
 # Load the pretrained VAE model
-model_path = "../VAE_PPO_train/trained_vae/vae_15000_vae_offline_expert_20250114_165817"
+model_path = os.path.join(base_dir, "..", "VAE_PPO_train", "trained_vae","batch2", "20000_vae_15000_vae_offline_expert_20250114_165817_20250123_141147")
 num_input_states = 5  # Number of input states
 state_dim = 4  # Each state has 4 elements
 input_dim = state_dim * num_input_states  # Total dimension of the stacked input states
@@ -19,7 +22,7 @@ vae.load_state_dict(torch.load(model_path))
 vae.eval()  # Set the model to evaluation mode
 
 # Load the collected data
-data_path = "../Data_Collection/collected data/cartpole_data_expert.npz"
+data_path = os.path.join(base_dir, "..", "Data_Collection", "collected data", "cartpole_data_random_10.npz")
 
 observations, episode_starts, episode_lengths = load_data(path=data_path)
 

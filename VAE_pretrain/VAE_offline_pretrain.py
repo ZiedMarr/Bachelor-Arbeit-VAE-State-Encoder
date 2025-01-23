@@ -2,11 +2,14 @@ from VAE import VAE
 from Data_Collection.gym_data_collection import load_data
 import torch
 import numpy as np
+import os
 
 
-#Define Paths :
-vae_save_path = "pretrained_vae/5_in_2_out/vae_offline_expert"  # Define saving path for pretrained vae :
-data_path = "../Data_Collection/collected data/cartpole_data_expert.npz" # Define Data Path #
+
+# Define base paths
+base_dir = os.path.dirname(os.path.abspath(__file__))  # Directory of the current script
+vae_save_path = os.path.join(base_dir, "pretrained_vae", "5_in_2_out", "vae_offline_expert")
+data_path = os.path.join(base_dir, "..", "Data_Collection", "collected data", "cartpole_data_expert.npz")
 
 #Hyperparameters
 # define training frequency :

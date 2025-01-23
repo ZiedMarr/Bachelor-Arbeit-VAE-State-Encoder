@@ -29,9 +29,11 @@ def stack_data_per_episode(episodes, n, m):
     return np.array(inputs), np.array(outputs)
 
 def main():
+    #get base_dir path
+    base_dir = os.path.dirname(os.path.abspath(__file__))
     # File paths
-    data_path = '../Data_collection/collected data/cartpole_data_expert.npz'  # Path to data file
-    vae_model_path = '../VAE_pretrain/pretrained_vae/5_in_2_out/vae_offline_0'  # Path to pretrained VAE model
+    data_path = os.path.join(base_dir, "..", "Data_collection", "collected data", "cartpole_data_expert.npz")
+    vae_model_path = os.path.join(base_dir, "..", "VAE_pretrain", "pretrained_vae", "5_in_2_out", "vae_offline_0")
 
     # Load the data
     reconstructed_episodes, _, _ = load_data(data_path)

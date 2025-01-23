@@ -12,7 +12,7 @@ from VAE import VAE
 import os
 from datetime import datetime
 
-def train(vae_model_path, vae_save_folder, log_batch_dir,total_timesteps = 20000):
+def train(vae_model_path, vae_save_folder, log_batch_dir,total_timesteps = 20000,seed = 42):
     # Get the current script's directory
     script_dir = os.path.dirname(os.path.abspath(__file__))
 
@@ -51,7 +51,7 @@ def train(vae_model_path, vae_save_folder, log_batch_dir,total_timesteps = 20000
     m = 2
     # Define environment :
     # set a random seed
-    seed = 42
+
     env = gym.make("CartPole-v1")
     env.reset(seed=seed)
     env.observation_space.seed(seed)

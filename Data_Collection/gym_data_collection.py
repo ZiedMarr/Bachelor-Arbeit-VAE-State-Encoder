@@ -2,14 +2,17 @@ import gymnasium as gym
 import numpy as np
 from stable_baselines3 import PPO  # Import stable-baselines3 for pre-trained policy
 from datetime import datetime
+import os
 
 
+# Define the base directory (directory of the current script)
+base_dir = os.path.dirname(os.path.abspath(__file__))
 
 def random_collect( num_episodes =10) :
 
     # Generate dynamic path
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-    path = f'./collected data/random_{num_episodes}_{timestamp}.npz'
+    path = os.path.join(base_dir, "collected data", f"random_{num_episodes}_{timestamp}.npz")
 
     #create env
     env = gym.make('CartPole-v1')
@@ -66,11 +69,11 @@ def random_collect( num_episodes =10) :
     return all_observations, episode_starts , episode_lengths
 ################################################
 ################################################
-def expert_collect( policy_path="path_to_expert_policy.zip", num_episodes =20) :
+def expert_collect( policy_path=os.path.join(base_dir, "path_to_expert_policy.zip"), num_episodes =20) :
     # Generate dynamic path
     policy_name = policy_path.split('/')[-1].split('.')[0]
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-    path = f'./collected data/{policy_name}_{num_episodes}_{timestamp}.npz'
+    path = os.path.join(base_dir, "collected data", f"{policy_name}_{num_episodes}_{timestamp}.npz")
 
     # Load a pre-trained policy
     pretrained_policy = PPO.load(policy_path)
@@ -133,7 +136,7 @@ def expert_collect( policy_path="path_to_expert_policy.zip", num_episodes =20) :
 ################################################
 ################################################
 
-def load_data(path='/collected data/cartpole_data.npz') :
+def load_data(path = os.path.join(base_dir, "collected data", "cartpole_data.npz")) :
     data = np.load(path)
 
     # Extract the data
@@ -150,5 +153,5 @@ def load_data(path='/collected data/cartpole_data.npz') :
 
 if __name__ == "__main__":
     # Example calls for testing
-    expert_collect(policy_path="../PPO_cartpole/logs_20000_20250114_171244/best_model/best_model.zip", num_episodes=10)
+    expert_collect(policy_path = os.path.join(base_dir, "..", "PPO_cartpole", "logs_20000_20250114_171244", "best_model", "best_model.zip"), num_episodes=10)
     # random_collect()

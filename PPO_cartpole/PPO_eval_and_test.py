@@ -1,12 +1,16 @@
 import gymnasium as gym
 from stable_baselines3 import PPO
 from stable_baselines3.common.evaluation import evaluate_policy
+import os
 
+# Define the base directory (directory of the current script)
+base_dir = os.path.dirname(os.path.abspath(__file__))
 
 
 # Load the environment and model
 env = gym.make("CartPole-v1", render_mode="human")
-model = PPO.load("./PPO_cartpole_trained/rl_model_2048_steps")
+model_path = os.path.join(base_dir, "PPO_cartpole_trained", "rl_model_2048_steps")
+model = PPO.load(model_path)
 
 # Evaluate the model
 mean_reward, std_reward = evaluate_policy(model, env, n_eval_episodes=10)

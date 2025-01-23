@@ -10,6 +10,9 @@ script_dir = os.path.dirname(os.path.abspath(__file__))
 #name of log directory
 batch = "batch2"
 
+#define batch size
+batch_size = 10
+
 #define number of total training time steps :
 total_timesteps = 20000
 
@@ -23,5 +26,5 @@ vae_save_folder = os.path.join(script_dir,"trained_vae",batch)
 
 log_batch_dir = os.path.join(script_dir,"logs" , batch)
 
-for i in range(10) :
-    train(vae_model_path=vae_model_path, vae_save_folder=vae_save_folder,log_batch_dir=log_batch_dir, total_timesteps=total_timesteps)
+for i in range(batch_size) :
+    train(vae_model_path=vae_model_path, vae_save_folder=vae_save_folder,log_batch_dir=log_batch_dir, total_timesteps=total_timesteps, seed=i)
