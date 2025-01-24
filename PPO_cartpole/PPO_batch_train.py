@@ -9,12 +9,14 @@ script_dir = os.path.dirname(os.path.abspath(__file__))
 batch = "batch2"
 
 #define batch size
-batch_size = 10
+batch_size = 2
 
 #define number of total training time steps :
-total_timesteps = 20000
+total_timesteps = 4000
 
 log_batch_dir = os.path.join(script_dir,"logs" , batch)
 
+seeds = [0,24]
+
 for i in range(batch_size):
-    train_ppo_cartpole(log_batch_dir=log_batch_dir, total_timesteps=total_timesteps, seed=i)
+    train_ppo_cartpole(log_batch_dir=log_batch_dir, total_timesteps=total_timesteps, seed=seeds[i])
