@@ -69,11 +69,12 @@ def random_collect( num_episodes =10) :
     return all_observations, episode_starts , episode_lengths
 ################################################
 ################################################
-def expert_collect( policy_path=os.path.join(base_dir, "path_to_expert_policy.zip"), num_episodes =20) :
+def expert_collect( output_path, policy_path=os.path.join(base_dir, "path_to_expert_policy.zip"), num_episodes =20) :
     # Generate dynamic path
     policy_name = policy_path.split('/')[-1].split('.')[0]
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-    path = os.path.join(base_dir, "collected data", f"{policy_name}_{num_episodes}_{timestamp}.npz")
+    if output_path is None :
+        output_path = os.path.join(base_dir, "collected data", f"{policy_name}_{num_episodes}_{timestamp}.npz")
 
     # Load a pre-trained policy
     pretrained_policy = PPO.load(policy_path)
@@ -125,7 +126,7 @@ def expert_collect( policy_path=os.path.join(base_dir, "path_to_expert_policy.zi
     flat_observations = np.concatenate(all_observations, axis=0)
 
     # Save data to .npz
-    np.savez(path,
+    np.savez(output_path,
              observations=flat_observations,
              episode_starts=np.array(episode_starts),
              episode_lengths=np.array(episode_lengths))
@@ -150,8 +151,50 @@ def load_data(path = os.path.join(base_dir, "collected data", "cartpole_data.npz
 
     return reconstructed_episodes, episode_starts_loaded,episode_lengths_loaded
 
+################# Collect data from batch of policies #####################
+def collect_data_from_model(model_path, index, num_episodes=60, output_path = os.path.join(base_dir,"collected_data")):
+    """
+    Collect data using the expert_collect function and save it with an indexed filename.
+
+    Parameters:
+    - model_path (str): Path to the expert model.
+    - index (int): Index for the output filename.
+    - num_episodes (int): Number of episodes to collect data over.
+    """
+    # Define the output path with the given index
+    output_path = os.path.join(output_path, f"cartpole_ppo_data_{index}.npz")
+
+    # Ensure the output directory exists
+    os.makedirs(os.path.dirname(output_path), exist_ok=True)
+
+    # Collect data using the expert_collect function
+    expert_collect(output_path=output_path, policy_path=model_path, num_episodes=num_episodes)
+
+
+def collect_from_batch(root_dir= os.path.join(base_dir,"..", "PPO_cartpole","logs", "batch2"), output_path  = os.path.join(base_dir, "collected_data") ):
+
+    # Initialize index
+    index = 0
+
+    # Traverse the directory structure
+    for subdir, dirs, files in os.walk(root_dir):
+        for file in files:
+            if file == 'best_model.zip':
+                # Construct the full path to the model
+                model_path = os.path.join(subdir, file)
+
+                print(f" collecting data of {model_path}")
+                # Collect data from the model
+                collect_data_from_model(model_path, index, output_path=output_path)
+
+                # Increment the index for the next file
+                index += 1
+                print(index)
+
+
 
 if __name__ == "__main__":
     # Example calls for testing
-    expert_collect(policy_path = os.path.join(base_dir, "..", "PPO_cartpole", "logs_20000_20250114_171244", "best_model", "best_model.zip"), num_episodes=10)
+    expert_collect(output_path = os.path.join(base_dir, "collected data", "cartpole_expert_60"),policy_path = os.path.join(base_dir, "..", "PPO_cartpole", "logs","batch2","logs_20000_20250123_151149","best_model", "best_model.zip"), num_episodes=60)
     # random_collect()
+    #collect_from_batch(root_dir='../PPO_cartpole/logs/explore/', output_path= os.path.join(base_dir, "collected data", "explore"))

@@ -2,6 +2,10 @@ import numpy as np
 import matplotlib.pyplot as plt
 from Data_Collection.gym_data_collection import load_data
 from typing import List, Union
+import os
+
+#from VAE_Latent_Space_Eval.Latent_Space_Plot import data_path
+
 
 def visualize_observation_distribution(
     data_paths: Union[str, List[str]],
@@ -53,6 +57,24 @@ def visualize_observation_distribution(
         plt.show()
 
 
-# Example usage
-data_paths = ['./collected data/cartpole_data_random_50.npz', "./collected data/cartpole_data_expert.npz" , "./collected data/cartpole_data_random_10.npz" ] # Replace with your actual file path
-visualize_observation_distribution(data_paths=data_paths, observation_index=2, save_path="./Data_distribution/data1")
+
+if __name__ == "__main__":
+    # Example usage
+    '''
+    #data_paths = ['./collected data/cartpole_data_random_50.npz', "./collected data/cartpole_data_expert.npz" , "./collected data/cartpole_data_random_10.npz" ] # Replace with your actual file path
+    directory = "collected_data"
+    data_paths = []
+    # Iterate through the directory
+    for file_name in os.listdir(directory):
+            # Construct the full path to the file
+            full_path = os.path.join(directory, file_name)
+
+            # Check if it's a file (and not a subdirectory)
+            if os.path.isfile(full_path):
+                data_paths.append(full_path)
+    '''
+
+
+   # visualize_observation_distribution(data_paths=data_paths, observation_index=3, save_path="./Data_distribution/explore/data_explore_3")
+    visualize_observation_distribution(data_paths="./collected data/cartpole_expert_60.npz", observation_index=3,
+                                   save_path="./Data_distribution/expert_60/data_3")

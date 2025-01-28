@@ -109,19 +109,22 @@ if __name__ == "__main__" :
     # get base_dir path
     base_dir = os.path.dirname(os.path.abspath(__file__))
     # model path
-    model_path = os.path.join(base_dir, "..", "VAE_PPO_train", "trained_vae", "batch2",
-                              "20000_vae_15000_vae_offline_expert_20250114_165817_20250123_141147")
-
+    model_path = os.path.join(base_dir, "..", "VAE_pretrain", "pretrained_vae", "5_in_2_out",
+                              "vae_explore_17")
+    #VAE_pretrain/pretrained_vae/5_in_2_out/vae_explore_17
     vae = VAE(input_dim=20, latent_dim=2, output_dim=8)
     vae.load_state_dict(torch.load(model_path))
 
     #Data
-    data1 = os.path.join(base_dir, "..", "Data_Collection", "collected data", "cartpole_data_random_10.npz")
-    data2 = os.path.join(base_dir, "..", "Data_Collection", "collected data", "cartpole_data_expert.npz")
+    #data1 = os.path.join(base_dir, "..", "Data_Collection", "collected data", "cartpole_data_random_10.npz")
+    #data2 = os.path.join(base_dir, "..", "Data_Collection", "collected data", "cartpole_data_expert.npz")
+    # Directory containing your data files
+    data_dir = '../Data_Collection/collected_data'
 
-    data_files = [
-         data1
-     ]
+    # List all files in the directory
+    file_list = [os.path.join(data_dir, file) for file in os.listdir(data_dir) if file.endswith('.npz')]
+
+    data_files = file_list[:12]
     plot_latent_space(
          data_paths=data_files,
          vae=vae,
