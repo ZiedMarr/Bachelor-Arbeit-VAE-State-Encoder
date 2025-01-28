@@ -5,7 +5,7 @@ import os
 
 base_dir = os.path.dirname(os.path.abspath(__file__))
 
-def vae_ppo_average (base_log_dir = os.path.join(base_dir, "..", "VAE_PPO_train", "logs", "batch2")) :
+def vae_ppo_average (output_file,base_log_dir = os.path.join(base_dir, "..", "VAE_PPO_train", "logs", "batch2")) :
     # Automatically populate log_dirs with subdirectories containing logs
     log_dirs = [
         os.path.join(base_log_dir, folder, "eval")
@@ -43,12 +43,12 @@ def vae_ppo_average (base_log_dir = os.path.join(base_dir, "..", "VAE_PPO_train"
     std_rewards = all_rewards.std(axis=(0, 2))  # Standard deviation
 
     # Save the aggregated log
-    output_file = os.path.join("logs", "VAE_PPO" , "averaged_evaluation_batch2.npz")
+    #output_file = os.path.join("logs", "VAE_PPO" , "averaged_evaluation_batch2.npz")
     np.savez(output_file, timesteps=timesteps, mean_rewards=mean_rewards, std_rewards=std_rewards)
     print(f"Averaged log saved to: {output_file}")
 
 
-def ppo_average(base_log_dir = os.path.join(base_dir,"..", "PPO_cartpole", "logs" , "batch2")) :# Define the base directory (directory of the current script)
+def ppo_average(output_file,base_log_dir = os.path.join(base_dir,"..", "PPO_cartpole", "logs" , "batch2")) :# Define the base directory (directory of the current script)
 
     # Automatically populate log_dirs with subdirectories containing logs
     log_dirs = [
@@ -87,11 +87,11 @@ def ppo_average(base_log_dir = os.path.join(base_dir,"..", "PPO_cartpole", "logs
     std_rewards = all_rewards.std(axis=(0, 2))  # Standard deviation
 
     # Save the aggregated log
-    output_file = os.path.join("logs", "PPO" , "averaged_evaluation_batch2.npz")
+    #output_file = os.path.join("logs", "PPO" , "averaged_evaluation_batch2.npz")
     np.savez(output_file, timesteps=timesteps, mean_rewards=mean_rewards, std_rewards=std_rewards)
     print(f"Averaged log saved to: {output_file}")
 
 
 if __name__ == "__main__":
-    ppo_average(base_log_dir=os.path.join(base_dir,"..", "PPO_cartpole", "logs" , "batch2"))
-    vae_ppo_average(base_log_dir=os.path.join(base_dir,"..", "VAE_PPO_train", "logs" , "batch2"))
+    #ppo_average(output_file=,base_log_dir=os.path.join(base_dir,"..", "PPO_cartpole", "logs" , "batch2"))
+    vae_ppo_average(output_file= os.path.join("logs", "VAE_PPO" , "averaged_evaluation_batch_explore.npz") ,base_log_dir=os.path.join(base_dir,"..", "VAE_PPO_train", "logs" , "batch_explore"))
