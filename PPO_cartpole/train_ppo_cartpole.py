@@ -6,6 +6,7 @@ from stable_baselines3.common.callbacks import EvalCallback
 from stable_baselines3.common.monitor import Monitor
 from stable_baselines3.common.logger import configure
 from datetime import datetime
+from Wrappers.RandomStartCartPole import RandomStartCartPole
 import os
 
 def train_ppo_cartpole(log_batch_dir, total_timesteps=20000, seed=42) :
@@ -23,6 +24,7 @@ def train_ppo_cartpole(log_batch_dir, total_timesteps=20000, seed=42) :
     # Create the evaluation environment
     eval_env = gym.make("CartPole-v1")
     eval_env.reset(seed=seed)
+    eval_env = RandomStartCartPole(eval_env)
     eval_env = Monitor(eval_env)  # Monitor to log evaluation statistics
 
     # Initialize the PPO model

@@ -88,8 +88,8 @@ if __name__ == "__main__":
     #visualize(os.path.join(base_dir, "logs", "PPO" ,"averaged_evaluation_batch2.npz"))
     #visualize(os.path.join(base_dir, "logs", "VAE_PPO" ,"averaged_evaluation_batch2.npz"))
     # Define file paths
-    ppo_file = os.path.join(base_dir, "logs", "PPO", "averaged_evaluation_batch2.npz")
-    vae_ppo_file = os.path.join(base_dir, "logs", "VAE_PPO" ,"averaged_evaluation_batch_explore.npz")
+    ppo_file = os.path.join(base_dir, "logs", "PPO", "averaged_evaluation_explore_rand_env_seed10.npz")
+    vae_ppo_file = os.path.join(base_dir, "logs", "VAE_PPO", "5-5_kl0,1" ,"averaged_evaluation_batch_explore_5_seed10.npz")
 
     # Create a single figure with two subplots
     fig, axes = plt.subplots(1, 2, figsize=(16, 6))  # 1 row, 2 columns

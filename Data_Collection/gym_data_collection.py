@@ -3,6 +3,7 @@ import numpy as np
 from stable_baselines3 import PPO  # Import stable-baselines3 for pre-trained policy
 from datetime import datetime
 import os
+from Wrappers.RandomStartCartPole import RandomStartCartPole
 
 
 # Define the base directory (directory of the current script)
@@ -69,7 +70,7 @@ def random_collect( num_episodes =10) :
     return all_observations, episode_starts , episode_lengths
 ################################################
 ################################################
-def expert_collect( output_path, policy_path=os.path.join(base_dir, "path_to_expert_policy.zip"), num_episodes =20) :
+def expert_collect(  output_path, policy_path=os.path.join(base_dir, "path_to_expert_policy.zip"), num_episodes =20, env_wrapper=None) :
     # Generate dynamic path
     policy_name = policy_path.split('/')[-1].split('.')[0]
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
@@ -81,6 +82,9 @@ def expert_collect( output_path, policy_path=os.path.join(base_dir, "path_to_exp
 
     # create env
     env = gym.make('CartPole-v1')
+
+    if env_wrapper is not None :
+        env = env_wrapper(env)
 
     # data storage
     all_observations = []
@@ -152,7 +156,7 @@ def load_data(path = os.path.join(base_dir, "collected data", "cartpole_data.npz
     return reconstructed_episodes, episode_starts_loaded,episode_lengths_loaded
 
 ################# Collect data from batch of policies #####################
-def collect_data_from_model(model_path, index, num_episodes=60, output_path = os.path.join(base_dir,"collected_data")):
+def collect_data_from_model(model_path, index, num_episodes=60, output_path = os.path.join(base_dir,"collected_data") , env_wrapper = None):
     """
     Collect data using the expert_collect function and save it with an indexed filename.
 
@@ -168,10 +172,10 @@ def collect_data_from_model(model_path, index, num_episodes=60, output_path = os
     os.makedirs(os.path.dirname(output_path), exist_ok=True)
 
     # Collect data using the expert_collect function
-    expert_collect(output_path=output_path, policy_path=model_path, num_episodes=num_episodes)
+    expert_collect(output_path=output_path, policy_path=model_path, num_episodes=num_episodes , env_wrapper=env_wrapper)
 
 
-def collect_from_batch(root_dir= os.path.join(base_dir,"..", "PPO_cartpole","logs", "batch2"), output_path  = os.path.join(base_dir, "collected_data") ):
+def collect_from_batch(root_dir= os.path.join(base_dir,"..", "PPO_cartpole","logs", "batch2"), output_path  = os.path.join(base_dir, "collected_data") , env_wrapper = None):
 
     # Initialize index
     index = 0
@@ -185,7 +189,7 @@ def collect_from_batch(root_dir= os.path.join(base_dir,"..", "PPO_cartpole","log
 
                 print(f" collecting data of {model_path}")
                 # Collect data from the model
-                collect_data_from_model(model_path, index, output_path=output_path)
+                collect_data_from_model(model_path, index, output_path=output_path, env_wrapper=env_wrapper)
 
                 # Increment the index for the next file
                 index += 1
@@ -195,6 +199,6 @@ def collect_from_batch(root_dir= os.path.join(base_dir,"..", "PPO_cartpole","log
 
 if __name__ == "__main__":
     # Example calls for testing
-    expert_collect(output_path = os.path.join(base_dir, "collected data", "cartpole_expert_60"),policy_path = os.path.join(base_dir, "..", "PPO_cartpole", "logs","batch2","logs_20000_20250123_151149","best_model", "best_model.zip"), num_episodes=60)
+    #expert_collect(output_path = os.path.join(base_dir, "collected data", "cartpole_expert_60"),policy_path = os.path.join(base_dir, "..", "PPO_cartpole", "logs","batch2","logs_20000_20250123_151149","best_model", "best_model.zip"), num_episodes=60)
     # random_collect()
-    #collect_from_batch(root_dir='../PPO_cartpole/logs/explore/', output_path= os.path.join(base_dir, "collected data", "explore"))
+    collect_from_batch(root_dir='../PPO_cartpole/logs/explore/', output_path= os.path.join(base_dir, "collected data", "explore_rand_env"), env_wrapper=RandomStartCartPole)

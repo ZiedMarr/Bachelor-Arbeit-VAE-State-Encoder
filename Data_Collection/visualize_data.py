@@ -60,9 +60,9 @@ def visualize_observation_distribution(
 
 if __name__ == "__main__":
     # Example usage
-    '''
+
     #data_paths = ['./collected data/cartpole_data_random_50.npz', "./collected data/cartpole_data_expert.npz" , "./collected data/cartpole_data_random_10.npz" ] # Replace with your actual file path
-    directory = "collected_data"
+    directory = "./collected data/explore_rand_env"
     data_paths = []
     # Iterate through the directory
     for file_name in os.listdir(directory):
@@ -72,9 +72,9 @@ if __name__ == "__main__":
             # Check if it's a file (and not a subdirectory)
             if os.path.isfile(full_path):
                 data_paths.append(full_path)
-    '''
 
 
-   # visualize_observation_distribution(data_paths=data_paths, observation_index=3, save_path="./Data_distribution/explore/data_explore_3")
-    visualize_observation_distribution(data_paths="./collected data/cartpole_expert_60.npz", observation_index=3,
-                                   save_path="./Data_distribution/expert_60/data_3")
+    for i in range(4) :
+        visualize_observation_distribution(data_paths=data_paths, observation_index=i, save_path=f"./Data_distribution/explore_rand_env/data_explore_{i}")
+    #visualize_observation_distribution(data_paths="./collected data/cartpole_expert_60.npz", observation_index=3,
+    #                               save_path="./Data_distribution/expert_60/data_3")

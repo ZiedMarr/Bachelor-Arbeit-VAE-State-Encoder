@@ -1,7 +1,7 @@
 import gymnasium as gym
 import torch.optim as optim
 from VAE import VAE
-from Wrapped_environment import VAEWrapperWithHistory
+from Wrappers.Wrapped_environment import VAEWrapperWithHistory
 from stable_baselines3 import PPO  # Import stable-baselines3 for pre-trained policy
 from torch.utils.tensorboard import SummaryWriter
 import torch

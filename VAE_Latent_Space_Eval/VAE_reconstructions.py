@@ -7,6 +7,8 @@ import gymnasium as gym
 import torch.optim as optim
 import imageio
 
+from config import INPUT_DIMENSION, INPUT_STATE_SIZE, OUTPUT_STATE_SIZE, LATENT_DIM, OUTPUT_DIMENSION
+
 # get base_dir path
 base_dir = os.path.dirname(os.path.abspath(__file__))
 
@@ -69,18 +71,18 @@ def main(data_path, vae_model_path):
     reconstructed_episodes, _, _ = load_data(data_path)
 
     # Define VAE input/output stacking parameters
-    n = 5  # Number of input states
-    m = 2  # Number of output states
+    n = INPUT_STATE_SIZE  # Number of input states
+    m = OUTPUT_STATE_SIZE  # Number of output states
 
     # Prepare data while respecting episode boundaries
     inputs, outputs = stack_data_per_episode(reconstructed_episodes, n, m)
 
     # Initialize the VAE (adjust dimensions to your setup)
-    input_dim = inputs.shape[1]  # Flattened input dimension
-    output_dim = outputs.shape[1]  # Flattened output dimension
-    latent_dim = 2  # Latent space dimension
+    #input_dim = inputs.shape[1]  # Flattened input dimension
+    #output_dim = outputs.shape[1]  # Flattened output dimension
+    #latent_dim = LATENT_DIM  # Latent space dimension
 
-    vae = VAE(input_dim=input_dim, latent_dim=latent_dim, output_dim=output_dim)
+    vae = VAE(input_dim=INPUT_DIMENSION, latent_dim=LATENT_DIM, output_dim=OUTPUT_DIMENSION)
 
     # Load pretrained weights
     if os.path.exists(vae_model_path):
@@ -89,7 +91,8 @@ def main(data_path, vae_model_path):
         print("Loaded pretrained VAE model.")
     else:
         raise FileNotFoundError(f"Pretrained VAE model not found at {vae_model_path}")
-    vae_name = last_element = os.path.basename(vae_model_path)
+    vae_name = os.path.basename(vae_model_path)
+    category = os.path.basename(os.path.dirname(vae_model_path))
 
     # Select 5 random examples
     indices = np.random.choice(len(inputs), size=5, replace=False)
@@ -104,16 +107,17 @@ def main(data_path, vae_model_path):
         predicted_outputs, _, _, _ = vae(inputs_tensor)
 
     # Print input and output in a clear format
-    '''
+
     for i, (inp, true_out, pred_out) in enumerate(zip(selected_inputs, corresponding_outputs, predicted_outputs.numpy())):
         print(f"Example {i+1}")
         print("Input:", inp.reshape(n, -1))  # Reshape to n rows of state dimensions
         print("True Output:", true_out.reshape(m, -1))  # Reshape to m rows of state dimensions
         print("Predicted Output:", pred_out.reshape(m, -1))  # Reshape to m rows of state dimensions
         print("-" * 50)
-    '''
+
+    # produce gifs
     for i, (inp, true_out, pred_out) in enumerate(zip(selected_inputs, corresponding_outputs, predicted_outputs.numpy())):
-        folder_path = os.path.join(base_dir,"gif" , f"{vae_name}", f"example_{i}")
+        folder_path = os.path.join(base_dir,"gif" , category ,vae_name, f"example_{i}")
         os.makedirs(folder_path, exist_ok=True)
 
         input_gif_path = os.path.join(folder_path, "input.gif")
@@ -125,4 +129,4 @@ def main(data_path, vae_model_path):
         render_cartpole_from_observations(pred_out.reshape(m, -1), predicted_output_gif_path)
 
 if __name__ == "__main__":
-    main(data_path=os.path.join(base_dir, "..", "Data_collection", "collected data", "cartpole_data_random_1.npz") , vae_model_path=os.path.join(base_dir, "..", "VAE_pretrain", "pretrained_vae", "5_in_2_out","explore", "vae_explore_17"))
+    main(data_path=os.path.join(base_dir, "..", "Data_collection", "collected data", "explore_rand_env","cartpole_ppo_data_4.npz") , vae_model_path=os.path.join(base_dir, "..", "VAE_pretrain", "pretrained_vae", "5_5","explore_0,1", "vae_explore_5-5_10"))

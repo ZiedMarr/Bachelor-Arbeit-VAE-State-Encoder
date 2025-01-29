@@ -2,6 +2,9 @@ from stable_baselines3.common.callbacks import BaseCallback
 import numpy as np
 import torch
 
+from config import BETA_KL_DIV
+
+
 class VAETrainingCallback(BaseCallback):
     def __init__(self, vae, optimizer, train_frequency, n, m, verbose=0, original_obs_shape=4):
         super(VAETrainingCallback, self).__init__(verbose)
@@ -92,7 +95,7 @@ class VAETrainingCallback(BaseCallback):
                 # Compute the VAE loss
                 reconstruction_loss = torch.nn.MSELoss()(predicted_next_states, target_tensor)
                 kl_loss = -0.5 * torch.sum(1 + log_var - mu.pow(2) - log_var.exp())
-                loss = reconstruction_loss + kl_loss
+                loss = reconstruction_loss + BETA_KL_DIV*kl_loss
 
                 # Backpropagation and optimization
                 self.optimizer.zero_grad()

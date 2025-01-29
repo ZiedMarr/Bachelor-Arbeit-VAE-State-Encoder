@@ -6,7 +6,7 @@ from Data_Collection.gym_data_collection import load_data
 from VAE import VAE
 import os
 
-
+from config import INPUT_DIMENSION, LATENT_DIM, OUTPUT_DIMENSION, INPUT_STATE_SIZE
 
 
 def split_observations(observations, num_input_states):
@@ -25,7 +25,7 @@ def split_observations(observations, num_input_states):
         for i in range(0, len(episode) - num_input_states + 1):
             chunk = episode[i:i + num_input_states].flatten()
             chunks.append(chunk)
-    #print(f"Total chunks created: {len(chunks)}")  # Debugging
+    print(f"Total chunks created: {len(chunks)}")  # Debugging
 
     return np.array(chunks)
 
@@ -33,7 +33,7 @@ def split_observations(observations, num_input_states):
 def plot_latent_space(
         data_paths: Union[str, List[str]],
         vae: VAE,
-        num_input_states: int = 5,
+        num_input_states: int = INPUT_STATE_SIZE,
         save_path: str = None
 ):
     """
@@ -114,17 +114,17 @@ if __name__ == "__main__" :
     # get base_dir path
     base_dir = os.path.dirname(os.path.abspath(__file__))
     # model path
-    model_path = os.path.join(base_dir, "..", "VAE_pretrain", "pretrained_vae", "5_in_2_out",
-                              "explore","vae_explore_1")
+    model_path = os.path.join(base_dir, "..", "VAE_pretrain", "pretrained_vae", "5_5",
+                              "explore_0,1","vae_explore_5-5_10")
     #VAE_pretrain/pretrained_vae/5_in_2_out/vae_explore_17
-    vae = VAE(input_dim=20, latent_dim=2, output_dim=8)
+    vae = VAE(input_dim=INPUT_DIMENSION, latent_dim=LATENT_DIM, output_dim=OUTPUT_DIMENSION)
     vae.load_state_dict(torch.load(model_path))
 
     #Data
     data1 = os.path.join(base_dir, "..", "Data_Collection", "collected data", "cartpole_data_random_10.npz")
     data2 = os.path.join(base_dir, "..", "Data_Collection", "collected data", "cartpole_data_expert.npz")
     # Directory containing your data files
-    data_dir = '../Data_Collection/collected_data'
+    data_dir = '../Data_Collection/collected data/explore_rand_env'
 
     # List all files in the directory
     file_list = [os.path.join(data_dir, file) for file in os.listdir(data_dir) if file.endswith('.npz')]
@@ -132,8 +132,8 @@ if __name__ == "__main__" :
     #data_files = file_list[:2]
     data_files= [data1,data2]
     plot_latent_space(
-         data_paths=data_files,
+         data_paths=file_list,
          vae=vae,
-         num_input_states=5,
-         save_path='./Latent_Plots/latent_space_plot_test_data1.png'
+         num_input_states=INPUT_STATE_SIZE,
+         save_path='./Latent_Plots/KL-D 0,1/latent_space_plot_5to5_10.png'
      )

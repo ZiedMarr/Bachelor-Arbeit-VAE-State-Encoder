@@ -6,17 +6,17 @@ from PPO_cartpole.train_ppo_cartpole import train_ppo_cartpole
 script_dir = os.path.dirname(os.path.abspath(__file__))
 
 #name of log directory
-batch = "batch_20000_timesteps"
+batch = "batch_20000_timesteps_rand_env"
 
 #define batch size
-batch_size = 2
+batch_size = 10
 
 #define number of total training time steps :
 total_timesteps = 20000
 
-log_batch_dir = os.path.join(script_dir,"logs", "explore" , batch)
+log_batch_dir = os.path.join(script_dir,"logs", "explore_rand_env" , batch)
 
-seeds = [19 , 323]
+seeds = [1, 33, 545, 65 ,6 , 66, 78, 48 , 24 , 98]
 
 for i in range(batch_size):
     train_ppo_cartpole(log_batch_dir=log_batch_dir, total_timesteps=total_timesteps, seed=seeds[i])

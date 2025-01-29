@@ -1,16 +1,18 @@
 import gymnasium as gym
 import torch
 from stable_baselines3 import PPO
-from Wrapped_environment import VAEWrapperWithHistory
+from Wrappers.Wrapped_environment import VAEWrapperWithHistory
+from Wrappers.RandomStartCartPole import RandomStartCartPole
 from Callbacks.VAE_callback_PPO import VAETrainingCallback
-from Callbacks.SaveModelCallback import SaveModelCallback
-from stable_baselines3.common.callbacks import CheckpointCallback, EveryNTimesteps
 from stable_baselines3.common.logger import configure
 from stable_baselines3.common.callbacks import EvalCallback
 from stable_baselines3.common.monitor import Monitor
 from VAE import VAE
 import os
 from datetime import datetime
+
+from config import INPUT_DIMENSION, LATENT_DIM, OUTPUT_DIMENSION, INPUT_STATE_SIZE, OUTPUT_STATE_SIZE
+
 
 def train(vae_model_path, vae_save_folder, log_batch_dir,total_timesteps = 20000,seed = 42):
     # Get the current script's directory
@@ -39,7 +41,7 @@ def train(vae_model_path, vae_save_folder, log_batch_dir,total_timesteps = 20000
 
 
     # Define the VAE   :
-    vae = VAE(input_dim=20, latent_dim=2, output_dim=8)  # Example dimensions
+    vae = VAE(input_dim=INPUT_DIMENSION, latent_dim=LATENT_DIM, output_dim=OUTPUT_DIMENSION)  # Example dimensions
     vae_optimizer = torch.optim.Adam(vae.parameters(), lr=1e-3)
     vae.to(device)
     #load vae wights
@@ -47,14 +49,15 @@ def train(vae_model_path, vae_save_folder, log_batch_dir,total_timesteps = 20000
 
 
     # Create the wrapped environment
-    n = 5
-    m = 2
+    n = INPUT_STATE_SIZE
+    m = OUTPUT_STATE_SIZE
     # Define environment :
     # set a random seed
 
     env = gym.make("CartPole-v1")
     env.reset(seed=seed)
     env.observation_space.seed(seed)
+    env = RandomStartCartPole(env)
     wrapped_env = VAEWrapperWithHistory(env, vae, n=n, m=m, vae_optimizer=vae_optimizer)
     wrapped_env = Monitor(wrapped_env)
 

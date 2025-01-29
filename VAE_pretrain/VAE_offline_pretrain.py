@@ -3,6 +3,8 @@ from Data_Collection.gym_data_collection import load_data
 import torch
 import numpy as np
 import os
+import config
+from config import INPUT_STATE_SIZE, OUTPUT_STATE_SIZE, INPUT_DIMENSION, LATENT_DIM, OUTPUT_DIMENSION, BETA_KL_DIV
 
 #from VAE_PPO_train.model_batch_train import vae_model_path
 
@@ -19,13 +21,13 @@ def offline_pretrain(vae_save_path, data_path, vae_model_path) :
     #Hyperparameters
     # define training frequency :
     train_frequency = 5
-    n = 5  # Number of input states
-    m = 2  # Number of next states
+    n = INPUT_STATE_SIZE  # Number of input states
+    m = OUTPUT_STATE_SIZE  # Number of next states
 
 
 
     # Define the VAE
-    vae = VAE(input_dim=20, latent_dim=2, output_dim=8)  # Example dimensions
+    vae = VAE(input_dim=INPUT_DIMENSION, latent_dim=LATENT_DIM, output_dim=OUTPUT_DIMENSION)  # Example dimensions
     vae_optimizer = torch.optim.Adam(vae.parameters(), lr=1e-3)
     if not(vae_model_path is None) :
         vae.load_state_dict(torch.load(vae_model_path))
@@ -59,7 +61,7 @@ def offline_pretrain(vae_save_path, data_path, vae_model_path) :
             # Compute the VAE loss
             reconstruction_loss = torch.nn.MSELoss()(predicted_next_states, target_tensor)
             kl_loss = -0.5 * torch.sum(1 + log_var - mu.pow(2) - log_var.exp())
-            loss = reconstruction_loss + kl_loss
+            loss = reconstruction_loss + BETA_KL_DIV * kl_loss
 
             # Backpropagation and optimization
             vae_optimizer.zero_grad()
@@ -82,18 +84,20 @@ def offline_pretrain(vae_save_path, data_path, vae_model_path) :
 
 if __name__ == "__main__":
 
-    offline_pretrain(vae_model_path= None ,vae_save_path="./pretrained_vae/5_in_2_out/explore/vae_explore_0", data_path="../Data_Collection/collected_data/cartpole_ppo_data_0.npz")
+    # Directory containing your data files
+    data_dir = '../Data_Collection/collected data/explore_rand_env'
+
+    offline_pretrain(vae_model_path= None ,vae_save_path="./pretrained_vae/5_5/explore_0,1/vae_explore_5-5_0", data_path=os.path.join(data_dir, "cartpole_ppo_data_0.npz"))
 
     #vae_path
-    vae_model_path = "./pretrained_vae/5_in_2_out/explore/vae_explore_0"
-    # Directory containing your data files
-    data_dir = '../Data_Collection/collected_data'
+    vae_model_path = "./pretrained_vae/5_5/explore_0,1/vae_explore_5-5_0"
+
 
     # List all files in the directory
     file_list = [os.path.join(data_dir, file) for file in os.listdir(data_dir) if file.endswith('.npz')]
     file_list = file_list[1:]
     i=1
     for file in file_list :
-        offline_pretrain(vae_model_path= f"./pretrained_vae/5_in_2_out/explore/vae_explore_{i-1}" ,vae_save_path=f"./pretrained_vae/5_in_2_out/explore/vae_explore_{i}",
+        offline_pretrain(vae_model_path= f"./pretrained_vae/5_5/explore_0,1/vae_explore_5-5_{i-1}" ,vae_save_path=f"./pretrained_vae/5_5/explore_0,1/vae_explore_5-5_{i}",
                          data_path= file)
         i = i+ 1

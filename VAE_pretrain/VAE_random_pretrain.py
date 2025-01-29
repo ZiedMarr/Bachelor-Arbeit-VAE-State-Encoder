@@ -1,7 +1,7 @@
 import gymnasium as gym
 import torch.optim as optim
 from VAE import VAE
-from Wrapped_environment import VAEWrapperWithHistory
+from Wrappers.Wrapped_environment import VAEWrapperWithHistory
 from torch.utils.tensorboard import SummaryWriter
 import torch
 
