@@ -125,4 +125,4 @@ def main(data_path, vae_model_path):
         render_cartpole_from_observations(pred_out.reshape(m, -1), predicted_output_gif_path)
 
 if __name__ == "__main__":
-    main(data_path=os.path.join(base_dir, "..", "Data_collection", "collected data", "cartpole_data_random_1.npz") , vae_model_path=os.path.join(base_dir, "..", "VAE_pretrain", "pretrained_vae", "5_in_2_out", "vae_explore_17"))
+    main(data_path=os.path.join(base_dir, "..", "Data_collection", "collected data", "cartpole_data_random_1.npz") , vae_model_path=os.path.join(base_dir, "..", "VAE_pretrain", "pretrained_vae", "5_in_2_out","explore", "vae_explore_17"))

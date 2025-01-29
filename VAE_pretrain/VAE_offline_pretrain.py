@@ -82,17 +82,18 @@ def offline_pretrain(vae_save_path, data_path, vae_model_path) :
 
 if __name__ == "__main__":
 
-    offline_pretrain(vae_model_path= None ,vae_save_path="./pretrained_vae/5_in_2_out/vae_explore", data_path="../Data_Collection/collected_data/cartpole_ppo_data_0.npz")
+    offline_pretrain(vae_model_path= None ,vae_save_path="./pretrained_vae/5_in_2_out/explore/vae_explore_0", data_path="../Data_Collection/collected_data/cartpole_ppo_data_0.npz")
 
     #vae_path
-    vae_model_path = "./pretrained_vae/5_in_2_out/vae_explore"
+    vae_model_path = "./pretrained_vae/5_in_2_out/explore/vae_explore_0"
     # Directory containing your data files
     data_dir = '../Data_Collection/collected_data'
 
     # List all files in the directory
     file_list = [os.path.join(data_dir, file) for file in os.listdir(data_dir) if file.endswith('.npz')]
-    i=0
+    file_list = file_list[1:]
+    i=1
     for file in file_list :
-        offline_pretrain(vae_model_path= "./pretrained_vae/5_in_2_out/vae_explore" ,vae_save_path=f"./pretrained_vae/5_in_2_out/vae_explore_{i}",
-                         data_path="../Data_Collection/collected_data/cartpole_ppo_data_0.npz")
+        offline_pretrain(vae_model_path= f"./pretrained_vae/5_in_2_out/explore/vae_explore_{i-1}" ,vae_save_path=f"./pretrained_vae/5_in_2_out/explore/vae_explore_{i}",
+                         data_path= file)
         i = i+ 1

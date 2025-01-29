@@ -7,6 +7,8 @@ from VAE import VAE
 import os
 
 
+
+
 def split_observations(observations, num_input_states):
     """
     Split observations into chunks of the specified number of input states.
@@ -23,6 +25,8 @@ def split_observations(observations, num_input_states):
         for i in range(0, len(episode) - num_input_states + 1):
             chunk = episode[i:i + num_input_states].flatten()
             chunks.append(chunk)
+    #print(f"Total chunks created: {len(chunks)}")  # Debugging
+
     return np.array(chunks)
 
 
@@ -106,25 +110,27 @@ def plot_latent_space(
 
 if __name__ == "__main__" :
 
+
     # get base_dir path
     base_dir = os.path.dirname(os.path.abspath(__file__))
     # model path
     model_path = os.path.join(base_dir, "..", "VAE_pretrain", "pretrained_vae", "5_in_2_out",
-                              "vae_explore_17")
+                              "explore","vae_explore_1")
     #VAE_pretrain/pretrained_vae/5_in_2_out/vae_explore_17
     vae = VAE(input_dim=20, latent_dim=2, output_dim=8)
     vae.load_state_dict(torch.load(model_path))
 
     #Data
-    #data1 = os.path.join(base_dir, "..", "Data_Collection", "collected data", "cartpole_data_random_10.npz")
-    #data2 = os.path.join(base_dir, "..", "Data_Collection", "collected data", "cartpole_data_expert.npz")
+    data1 = os.path.join(base_dir, "..", "Data_Collection", "collected data", "cartpole_data_random_10.npz")
+    data2 = os.path.join(base_dir, "..", "Data_Collection", "collected data", "cartpole_data_expert.npz")
     # Directory containing your data files
     data_dir = '../Data_Collection/collected_data'
 
     # List all files in the directory
     file_list = [os.path.join(data_dir, file) for file in os.listdir(data_dir) if file.endswith('.npz')]
 
-    data_files = file_list[:12]
+    #data_files = file_list[:2]
+    data_files= [data1,data2]
     plot_latent_space(
          data_paths=data_files,
          vae=vae,

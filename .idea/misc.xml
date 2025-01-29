@@ -3,5 +3,5 @@
   <component name="Black">
     <option name="sdkName" value="gymenv" />
   </component>
-  <component name="ProjectRootManager" version="2" project-jdk-name="gymenv" project-jdk-type="Python SDK" />
+  <component name="ProjectRootManager" version="2" project-jdk-name="gymenv_clean" project-jdk-type="Python SDK" />
 </project>
