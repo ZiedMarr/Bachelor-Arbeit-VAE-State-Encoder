@@ -93,6 +93,7 @@ def main(data_path, vae_model_path):
         raise FileNotFoundError(f"Pretrained VAE model not found at {vae_model_path}")
     vae_name = os.path.basename(vae_model_path)
     category = os.path.basename(os.path.dirname(vae_model_path))
+    in_out_spaces = f"{n}_{m}"
 
     # Select 5 random examples
     indices = np.random.choice(len(inputs), size=5, replace=False)
@@ -117,16 +118,26 @@ def main(data_path, vae_model_path):
 
     # produce gifs
     for i, (inp, true_out, pred_out) in enumerate(zip(selected_inputs, corresponding_outputs, predicted_outputs.numpy())):
-        folder_path = os.path.join(base_dir,"gif" , category ,vae_name, f"example_{i}")
+        folder_path = os.path.join(base_dir,"gif" , in_out_spaces ,category ,vae_name, f"example_{i}")
         os.makedirs(folder_path, exist_ok=True)
 
         input_gif_path = os.path.join(folder_path, "input.gif")
         true_output_gif_path = os.path.join(folder_path, "true_output.gif")
         predicted_output_gif_path = os.path.join(folder_path, "predicted_output.gif")
+        input_true_output_gif_path = os.path.join(folder_path, "input_true_output.gif")
+        input_pred_output_gif_path = os.path.join(folder_path, "input_pred_output.gif")
+
+        #combine for full episode :
+
+        combined_true = np.concatenate((inp.reshape(n, -1), true_out.reshape(m, -1)), axis=0)
+        combined_pred = np.concatenate((inp.reshape(n, -1), pred_out.reshape(m, -1)), axis=0)
 
         render_cartpole_from_observations(inp.reshape(n, -1), input_gif_path)
         render_cartpole_from_observations(true_out.reshape(m, -1), true_output_gif_path)
         render_cartpole_from_observations(pred_out.reshape(m, -1), predicted_output_gif_path)
+        render_cartpole_from_observations(combined_true, input_true_output_gif_path)
+        render_cartpole_from_observations(combined_pred, input_pred_output_gif_path)
+
 
 if __name__ == "__main__":
-    main(data_path=os.path.join(base_dir, "..", "Data_collection", "collected data", "explore_rand_env","cartpole_ppo_data_4.npz") , vae_model_path=os.path.join(base_dir, "..", "VAE_pretrain", "pretrained_vae", "5_5","explore_0,1", "vae_explore_5-5_10"))
+    main(data_path=os.path.join(base_dir, "..", "Data_collection", "collected data", "1000_rand_Eval","random_1000_20250130_122312.npz") , vae_model_path=os.path.join(base_dir, "..", "VAE_pretrain", "pretrained_vae", "5_3","LeakyRelu","rand_0,1_100k", "vae_rand_1"))

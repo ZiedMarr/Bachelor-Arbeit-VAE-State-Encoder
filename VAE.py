@@ -1,6 +1,9 @@
 import torch
 import torch.nn as nn
 
+from config import ENCODER_HIDDEN, DECODER_HIDDEN
+
+
 #TODO : Think about if it's better to separate the network that produces mu and sigma
 #TODO : Think if we should use the log of sigma or not
 
@@ -16,16 +19,16 @@ class VAE(nn.Module):
 
         # Encoder: Maps input to latent space (outputs mean and log-variance)
         self.encoder = nn.Sequential(
-            nn.Linear(input_dim, 6),
+            nn.Linear(input_dim, ENCODER_HIDDEN),
             nn.ReLU(),
-            nn.Linear(6, latent_dim * 2)  # Outputs: mean and log-variance
+            nn.Linear(ENCODER_HIDDEN, latent_dim * 2)  # Outputs: mean and log-variance
         )
 
         # Decoder: Maps latent space to predicted next states
         self.decoder = nn.Sequential(
-            nn.Linear(latent_dim, 6),
+            nn.Linear(latent_dim, DECODER_HIDDEN),
             nn.ReLU(),
-            nn.Linear(6, output_dim)  # Outputs: predicted m next states
+            nn.Linear(DECODER_HIDDEN, output_dim)  # Outputs: predicted m next states
         )
 
     def forward(self, x):

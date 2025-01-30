@@ -114,8 +114,8 @@ if __name__ == "__main__" :
     # get base_dir path
     base_dir = os.path.dirname(os.path.abspath(__file__))
     # model path
-    model_path = os.path.join(base_dir, "..", "VAE_pretrain", "pretrained_vae", "5_5",
-                              "explore_0,1","vae_explore_5-5_10")
+    model_path = os.path.join(base_dir, "..", "VAE_pretrain", "pretrained_vae", "5_3","LeakyRelu",
+                              "rand_0,1_100k","vae_rand_1")
     #VAE_pretrain/pretrained_vae/5_in_2_out/vae_explore_17
     vae = VAE(input_dim=INPUT_DIMENSION, latent_dim=LATENT_DIM, output_dim=OUTPUT_DIMENSION)
     vae.load_state_dict(torch.load(model_path))
@@ -123,6 +123,7 @@ if __name__ == "__main__" :
     #Data
     data1 = os.path.join(base_dir, "..", "Data_Collection", "collected data", "cartpole_data_random_10.npz")
     data2 = os.path.join(base_dir, "..", "Data_Collection", "collected data", "cartpole_data_expert.npz")
+    data_rand = os.path.join(base_dir, "..", "Data_Collection", "collected data", "1000_rand_Eval" , "random_1000_20250130_122312.npz")
     # Directory containing your data files
     data_dir = '../Data_Collection/collected data/explore_rand_env'
 
@@ -130,10 +131,10 @@ if __name__ == "__main__" :
     file_list = [os.path.join(data_dir, file) for file in os.listdir(data_dir) if file.endswith('.npz')]
 
     #data_files = file_list[:2]
-    data_files= [data1,data2]
+    data_files= [data_rand]
     plot_latent_space(
          data_paths=file_list,
          vae=vae,
          num_input_states=INPUT_STATE_SIZE,
-         save_path='./Latent_Plots/KL-D 0,1/latent_space_plot_5to5_10.png'
+         save_path='./Latent_Plots/rand_KL-D 0,1/5_3/LeakyRelu/latent_space_plot_5to3_100k.png'
      )

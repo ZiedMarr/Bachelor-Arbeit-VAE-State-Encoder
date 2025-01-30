@@ -9,14 +9,19 @@ from Wrappers.RandomStartCartPole import RandomStartCartPole
 # Define the base directory (directory of the current script)
 base_dir = os.path.dirname(os.path.abspath(__file__))
 
-def random_collect( num_episodes =10) :
+def random_collect( output_path= "" , num_episodes =10 , env_wrapper= None) :
 
     # Generate dynamic path
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-    path = os.path.join(base_dir, "collected data", f"random_{num_episodes}_{timestamp}.npz")
+    # create save_dir :
+    save_dir = os.path.join(base_dir, "collected data",output_path)
+    os.makedirs(save_dir, exist_ok=True)
+    path = os.path.join(save_dir , f"random_{num_episodes}_{timestamp}.npz")
 
     #create env
     env = gym.make('CartPole-v1')
+    if env_wrapper is not None :
+        env = env_wrapper(env)
 
     #data storage
     all_observations = []
@@ -200,5 +205,5 @@ def collect_from_batch(root_dir= os.path.join(base_dir,"..", "PPO_cartpole","log
 if __name__ == "__main__":
     # Example calls for testing
     #expert_collect(output_path = os.path.join(base_dir, "collected data", "cartpole_expert_60"),policy_path = os.path.join(base_dir, "..", "PPO_cartpole", "logs","batch2","logs_20000_20250123_151149","best_model", "best_model.zip"), num_episodes=60)
-    # random_collect()
-    collect_from_batch(root_dir='../PPO_cartpole/logs/explore/', output_path= os.path.join(base_dir, "collected data", "explore_rand_env"), env_wrapper=RandomStartCartPole)
+    random_collect(output_path="rand_pol_rand_env", num_episodes=500000, env_wrapper=RandomStartCartPole)
+    #collect_from_batch(root_dir='../PPO_cartpole/logs/explore/', output_path= os.path.join(base_dir, "collected data", "explore_rand_env"), env_wrapper=RandomStartCartPole)

@@ -83,11 +83,21 @@ def offline_pretrain(vae_save_path, data_path, vae_model_path) :
 
 
 if __name__ == "__main__":
-
     # Directory containing your data files
-    data_dir = '../Data_Collection/collected data/explore_rand_env'
+    data_dir = '../Data_Collection/collected data/rand_pol_rand_env/random_100000_20250130_114306.npz'
+    vae_save_dir = "./pretrained_vae/5_3/LeakyRelu/rand_0,1_100k"
+    os.makedirs(vae_save_dir, exist_ok=True)
 
-    offline_pretrain(vae_model_path= None ,vae_save_path="./pretrained_vae/5_5/explore_0,1/vae_explore_5-5_0", data_path=os.path.join(data_dir, "cartpole_ppo_data_0.npz"))
+    offline_pretrain(vae_model_path= None ,vae_save_path=os.path.join(vae_save_dir, "vae_rand_1"), data_path=data_dir)
+
+
+
+
+'''
+    # Directory containing your data files
+    data_dir = '../Data_Collection/collected data/rand_pol_rand_env/random_100000_20250130_114306.npz'
+
+    offline_pretrain(vae_model_path= None ,vae_save_path="./pretrained_vae/5_5/explore_0,1/vae_rand_1", data_path=os.path.join(data_dir, "cartpole_ppo_data_0.npz"))
 
     #vae_path
     vae_model_path = "./pretrained_vae/5_5/explore_0,1/vae_explore_5-5_0"
@@ -101,3 +111,5 @@ if __name__ == "__main__":
         offline_pretrain(vae_model_path= f"./pretrained_vae/5_5/explore_0,1/vae_explore_5-5_{i-1}" ,vae_save_path=f"./pretrained_vae/5_5/explore_0,1/vae_explore_5-5_{i}",
                          data_path= file)
         i = i+ 1
+'''
+
