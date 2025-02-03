@@ -6,7 +6,7 @@ from Data_Collection.gym_data_collection import load_data
 from VAE import VAE
 import os
 from sklearn.decomposition import PCA
-import mpld3
+
 
 from config import INPUT_DIMENSION, LATENT_DIM, OUTPUT_DIMENSION, INPUT_STATE_SIZE, VAE_Version, OUTPUT_STATE_SIZE, BETA_KL_DIV
 
@@ -112,9 +112,11 @@ def plot_latent_space(
     # Save or show plot
     if save_path:
         plt.savefig(save_path)
+        '''
         # Save as interactive HTML
         html_path = save_path.replace('.png', '.html')
         mpld3.save_html(fig, html_path)
+        '''
 
     if show:
         plt.show()
@@ -184,6 +186,8 @@ if __name__ == "__main__" :
          vae=vae,
          num_input_states=INPUT_STATE_SIZE,
          save_path=os.path.join(image_folder,f'{vae_name}.png')
+        ,
+        show=True
      )
     # Save the array to a text file
     np.savetxt(os.path.join(image_folder,f'{vae_name}.txt'),  file_list, fmt="%s", delimiter=",")  # Save as CSV format
