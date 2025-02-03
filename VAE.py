@@ -25,7 +25,7 @@ class VAE(nn.Module):
             nn.LeakyReLU(0.1),
             nn.Linear(ENCODER_HIDDEN2, ENCODER_HIDDEN3),
             nn.LeakyReLU(0.1),
-            nn.Linear(ENCODER_HIDDEN2, LATENT_DIM * 2)  # Outputs: mean and log-variance
+            nn.Linear(ENCODER_HIDDEN3, LATENT_DIM * 2)  # Outputs: mean and log-variance
         )
 
         # Decoder: Maps latent space to predicted next states
@@ -36,7 +36,7 @@ class VAE(nn.Module):
             nn.LeakyReLU(0.1),
             nn.Linear(DECODER_HIDDEN2, DECODER_HIDDEN3),
             nn.LeakyReLU(0.1),
-            nn.Linear(DECODER_HIDDEN2, output_dim)  # Outputs: predicted m next states
+            nn.Linear(DECODER_HIDDEN3, output_dim)  # Outputs: predicted m next states
         )
 
     def forward(self, x):
