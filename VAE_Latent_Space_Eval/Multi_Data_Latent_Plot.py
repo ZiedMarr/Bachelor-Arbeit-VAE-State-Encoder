@@ -118,7 +118,7 @@ def plot_latent_space(
         if show:
             plt.show()
 
-def call_latent(vae_name,data_dir='../Data_Collection/collected data/explore_rand_env',show =False):
+def call_latent(vae_name,data_dir=os.path.join(base_dir, "..", "Data_Collection", "collected data", "explore_rand_env"),show =False):
 
     # model path
     model_path = os.path.join(base_dir, "..", "VAE_pretrain", "pretrained_vae",VAE_Version, f"{INPUT_STATE_SIZE}_{OUTPUT_STATE_SIZE}",f"KL-D_{BETA_KL_DIV}" , vae_name)

@@ -82,13 +82,14 @@ def offline_pretrain(vae_save_path, data_path, vae_model_path) :
     torch.save(vae.state_dict(), vae_save_path)
     print(f"Trained VAE model saved to {vae_save_path}")
 
-def call_pretrain(vae_name, data_dir='../Data_Collection/collected data/rand_pol_rand_env/random_100000_20250130_114306.npz'):
+def call_pretrain(vae_name, data_dir= os.path.join(base_dir, "..", "Data_Collection", "collected data", "rand_pol_rand_env", "random_100000_20250130_114306.npz")):
     # Directory containing your data files
     data_dir = data_dir
     vae_save_dir = f"./pretrained_vae/{VAE_Version}/{INPUT_STATE_SIZE}_{OUTPUT_STATE_SIZE}/KL-D_{BETA_KL_DIV}"
     os.makedirs(vae_save_dir, exist_ok=True)
 
     offline_pretrain(vae_model_path= None ,vae_save_path=os.path.join(vae_save_dir, vae_name), data_path=data_dir)
+
 if __name__ == "__main__":
     # Directory containing your data files
     data_dir = '../Data_Collection/collected data/rand_pol_rand_env/random_100000_20250130_114306.npz'

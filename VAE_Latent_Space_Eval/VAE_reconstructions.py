@@ -13,7 +13,7 @@ from config import INPUT_DIMENSION, INPUT_STATE_SIZE, OUTPUT_STATE_SIZE, LATENT_
 # get base_dir path
 base_dir = os.path.dirname(os.path.abspath(__file__))
 
-def render_cartpole_from_observations(observations, gif_path="./GIF/cartpole_render.gif"):
+def render_cartpole_from_observations(observations, gif_path=os.path.join(base_dir, "GIF", "cartpole_render.gif")):
     """
     Render a CartPole environment using a sequence of observations and save it as a GIF.
 
