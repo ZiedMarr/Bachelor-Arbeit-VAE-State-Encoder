@@ -6,6 +6,7 @@ from Data_Collection.gym_data_collection import load_data
 from VAE import VAE
 import os
 from sklearn.decomposition import PCA
+import mpld3
 
 from config import INPUT_DIMENSION, LATENT_DIM, OUTPUT_DIMENSION, INPUT_STATE_SIZE, VAE_Version, OUTPUT_STATE_SIZE, BETA_KL_DIV
 
@@ -111,13 +112,13 @@ def plot_latent_space(
     # Save or show plot
     if save_path:
         plt.savefig(save_path)
-        if show :
-            plt.show()
-        plt.close()
-    else:
-        if show:
-            plt.show()
+        # Save as interactive HTML
+        html_path = save_path.replace('.png', '.html')
+        mpld3.save_html(fig, html_path)
 
+    if show:
+        plt.show()
+    plt.close()
 def call_latent(vae_name,data_dir=os.path.join(base_dir, "..", "Data_Collection", "collected_data", "explore_rand_env"),show =False):
 
     # model path
