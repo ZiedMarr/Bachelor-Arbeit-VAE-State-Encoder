@@ -127,7 +127,7 @@ def call_latent(vae_name,data_dir=os.path.join(base_dir, "..", "Data_Collection"
     vae.load_state_dict(torch.load(model_path))
     vae_name = os.path.basename(model_path)  # Get the last element
     #define save path
-    image_folder = f'Latent_Plots/{VAE_Version}/KL-D_{BETA_KL_DIV}/{INPUT_STATE_SIZE}_{OUTPUT_STATE_SIZE}'
+    image_folder = os.path.join(base_dir,'Latent_Plots',VAE_Version, f'KL-D_{BETA_KL_DIV}',f'{INPUT_STATE_SIZE}_{OUTPUT_STATE_SIZE}')
     os.makedirs(image_folder, exist_ok=True)
 
 
