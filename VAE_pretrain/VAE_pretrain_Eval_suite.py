@@ -16,3 +16,9 @@ call_latent(vae_name=vae_name, show= False)
 call_reconstruction(vae_name)
 save_config()
 
+vae_name = "vae_rand_500k"
+train_data = os.path.join(base_dir, "..", "Data_Collection", "collected_data", "rand_pol_rand_env", "random_500000_20250130_122700.npz")
+
+call_pretrain(vae_name=vae_name,data_dir=train_data)
+call_latent(vae_name=vae_name, show= False)
+call_reconstruction(vae_name)
