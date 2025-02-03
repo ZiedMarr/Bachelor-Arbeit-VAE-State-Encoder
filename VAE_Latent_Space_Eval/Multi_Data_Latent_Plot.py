@@ -5,9 +5,12 @@ from typing import Union, List
 from Data_Collection.gym_data_collection import load_data
 from VAE import VAE
 import os
+from sklearn.decomposition import PCA
 
-from config import INPUT_DIMENSION, LATENT_DIM, OUTPUT_DIMENSION, INPUT_STATE_SIZE
+from config import INPUT_DIMENSION, LATENT_DIM, OUTPUT_DIMENSION, INPUT_STATE_SIZE, VAE_Version, OUTPUT_STATE_SIZE, BETA_KL_DIV
 
+# get base_dir path
+base_dir = os.path.dirname(os.path.abspath(__file__))
 
 def split_observations(observations, num_input_states):
     """
@@ -34,7 +37,7 @@ def plot_latent_space(
         data_paths: Union[str, List[str]],
         vae: VAE,
         num_input_states: int = INPUT_STATE_SIZE,
-        save_path: str = None
+        save_path: str = None, show=False, reduction=(LATENT_DIM>2)
 ):
     """
     Visualizes the latent space representation of observations from multiple files.
@@ -66,6 +69,11 @@ def plot_latent_space(
     # Combine latent representations
     latent_space = np.concatenate(all_latent_means)
     split_obs = np.concatenate(all_split_obs)
+
+    if reduction and latent_space.shape[1] > 2:
+        pca = PCA(n_components=2)
+        latent_space = pca.fit_transform(latent_space)
+        print("Applied PCA for dimensionality reduction.")
 
     # Create a single figure with annotations
     fig, ax = plt.subplots(figsize=(10, 8))
@@ -103,38 +111,78 @@ def plot_latent_space(
     # Save or show plot
     if save_path:
         plt.savefig(save_path)
-        plt.show()
+        if show :
+            plt.show()
         plt.close()
     else:
-        plt.show()
+        if show:
+            plt.show()
+
+def call_latent(vae_name,data_dir='../Data_Collection/collected data/explore_rand_env',show =False):
+
+    # model path
+    model_path = os.path.join(base_dir, "..", "VAE_pretrain", "pretrained_vae",VAE_Version, f"{INPUT_STATE_SIZE}_{OUTPUT_STATE_SIZE}",f"KL-D_{BETA_KL_DIV}" , vae_name)
+    #VAE_pretrain/pretrained_vae/5_in_2_out/vae_explore_17
+    vae = VAE(input_dim=INPUT_DIMENSION, latent_dim=LATENT_DIM, output_dim=OUTPUT_DIMENSION)
+    vae.load_state_dict(torch.load(model_path))
+    vae_name = os.path.basename(model_path)  # Get the last element
+    #define save path
+    image_folder = f'Latent_Plots/{VAE_Version}/KL-D_{BETA_KL_DIV}/{INPUT_STATE_SIZE}_{OUTPUT_STATE_SIZE}'
+    os.makedirs(image_folder, exist_ok=True)
+
+
+    #Data
+    #data1 = os.path.join(base_dir, "..", "Data_Collection", "collected data", "cartpole_data_random_10.npz")
+    #data2 = os.path.join(base_dir, "..", "Data_Collection", "collected data", "cartpole_data_expert.npz")
+    #data_rand = os.path.join(base_dir, "..", "Data_Collection", "collected data", "1000_rand_Eval" , "random_1000_20250130_122312.npz")
+    # Directory containing your data files
+
+
+    # List all files in the directory
+    file_list = [os.path.join(data_dir, file) for file in os.listdir(data_dir) if file.endswith('.npz')]
+
+
+    plot_latent_space(
+         data_paths=file_list,
+         vae=vae,
+         num_input_states=INPUT_STATE_SIZE,
+         save_path=os.path.join(image_folder,f'{vae_name}.png')
+     )
+    # Save the array to a text file
+    np.savetxt(os.path.join(image_folder,f'{vae_name}.txt'),  file_list, fmt="%s", delimiter=",")  # Save as CSV format
+
+
 
 if __name__ == "__main__" :
 
 
-    # get base_dir path
-    base_dir = os.path.dirname(os.path.abspath(__file__))
     # model path
-    model_path = os.path.join(base_dir, "..", "VAE_pretrain", "pretrained_vae", "5_3","LeakyRelu",
-                              "rand_0,1_100k","vae_rand_1")
+    model_path = os.path.join(base_dir, "..", "VAE_pretrain", "pretrained_vae",VAE_Version, f"{INPUT_STATE_SIZE}_{OUTPUT_STATE_SIZE}",f"KL-D_{BETA_KL_DIV}" , "vae_rand_100k")
     #VAE_pretrain/pretrained_vae/5_in_2_out/vae_explore_17
     vae = VAE(input_dim=INPUT_DIMENSION, latent_dim=LATENT_DIM, output_dim=OUTPUT_DIMENSION)
     vae.load_state_dict(torch.load(model_path))
+    vae_name = os.path.basename(model_path)  # Get the last element
+    #define save path
+    image_folder = f'Latent_Plots/{VAE_Version}/KL-D_{BETA_KL_DIV}/{INPUT_STATE_SIZE}_{OUTPUT_STATE_SIZE}'
+    os.makedirs(image_folder, exist_ok=True)
+
 
     #Data
-    data1 = os.path.join(base_dir, "..", "Data_Collection", "collected data", "cartpole_data_random_10.npz")
-    data2 = os.path.join(base_dir, "..", "Data_Collection", "collected data", "cartpole_data_expert.npz")
-    data_rand = os.path.join(base_dir, "..", "Data_Collection", "collected data", "1000_rand_Eval" , "random_1000_20250130_122312.npz")
+    #data1 = os.path.join(base_dir, "..", "Data_Collection", "collected data", "cartpole_data_random_10.npz")
+    #data2 = os.path.join(base_dir, "..", "Data_Collection", "collected data", "cartpole_data_expert.npz")
+    #data_rand = os.path.join(base_dir, "..", "Data_Collection", "collected data", "1000_rand_Eval" , "random_1000_20250130_122312.npz")
     # Directory containing your data files
     data_dir = '../Data_Collection/collected data/explore_rand_env'
 
     # List all files in the directory
     file_list = [os.path.join(data_dir, file) for file in os.listdir(data_dir) if file.endswith('.npz')]
 
-    #data_files = file_list[:2]
-    data_files= [data_rand]
+
     plot_latent_space(
          data_paths=file_list,
          vae=vae,
          num_input_states=INPUT_STATE_SIZE,
-         save_path='./Latent_Plots/rand_KL-D 0,1/5_3/LeakyRelu/latent_space_plot_5to3_100k.png'
+         save_path=os.path.join(image_folder,f'{vae_name}.png')
      )
+    # Save the array to a text file
+    np.savetxt(os.path.join(image_folder,f'{vae_name}.txt'),  file_list, fmt="%s", delimiter=",")  # Save as CSV format

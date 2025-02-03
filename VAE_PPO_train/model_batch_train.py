@@ -17,7 +17,7 @@ batch_size = 5
 total_timesteps = 50000
 
 #define vae model path
-vae_model_path = os.path.join(script_dir,"..","VAE_pretrain","pretrained_vae","5_3","rand_0,1_100k","vae_rand_1")
+vae_model_path = os.path.join(script_dir,"..","VAE_pretrain","pretrained_vae","5_3","rand_0,1_100k","vae_rand_500k")
 #VAE_pretrain/pretrained_vae/5_in_2_out/vae_explore_17
 vae_model_name = os.path.basename(vae_model_path)  # Get the last element of the path
 

@@ -72,12 +72,12 @@ if __name__ == "__main__":
             # Check if it's a file (and not a subdirectory)
             if os.path.isfile(full_path):
                 data_paths.append(full_path)
-    data_path = "./collected data/rand_pol_rand_env/random_500000_20250130_122700.npz"
+    data_path = "./collected data/rand_pol_rand_env/random_1000000_20250131_160547.npz"
 
     data_name = os.path.basename(data_path)
     name_without_extension, _ = os.path.splitext(data_name)
 
-    save_dir = save_path=os.path.join("./Data_distribution","1000_rand_Eval",name_without_extension)
+    save_dir = save_path=os.path.join("./Data_distribution","rand_pol_rand_env",name_without_extension)
     # Create the directory if it doesn’t exist
     os.makedirs(save_dir, exist_ok=True)
 

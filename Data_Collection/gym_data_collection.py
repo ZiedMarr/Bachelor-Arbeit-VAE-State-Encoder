@@ -205,5 +205,5 @@ def collect_from_batch(root_dir= os.path.join(base_dir,"..", "PPO_cartpole","log
 if __name__ == "__main__":
     # Example calls for testing
     #expert_collect(output_path = os.path.join(base_dir, "collected data", "cartpole_expert_60"),policy_path = os.path.join(base_dir, "..", "PPO_cartpole", "logs","batch2","logs_20000_20250123_151149","best_model", "best_model.zip"), num_episodes=60)
-    random_collect(output_path="rand_pol_rand_env", num_episodes=500000, env_wrapper=RandomStartCartPole)
+    random_collect(output_path="rand_pol_rand_env", num_episodes=1000000, env_wrapper=RandomStartCartPole)
     #collect_from_batch(root_dir='../PPO_cartpole/logs/explore/', output_path= os.path.join(base_dir, "collected data", "explore_rand_env"), env_wrapper=RandomStartCartPole)
