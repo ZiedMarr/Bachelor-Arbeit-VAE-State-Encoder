@@ -1,7 +1,7 @@
 import torch
 import torch.nn as nn
 
-from config import ENCODER_HIDDEN, DECODER_HIDDEN, ENCODER_HIDDEN2, LATENT_DIM, DECODER_HIDDEN2
+from config import ENCODER_HIDDEN, DECODER_HIDDEN, ENCODER_HIDDEN2, LATENT_DIM, DECODER_HIDDEN2, DECODER_HIDDEN3 , ENCODER_HIDDEN3
 
 
 #TODO : Think about if it's better to separate the network that produces mu and sigma
@@ -23,6 +23,8 @@ class VAE(nn.Module):
             nn.LeakyReLU(0.1),
             nn.Linear(ENCODER_HIDDEN,ENCODER_HIDDEN2),
             nn.LeakyReLU(0.1),
+            nn.Linear(ENCODER_HIDDEN2, ENCODER_HIDDEN3),
+            nn.LeakyReLU(0.1),
             nn.Linear(ENCODER_HIDDEN2, LATENT_DIM * 2)  # Outputs: mean and log-variance
         )
 
@@ -31,6 +33,8 @@ class VAE(nn.Module):
             nn.Linear(LATENT_DIM, DECODER_HIDDEN),
             nn.LeakyReLU(0.1),
             nn.Linear(DECODER_HIDDEN, DECODER_HIDDEN2),
+            nn.LeakyReLU(0.1),
+            nn.Linear(DECODER_HIDDEN2, DECODER_HIDDEN3),
             nn.LeakyReLU(0.1),
             nn.Linear(DECODER_HIDDEN2, output_dim)  # Outputs: predicted m next states
         )
