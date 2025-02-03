@@ -22,3 +22,6 @@ def save_config():
         file.write(config_data)
 
     print(f"Configuration saved to: {file_path}")
+
+if __name__ == "__main__" :
+    save_config()
