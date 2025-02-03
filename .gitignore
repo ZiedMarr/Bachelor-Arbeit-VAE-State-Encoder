@@ -6,4 +6,4 @@ __pycache__/
 .env
 
 # Ignore virtual environment folders
-venv/
+venv/VAE_Latent_Space_Eval/Latent_Plots/**/*.html
