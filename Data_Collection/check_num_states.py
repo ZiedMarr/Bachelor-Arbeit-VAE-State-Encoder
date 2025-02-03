@@ -6,7 +6,7 @@ def check_num_states(data_path):
     Loads the .npz file and prints the number of states stored in it.
 
     Parameters:
-    - data_path (str): Path to the collected data file.
+    - data_path (str): Path to the collected_data file.
 
     Returns:
     - int: Number of states in the dataset.
@@ -25,7 +25,7 @@ def check_num_states(data_path):
 
 if __name__ == "__main__":
     # Example usage
-    data_file = "./collected data/explore_rand_env/cartpole_ppo_data_1.npz"  # Replace with the actual file path
+    data_file = "collected_data/explore_rand_env/cartpole_ppo_data_1.npz"  # Replace with the actual file path
     num_states = check_num_states(data_file)
     print(num_states)
 

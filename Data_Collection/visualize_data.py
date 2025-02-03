@@ -61,8 +61,8 @@ def visualize_observation_distribution(
 if __name__ == "__main__":
     # Example usage
 
-    #data_paths = ['./collected data/cartpole_data_random_50.npz', "./collected data/cartpole_data_expert.npz" , "./collected data/cartpole_data_random_10.npz" ] # Replace with your actual file path
-    directory = "./collected data/explore_rand_env"
+    #data_paths = ['./collected_data/cartpole_data_random_50.npz', "./collected_data/cartpole_data_expert.npz" , "./collected_data/cartpole_data_random_10.npz" ] # Replace with your actual file path
+    directory = "./collected_data/explore_rand_env"
     data_paths = []
     # Iterate through the directory
     for file_name in os.listdir(directory):
@@ -72,7 +72,7 @@ if __name__ == "__main__":
             # Check if it's a file (and not a subdirectory)
             if os.path.isfile(full_path):
                 data_paths.append(full_path)
-    data_path = "./collected data/rand_pol_rand_env/random_1000000_20250131_160547.npz"
+    data_path = "collected_data/rand_pol_rand_env/random_1000000_20250131_160547.npz"
 
     data_name = os.path.basename(data_path)
     name_without_extension, _ = os.path.splitext(data_name)
@@ -83,5 +83,5 @@ if __name__ == "__main__":
 
     for i in range(4) :
         visualize_observation_distribution(data_paths=data_path, observation_index=i, save_path=os.path.join(save_dir,f"data_explore_{i}"))
-    #visualize_observation_distribution(data_paths="./collected data/cartpole_expert_60.npz", observation_index=3,
+    #visualize_observation_distribution(data_paths="./collected_data/cartpole_expert_60.npz", observation_index=3,
     #                               save_path="./Data_distribution/expert_60/data_3")

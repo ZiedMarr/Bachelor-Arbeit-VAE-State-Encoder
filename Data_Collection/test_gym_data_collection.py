@@ -1,7 +1,7 @@
 import gym_data_collection
 import numpy as np
 
-path = './collected data test/cartpole_data.npz'
+path = './collected_data test/cartpole_data.npz'
 
 all_observations_collected , episode_starts_collected , episode_lengths_collected =gym_data_collection.random_collect(path)
 all_observations_loaded , episode_starts_loaded , episode_lengths_loaded =gym_data_collection.load_data(path)

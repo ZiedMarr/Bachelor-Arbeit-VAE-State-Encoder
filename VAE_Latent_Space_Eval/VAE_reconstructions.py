@@ -65,7 +65,7 @@ def stack_data_per_episode(episodes, n, m):
 def main(data_path, vae_model_path):
 
     # File paths
-    #data_path = os.path.join(base_dir, "..", "Data_collection", "collected data", "cartpole_data_random_1.npz")
+    #data_path = os.path.join(base_dir, "..", "Data_collection", "collected_data", "cartpole_data_random_1.npz")
     #vae_model_path = os.path.join(base_dir, "..", "VAE_pretrain", "pretrained_vae", "5_in_2_out", "vae_random_10")
 
     # Load the data
@@ -139,9 +139,9 @@ def main(data_path, vae_model_path):
         render_cartpole_from_observations(combined_true, input_true_output_gif_path)
         render_cartpole_from_observations(combined_pred, input_pred_output_gif_path)
 
-def call_reconstruction(vae_name, data_path=os.path.join(base_dir, "..", "Data_collection", "collected data", "1000_rand_Eval","random_1000_20250130_122312.npz")) :
+def call_reconstruction(vae_name, data_path=os.path.join(base_dir, "..", "Data_collection", "collected_data", "1000_rand_Eval","random_1000_20250130_122312.npz")) :
     main(data_path=data_path , vae_model_path=os.path.join(base_dir, "..", "VAE_pretrain", "pretrained_vae", VAE_Version,f"{INPUT_STATE_SIZE}_{OUTPUT_STATE_SIZE}",f"KL-D_{BETA_KL_DIV}", vae_name))
 
 
 if __name__ == "__main__":
-    main(data_path=os.path.join(base_dir, "..", "Data_collection", "collected data", "1000_rand_Eval","random_1000_20250130_122312.npz") , vae_model_path=os.path.join(base_dir, "..", "VAE_pretrain", "pretrained_vae", VAE_Version,f"{INPUT_STATE_SIZE}_{OUTPUT_STATE_SIZE}",f"KL-D_{BETA_KL_DIV}", "vae_rand_100k"))
+    main(data_path=os.path.join(base_dir, "..", "Data_collection", "collected_data", "1000_rand_Eval","random_1000_20250130_122312.npz") , vae_model_path=os.path.join(base_dir, "..", "VAE_pretrain", "pretrained_vae", VAE_Version,f"{INPUT_STATE_SIZE}_{OUTPUT_STATE_SIZE}",f"KL-D_{BETA_KL_DIV}", "vae_rand_100k"))

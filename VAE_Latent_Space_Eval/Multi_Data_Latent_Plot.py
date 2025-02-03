@@ -118,7 +118,7 @@ def plot_latent_space(
         if show:
             plt.show()
 
-def call_latent(vae_name,data_dir=os.path.join(base_dir, "..", "Data_Collection", "collected data", "explore_rand_env"),show =False):
+def call_latent(vae_name,data_dir=os.path.join(base_dir, "..", "Data_Collection", "collected_data", "explore_rand_env"),show =False):
 
     # model path
     model_path = os.path.join(base_dir, "..", "VAE_pretrain", "pretrained_vae",VAE_Version, f"{INPUT_STATE_SIZE}_{OUTPUT_STATE_SIZE}",f"KL-D_{BETA_KL_DIV}" , vae_name)
@@ -132,9 +132,9 @@ def call_latent(vae_name,data_dir=os.path.join(base_dir, "..", "Data_Collection"
 
 
     #Data
-    #data1 = os.path.join(base_dir, "..", "Data_Collection", "collected data", "cartpole_data_random_10.npz")
-    #data2 = os.path.join(base_dir, "..", "Data_Collection", "collected data", "cartpole_data_expert.npz")
-    #data_rand = os.path.join(base_dir, "..", "Data_Collection", "collected data", "1000_rand_Eval" , "random_1000_20250130_122312.npz")
+    #data1 = os.path.join(base_dir, "..", "Data_Collection", "collected_data", "cartpole_data_random_10.npz")
+    #data2 = os.path.join(base_dir, "..", "Data_Collection", "collected_data", "cartpole_data_expert.npz")
+    #data_rand = os.path.join(base_dir, "..", "Data_Collection", "collected_data", "1000_rand_Eval" , "random_1000_20250130_122312.npz")
     # Directory containing your data files
 
 
@@ -168,11 +168,11 @@ if __name__ == "__main__" :
 
 
     #Data
-    #data1 = os.path.join(base_dir, "..", "Data_Collection", "collected data", "cartpole_data_random_10.npz")
-    #data2 = os.path.join(base_dir, "..", "Data_Collection", "collected data", "cartpole_data_expert.npz")
-    #data_rand = os.path.join(base_dir, "..", "Data_Collection", "collected data", "1000_rand_Eval" , "random_1000_20250130_122312.npz")
+    #data1 = os.path.join(base_dir, "..", "Data_Collection", "collected_data", "cartpole_data_random_10.npz")
+    #data2 = os.path.join(base_dir, "..", "Data_Collection", "collected_data", "cartpole_data_expert.npz")
+    #data_rand = os.path.join(base_dir, "..", "Data_Collection", "collected_data", "1000_rand_Eval" , "random_1000_20250130_122312.npz")
     # Directory containing your data files
-    data_dir = '../Data_Collection/collected data/explore_rand_env'
+    data_dir = '../Data_Collection/collected_data/explore_rand_env'
 
     # List all files in the directory
     file_list = [os.path.join(data_dir, file) for file in os.listdir(data_dir) if file.endswith('.npz')]

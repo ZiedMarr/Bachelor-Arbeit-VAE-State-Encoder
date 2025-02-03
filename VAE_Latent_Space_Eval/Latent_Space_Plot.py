@@ -21,8 +21,8 @@ vae = VAE(input_dim, latent_dim, output_dim)
 vae.load_state_dict(torch.load(model_path))
 vae.eval()  # Set the model to evaluation mode
 
-# Load the collected data
-data_path = os.path.join(base_dir, "..", "Data_Collection", "collected data", "cartpole_data_random_10.npz")
+# Load the collected_data
+data_path = os.path.join(base_dir, "..", "Data_Collection", "collected_data", "cartpole_data_random_10.npz")
 
 observations, episode_starts, episode_lengths = load_data(path=data_path)
 

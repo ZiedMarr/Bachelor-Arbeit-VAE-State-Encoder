@@ -17,7 +17,7 @@ base_dir = os.path.dirname(os.path.abspath(__file__))  # Directory of the curren
 
 def offline_pretrain(vae_save_path, data_path, vae_model_path) :
     #vae_save_path = os.path.join(base_dir, "pretrained_vae", "5_in_2_out", "vae_offline_expert")
-    #data_path = os.path.join(base_dir, "..", "Data_Collection", "collected data", "cartpole_data_expert.npz")
+    #data_path = os.path.join(base_dir, "..", "Data_Collection", "collected_data", "cartpole_data_expert.npz")
 
     #Hyperparameters
     # define training frequency :
@@ -82,7 +82,7 @@ def offline_pretrain(vae_save_path, data_path, vae_model_path) :
     torch.save(vae.state_dict(), vae_save_path)
     print(f"Trained VAE model saved to {vae_save_path}")
 
-def call_pretrain(vae_name, data_dir= os.path.join(base_dir, "..", "Data_Collection", "collected data", "rand_pol_rand_env", "random_100000_20250130_114306.npz")):
+def call_pretrain(vae_name, data_dir= os.path.join(base_dir, "..", "Data_Collection", "collected_data", "rand_pol_rand_env", "random_100000_20250130_114306.npz")):
     # Directory containing your data files
     data_dir = data_dir
     vae_save_dir = f"./pretrained_vae/{VAE_Version}/{INPUT_STATE_SIZE}_{OUTPUT_STATE_SIZE}/KL-D_{BETA_KL_DIV}"
@@ -92,7 +92,7 @@ def call_pretrain(vae_name, data_dir= os.path.join(base_dir, "..", "Data_Collect
 
 if __name__ == "__main__":
     # Directory containing your data files
-    data_dir = '../Data_Collection/collected data/rand_pol_rand_env/random_100000_20250130_114306.npz'
+    data_dir = '../Data_Collection/collected_data/rand_pol_rand_env/random_100000_20250130_114306.npz'
     vae_save_dir = f"./pretrained_vae/{VAE_Version}/{INPUT_STATE_SIZE}_{OUTPUT_STATE_SIZE}/KL-D_{BETA_KL_DIV}"
     os.makedirs(vae_save_dir, exist_ok=True)
 
@@ -103,7 +103,7 @@ if __name__ == "__main__":
 
 '''
     # Directory containing your data files
-    data_dir = '../Data_Collection/collected data/rand_pol_rand_env/random_100000_20250130_114306.npz'
+    data_dir = '../Data_Collection/collected_data/rand_pol_rand_env/random_100000_20250130_114306.npz'
 
     offline_pretrain(vae_model_path= None ,vae_save_path="./pretrained_vae/5_5/explore_0,1/vae_rand_500k", data_path=os.path.join(data_dir, "cartpole_ppo_data_0.npz"))
 
