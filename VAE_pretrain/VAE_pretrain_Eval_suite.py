@@ -1,4 +1,5 @@
 import os
+from save_config import save_config
 
 # Assuming base_dir is defined as the directory of the current script
 base_dir = os.path.dirname(os.path.abspath(__file__))
@@ -13,3 +14,5 @@ train_data = os.path.join(base_dir, "..", "Data_Collection", "collected_data", "
 call_pretrain(vae_name=vae_name,data_dir=train_data)
 call_latent(vae_name=vae_name, show= False)
 call_reconstruction(vae_name)
+save_config()
+
