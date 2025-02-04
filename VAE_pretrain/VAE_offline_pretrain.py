@@ -59,9 +59,16 @@ def offline_pretrain(vae_save_path, data_path, vae_model_path) :
             predicted_next_states, mu, log_var, _ = vae(input_tensor)
 
             # Compute the VAE loss
+            '''
+            
             reconstruction_loss = torch.nn.MSELoss()(predicted_next_states, target_tensor)
             kl_loss = -0.5 * torch.sum(1 + log_var - mu.pow(2) - log_var.exp())
             loss = reconstruction_loss + config.BETA_KL_DIV * kl_loss
+            '''
+            if config.LOSS_FUNC == "MSE_Loss":
+                loss = vae.MSE_Loss(mu=mu, log_var=log_var, predicted_next_states=predicted_next_states, target_tensor=target_tensor)
+            elif config.LOSS_FUNC == "MSE_loss_feature_Standardization":
+                loss = vae.MSE_loss_feature_Standardization(mu=mu, log_var=log_var, predicted_next_states=predicted_next_states, target_tensor=target_tensor)
 
             # Backpropagation and optimization
             vae_optimizer.zero_grad()

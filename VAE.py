@@ -67,4 +67,32 @@ class VAE(nn.Module):
 
     def decode(self, z):
         pass
+
+    def MSE_Loss(self, mu , log_var, predicted_next_states, target_tensor):
+        reconstruction_loss = torch.nn.MSELoss()(predicted_next_states, target_tensor)
+        kl_loss = -0.5 * torch.sum(1 + log_var - mu.pow(2) - log_var.exp())
+        loss = reconstruction_loss + config.BETA_KL_DIV * kl_loss
+
+        return loss
+
+    def MSE_loss_feature_Standardization(self, mu , log_var, predicted_next_states, target_tensor):
+        # Calculate mean and std for normalization (per feature/dimension)
+        mean = target_tensor.mean(dim=0, keepdim=True)
+        std = target_tensor.std(dim=0, keepdim=True) + 1e-8  # Avoid division by zero
+
+        # Normalize both predicted and target tensors
+        predicted_normalized = (predicted_next_states - mean) / std
+        target_normalized = (target_tensor - mean) / std
+
+        # Reconstruction loss (normalized)
+        reconstruction_loss = torch.nn.MSELoss()(predicted_normalized, target_normalized)
+
+        # KL Divergence loss
+        kl_loss = -0.5 * torch.sum(1 + log_var - mu.pow(2) - log_var.exp())
+
+        # Final loss with KL divergence regularization
+        loss = reconstruction_loss + config.BETA_KL_DIV * kl_loss
+
+        return loss
+
     #TODO : Add decode function to check smoothness of latent space

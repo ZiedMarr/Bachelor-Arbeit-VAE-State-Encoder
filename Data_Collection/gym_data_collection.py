@@ -3,7 +3,7 @@ import numpy as np
 from stable_baselines3 import PPO  # Import stable-baselines3 for pre-trained policy
 from datetime import datetime
 import os
-from Wrappers.RandomStartCartPole import RandomStartCartPole
+from Wrappers.RandomStart import RandomStartCartPole
 
 
 # Define the base directory (directory of the current script)

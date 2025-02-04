@@ -1,2 +1,0 @@
-Hidden : 6 ,6 
-Activation : LeakyRelu()

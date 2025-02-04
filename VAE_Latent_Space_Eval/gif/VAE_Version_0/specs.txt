@@ -1,2 +1,0 @@
-Hidden Layer : 6 , 6 
-Activation function : ReLu()
