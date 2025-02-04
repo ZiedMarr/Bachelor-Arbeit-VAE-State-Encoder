@@ -13,7 +13,7 @@ SUITE_CONFIGS = {
     'DECODER_HIDDEN2': 10,
     'DECODER_HIDDEN3' : 12,
 
-    'BETA_KL_DIV': 0.2,
+    'BETA_KL_DIV': 0.13,
 
     'EVAL_SEED' : [1, 33, 545, 65 ,6 , 66, 78, 48 , 24 , 98],
 

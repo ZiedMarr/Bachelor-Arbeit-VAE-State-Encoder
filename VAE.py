@@ -1,9 +1,7 @@
 import torch
 import torch.nn as nn
 
-from config import ENCODER_HIDDEN, DECODER_HIDDEN, ENCODER_HIDDEN2, LATENT_DIM, DECODER_HIDDEN2, DECODER_HIDDEN3 , ENCODER_HIDDEN3
-
-
+import config
 #TODO : Think about if it's better to separate the network that produces mu and sigma
 #TODO : Think if we should use the log of sigma or not
 
@@ -19,24 +17,24 @@ class VAE(nn.Module):
 
         # Encoder: Maps input to latent space (outputs mean and log-variance)
         self.encoder = nn.Sequential(
-            nn.Linear(input_dim, ENCODER_HIDDEN),
+            nn.Linear(input_dim, config.ENCODER_HIDDEN),
             nn.LeakyReLU(0.1),
-            nn.Linear(ENCODER_HIDDEN,ENCODER_HIDDEN2),
+            nn.Linear(config.ENCODER_HIDDEN,config.ENCODER_HIDDEN2),
             nn.LeakyReLU(0.1),
-            nn.Linear(ENCODER_HIDDEN2, ENCODER_HIDDEN3),
+            nn.Linear(config.ENCODER_HIDDEN2, config.ENCODER_HIDDEN3),
             nn.LeakyReLU(0.1),
-            nn.Linear(ENCODER_HIDDEN3, LATENT_DIM * 2)  # Outputs: mean and log-variance
+            nn.Linear(config.ENCODER_HIDDEN3, config.LATENT_DIM * 2)  # Outputs: mean and log-variance
         )
 
         # Decoder: Maps latent space to predicted next states
         self.decoder = nn.Sequential(
-            nn.Linear(LATENT_DIM, DECODER_HIDDEN),
+            nn.Linear(config.LATENT_DIM, config.DECODER_HIDDEN),
             nn.LeakyReLU(0.1),
-            nn.Linear(DECODER_HIDDEN, DECODER_HIDDEN2),
+            nn.Linear(config.DECODER_HIDDEN, config.DECODER_HIDDEN2),
             nn.LeakyReLU(0.1),
-            nn.Linear(DECODER_HIDDEN2, DECODER_HIDDEN3),
+            nn.Linear(config.DECODER_HIDDEN2, config.DECODER_HIDDEN3),
             nn.LeakyReLU(0.1),
-            nn.Linear(DECODER_HIDDEN3, output_dim)  # Outputs: predicted m next states
+            nn.Linear(config.DECODER_HIDDEN3, output_dim)  # Outputs: predicted m next states
         )
 
     def forward(self, x):

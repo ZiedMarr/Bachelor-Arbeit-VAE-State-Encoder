@@ -4,8 +4,7 @@ import torch
 import numpy as np
 import os
 import config
-from config import INPUT_STATE_SIZE, OUTPUT_STATE_SIZE, INPUT_DIMENSION, LATENT_DIM, OUTPUT_DIMENSION, BETA_KL_DIV, \
-    VAE_Version
+import config
 
 #from VAE_PPO_train.model_batch_train import vae_model_path
 
@@ -22,13 +21,13 @@ def offline_pretrain(vae_save_path, data_path, vae_model_path) :
     #Hyperparameters
     # define training frequency :
     train_frequency = 5
-    n = INPUT_STATE_SIZE  # Number of input states
-    m = OUTPUT_STATE_SIZE  # Number of next states
+    n = config.INPUT_STATE_SIZE  # Number of input states
+    m = config.OUTPUT_STATE_SIZE  # Number of next states
 
 
 
     # Define the VAE
-    vae = VAE(input_dim=INPUT_DIMENSION, latent_dim=LATENT_DIM, output_dim=OUTPUT_DIMENSION)  # Example dimensions
+    vae = VAE(input_dim=config.INPUT_DIMENSION, latent_dim=config.LATENT_DIM, output_dim=config.OUTPUT_DIMENSION)  # Example dimensions
     vae_optimizer = torch.optim.Adam(vae.parameters(), lr=1e-3)
     if not(vae_model_path is None) :
         vae.load_state_dict(torch.load(vae_model_path))
@@ -62,7 +61,7 @@ def offline_pretrain(vae_save_path, data_path, vae_model_path) :
             # Compute the VAE loss
             reconstruction_loss = torch.nn.MSELoss()(predicted_next_states, target_tensor)
             kl_loss = -0.5 * torch.sum(1 + log_var - mu.pow(2) - log_var.exp())
-            loss = reconstruction_loss + BETA_KL_DIV * kl_loss
+            loss = reconstruction_loss + config.BETA_KL_DIV * kl_loss
 
             # Backpropagation and optimization
             vae_optimizer.zero_grad()
@@ -85,7 +84,7 @@ def offline_pretrain(vae_save_path, data_path, vae_model_path) :
 def call_pretrain(vae_name, data_dir= os.path.join(base_dir, "..", "Data_Collection", "collected_data", "rand_pol_rand_env", "random_100000_20250130_114306.npz")):
     # Directory containing your data files
     data_dir = data_dir
-    vae_save_dir = os.path.join(base_dir, 'pretrained_vae', VAE_Version ,f'{INPUT_STATE_SIZE}_{OUTPUT_STATE_SIZE}' , f'KL-D_{BETA_KL_DIV}')
+    vae_save_dir = os.path.join(base_dir, 'pretrained_vae', config.VAE_Version ,f'{config.INPUT_STATE_SIZE}_{config.OUTPUT_STATE_SIZE}' , f'KL-D_{config.BETA_KL_DIV}')
     os.makedirs(vae_save_dir, exist_ok=True)
 
     offline_pretrain(vae_model_path= None ,vae_save_path=os.path.join(vae_save_dir, vae_name), data_path=data_dir)
@@ -93,7 +92,7 @@ def call_pretrain(vae_name, data_dir= os.path.join(base_dir, "..", "Data_Collect
 if __name__ == "__main__":
     # Directory containing your data files
     data_dir = '../Data_Collection/collected_data/rand_pol_rand_env/random_100000_20250130_114306.npz'
-    vae_save_dir = f"./pretrained_vae/{VAE_Version}/{INPUT_STATE_SIZE}_{OUTPUT_STATE_SIZE}/KL-D_{BETA_KL_DIV}"
+    vae_save_dir = f"./pretrained_vae/{config.VAE_Version}/{config.INPUT_STATE_SIZE}_{config.OUTPUT_STATE_SIZE}/KL-D_{config.BETA_KL_DIV}"
     os.makedirs(vae_save_dir, exist_ok=True)
 
     offline_pretrain(vae_model_path= None ,vae_save_path=os.path.join(vae_save_dir, "vae_rand_100k"), data_path=data_dir)
