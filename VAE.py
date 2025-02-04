@@ -40,6 +40,11 @@ class VAE(nn.Module):
         )
 
     def encode(self, x):
+        # Return only mu, not the full tuple
+        mu, log_var = self.encode_full(x)
+        return mu
+
+    def encode_full(self, x):
         h = self.encoder(x)
         return self.fc_mu(h), self.fc_var(h)
 
