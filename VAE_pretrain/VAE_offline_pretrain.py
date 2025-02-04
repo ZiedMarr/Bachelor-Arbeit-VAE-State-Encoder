@@ -14,6 +14,56 @@ import config
 # Define base paths
 base_dir = os.path.dirname(os.path.abspath(__file__))  # Directory of the current script
 
+
+def offline_pretrain_batched(vae_save_path, data_path, vae_model_path, batch_size=32):
+    vae = VAE(input_dim=config.INPUT_DIMENSION,
+              latent_dim=config.LATENT_DIM,
+              output_dim=config.OUTPUT_DIMENSION)
+    vae_optimizer = torch.optim.Adam(vae.parameters(), lr=1e-3)
+
+    if vae_model_path:
+        vae.load_state_dict(torch.load(vae_model_path))
+
+    episodes, _, _ = load_data(path=data_path)
+
+    # Collect all sliding window samples
+    all_inputs, all_targets = [], []
+    for episode in episodes:
+        for inp_obs_1_index in range(0, len(episode) - config.INPUT_STATE_SIZE - config.OUTPUT_STATE_SIZE,
+                                     config.TRAIN_FREQUENCY):
+            stacked_obs = np.concatenate(list(episode)[inp_obs_1_index:inp_obs_1_index + config.INPUT_STATE_SIZE],
+                                         axis=-1)
+            stacked_next_obs = np.concatenate(list(episode)[
+                                              inp_obs_1_index + config.INPUT_STATE_SIZE:inp_obs_1_index + config.INPUT_STATE_SIZE + config.OUTPUT_STATE_SIZE],
+                                              axis=-1)
+
+            all_inputs.append(stacked_obs)
+            all_targets.append(stacked_next_obs)
+
+    # Convert to torch tensors
+    inputs_tensor = torch.tensor(all_inputs, dtype=torch.float32)
+    targets_tensor = torch.tensor(all_targets, dtype=torch.float32)
+
+    # Create DataLoader for batched training
+    dataset = torch.utils.data.TensorDataset(inputs_tensor, targets_tensor)
+    dataloader = torch.utils.data.DataLoader(dataset, batch_size=batch_size, shuffle=True)
+
+    # Batch training loop
+    for epoch in range(config.EPOCHS):
+        for batch_inputs, batch_targets in dataloader:
+            predicted_next_states, mu, log_var, _ = vae(batch_inputs)
+
+            loss = vae.MSE_Loss(mu=mu, log_var=log_var,
+                                predicted_next_states=predicted_next_states,
+                                target_tensor=batch_targets)
+
+            vae_optimizer.zero_grad()
+            loss.backward()
+            vae_optimizer.step()
+
+    torch.save(vae.state_dict(), vae_save_path)
+    print(f"Trained VAE model saved to {vae_save_path}")
+
 def offline_pretrain(vae_save_path, data_path, vae_model_path) :
     #vae_save_path = os.path.join(base_dir, "pretrained_vae", "5_in_2_out", "vae_offline_expert")
     #data_path = os.path.join(base_dir, "..", "Data_Collection", "collected_data", "cartpole_data_expert.npz")

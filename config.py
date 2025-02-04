@@ -14,6 +14,10 @@ DECODER_HIDDEN3 = 12
 
 BETA_KL_DIV= 0.2
 
+TRAIN_FREQUENCY = 5
+
+EPOCHS = 1
+
 LOSS_FUNC= "MSE_loss_feature_Standardization"
 
 EVAL_SEED = [1, 33, 545, 65 ,6 , 66, 78, 48 , 24 , 98]
