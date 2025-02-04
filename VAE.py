@@ -57,7 +57,7 @@ class VAE(nn.Module):
         return self.decoder(z)
 
     def forward(self, x):
-        mu, log_var = self.encode(x)
+        mu, log_var = self.encode_full(x)
         z = self.reparameterize(mu, log_var)
         return self.decode(z), mu, log_var, z
 
