@@ -47,8 +47,8 @@ def train_suite() :
 
 def main(suite=False) :
     if suite :
-        for idx, new_config in enumerate(SUITE_CONFIGS):
-            print(f"\nApplying configuration {idx + 1}: {new_config}")
+        for config_name, new_config in SUITE_CONFIGS.items():
+            print(f"\nApplying configuration {config_name}: {new_config}")
             apply_config(new_config)
             train_suite()
     else :
