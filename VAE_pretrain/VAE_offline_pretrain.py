@@ -148,7 +148,8 @@ def call_pretrain(vae_name, data_dir= os.path.join(base_dir, "..", "Data_Collect
     vae_save_dir = os.path.join(base_dir, 'pretrained_vae', config.VAE_Version ,f'{config.INPUT_STATE_SIZE}_{config.OUTPUT_STATE_SIZE}' , f'KL-D_{config.BETA_KL_DIV}')
     os.makedirs(vae_save_dir, exist_ok=True)
 
-    offline_pretrain(vae_model_path= None ,vae_save_path=os.path.join(vae_save_dir, vae_name), data_path=data_dir)
+    #offline_pretrain(vae_model_path= None ,vae_save_path=os.path.join(vae_save_dir, vae_name), data_path=data_dir)
+    offline_pretrain_batched(vae_model_path= None ,vae_save_path=os.path.join(vae_save_dir, vae_name), data_path=data_dir)
 
 if __name__ == "__main__":
     # Directory containing your data files
