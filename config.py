@@ -16,7 +16,7 @@ BETA_KL_DIV= 0.2
 
 TRAIN_FREQUENCY = 5
 
-EPOCHS = 1
+EPOCHS = 20
 
 LOSS_FUNC= "MSE_loss_feature_Standardization"
 
