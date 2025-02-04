@@ -2,7 +2,7 @@ SUITE_CONFIGS = {
     'config_A': {
     'INPUT_STATE_SIZE' : 3,
     'OUTPUT_STATE_SIZE' : 3,
-    'LATENT_DIM' : 3,
+    'LATENT_DIM' : 4,
 
 
 
@@ -14,16 +14,17 @@ SUITE_CONFIGS = {
     'DECODER_HIDDEN3' : 12,
 
     'BETA_KL_DIV': 0.12,
+    'LOSS_FUNC' : "MSE_loss_feature_Standardization",
 
     'EVAL_SEED' : [1, 33, 545, 65 ,6 , 66, 78, 48 , 24 , 98],
 
-    'VAE_Version' : "VAE_Version_10"
+    'VAE_Version' : "VAE_Version_11"
 
     },
     'config_B': {
     'INPUT_STATE_SIZE' : 3,
     'OUTPUT_STATE_SIZE' : 3,
-    'LATENT_DIM' : 3,
+    'LATENT_DIM' : 4,
 
 
 
@@ -35,15 +36,16 @@ SUITE_CONFIGS = {
     'DECODER_HIDDEN3' : 12,
 
     'BETA_KL_DIV': 0.15,
+    'LOSS_FUNC' : "MSE_loss_feature_Standardization",
 
     'EVAL_SEED' : [1, 33, 545, 65 ,6 , 66, 78, 48 , 24 , 98],
 
-    'VAE_Version' : "VAE_Version_10"
+    'VAE_Version' : "VAE_Version_11"
     },
 'config_C': {
     'INPUT_STATE_SIZE' : 3,
     'OUTPUT_STATE_SIZE' : 3,
-    'LATENT_DIM' : 3,
+    'LATENT_DIM' : 4,
 
 
 
@@ -55,6 +57,7 @@ SUITE_CONFIGS = {
     'DECODER_HIDDEN3' : 12,
 
     'BETA_KL_DIV': 0.13,
+    'LOSS_FUNC' : "MSE_loss_feature_Standardization",
 
     'EVAL_SEED' : [1, 33, 545, 65 ,6 , 66, 78, 48 , 24 , 98],
 
@@ -63,7 +66,7 @@ SUITE_CONFIGS = {
 'config_D': {
     'INPUT_STATE_SIZE' : 3,
     'OUTPUT_STATE_SIZE' : 3,
-    'LATENT_DIM' : 3,
+    'LATENT_DIM' : 4,
 
 
 
@@ -75,10 +78,12 @@ SUITE_CONFIGS = {
     'DECODER_HIDDEN3' : 12,
 
     'BETA_KL_DIV': 0.1,
+    'LOSS_FUNC' : "MSE_loss_feature_Standardization",
+
 
     'EVAL_SEED' : [1, 33, 545, 65 ,6 , 66, 78, 48 , 24 , 98],
 
-    'VAE_Version' : "VAE_Version_10"
+    'VAE_Version' : "VAE_Version_11"
     },
     # Add additional configurations as needed
 

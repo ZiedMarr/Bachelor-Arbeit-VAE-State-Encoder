@@ -44,7 +44,7 @@ def train_suite() :
     call_pretrain(vae_name=vae_name,data_dir=train_data)
     call_latent(vae_name=vae_name, show= False)
     call_reconstruction(vae_name)
-
+    '''
     vae_name = "vae_rand_1M"
     train_data = os.path.join(base_dir, "..", "Data_Collection", "collected_data", "rand_pol_rand_env",
                               "random_1000000_20250131_160547.npz")
@@ -52,6 +52,7 @@ def train_suite() :
     call_pretrain(vae_name=vae_name, data_dir=train_data)
     call_latent(vae_name=vae_name, show=False)
     call_reconstruction(vae_name)
+    '''
 def main(suite=False) :
     if suite :
         for config_name, new_config in SUITE_CONFIGS.items():

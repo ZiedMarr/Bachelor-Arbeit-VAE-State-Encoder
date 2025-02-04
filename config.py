@@ -14,6 +14,8 @@ DECODER_HIDDEN3 = 12
 
 BETA_KL_DIV= 0.2
 
+LOSS_FUNC= "MSE_loss_feature_Standardization"
+
 EVAL_SEED = [1, 33, 545, 65 ,6 , 66, 78, 48 , 24 , 98]
 
 VAE_Version = "VAE_Version_9"
