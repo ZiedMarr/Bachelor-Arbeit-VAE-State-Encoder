@@ -13,8 +13,8 @@ def compute_standardized_mse(predicted, target):
     Compute standardized MSE between predicted and target tensors
     """
     # Standardize both tensors
-    target_mean = target.mean(dim=0, keepdim=True)
-    target_std = target.std(dim=0, keepdim=True) + 1e-8
+    target_mean = target.mean(dim=1, keepdim=True)
+    target_std = target.std(dim=1, keepdim=True) + 1e-8
 
     standardized_pred = (predicted - target_mean) / target_std
     standardized_target = (target - target_mean) / target_std
