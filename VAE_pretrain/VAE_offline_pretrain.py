@@ -26,6 +26,7 @@ def offline_pretrain_batched(vae_save_path, data_path, vae_model_path, batch_siz
 
     episodes, _, _ = load_data(path=data_path)
 
+
     # Collect all sliding window samples
     all_inputs, all_targets = [], []
     for episode in episodes:
@@ -60,6 +61,7 @@ def offline_pretrain_batched(vae_save_path, data_path, vae_model_path, batch_siz
             vae_optimizer.zero_grad()
             loss.backward()
             vae_optimizer.step()
+
 
     torch.save(vae.state_dict(), vae_save_path)
     print(f"Trained VAE model saved to {vae_save_path}")

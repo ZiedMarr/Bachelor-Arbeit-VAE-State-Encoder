@@ -51,6 +51,8 @@ def train_suite() :
     call_reconstruction(vae_name)
     vae_score_call(data_path=os.path.join(base_dir, "..", "Data_Collection", "collected_data", "1000_rand_Eval","random_1000_20250130_122312.npz"),vae_name=vae_name)
 
+
+
     '''
     vae_name = "vae_rand_1M"
     train_data = os.path.join(base_dir, "..", "Data_Collection", "collected_data", "rand_pol_rand_env",
