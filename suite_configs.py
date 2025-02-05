@@ -2,7 +2,7 @@ SUITE_CONFIGS = {
     'config_A': {
     'INPUT_STATE_SIZE' : 4,
     'OUTPUT_STATE_SIZE' : 4,
-    'LATENT_DIM' : 4,
+    'LATENT_DIM' : 5,
 
 
 
@@ -20,13 +20,13 @@ SUITE_CONFIGS = {
 
     'EVAL_SEED' : [1, 33, 545, 65 ,6 , 66, 78, 48 , 24 , 98],
 
-    'VAE_Version' : "VAE_Version_3.7"
+    'VAE_Version' : "VAE_Version_3.8"
 
     },
 'config_B': {
     'INPUT_STATE_SIZE' : 4,
     'OUTPUT_STATE_SIZE' : 4,
-    'LATENT_DIM' : 4,
+    'LATENT_DIM' : 5,
 
 
 
@@ -39,19 +39,19 @@ SUITE_CONFIGS = {
     'DECODER_HIDDEN3': 10,
     'DECODER_HIDDEN4' : 12,
 
-    'BETA_KL_DIV': 0.01,
+    'BETA_KL_DIV': 0.003,
     'LOSS_FUNC' : "MSE_loss_feature_Standardization",
 
     'EVAL_SEED' : [1, 33, 545, 65 ,6 , 66, 78, 48 , 24 , 98],
 
-    'VAE_Version' : "VAE_Version_3.7"
+    'VAE_Version' : "VAE_Version_3.8"
 
     },
 
 'config_C': {
     'INPUT_STATE_SIZE' : 4,
     'OUTPUT_STATE_SIZE' : 4,
-    'LATENT_DIM' : 4,
+    'LATENT_DIM' : 5,
 
 
 
@@ -69,10 +69,9 @@ SUITE_CONFIGS = {
 
     'EVAL_SEED' : [1, 33, 545, 65 ,6 , 66, 78, 48 , 24 , 98],
 
-    'VAE_Version' : "VAE_Version_3.7"
+    'VAE_Version' : "VAE_Version_3.8"
 
     },
-
     # Add additional configurations as needed
 
 }
