@@ -1,8 +1,8 @@
 VAE Model: vae_rand_100k
-Dataset Path: C:\Users\ziedm\Refernce File\Studium\WiSe 24-25\BA\code\source\VAE_Latent_Space_Eval\..\Data_Collection\collected_data\1000_rand_Eval\random_1000_20250130_122312.npz
+Dataset Path: /home/zied/BA-code/Bachelor-Arbeit-VAE-State-Encoder/VAE_pretrain/../Data_Collection/collected_data/1000_rand_Eval/random_1000_20250130_122312.npz
 Evaluation Frequency: 5
 
 Results:
 --------------------------------------------------
-Average Standardized MSE: 0.690502
-Total Standardized MSE: 264.462088
+Average Standardized MSE: 0.707138
+Total Standardized MSE: 270.833994
