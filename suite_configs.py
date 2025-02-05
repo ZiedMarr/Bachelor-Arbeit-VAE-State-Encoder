@@ -1,8 +1,8 @@
 SUITE_CONFIGS = {
     'config_A': {
-    'INPUT_STATE_SIZE' : 4,
-    'OUTPUT_STATE_SIZE' : 4,
-    'LATENT_DIM' : 3,
+    'INPUT_STATE_SIZE' : 3,
+    'OUTPUT_STATE_SIZE' : 3,
+    'LATENT_DIM' : 2,
 
 
 
@@ -20,13 +20,13 @@ SUITE_CONFIGS = {
 
     'EVAL_SEED' : [1, 33, 545, 65 ,6 , 66, 78, 48 , 24 , 98],
 
-    'VAE_Version' : "VAE_Version_3.4"
+    'VAE_Version' : "VAE_Version_3.5"
 
     },
     'config_B': {
-    'INPUT_STATE_SIZE' : 4,
-    'OUTPUT_STATE_SIZE' : 4,
-    'LATENT_DIM' : 3,
+    'INPUT_STATE_SIZE' : 3,
+    'OUTPUT_STATE_SIZE' : 3,
+    'LATENT_DIM' : 2,
 
 
 
@@ -44,12 +44,12 @@ SUITE_CONFIGS = {
 
     'EVAL_SEED' : [1, 33, 545, 65 ,6 , 66, 78, 48 , 24 , 98],
 
-    'VAE_Version' : "VAE_Version_3.4"
+    'VAE_Version' : "VAE_Version_3.5"
     },
 'config_C': {
-    'INPUT_STATE_SIZE' : 4,
-    'OUTPUT_STATE_SIZE' : 4,
-    'LATENT_DIM' : 3,
+    'INPUT_STATE_SIZE' : 3,
+    'OUTPUT_STATE_SIZE' : 3,
+    'LATENT_DIM' : 2,
 
 
 
@@ -67,7 +67,7 @@ SUITE_CONFIGS = {
 
     'EVAL_SEED' : [1, 33, 545, 65 ,6 , 66, 78, 48 , 24 , 98],
 
-    'VAE_Version' : "VAE_Version_3.4"
+    'VAE_Version' : "VAE_Version_3.5"
     }
     # Add additional configurations as needed
 

@@ -11,19 +11,19 @@ class VAE(nn.Module):
         self.encoder = nn.Sequential(
             nn.Linear(input_dim, config.ENCODER_HIDDEN),
             nn.BatchNorm1d(config.ENCODER_HIDDEN),
-            nn.LeakyReLU(0.1),
+            nn.LeakyReLU(0.01),
 
             nn.Linear(config.ENCODER_HIDDEN, config.ENCODER_HIDDEN2),
             nn.BatchNorm1d(config.ENCODER_HIDDEN2),
-            nn.LeakyReLU(0.1),
+            nn.LeakyReLU(0.01),
 
             nn.Linear(config.ENCODER_HIDDEN2, config.ENCODER_HIDDEN3),
             nn.BatchNorm1d(config.ENCODER_HIDDEN3),
-            nn.LeakyReLU(0.1),
+            nn.LeakyReLU(0.01),
 
             nn.Linear(config.ENCODER_HIDDEN3, config.ENCODER_HIDDEN4),
             nn.BatchNorm1d(config.ENCODER_HIDDEN4),
-            nn.LeakyReLU(0.1),
+            nn.LeakyReLU(0.01),
         )
 
         # Latent space layers
@@ -34,19 +34,19 @@ class VAE(nn.Module):
         self.decoder = nn.Sequential(
             nn.Linear(latent_dim, config.DECODER_HIDDEN),
             nn.BatchNorm1d(config.DECODER_HIDDEN),
-            nn.LeakyReLU(0.1),
+            nn.LeakyReLU(0.01),
 
             nn.Linear(config.DECODER_HIDDEN, config.DECODER_HIDDEN2),
             nn.BatchNorm1d(config.DECODER_HIDDEN2),
-            nn.LeakyReLU(0.1),
+            nn.LeakyReLU(0.01),
 
             nn.Linear(config.DECODER_HIDDEN2, config.DECODER_HIDDEN3),
             nn.BatchNorm1d(config.DECODER_HIDDEN3),
-            nn.LeakyReLU(0.1),
+            nn.LeakyReLU(0.01),
 
             nn.Linear(config.DECODER_HIDDEN3, config.DECODER_HIDDEN4),
             nn.BatchNorm1d(config.DECODER_HIDDEN4),
-            nn.LeakyReLU(0.1),
+            nn.LeakyReLU(0.01),
 
             nn.Linear(config.DECODER_HIDDEN4, output_dim)
         )
