@@ -7,9 +7,9 @@ from VAE import VAE
 import os
 from sklearn.decomposition import PCA
 import mpld3
+import config
 
-from config import INPUT_DIMENSION, LATENT_DIM, OUTPUT_DIMENSION, INPUT_STATE_SIZE, VAE_Version, OUTPUT_STATE_SIZE, \
-    BETA_KL_DIV
+
 
 # get base_dir path
 base_dir = os.path.dirname(os.path.abspath(__file__))
@@ -84,12 +84,12 @@ def plot_latent_space(
 
 
 def call_latent_colored(vae_name, data_dir=os.path.join(base_dir, "..", "Data_Collection", "collected_data", "explore_rand_env"), show=False, reduction=True):
-    model_path = os.path.join(base_dir, "..", "VAE_pretrain", "pretrained_vae", VAE_Version,
-                              f"{INPUT_STATE_SIZE}_{OUTPUT_STATE_SIZE}", f"KL-D_{BETA_KL_DIV}", vae_name)
-    vae = VAE(input_dim=INPUT_DIMENSION, latent_dim=LATENT_DIM, output_dim=OUTPUT_DIMENSION)
+    model_path = os.path.join(base_dir, "..", "VAE_pretrain", "pretrained_vae", config.VAE_Version,
+                              f"{config.INPUT_STATE_SIZE}_{config.OUTPUT_STATE_SIZE}", f"KL-D_{config.BETA_KL_DIV}", vae_name)
+    vae = VAE(input_dim=config.INPUT_DIMENSION, latent_dim=config.LATENT_DIM, output_dim=config.OUTPUT_DIMENSION)
     vae.load_state_dict(torch.load(model_path))
     vae_name = os.path.basename(model_path)
-    image_folder = f'Latent_Plots/{VAE_Version}/KL-D_{BETA_KL_DIV}/{INPUT_STATE_SIZE}_{OUTPUT_STATE_SIZE}'
+    image_folder = f'Latent_Plots/{config.VAE_Version}/KL-D_{config.BETA_KL_DIV}/{config.INPUT_STATE_SIZE}_{config.OUTPUT_STATE_SIZE}'
     os.makedirs(image_folder, exist_ok=True)
 
     file_list = [os.path.join(data_dir, file) for file in os.listdir(data_dir) if file.endswith('.npz')]
@@ -97,7 +97,7 @@ def call_latent_colored(vae_name, data_dir=os.path.join(base_dir, "..", "Data_Co
     plot_latent_space(
         data_paths=file_list,
         vae=vae,
-        num_input_states=INPUT_STATE_SIZE,
+        num_input_states=config.INPUT_STATE_SIZE,
         save_path=os.path.join(image_folder, f'{vae_name}.png'),
         reduction=reduction
     )
@@ -105,4 +105,4 @@ def call_latent_colored(vae_name, data_dir=os.path.join(base_dir, "..", "Data_Co
 
 
 if __name__ == "__main__":
-    call_latent("vae_rand_100k", reduction=True)
+    call_latent_colored("vae_rand_100k", reduction=True)
