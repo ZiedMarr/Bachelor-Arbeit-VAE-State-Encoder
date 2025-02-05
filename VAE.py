@@ -82,8 +82,8 @@ class VAE(nn.Module):
 
     def MSE_loss_feature_Standardization(self, mu , log_var, predicted_next_states, target_tensor):
         # Calculate mean and std for normalization (per feature/dimension)
-        mean = target_tensor.mean(dim=1, keepdim=True)
-        std = target_tensor.std(dim=1, keepdim=True)
+        mean = target_tensor.mean()
+        std = target_tensor.std()
 
         # Add small epsilon to avoid division by zero, use max to ensure non-zero std
         std = torch.max(std, torch.tensor(1e-8, device=std.device))
