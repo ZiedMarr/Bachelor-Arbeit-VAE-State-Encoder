@@ -22,6 +22,10 @@ EPOCHS = 10
 
 LOSS_FUNC= "MSE_loss_feature_Standardization"
 
+ENCODER_N_LAYERS = 6
+DNCODER_N_LAYERS = 6
+
+
 ACT_FUNC = "LeakyReLU(0.1)"
 
 EVAL_SEED = [1, 33, 545, 65 ,6 , 66, 78, 48 , 24 , 98]

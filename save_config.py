@@ -23,5 +23,29 @@ def save_config():
 
     print(f"Configuration saved to: {file_path}")
 
+
+def save_vae_code():
+    # Path to VAE.py
+    vae_file_path = os.path.join(base_dir, "VAE.py")
+
+    # Define the directory where the VAE code will be saved
+    save_directory = os.path.join(base_dir, "VAE_pretrain", "pretrained_vae", f'{config.VAE_Version}')
+    os.makedirs(save_directory, exist_ok=True)  # Ensure directory exists
+
+    # Define the file path
+    vae_save_path = os.path.join(save_directory, "VAE_code.txt")
+
+    try:
+        # Read and write the VAE.py content to the new file
+        with open(vae_file_path, "r") as vae_file:
+            vae_code = vae_file.read()
+
+        with open(vae_save_path, "w") as file:
+            file.write(vae_code)
+
+        print(f"VAE code saved to: {vae_save_path}")
+    except FileNotFoundError:
+        print(f"Error: {vae_file_path} not found.")
+
 if __name__ == "__main__" :
     save_config()

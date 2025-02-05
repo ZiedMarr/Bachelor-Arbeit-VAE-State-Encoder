@@ -24,11 +24,20 @@ class VAE(nn.Module):
             nn.Linear(config.ENCODER_HIDDEN3, config.ENCODER_HIDDEN4),
             nn.BatchNorm1d(config.ENCODER_HIDDEN4),
             nn.LeakyReLU(0.1),
+
+            # New additional layers
+            nn.Linear(config.ENCODER_HIDDEN4, config.ENCODER_HIDDEN4 * 2),
+            nn.BatchNorm1d(config.ENCODER_HIDDEN4 * 2),
+            nn.LeakyReLU(0.1),
+
+            nn.Linear(config.ENCODER_HIDDEN4 * 2, config.ENCODER_HIDDEN4 * 2),
+            nn.BatchNorm1d(config.ENCODER_HIDDEN4 * 2),
+            nn.LeakyReLU(0.1),
         )
 
         # Latent space layers
-        self.fc_mu = nn.Linear(config.ENCODER_HIDDEN4, latent_dim)
-        self.fc_var = nn.Linear(config.ENCODER_HIDDEN4, latent_dim)
+        self.fc_mu = nn.Linear(config.ENCODER_HIDDEN4*2, latent_dim)
+        self.fc_var = nn.Linear(config.ENCODER_HIDDEN4*2, latent_dim)
 
         # Decoder with Batch Normalization
         self.decoder = nn.Sequential(
@@ -48,7 +57,18 @@ class VAE(nn.Module):
             nn.BatchNorm1d(config.DECODER_HIDDEN4),
             nn.LeakyReLU(0.1),
 
-            nn.Linear(config.DECODER_HIDDEN4, output_dim)
+            # New additional layers
+            nn.Linear(config.DECODER_HIDDEN4, config.DECODER_HIDDEN4 * 2),
+            nn.BatchNorm1d(config.DECODER_HIDDEN4 * 2),
+            nn.LeakyReLU(0.1),
+
+            nn.Linear(config.DECODER_HIDDEN4 * 2, config.DECODER_HIDDEN4 * 2),
+            nn.BatchNorm1d(config.DECODER_HIDDEN4 * 2),
+            nn.LeakyReLU(0.1),
+
+
+
+            nn.Linear(config.DECODER_HIDDEN4* 2, output_dim)
         )
 
     def encode(self, x):
