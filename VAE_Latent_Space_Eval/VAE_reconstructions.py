@@ -111,9 +111,9 @@ def main(data_path, vae_model_path):
 
     for i, (inp, true_out, pred_out) in enumerate(zip(selected_inputs, corresponding_outputs, predicted_outputs.numpy())):
         print(f"Example {i+1}")
-        print("Input:", inp.reshape(n, -1))  # Reshape to n rows of state dimensions
-        print("True Output:", true_out.reshape(m, -1))  # Reshape to m rows of state dimensions
-        print("Predicted Output:", pred_out.reshape(m, -1))  # Reshape to m rows of state dimensions
+        print("Input: \n", inp.reshape(n, -1))  # Reshape to n rows of state dimensions
+        print("True Output: \n", true_out.reshape(m, -1))  # Reshape to m rows of state dimensions
+        print("Predicted Output: \n", pred_out.reshape(m, -1))  # Reshape to m rows of state dimensions
         print("-" * 50)
 
     # produce gifs

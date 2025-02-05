@@ -9,6 +9,7 @@ base_dir = os.path.dirname(os.path.abspath(__file__))
 from VAE_pretrain.VAE_offline_pretrain import call_pretrain
 from VAE_Latent_Space_Eval.Multi_Data_Latent_Plot import call_latent
 from VAE_Latent_Space_Eval.VAE_reconstructions import call_reconstruction
+from VAE_Latent_Space_Eval.VAE_score_Eval import vae_score_call
 
 
 def apply_config(new_config):
@@ -36,6 +37,7 @@ def train_suite() :
     call_pretrain(vae_name=vae_name,data_dir=train_data)
     call_latent(vae_name=vae_name, show= False)
     call_reconstruction(vae_name)
+    vae_score_call(data_path=os.path.join(base_dir, "..", "Data_Collection", "collected_data", "1000_rand_Eval","random_1000_20250130_122312.npz"),vae_name=vae_name)
     save_config()
 
     vae_name = "vae_rand_500k"
@@ -44,6 +46,8 @@ def train_suite() :
     call_pretrain(vae_name=vae_name,data_dir=train_data)
     call_latent(vae_name=vae_name, show= False)
     call_reconstruction(vae_name)
+    vae_score_call(data_path=os.path.join(base_dir, "..", "Data_Collection", "collected_data", "1000_rand_Eval","random_1000_20250130_122312.npz"),vae_name=vae_name)
+
     '''
     vae_name = "vae_rand_1M"
     train_data = os.path.join(base_dir, "..", "Data_Collection", "collected_data", "rand_pol_rand_env",
