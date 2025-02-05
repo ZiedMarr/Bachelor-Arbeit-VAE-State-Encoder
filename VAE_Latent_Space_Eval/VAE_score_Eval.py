@@ -97,7 +97,7 @@ def vae_score_call(data_path=os.path.join(base_dir, "..", "Data_Collection", "co
 
 
     # Path to VAE model
-    vae_path = os.path.join(base_dir, "pretrained_vae", config.VAE_Version,
+    vae_path = os.path.join(base_dir,"..", "pretrained_vae", config.VAE_Version,
                             f"{config.INPUT_STATE_SIZE}_{config.OUTPUT_STATE_SIZE}",
                             f"KL-D_{config.BETA_KL_DIV}", vae_name)
     # define output path :

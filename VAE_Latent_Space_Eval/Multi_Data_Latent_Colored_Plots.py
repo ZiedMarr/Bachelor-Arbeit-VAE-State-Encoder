@@ -73,10 +73,10 @@ def plot_latent_space(
 
         if save_path:
             png_path = save_path.replace('.png', f'_obs_{obs_idx + 1}.png')
-            html_path = png_path.replace('.png', '.html')
+            #html_path = png_path.replace('.png', '.html')
             plt.savefig(png_path)
-            mpld3.save_html(fig, html_path)
-            print(f"Saved plot and interactive HTML for Observation {obs_idx + 1}")
+            #mpld3.save_html(fig, html_path)
+            print(f"Saved plot  for Observation {obs_idx + 1}")
 
         if show:
             plt.show()
