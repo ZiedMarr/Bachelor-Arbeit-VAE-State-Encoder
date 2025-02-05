@@ -28,7 +28,7 @@ def split_observations(observations, num_input_states):
 def plot_latent_space(
         data_paths: Union[str, List[str]],
         vae: VAE,
-        num_input_states: int = INPUT_STATE_SIZE,
+        num_input_states: int = config.INPUT_STATE_SIZE,
         save_path: str = None, show=True, reduction=False
 ):
     if isinstance(data_paths, str):
