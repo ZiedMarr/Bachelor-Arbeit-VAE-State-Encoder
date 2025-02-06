@@ -8,7 +8,24 @@ import config
 # get base_dir path
 base_dir = os.path.dirname(os.path.abspath(__file__))
 
-def compute_standardized_mse(predicted, target):
+
+def compute_dataset_statistics(data_path):
+    """
+    Compute global mean and standard deviation across the entire dataset
+    """
+    # Load dataset
+    episodes, _, _ = load_data(path=data_path)
+
+    # Concatenate all data into a single tensor
+    all_data = torch.tensor([state for episode in episodes for state in episode], dtype=torch.float32)
+
+    # Compute global statistics (single values)
+    mean = all_data.mean()
+    std = torch.max(all_data.std(), torch.tensor(1e-8))
+
+    return mean.item(), std.item()
+
+def compute_standardized_mse(predicted, target, global_mean, global_std):
     """
     Compute standardized MSE between predicted and target tensors
     """
@@ -16,8 +33,8 @@ def compute_standardized_mse(predicted, target):
     target_mean = target.mean(dim=1, keepdim=True)
     target_std = target.std(dim=1, keepdim=True) + 1e-8
 
-    standardized_pred = (predicted - target_mean) / target_std
-    standardized_target = (target - target_mean) / target_std
+    standardized_pred = (predicted - global_mean) / global_std
+    standardized_target = (target - global_mean) / global_std
 
     # Compute MSE
     mse = torch.mean((standardized_pred - standardized_target) ** 2)
@@ -46,6 +63,9 @@ def evaluate_vae(vae_path, data_path, eval_frequency=5, output_path="vae_scores.
     total_mse = 0
     total_samples = 0
 
+    #compute global mean and std for data set :
+    global_mean, global_std = compute_dataset_statistics(data_path=data_path)
+
     for episode in episodes:
         # Sliding window approach
         for idx in range(0, len(episode) - config.INPUT_STATE_SIZE - config.OUTPUT_STATE_SIZE, eval_frequency):
@@ -71,7 +91,7 @@ def evaluate_vae(vae_path, data_path, eval_frequency=5, output_path="vae_scores.
                 predicted_states, _, _, _ = vae(input_tensor)
 
             # Compute standardized MSE
-            mse = compute_standardized_mse(predicted_states, target_tensor)
+            mse = compute_standardized_mse(predicted_states, target_tensor, global_mean=global_mean, global_std=global_std)
             total_mse += mse
             total_samples += 1
 
