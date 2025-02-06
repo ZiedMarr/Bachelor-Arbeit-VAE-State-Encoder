@@ -23,7 +23,7 @@ class VAEWrapperWithHistory(gym.ObservationWrapper):
 
         # Original observation and latent dimensions
         self.original_obs_dim = env.observation_space.shape[0]
-        self.latent_dim = vae_model.encoder[-1].out_features // 2
+        self.latent_dim = vae_model.fc_mu.out_features
 
         # Update the observation space
         self.observation_space = gym.spaces.Box(
@@ -72,6 +72,7 @@ class VAEWrapperWithHistory(gym.ObservationWrapper):
 
         # Get latent representation from the VAE
         with torch.no_grad():
+            self.vae.eval()
             latent = self.vae.encode(stacked_obs_tensor).squeeze(0).numpy()
 
         # Concatenate the most recent observation with the latent variables

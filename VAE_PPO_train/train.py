@@ -13,8 +13,7 @@ from VAE import VAE
 import os
 from datetime import datetime
 
-from config import INPUT_DIMENSION, LATENT_DIM, OUTPUT_DIMENSION, INPUT_STATE_SIZE, OUTPUT_STATE_SIZE
-
+import config
 
 def train(vae_model_path, vae_save_folder, log_batch_dir,total_timesteps = 20000,seed = 42):
     # Get the current script's directory
@@ -43,16 +42,16 @@ def train(vae_model_path, vae_save_folder, log_batch_dir,total_timesteps = 20000
 
 
     # Define the VAE   :
-    vae = VAE(input_dim=INPUT_DIMENSION, latent_dim=LATENT_DIM, output_dim=OUTPUT_DIMENSION)  # Example dimensions
+    vae = VAE(input_dim=config.INPUT_DIMENSION, latent_dim=config.LATENT_DIM, output_dim=config.OUTPUT_DIMENSION)  # Example dimensions
     vae_optimizer = torch.optim.Adam(vae.parameters(), lr=1e-3)
     vae.to(device)
     #load vae wights
-    vae.load_state_dict(torch.load(vae_model_path))
+    vae.load_state_dict(torch.load(vae_model_path),strict=False)
 
 
     # Create the wrapped environment
-    n = INPUT_STATE_SIZE
-    m = OUTPUT_STATE_SIZE
+    n = config.INPUT_STATE_SIZE
+    m = config.OUTPUT_STATE_SIZE
     # Define environment :
     # set a random seed
 

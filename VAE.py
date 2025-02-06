@@ -10,28 +10,28 @@ class VAE(nn.Module):
         # Encoder with Batch Normalization
         self.encoder = nn.Sequential(
             nn.Linear(input_dim, config.ENCODER_HIDDEN),
-            nn.BatchNorm1d(config.ENCODER_HIDDEN),
+            nn.InstanceNorm1d(config.ENCODER_HIDDEN),
             nn.LeakyReLU(0.1),
 
             nn.Linear(config.ENCODER_HIDDEN, config.ENCODER_HIDDEN2),
-            nn.BatchNorm1d(config.ENCODER_HIDDEN2),
+            nn.InstanceNorm1d(config.ENCODER_HIDDEN2),
             nn.LeakyReLU(0.1),
 
             nn.Linear(config.ENCODER_HIDDEN2, config.ENCODER_HIDDEN3),
-            nn.BatchNorm1d(config.ENCODER_HIDDEN3),
+            nn.InstanceNorm1d(config.ENCODER_HIDDEN3),
             nn.LeakyReLU(0.1),
 
             nn.Linear(config.ENCODER_HIDDEN3, config.ENCODER_HIDDEN4),
-            nn.BatchNorm1d(config.ENCODER_HIDDEN4),
+            nn.InstanceNorm1d(config.ENCODER_HIDDEN4),
             nn.LeakyReLU(0.1),
 
             # New additional layers
             nn.Linear(config.ENCODER_HIDDEN4, config.ENCODER_HIDDEN4 * 2),
-            nn.BatchNorm1d(config.ENCODER_HIDDEN4 * 2),
+            nn.InstanceNorm1d(config.ENCODER_HIDDEN4 * 2),
             nn.LeakyReLU(0.1),
 
             nn.Linear(config.ENCODER_HIDDEN4 * 2, config.ENCODER_HIDDEN4 * 2),
-            nn.BatchNorm1d(config.ENCODER_HIDDEN4 * 2),
+            nn.InstanceNorm1d(config.ENCODER_HIDDEN4 * 2),
             nn.LeakyReLU(0.1),
         )
 
@@ -42,28 +42,28 @@ class VAE(nn.Module):
         # Decoder with Batch Normalization
         self.decoder = nn.Sequential(
             nn.Linear(latent_dim, config.DECODER_HIDDEN),
-            nn.BatchNorm1d(config.DECODER_HIDDEN),
+            nn.InstanceNorm1d(config.DECODER_HIDDEN),
             nn.LeakyReLU(0.1),
 
             nn.Linear(config.DECODER_HIDDEN, config.DECODER_HIDDEN2),
-            nn.BatchNorm1d(config.DECODER_HIDDEN2),
+            nn.InstanceNorm1d(config.DECODER_HIDDEN2),
             nn.LeakyReLU(0.1),
 
             nn.Linear(config.DECODER_HIDDEN2, config.DECODER_HIDDEN3),
-            nn.BatchNorm1d(config.DECODER_HIDDEN3),
+            nn.InstanceNorm1d(config.DECODER_HIDDEN3),
             nn.LeakyReLU(0.1),
 
             nn.Linear(config.DECODER_HIDDEN3, config.DECODER_HIDDEN4),
-            nn.BatchNorm1d(config.DECODER_HIDDEN4),
+            nn.InstanceNorm1d(config.DECODER_HIDDEN4),
             nn.LeakyReLU(0.1),
 
             # New additional layers
             nn.Linear(config.DECODER_HIDDEN4, config.DECODER_HIDDEN4 * 2),
-            nn.BatchNorm1d(config.DECODER_HIDDEN4 * 2),
+            nn.InstanceNorm1d(config.DECODER_HIDDEN4 * 2),
             nn.LeakyReLU(0.1),
 
             nn.Linear(config.DECODER_HIDDEN4 * 2, config.DECODER_HIDDEN4 * 2),
-            nn.BatchNorm1d(config.DECODER_HIDDEN4 * 2),
+            nn.InstanceNorm1d(config.DECODER_HIDDEN4 * 2),
             nn.LeakyReLU(0.1),
 
 
