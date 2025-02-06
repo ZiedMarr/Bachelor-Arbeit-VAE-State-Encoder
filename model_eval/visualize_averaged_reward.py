@@ -91,7 +91,7 @@ if __name__ == "__main__":
     #visualize(os.path.join(base_dir, "logs", "VAE_PPO" ,"averaged_evaluation_batch2.npz"))
     #define averaged files :
     ppo_average_dir = os.path.join(base_dir, "logs", "PPO","50k" )
-    vae_ppo_average_dir = os.path.join("logs", "VAE_PPO", "5-3_kl0,1")
+    vae_ppo_average_dir = os.path.join("logs", "VAE_PPO", "V3.9")
     os.makedirs(ppo_average_dir, exist_ok=True)
     os.makedirs(vae_ppo_average_dir, exist_ok=True)
 
@@ -100,11 +100,11 @@ if __name__ == "__main__":
     ppo_average(output_file=os.path.join(ppo_average_dir, "rand_env.npz"),
                 base_log_dir=os.path.join(base_dir, "..", "PPO_cartpole", "logs", "explore_rand_50k"))
     vae_ppo_average(
-        output_file= os.path.join(vae_ppo_average_dir , "rand_env_53_50k"),
-        base_log_dir=os.path.join(base_dir, "..", "VAE_PPO_train", "logs", "batch_explore_53_kl0,1_rand_env_50k"))
+        output_file= os.path.join(vae_ppo_average_dir , "rand_env_50k.npz"),
+        base_log_dir=os.path.join(base_dir, "..", "VAE_PPO_train", "logs", "batch_V3.9_kl=0.001_100k"))
     # Define file paths
     ppo_file = os.path.join(ppo_average_dir, "rand_env.npz")
-    vae_ppo_file =  os.path.join(vae_ppo_average_dir , "rand_env_53_50k.npz")
+    vae_ppo_file =  os.path.join(vae_ppo_average_dir , "rand_env_50k.npz")
 
     # Create a single figure with two subplots
     fig, axes = plt.subplots(1, 2, figsize=(16, 6))  # 1 row, 2 columns

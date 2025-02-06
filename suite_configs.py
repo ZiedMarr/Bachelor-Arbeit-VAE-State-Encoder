@@ -15,7 +15,7 @@ SUITE_CONFIGS = {
     'DECODER_HIDDEN3': 10,
     'DECODER_HIDDEN4' : 12,
 
-    'BETA_KL_DIV': 0.0007,
+    'BETA_KL_DIV': 0.0018,
     'LOSS_FUNC' : "MSE_loss_feature_Standardization",
 
     'EVAL_SEED' : [1, 33, 545, 65 ,6 , 66, 78, 48 , 24 , 98],
@@ -39,7 +39,7 @@ SUITE_CONFIGS = {
     'DECODER_HIDDEN3': 10,
     'DECODER_HIDDEN4' : 12,
 
-    'BETA_KL_DIV': 0.002,
+    'BETA_KL_DIV': 0.0015,
     'LOSS_FUNC' : "MSE_loss_feature_Standardization",
 
     'EVAL_SEED' : [1, 33, 545, 65 ,6 , 66, 78, 48 , 24 , 98],
