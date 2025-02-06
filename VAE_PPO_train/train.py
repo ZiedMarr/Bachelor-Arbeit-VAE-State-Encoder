@@ -46,7 +46,7 @@ def train(vae_model_path, vae_save_folder, log_batch_dir,total_timesteps = 20000
     vae_optimizer = torch.optim.Adam(vae.parameters(), lr=1e-3)
     vae.to(device)
     #load vae wights
-    vae.load_state_dict(torch.load(vae_model_path),strict=False)
+    vae.load_state_dict(torch.load(vae_model_path))
 
 
     # Create the wrapped environment
