@@ -9,7 +9,7 @@ from VAE_PPO_train.train import train
 script_dir = os.path.dirname(os.path.abspath(__file__))
 
 #name of log directory
-batch = "batch_V3.9_kl=0.001_100k"
+batch = "batch_V3.12_kl=0.002_100k"
 
 #define batch size
 batch_size = 5
@@ -18,7 +18,7 @@ batch_size = 5
 total_timesteps = 50000
 
 #define vae model path
-vae_model_path = os.path.join(script_dir,"..","VAE_pretrain","pretrained_vae","VAE_Version_3.9","4_4","KL-D_0.001","vae_rand_500k")
+vae_model_path = os.path.join(script_dir,"..","VAE_pretrain","pretrained_vae","VAE_Version_3.12","4_4","KL-D_0.002","vae_rand_100k")
 #VAE_pretrain/pretrained_vae/5_in_2_out/vae_explore_17
 vae_model_name = os.path.basename(vae_model_path)  # Get the last element of the path
 
