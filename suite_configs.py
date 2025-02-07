@@ -20,7 +20,7 @@ SUITE_CONFIGS = {
 
     'EVAL_SEED' : [1, 33, 545, 65 ,6 , 66, 78, 48 , 24 , 98],
 
-    'VAE_Version' : "VAE_Version_3.10"
+    'VAE_Version' : "VAE_Version_3.11"
 
     },
 'config_B': {
@@ -44,7 +44,7 @@ SUITE_CONFIGS = {
 
     'EVAL_SEED' : [1, 33, 545, 65 ,6 , 66, 78, 48 , 24 , 98],
 
-    'VAE_Version' : "VAE_Version_3.10"
+    'VAE_Version' : "VAE_Version_3.11"
 
     },
 
@@ -69,7 +69,7 @@ SUITE_CONFIGS = {
 
     'EVAL_SEED' : [1, 33, 545, 65 ,6 , 66, 78, 48 , 24 , 98],
 
-    'VAE_Version' : "VAE_Version_3.10"
+    'VAE_Version' : "VAE_Version_3.11"
 
     },
     # Add additional configurations as needed
