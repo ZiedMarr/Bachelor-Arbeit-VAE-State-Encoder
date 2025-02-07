@@ -9,6 +9,8 @@ class VAE(nn.Module):
 
         # Encoder with Batch Normalization
         self.encoder = nn.Sequential(
+            #normalize Input
+            nn.InstanceNorm1d(input_dim),
             nn.Linear(input_dim, config.ENCODER_HIDDEN),
             nn.InstanceNorm1d(config.ENCODER_HIDDEN),
             nn.LeakyReLU(0.1),

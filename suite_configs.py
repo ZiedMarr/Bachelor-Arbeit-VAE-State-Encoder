@@ -15,12 +15,12 @@ SUITE_CONFIGS = {
     'DECODER_HIDDEN3': 10,
     'DECODER_HIDDEN4' : 12,
 
-    'BETA_KL_DIV': 0.0018,
+    'BETA_KL_DIV': 0.002,
     'LOSS_FUNC' : "MSE_loss_feature_Standardization",
 
     'EVAL_SEED' : [1, 33, 545, 65 ,6 , 66, 78, 48 , 24 , 98],
 
-    'VAE_Version' : "VAE_Version_3.9"
+    'VAE_Version' : "VAE_Version_3.10"
 
     },
 'config_B': {
@@ -44,7 +44,7 @@ SUITE_CONFIGS = {
 
     'EVAL_SEED' : [1, 33, 545, 65 ,6 , 66, 78, 48 , 24 , 98],
 
-    'VAE_Version' : "VAE_Version_3.9"
+    'VAE_Version' : "VAE_Version_3.10"
 
     },
 
@@ -69,7 +69,7 @@ SUITE_CONFIGS = {
 
     'EVAL_SEED' : [1, 33, 545, 65 ,6 , 66, 78, 48 , 24 , 98],
 
-    'VAE_Version' : "VAE_Version_3.9"
+    'VAE_Version' : "VAE_Version_3.10"
 
     },
     # Add additional configurations as needed
