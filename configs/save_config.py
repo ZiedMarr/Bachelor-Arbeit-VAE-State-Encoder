@@ -27,7 +27,7 @@ def save_config():
 
 def save_vae_code():
     # Path to VAE.py
-    vae_file_path = os.path.join(base_dir, "VAE.py")
+    vae_file_path = os.path.join(base_dir,"..", "VAE.py")
 
     # Define the directory where the VAE code will be saved
     save_directory = os.path.join(base_dir, "VAE_pretrain", "pretrained_vae", f'{config.VAE_Version}')

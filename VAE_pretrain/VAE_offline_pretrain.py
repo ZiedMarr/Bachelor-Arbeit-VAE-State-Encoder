@@ -15,9 +15,12 @@ base_dir = os.path.dirname(os.path.abspath(__file__))  # Directory of the curren
 
 
 def offline_pretrain_batched(vae_save_path, data_path, vae_model_path, batch_size=32):
+    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    print(f"Using device: {device}")
+
     vae = VAE(input_dim=config.INPUT_DIMENSION,
               latent_dim=config.LATENT_DIM,
-              output_dim=config.OUTPUT_DIMENSION)
+              output_dim=config.OUTPUT_DIMENSION).to(device)
     vae_optimizer = torch.optim.Adam(vae.parameters(), lr=1e-3)
 
     if vae_model_path:
@@ -51,6 +54,7 @@ def offline_pretrain_batched(vae_save_path, data_path, vae_model_path, batch_siz
     # Batch training loop
     for epoch in range(config.EPOCHS):
         for batch_inputs, batch_targets in dataloader:
+            batch_inputs, batch_targets = batch_inputs.to(device), batch_targets.to(device)
             predicted_next_states, mu, log_var, _ = vae(batch_inputs)
 
             loss = vae.MSE_Loss(mu=mu, log_var=log_var,
