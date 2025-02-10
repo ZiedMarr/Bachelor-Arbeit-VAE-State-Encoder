@@ -33,7 +33,6 @@ def offline_pretrain_batched(vae_save_path, data_path, vae_model_path, batch_siz
     # Convert the list of NumPy arrays into a single large NumPy array (avoids slow tensor conversion)
     episodes = [np.array(ep, dtype=np.float32) for ep in episodes]
 
-
     # Collect all sliding window samples
     all_inputs, all_targets = [], []
     for episode in episodes:
