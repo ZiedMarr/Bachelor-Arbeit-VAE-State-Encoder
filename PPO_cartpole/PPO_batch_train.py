@@ -7,13 +7,13 @@ from configs.save_config import save_eval_config
 script_dir = os.path.dirname(os.path.abspath(__file__))
 
 #name of log directory
-batch = "batch_20000_timesteps_rand_env_100k_steps"
+batch = "batch_20000_timesteps_rand_env_evalconfig2"
 
 #define batch size
-batch_size = 5
+batch_size = eval_config.BATCH_SIZE
 
 #define number of total training time steps :
-total_timesteps = 100000
+total_timesteps = eval_config.TOTAL_TIMESTEPS
 
 log_batch_dir = os.path.join(script_dir,"logs", "explore_rand_env" , batch)
 #save eval configs :

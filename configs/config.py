@@ -18,7 +18,7 @@ TRAIN_FREQUENCY = 3
 EPOCHS = 10
 LOSS_FUNC = "MSE_loss_feature_Standardization"
 ENCODER_N_LAYERS = 6
-DNCODER_N_LAYERS = 6
+DECODER_N_LAYERS = 6
 ACT_FUNC = "LeakyReLU(0.1)"
 NORM_FUNC = "InstanceNorm1d"
 
