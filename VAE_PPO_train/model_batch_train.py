@@ -15,7 +15,7 @@ batch = "batch_V3.12_kl=0.002_100k"
 batch_size = 5
 
 #define number of total training time steps :
-total_timesteps = 50000
+total_timesteps = 100000
 
 #define vae model path
 vae_model_path = os.path.join(script_dir,"..","VAE_pretrain","pretrained_vae","VAE_Version_3.12","4_4","KL-D_0.002","vae_rand_100k")
