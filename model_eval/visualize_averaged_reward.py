@@ -97,14 +97,14 @@ if __name__ == "__main__":
 
 
     #average the rewards :
-    ppo_average(output_file=os.path.join(ppo_average_dir, "rand_env.npz"),
-                base_log_dir=os.path.join(base_dir, "..", "PPO_cartpole", "logs", "explore_rand_50k"))
+    ppo_average(output_file=os.path.join(ppo_average_dir, "rand_env_100k.npz"),
+                base_log_dir=os.path.join(base_dir, "..", "PPO_cartpole", "logs", "explore_rand_env","batch_20000_timesteps_rand_env_evalconfig2"))
     vae_ppo_average(
-        output_file= os.path.join(vae_ppo_average_dir , "rand_env_50k.npz"),
-        base_log_dir=os.path.join(base_dir, "..", "VAE_PPO_train", "logs", "batch_V3.12_kl=0.002_100k"))
+        output_file= os.path.join(vae_ppo_average_dir , "rand_env_100k.npz"),
+        base_log_dir=os.path.join(base_dir, "..", "VAE_PPO_train", "logs", "batch_V3.12_kl=0.002_evalconfig2"))
     # Define file paths
-    ppo_file = os.path.join(ppo_average_dir, "rand_env.npz")
-    vae_ppo_file =  os.path.join(vae_ppo_average_dir , "rand_env_50k.npz")
+    ppo_file = os.path.join(ppo_average_dir, "rand_env_100k.npz")
+    vae_ppo_file =  os.path.join(vae_ppo_average_dir , "rand_env_100k.npz")
 
     # Create a single figure with two subplots
     fig, axes = plt.subplots(1, 2, figsize=(16, 6))  # 1 row, 2 columns

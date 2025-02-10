@@ -72,7 +72,7 @@ if __name__ == "__main__":
             # Check if it's a file (and not a subdirectory)
             if os.path.isfile(full_path):
                 data_paths.append(full_path)
-    data_path = "collected_data/rand_pol_rand_env/random_1000000_20250131_160547.npz"
+    data_path = "collected_data/mixed_pol_rand_env/mixed_pol_rand_env.npz"
 
     data_name = os.path.basename(data_path)
     name_without_extension, _ = os.path.splitext(data_name)

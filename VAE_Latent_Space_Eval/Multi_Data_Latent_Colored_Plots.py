@@ -80,7 +80,7 @@ def plot_latent_space(
         plt.close()
 
 
-def call_latent_colored(vae_name, data_dir=os.path.join(base_dir, "..", "Data_Collection", "collected_data", "explore_rand_env"), show=False, reduction=True):
+def call_latent_colored(vae_name, data_dir=None, show=False, reduction=True, data_path=os.path.join(base_dir, "..", "Data_Collection", "collected_data", "mixed_pol_rand_env", "mixed_pol_rand_env.npz")):
     model_path = os.path.join(base_dir, "..", "VAE_pretrain", "pretrained_vae", config.VAE_Version,
                               f"{config.INPUT_STATE_SIZE}_{config.OUTPUT_STATE_SIZE}", f"KL-D_{config.BETA_KL_DIV}", vae_name)
     vae = VAE(input_dim=config.INPUT_DIMENSION, latent_dim=config.LATENT_DIM, output_dim=config.OUTPUT_DIMENSION)
@@ -88,7 +88,10 @@ def call_latent_colored(vae_name, data_dir=os.path.join(base_dir, "..", "Data_Co
     vae_name = os.path.basename(model_path)
     image_folder = os.path.join(base_dir,'Latent_Plots', config.VAE_Version, f'KL-D_{config.BETA_KL_DIV}', f'{config.INPUT_STATE_SIZE}_{config.OUTPUT_STATE_SIZE}')
     os.makedirs(image_folder, exist_ok=True)
-    file_list = [os.path.join(data_dir, file) for file in os.listdir(data_dir) if file.endswith('.npz')]
+    if data_dir is None :
+        file_list = [data_path]
+    else :
+        file_list = [os.path.join(data_dir, file) for file in os.listdir(data_dir) if file.endswith('.npz')]
 
     plot_latent_space(
         data_paths=file_list,
