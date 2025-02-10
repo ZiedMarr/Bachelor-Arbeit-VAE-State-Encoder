@@ -21,8 +21,8 @@ def train(vae_model_path, vae_save_folder, log_batch_dir,total_timesteps = 20000
 
 
     #set up gpu or cpu
-    #device = torch.device("cuda" if torch.cuda.is_available()  else "cpu")
-    #print(f"Using device: {device}")
+    device = torch.device("cpu")
+    print(f"Using device: {device}")
 
     #get timestamp :
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
