@@ -7,7 +7,7 @@ from configs.save_config import save_eval_config
 script_dir = os.path.dirname(os.path.abspath(__file__))
 
 #name of log directory
-batch = "batch_20000_timesteps_rand_env"
+batch = "batch_20000_timesteps_rand_env_100k_steps"
 
 #define batch size
 batch_size = 5
