@@ -28,15 +28,18 @@ def offline_pretrain_batched(vae_save_path, data_path, vae_model_path, batch_siz
 
     episodes, _, _ = load_data(path=data_path)
 
+    # Convert the list of NumPy arrays into a single large NumPy array (avoids slow tensor conversion)
+    episodes = np.concatenate([np.array(ep, dtype=np.float32) for ep in episodes], axis=0)
+
 
     # Collect all sliding window samples
     all_inputs, all_targets = [], []
     for episode in episodes:
         for inp_obs_1_index in range(0, len(episode) - config.INPUT_STATE_SIZE - config.OUTPUT_STATE_SIZE,
                                      config.TRAIN_FREQUENCY):
-            stacked_obs = np.concatenate(list(episode)[inp_obs_1_index:inp_obs_1_index + config.INPUT_STATE_SIZE],
+            stacked_obs = np.concatenate(episode[inp_obs_1_index:inp_obs_1_index + config.INPUT_STATE_SIZE],
                                          axis=-1)
-            stacked_next_obs = np.concatenate(list(episode)[
+            stacked_next_obs = np.concatenate(episode[
                                               inp_obs_1_index + config.INPUT_STATE_SIZE:inp_obs_1_index + config.INPUT_STATE_SIZE + config.OUTPUT_STATE_SIZE],
                                               axis=-1)
 
