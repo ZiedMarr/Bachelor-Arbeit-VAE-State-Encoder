@@ -24,7 +24,7 @@ def offline_pretrain_batched(vae_save_path, data_path, vae_model_path, batch_siz
     vae_optimizer = torch.optim.Adam(vae.parameters(), lr=1e-3)
 
     if vae_model_path:
-        vae.load_state_dict(torch.load(vae_model_path))
+        vae.load_state_dict(torch.load(vae_model_path, map_location=device))
 
     episodes, _, _ = load_data(path=data_path)
 
@@ -44,8 +44,8 @@ def offline_pretrain_batched(vae_save_path, data_path, vae_model_path, batch_siz
             all_targets.append(stacked_next_obs)
 
     # Convert to torch tensors
-    inputs_tensor = torch.tensor(all_inputs, dtype=torch.float32)
-    targets_tensor = torch.tensor(all_targets, dtype=torch.float32)
+    inputs_tensor = torch.from_numpy(np.array(all_inputs, dtype=np.float32)).to(device)
+    targets_tensor = torch.from_numpy(np.array(all_targets, dtype=np.float32)).to(device)
 
     # Create DataLoader for batched training
     dataset = torch.utils.data.TensorDataset(inputs_tensor, targets_tensor)
@@ -54,7 +54,6 @@ def offline_pretrain_batched(vae_save_path, data_path, vae_model_path, batch_siz
     # Batch training loop
     for epoch in range(config.EPOCHS):
         for batch_inputs, batch_targets in dataloader:
-            batch_inputs, batch_targets = batch_inputs.to(device), batch_targets.to(device)
             predicted_next_states, mu, log_var, _ = vae(batch_inputs)
 
             loss = vae.MSE_Loss(mu=mu, log_var=log_var,
