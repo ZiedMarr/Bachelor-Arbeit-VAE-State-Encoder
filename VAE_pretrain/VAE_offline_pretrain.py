@@ -3,8 +3,7 @@ from Data_Collection.gym_data_collection import load_data
 import torch
 import numpy as np
 import os
-import config
-import config
+from configs import config
 
 #from VAE_PPO_train.model_batch_train import vae_model_path
 
@@ -147,7 +146,7 @@ def offline_pretrain(vae_save_path, data_path, vae_model_path) :
 def call_pretrain(vae_name, data_dir= os.path.join(base_dir, "..", "Data_Collection", "collected_data", "rand_pol_rand_env", "random_100000_20250130_114306.npz")):
     # Directory containing your data files
     data_dir = data_dir
-    vae_save_dir = os.path.join(base_dir, 'pretrained_vae', config.VAE_Version ,f'{config.INPUT_STATE_SIZE}_{config.OUTPUT_STATE_SIZE}' , f'KL-D_{config.BETA_KL_DIV}')
+    vae_save_dir = os.path.join(base_dir, 'pretrained_vae', config.VAE_Version, f'{config.INPUT_STATE_SIZE}_{config.OUTPUT_STATE_SIZE}', f'KL-D_{config.BETA_KL_DIV}')
     os.makedirs(vae_save_dir, exist_ok=True)
 
     #offline_pretrain(vae_model_path= None ,vae_save_path=os.path.join(vae_save_dir, vae_name), data_path=data_dir)

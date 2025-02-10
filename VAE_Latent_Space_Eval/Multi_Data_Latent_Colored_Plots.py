@@ -6,10 +6,7 @@ from Data_Collection.gym_data_collection import load_data
 from VAE import VAE
 import os
 from sklearn.decomposition import PCA
-import mpld3
-import config
-
-
+from configs import config
 
 # get base_dir path
 base_dir = os.path.dirname(os.path.abspath(__file__))
@@ -89,7 +86,7 @@ def call_latent_colored(vae_name, data_dir=os.path.join(base_dir, "..", "Data_Co
     vae = VAE(input_dim=config.INPUT_DIMENSION, latent_dim=config.LATENT_DIM, output_dim=config.OUTPUT_DIMENSION)
     vae.load_state_dict(torch.load(model_path))
     vae_name = os.path.basename(model_path)
-    image_folder = os.path.join(base_dir,'Latent_Plots',config.VAE_Version, f'KL-D_{config.BETA_KL_DIV}',f'{config.INPUT_STATE_SIZE}_{config.OUTPUT_STATE_SIZE}')
+    image_folder = os.path.join(base_dir,'Latent_Plots', config.VAE_Version, f'KL-D_{config.BETA_KL_DIV}', f'{config.INPUT_STATE_SIZE}_{config.OUTPUT_STATE_SIZE}')
     os.makedirs(image_folder, exist_ok=True)
     file_list = [os.path.join(data_dir, file) for file in os.listdir(data_dir) if file.endswith('.npz')]
 

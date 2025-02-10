@@ -1,6 +1,6 @@
 import torch.nn as nn
 import torch
-import config
+from configs import config
 
 
 class VAE(nn.Module):
@@ -38,8 +38,8 @@ class VAE(nn.Module):
         )
 
         # Latent space layers
-        self.fc_mu = nn.Linear(config.ENCODER_HIDDEN4*2, latent_dim)
-        self.fc_var = nn.Linear(config.ENCODER_HIDDEN4*2, latent_dim)
+        self.fc_mu = nn.Linear(config.ENCODER_HIDDEN4 * 2, latent_dim)
+        self.fc_var = nn.Linear(config.ENCODER_HIDDEN4 * 2, latent_dim)
 
         # Decoder with Batch Normalization
         self.decoder = nn.Sequential(
@@ -70,7 +70,7 @@ class VAE(nn.Module):
 
 
 
-            nn.Linear(config.DECODER_HIDDEN4* 2, output_dim)
+            nn.Linear(config.DECODER_HIDDEN4 * 2, output_dim)
         )
 
     def encode(self, x):

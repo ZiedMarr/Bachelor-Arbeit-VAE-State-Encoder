@@ -4,7 +4,6 @@ from stable_baselines3 import PPO
 
 from Wrappers.RandomStartCartpoleEval import RandomStartCartPoleEval
 from Wrappers.Wrapped_environment import VAEWrapperWithHistory
-from Wrappers.RandomStartCartPole import RandomStartCartPole
 from Callbacks.VAE_callback_PPO import VAETrainingCallback
 from stable_baselines3.common.logger import configure
 from stable_baselines3.common.callbacks import EvalCallback
@@ -13,7 +12,8 @@ from VAE import VAE
 import os
 from datetime import datetime
 
-import config
+from configs import config
+
 
 def train(vae_model_path, vae_save_folder, log_batch_dir,total_timesteps = 20000,seed = 42):
     # Get the current script's directory

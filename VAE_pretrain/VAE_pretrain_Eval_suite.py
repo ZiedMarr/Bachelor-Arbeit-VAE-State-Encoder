@@ -1,13 +1,12 @@
 import os
-from save_config import save_config, save_vae_code
-import config
-from suite_configs import SUITE_CONFIGS
+from configs.save_config import save_config, save_vae_code
+from configs import config
+from configs.suite_configs import SUITE_CONFIGS
 
 # Assuming base_dir is defined as the directory of the current script
 base_dir = os.path.dirname(os.path.abspath(__file__))
 
 from VAE_pretrain.VAE_offline_pretrain import call_pretrain
-from VAE_Latent_Space_Eval.Multi_Data_Latent_Plot import call_latent
 from VAE_Latent_Space_Eval.VAE_reconstructions import call_reconstruction
 from VAE_Latent_Space_Eval.VAE_score_Eval import vae_score_call
 from VAE_Latent_Space_Eval.Multi_Data_Latent_Colored_Plots import call_latent_colored

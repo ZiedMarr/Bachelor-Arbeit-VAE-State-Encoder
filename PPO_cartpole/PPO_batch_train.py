@@ -1,6 +1,6 @@
 import os
 from PPO_cartpole.train_ppo_cartpole import train_ppo_cartpole
-from config import EVAL_SEED
+from configs.config import EVAL_SEED
 
 
 # Get the current script's directory

@@ -3,7 +3,7 @@ import numpy as np
 import os
 from VAE import VAE
 from Data_Collection.gym_data_collection import load_data
-import config
+from configs import config
 
 # get base_dir path
 base_dir = os.path.dirname(os.path.abspath(__file__))
@@ -120,7 +120,7 @@ def vae_score_call(data_path=os.path.join(base_dir, "..", "Data_Collection", "co
     vae_path = os.path.join(base_dir, "..", "VAE_pretrain", "pretrained_vae", config.VAE_Version,
                               f"{config.INPUT_STATE_SIZE}_{config.OUTPUT_STATE_SIZE}", f"KL-D_{config.BETA_KL_DIV}", vae_name)
     # define output path :
-    output_dir = os.path.join(base_dir,"VAE_score", config.VAE_Version , f"{config.INPUT_STATE_SIZE}_{config.OUTPUT_STATE_SIZE}",
+    output_dir = os.path.join(base_dir,"VAE_score", config.VAE_Version, f"{config.INPUT_STATE_SIZE}_{config.OUTPUT_STATE_SIZE}",
                             f"KL-D_{config.BETA_KL_DIV}")
     os.makedirs(output_dir, exist_ok=True)
 

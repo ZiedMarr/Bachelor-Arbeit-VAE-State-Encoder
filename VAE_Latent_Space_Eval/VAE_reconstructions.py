@@ -4,10 +4,9 @@ import torch
 from Data_Collection.gym_data_collection import load_data  # Assuming this is the file with data functions
 from VAE import VAE  # Assuming the VAE class is defined in VAE.py
 import gymnasium as gym
-import torch.optim as optim
 import imageio
 
-import config
+from configs import config
 
 # get base_dir path
 base_dir = os.path.dirname(os.path.abspath(__file__))
@@ -118,7 +117,7 @@ def main(data_path, vae_model_path):
 
     # produce gifs
     for i, (inp, true_out, pred_out) in enumerate(zip(selected_inputs, corresponding_outputs, predicted_outputs.numpy())):
-        folder_path = os.path.join(base_dir,"gif" , config.VAE_Version ,in_out_spaces ,category ,vae_name, f"example_{i}")
+        folder_path = os.path.join(base_dir,"gif", config.VAE_Version, in_out_spaces, category, vae_name, f"example_{i}")
         os.makedirs(folder_path, exist_ok=True)
 
         input_gif_path = os.path.join(folder_path, "input.gif")
@@ -139,8 +138,8 @@ def main(data_path, vae_model_path):
         render_cartpole_from_observations(combined_pred, input_pred_output_gif_path)
 
 def call_reconstruction(vae_name, data_path=os.path.join(base_dir, "..", "Data_Collection", "collected_data", "1000_rand_Eval","random_1000_20250130_122312.npz")) :
-    main(data_path=data_path , vae_model_path=os.path.join(base_dir, "..", "VAE_pretrain", "pretrained_vae", config.VAE_Version,f"{config.INPUT_STATE_SIZE}_{config.OUTPUT_STATE_SIZE}",f"KL-D_{config.BETA_KL_DIV}", vae_name))
+    main(data_path=data_path, vae_model_path=os.path.join(base_dir, "..", "VAE_pretrain", "pretrained_vae", config.VAE_Version, f"{config.INPUT_STATE_SIZE}_{config.OUTPUT_STATE_SIZE}", f"KL-D_{config.BETA_KL_DIV}", vae_name))
 
 
 if __name__ == "__main__":
-    main(data_path=os.path.join(base_dir, "..", "Data_collection", "collected_data", "1000_rand_Eval","random_1000_20250130_122312.npz") , vae_model_path=os.path.join(base_dir, "..", "VAE_pretrain", "pretrained_vae", config.VAE_Version,f"{config.INPUT_STATE_SIZE}_{config.OUTPUT_STATE_SIZE}",f"KL-D_{config.BETA_KL_DIV}", "vae_rand_100k"))
+    main(data_path=os.path.join(base_dir, "..", "Data_collection", "collected_data", "1000_rand_Eval","random_1000_20250130_122312.npz"), vae_model_path=os.path.join(base_dir, "..", "VAE_pretrain", "pretrained_vae", config.VAE_Version, f"{config.INPUT_STATE_SIZE}_{config.OUTPUT_STATE_SIZE}", f"KL-D_{config.BETA_KL_DIV}", "vae_rand_100k"))

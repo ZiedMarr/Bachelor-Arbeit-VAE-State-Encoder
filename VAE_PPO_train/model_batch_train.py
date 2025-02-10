@@ -1,6 +1,7 @@
 
 import os
-import config
+from configs import eval_config
+from configs.save_config import save_eval_config
 
 from VAE_PPO_train.train import train
 
@@ -26,8 +27,10 @@ vae_model_name = os.path.basename(vae_model_path)  # Get the last element of the
 vae_save_folder = os.path.join(script_dir,"trained_vae",batch)
 
 log_batch_dir = os.path.join(script_dir,"logs" , batch)
+#save current evaluation config :
+save_eval_config(log_batch_dir)
 
-seeds = config.EVAL_SEED
+seeds = eval_config.EVAL_SEED
 
 
 for i in range(batch_size) :

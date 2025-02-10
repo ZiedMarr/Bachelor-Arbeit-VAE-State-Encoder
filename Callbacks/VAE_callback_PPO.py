@@ -1,9 +1,7 @@
 from stable_baselines3.common.callbacks import BaseCallback
 import numpy as np
 import torch
-import config
-
-from config import BETA_KL_DIV
+from configs import config
 
 
 class VAETrainingCallback(BaseCallback):

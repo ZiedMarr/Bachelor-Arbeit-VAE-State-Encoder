@@ -7,8 +7,7 @@ from VAE import VAE
 import os
 from sklearn.decomposition import PCA
 
-
-import config
+from configs import config
 
 # get base_dir path
 base_dir = os.path.dirname(os.path.abspath(__file__))
@@ -38,7 +37,7 @@ def plot_latent_space(
         data_paths: Union[str, List[str]],
         vae: VAE,
         num_input_states: int = config.INPUT_STATE_SIZE,
-        save_path: str = None, show=False, reduction=(config.LATENT_DIM>2)
+        save_path: str = None, show=False, reduction=(config.LATENT_DIM > 2)
 ):
     """
     Visualizes the latent space representation of observations from multiple files.
@@ -124,13 +123,13 @@ def plot_latent_space(
 def call_latent(vae_name,data_dir=os.path.join(base_dir, "..", "Data_Collection", "collected_data", "explore_rand_env"),show =False):
 
     # model path
-    model_path = os.path.join(base_dir, "..", "VAE_pretrain", "pretrained_vae",config.VAE_Version, f"{config.INPUT_STATE_SIZE}_{config.OUTPUT_STATE_SIZE}",f"KL-D_{config.BETA_KL_DIV}" , vae_name)
+    model_path = os.path.join(base_dir, "..", "VAE_pretrain", "pretrained_vae", config.VAE_Version, f"{config.INPUT_STATE_SIZE}_{config.OUTPUT_STATE_SIZE}", f"KL-D_{config.BETA_KL_DIV}", vae_name)
     #VAE_pretrain/pretrained_vae/5_in_2_out/vae_explore_17
     vae = VAE(input_dim=config.INPUT_DIMENSION, latent_dim=config.LATENT_DIM, output_dim=config.OUTPUT_DIMENSION)
     vae.load_state_dict(torch.load(model_path))
     vae_name = os.path.basename(model_path)  # Get the last element
     #define save path
-    image_folder = os.path.join(base_dir,'Latent_Plots',config.VAE_Version, f'KL-D_{config.BETA_KL_DIV}',f'{config.INPUT_STATE_SIZE}_{config.OUTPUT_STATE_SIZE}')
+    image_folder = os.path.join(base_dir,'Latent_Plots', config.VAE_Version, f'KL-D_{config.BETA_KL_DIV}', f'{config.INPUT_STATE_SIZE}_{config.OUTPUT_STATE_SIZE}')
     os.makedirs(image_folder, exist_ok=True)
 
 
@@ -160,7 +159,7 @@ if __name__ == "__main__" :
 
 
     # model path
-    model_path = os.path.join(base_dir, "..", "VAE_pretrain", "pretrained_vae",config.VAE_Version, f"{config.INPUT_STATE_SIZE}_{config.OUTPUT_STATE_SIZE}",f"KL-D_{config.BETA_KL_DIV}" , "vae_rand_100k")
+    model_path = os.path.join(base_dir, "..", "VAE_pretrain", "pretrained_vae", config.VAE_Version, f"{config.INPUT_STATE_SIZE}_{config.OUTPUT_STATE_SIZE}", f"KL-D_{config.BETA_KL_DIV}", "vae_rand_100k")
     #VAE_pretrain/pretrained_vae/5_in_2_out/vae_explore_17
     vae = VAE(input_dim=config.INPUT_DIMENSION, latent_dim=config.LATENT_DIM, output_dim=config.OUTPUT_DIMENSION)
     vae.load_state_dict(torch.load(model_path))

@@ -21,6 +21,6 @@ ENCODER_N_LAYERS = 6
 DNCODER_N_LAYERS = 6
 ACT_FUNC = "LeakyReLU(0.1)"
 NORM_FUNC = "InstanceNorm1d"
-EVAL_SEED = [1, 33, 545, 65, 6, 66, 78, 48, 24, 98]
+
 VAE_Version = "VAE_Version_3.12"
 
