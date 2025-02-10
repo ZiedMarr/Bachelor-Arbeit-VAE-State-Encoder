@@ -1,6 +1,6 @@
 import os
-import config  # Import your Python config file
-import eval_config
+from configs import config, eval_config
+
 
 # get base_dir path
 base_dir = os.path.dirname(os.path.abspath(__file__))
