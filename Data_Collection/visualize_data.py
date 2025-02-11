@@ -10,7 +10,7 @@ import os
 def visualize_observation_distribution(
     data_paths: Union[str, List[str]],
     observation_index: int = 0,
-    save_path: str = None
+    save_path: str = None , filter_1_episode=True
 ):
     """
     Visualizes the distribution of data points for a specific observation.
@@ -30,8 +30,18 @@ def visualize_observation_distribution(
         # Load data from each file
         reconstructed_episodes, _, _ = load_data(data_path)
 
-        # Flatten all episodes into a single array of observations
-        file_observations = np.concatenate(reconstructed_episodes, axis=0)
+
+        if filter_1_episode :
+            # Filter out episodes of length 1
+            filtered_episodes = [ep for ep in reconstructed_episodes if len(ep) > 1]
+
+            if not filtered_episodes:
+                print(f"Warning: All episodes were length 1 in {data_path}. No data to visualize.")
+                continue
+            file_observations = np.concatenate(filtered_episodes, axis=0)
+        else :
+            # Flatten all episodes into a single array of observations
+            file_observations = np.concatenate(reconstructed_episodes, axis=0)
 
         # Extract the specific observation (column)
         all_observations.append(file_observations[:, observation_index])
@@ -60,7 +70,7 @@ def visualize_observation_distribution(
 
 if __name__ == "__main__":
     # Example usage
-
+    filter_1_episodes = True
     #data_paths = ['./collected_data/cartpole_data_random_50.npz', "./collected_data/cartpole_data_expert.npz" , "./collected_data/cartpole_data_random_10.npz" ] # Replace with your actual file path
     directory = "./collected_data/explore_rand_env"
     data_paths = []
@@ -77,7 +87,10 @@ if __name__ == "__main__":
     data_name = os.path.basename(data_path)
     name_without_extension, _ = os.path.splitext(data_name)
 
-    save_dir = save_path=os.path.join("./Data_distribution","rand_pol_rand_env",name_without_extension)
+    if filter_1_episodes :
+        save_dir = save_path = os.path.join("./Data_distribution", "rand_pol_rand_env", f"{name_without_extension}_filtered")
+    else :
+        save_dir = save_path=os.path.join("./Data_distribution","rand_pol_rand_env",name_without_extension)
     # Create the directory if it doesn’t exist
     os.makedirs(save_dir, exist_ok=True)
 

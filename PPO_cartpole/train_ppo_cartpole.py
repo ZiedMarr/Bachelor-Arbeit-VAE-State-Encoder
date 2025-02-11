@@ -10,7 +10,7 @@ from Wrappers.RandomStartCartpoleEval import RandomStartCartPoleEval
 
 import os
 
-def train_ppo_cartpole(log_batch_dir, total_timesteps=20000, seed=42) :
+def train_ppo_cartpole(log_batch_dir, total_timesteps=20000, seed=42,env_wrapper=RandomStartCartPoleEval) :
 
     # Define the base directory (directory of the current script)
     base_dir = os.path.dirname(os.path.abspath(__file__))
@@ -25,7 +25,7 @@ def train_ppo_cartpole(log_batch_dir, total_timesteps=20000, seed=42) :
     # Create the evaluation environment
     eval_env = gym.make("CartPole-v1")
     eval_env.reset(seed=seed)
-    eval_env = RandomStartCartPoleEval(eval_env)
+    eval_env = env_wrapper(eval_env)
     eval_env = Monitor(eval_env)  # Monitor to log evaluation statistics
 
     # Initialize the PPO model

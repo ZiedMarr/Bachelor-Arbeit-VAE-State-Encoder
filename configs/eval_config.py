@@ -7,5 +7,5 @@ POLE_ANG = [-0.25 , 0.25]
 POLE_ANG_VEL = [-0.8 , 0.8]
 
 #eval configs :
-BATCH_SIZE = 5
+BATCH_SIZE = 2
 TOTAL_TIMESTEPS = 100000
