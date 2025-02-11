@@ -2,7 +2,9 @@ import os
 from PPO_cartpole.train_ppo_cartpole import train_ppo_cartpole
 from configs import eval_config
 from configs.save_config import save_eval_config
-from Wrappers import RandomStartCartPole,RandomStartCartpoleEval
+from Wrappers.RandomStartCartpoleEval import RandomStartCartPoleEval
+from Wrappers.RandomStartCartPole import RandomStartCartPole
+
 
 # Get the current script's directory
 script_dir = os.path.dirname(os.path.abspath(__file__))
@@ -16,7 +18,7 @@ batch_size = eval_config.BATCH_SIZE
 #define number of total training time steps :
 total_timesteps = eval_config.TOTAL_TIMESTEPS
 
-log_batch_dir = os.path.join(script_dir,"logs", "config2" , batch)
+log_batch_dir = os.path.join(script_dir,"logs", "explore" , batch)
 #save eval configs :
 save_eval_config(log_batch_dir)
 
