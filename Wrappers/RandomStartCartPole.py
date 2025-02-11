@@ -12,15 +12,10 @@ class RandomStartCartPole(gym.Wrapper):
         """Resets the environment and sets a random initial position."""
         obs, info = self.env.reset(**kwargs)
 
-        #randomize to go to extremes of range in position :
-        if np.random.random() < 0.5:  # 50% chance
-            cart_position= np.random.uniform(-4.4, -2.5)
-        else:
-            cart_position= np.random.uniform(2.5, 4.4)
-        # Randomize initial state
-        #cart_position = np.random.uniform(-4.4, 4.4)  # Full cart track range
+
+        cart_position = np.random.uniform(-2.3, 2.3)  # Full cart track range
         cart_velocity = np.random.uniform(-2.0, 2.0)  # Some random velocity
-        pole_angle = np.random.uniform(-0.4, 0.4)  # Random pole angle
+        pole_angle = np.random.uniform(-.2094, .2094)  # Random pole angle
         pole_angular_velocity = np.random.uniform(-2.0, 2.0)  # Random spin
 
         # Set new randomized initial state

@@ -1,11 +1,11 @@
 EVAL_SEED = [1, 33, 545, 65, 6, 66, 78, 48, 24, 98]
 
 #Eval Wrapper Config :
-CART_POS = [-3.4 , 3.4]
+CART_POS = [-2.3 , 2.3]
 CART_VELO = [-1.2 , 1.2]
-POLE_ANG = [-0.25 , 0.25]
+POLE_ANG = [-.2094, .2094]
 POLE_ANG_VEL = [-0.8 , 0.8]
 
 #eval configs :
 BATCH_SIZE = 2
-TOTAL_TIMESTEPS = 100000
+TOTAL_TIMESTEPS = 50000

@@ -7,7 +7,7 @@ class RandomStartCartPole(gym.Wrapper):
         obs, info = self.env.reset(**kwargs)
 
         # Randomize initial state
-        cart_position = np.random.uniform(-2.4, 2.4)  # Full cart track range
+        cart_position = -2.2  # Full cart track range
         cart_velocity = np.random.uniform(-1.0, 1.0)  # Some random velocity
         pole_angle = np.random.uniform(-0.2, 0.2)  # Random pole angle
         pole_angular_velocity = np.random.uniform(-1.0, 1.0)  # Random spin
