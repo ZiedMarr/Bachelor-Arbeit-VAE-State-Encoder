@@ -10,7 +10,7 @@ from VAE_PPO_train.train import train
 script_dir = os.path.dirname(os.path.abspath(__file__))
 
 #name of log directory
-batch = "batch_V3.13_kl=0.002_evalconfig3"
+batch = "batch_V3.13_kl=0.002_evalconfig3_100k"
 
 #define batch size
 batch_size = eval_config.BATCH_SIZE

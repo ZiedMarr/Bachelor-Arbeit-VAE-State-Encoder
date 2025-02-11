@@ -10,7 +10,7 @@ from Wrappers.RandomStartCartPole import RandomStartCartPole
 script_dir = os.path.dirname(os.path.abspath(__file__))
 
 #name of log directory
-batch = "batch_evalconfig3"
+batch = "batch_evalconfig3_100k"
 
 #define batch size
 batch_size = eval_config.BATCH_SIZE
