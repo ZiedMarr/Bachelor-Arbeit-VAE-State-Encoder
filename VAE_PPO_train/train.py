@@ -38,7 +38,7 @@ def train(vae_model_path, vae_save_folder, log_batch_dir,total_timesteps = 20000
     vae_save_path = os.path.join(vae_save_folder,f"{total_timesteps}_{vae_model_name}_{timestamp}")
 
     # Generate a log directory name
-    log_dir = os.path.join(script_dir,log_batch_dir,f"logs_{total_timesteps}_{vae_model_name}_{timestamp}")
+    log_dir = os.path.join(script_dir,log_batch_dir,f"logs_{total_timesteps}_{vae_model_name}")
 
 
     # Define the VAE   :
