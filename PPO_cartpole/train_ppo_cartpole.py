@@ -19,7 +19,7 @@ def train_ppo_cartpole(log_batch_dir, total_timesteps=20000, seed=42,env_wrapper
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
 
     # Generate a log directory name
-    log_dir = os.path.join(log_batch_dir,f"logs_{total_timesteps}_{timestamp}")
+    log_dir = os.path.join(log_batch_dir,f"logs_{total_timesteps}")
 
 
     # Create the evaluation environment
