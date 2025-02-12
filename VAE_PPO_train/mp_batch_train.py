@@ -129,4 +129,4 @@ def main(batch = "batch_V3.13_kl=0.002_evalconfig3_100k" ,   vae_model_path = os
 
 
 if __name__ == "__main__":
-    main(batch = "batch_V3.14_kl=0.001_ConfigB_50k_evalconfig3", vae_model_path = os.path.join(script_dir, "..", "VAE_pretrain", "pretrained_vae","VAE_Version_3.14", "2_2", "KL-D_0.001", "vae_rand_50k_config_B_20250211_162257"))
+    main(batch = "batch_V3.14_kl=0.001_ConfigB_50k_evalconfig3_200k", vae_model_path = os.path.join(script_dir, "..", "VAE_pretrain", "pretrained_vae","VAE_Version_3.14", "2_2", "KL-D_0.001", "vae_rand_50k_config_B_20250211_162257"))
