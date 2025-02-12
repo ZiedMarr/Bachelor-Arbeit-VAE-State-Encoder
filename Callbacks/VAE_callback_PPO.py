@@ -54,41 +54,41 @@ class VAETrainingCallback(BaseCallback):
 
 
         #####################################new batch method##############################
-            # Collect all sliding window samples
-            all_inputs, all_targets = [], []
-            for episode in split_episodes:
-                for inp_obs_1_index in range(0, len(episode) - config.INPUT_STATE_SIZE - config.OUTPUT_STATE_SIZE,
+        # Collect all sliding window samples
+        all_inputs, all_targets = [], []
+        for episode in split_episodes:
+            for inp_obs_1_index in range(0, len(episode) - config.INPUT_STATE_SIZE - config.OUTPUT_STATE_SIZE,
                                              self.train_frequency):
-                    stacked_obs = np.concatenate(
-                        list(episode)[inp_obs_1_index:inp_obs_1_index + config.INPUT_STATE_SIZE],
+                stacked_obs = np.concatenate(
+                    list(episode)[inp_obs_1_index:inp_obs_1_index + config.INPUT_STATE_SIZE],
                         axis=-1)
-                    stacked_next_obs = np.concatenate(list(episode)[
+                stacked_next_obs = np.concatenate(list(episode)[
                                                       inp_obs_1_index + config.INPUT_STATE_SIZE:inp_obs_1_index + config.INPUT_STATE_SIZE + config.OUTPUT_STATE_SIZE],
                                                       axis=-1)
 
-                    all_inputs.append(stacked_obs)
-                    all_targets.append(stacked_next_obs)
+                all_inputs.append(stacked_obs)
+                all_targets.append(stacked_next_obs)
 
             # Convert to torch tensors
-            inputs_tensor = torch.tensor(all_inputs, dtype=torch.float32)
-            targets_tensor = torch.tensor(all_targets, dtype=torch.float32)
+        inputs_tensor = torch.tensor(all_inputs, dtype=torch.float32)
+        targets_tensor = torch.tensor(all_targets, dtype=torch.float32)
 
             # Create DataLoader for batched training
-            dataset = torch.utils.data.TensorDataset(inputs_tensor, targets_tensor)
-            dataloader = torch.utils.data.DataLoader(dataset, batch_size=self.batch_size, shuffle=True)
+        dataset = torch.utils.data.TensorDataset(inputs_tensor, targets_tensor)
+        dataloader = torch.utils.data.DataLoader(dataset, batch_size=self.batch_size, shuffle=True)
 
             # Batch training loop
 
-            for batch_inputs, batch_targets in dataloader:
-                predicted_next_states, mu, log_var, _ = self.vae(batch_inputs)
+        for batch_inputs, batch_targets in dataloader:
+            predicted_next_states, mu, log_var, _ = self.vae(batch_inputs)
 
-                loss = self.vae.MSE_Loss(mu=mu, log_var=log_var,
+            loss = self.vae.MSE_Loss(mu=mu, log_var=log_var,
                                         predicted_next_states=predicted_next_states,
                                         target_tensor=batch_targets)
 
-                self.optimizer.zero_grad()
-                loss.backward()
-                self.optimizer.step()
+            self.optimizer.zero_grad()
+            loss.backward()
+            self.optimizer.step()
         ##################################### new batch method ############################
 
 
