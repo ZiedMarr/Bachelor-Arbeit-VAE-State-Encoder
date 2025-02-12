@@ -57,21 +57,26 @@ class VAETrainingCallback(BaseCallback):
         # Collect all sliding window samples
         all_inputs, all_targets = [], []
         for episode in split_episodes:
-            for inp_obs_1_index in range(0, len(episode) - config.INPUT_STATE_SIZE - config.OUTPUT_STATE_SIZE,
-                                             self.train_frequency):
-                stacked_obs = np.concatenate(
-                    list(episode)[inp_obs_1_index:inp_obs_1_index + config.INPUT_STATE_SIZE],
-                        axis=-1)
-                stacked_next_obs = np.concatenate(list(episode)[
-                                                      inp_obs_1_index + config.INPUT_STATE_SIZE:inp_obs_1_index + config.INPUT_STATE_SIZE + config.OUTPUT_STATE_SIZE],
-                                                      axis=-1)
+            # Calculate valid indices for sliding windows
+            valid_indices = range(0, len(episode) - config.INPUT_STATE_SIZE - config.OUTPUT_STATE_SIZE,
+                                  self.train_frequency)
 
-                all_inputs.append(stacked_obs)
-                all_targets.append(stacked_next_obs)
+            for idx in valid_indices:
+                # Use numpy's concatenate for efficient stacking
+                input_window = episode[idx:idx + config.INPUT_STATE_SIZE].reshape(-1)
+                target_window = episode[idx + config.INPUT_STATE_SIZE:
+                                        idx + config.INPUT_STATE_SIZE + config.OUTPUT_STATE_SIZE].reshape(-1)
 
-            # Convert to torch tensors
-        inputs_tensor = torch.tensor(all_inputs, dtype=torch.float32)
-        targets_tensor = torch.tensor(all_targets, dtype=torch.float32)
+                all_inputs.append(input_window)
+                all_targets.append(target_window)
+
+        # Convert to numpy arrays first, then to tensors (more efficient)
+        inputs_array = np.array(all_inputs)
+        targets_array = np.array(all_targets)
+
+        # Single conversion to tensors
+        inputs_tensor = torch.from_numpy(inputs_array).float()
+        targets_tensor = torch.from_numpy(targets_array).float()
 
             # Create DataLoader for batched training
         dataset = torch.utils.data.TensorDataset(inputs_tensor, targets_tensor)

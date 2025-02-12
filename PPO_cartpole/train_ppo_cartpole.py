@@ -29,7 +29,7 @@ def train_ppo_cartpole(log_batch_dir, total_timesteps=20000, seed=42,env_wrapper
     eval_env = Monitor(eval_env)  # Monitor to log evaluation statistics
 
     # Initialize the PPO model
-    model = PPO("MlpPolicy", eval_env, verbose=1)
+    model = PPO("MlpPolicy", eval_env, verbose=1, device="cpu")
 
     # Set up TensorBoard logger
     model.set_logger(configure(os.path.join(log_dir, "tensorboard_logs"), ["tensorboard"]))
