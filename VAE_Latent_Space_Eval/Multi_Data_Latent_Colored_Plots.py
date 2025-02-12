@@ -80,7 +80,7 @@ def plot_latent_space(
         plt.close()
 
 
-def call_latent_colored(vae_name, data_dir=None, show=False, reduction=True, data_path=os.path.join(base_dir, "..", "Data_Collection", "collected_data", "mixed_pol_rand_env", "mixed_pol_rand_env.npz")):
+def call_latent_colored(vae_name, data_dir=None, show=False, reduction=True, data_path=os.path.join(base_dir, "..", "Data_Collection", "collected_data", "eval","random_10000_20250211_150118.npz")):
     model_path = os.path.join(base_dir, "..", "VAE_pretrain", "pretrained_vae", config.VAE_Version,
                               f"{config.INPUT_STATE_SIZE}_{config.OUTPUT_STATE_SIZE}", f"KL-D_{config.BETA_KL_DIV}", vae_name)
     vae = VAE(input_dim=config.INPUT_DIMENSION, latent_dim=config.LATENT_DIM, output_dim=config.OUTPUT_DIMENSION)
@@ -98,7 +98,8 @@ def call_latent_colored(vae_name, data_dir=None, show=False, reduction=True, dat
         vae=vae,
         num_input_states=config.INPUT_STATE_SIZE,
         save_path=os.path.join(image_folder, f'{vae_name}.png'),
-        reduction=reduction
+        reduction=reduction,
+        show=show
     )
     np.savetxt(os.path.join(image_folder, f'{vae_name}.txt'), file_list, fmt="%s", delimiter=",")
 

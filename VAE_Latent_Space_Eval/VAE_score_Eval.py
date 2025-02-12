@@ -17,7 +17,7 @@ def compute_dataset_statistics(data_path):
     episodes, _, _ = load_data(path=data_path)
 
     # Concatenate all data into a single tensor
-    all_data = torch.tensor([state for episode in episodes for state in episode], dtype=torch.float32)
+    all_data = torch.tensor(np.array([state for episode in episodes for state in episode]), dtype=torch.float32)
 
     # Compute global statistics (single values)
     mean = all_data.mean()

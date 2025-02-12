@@ -1,0 +1,8 @@
+VAE Model: vae_rand_50k_config_A_20250211_162257
+Dataset Path: C:\Users\ziedm\Refernce File\Studium\WiSe 24-25\BA\code\source\VAE_Latent_Space_Eval\..\Data_Collection\collected_data\eval\random_50000_20250211_151832.npz
+Evaluation Frequency: 5
+
+Results:
+--------------------------------------------------
+Average Standardized MSE: 0.288361
+Total Standardized MSE: 29157.870303

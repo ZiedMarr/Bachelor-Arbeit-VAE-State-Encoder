@@ -282,6 +282,9 @@ def collect_from_batch(root_dir= os.path.join(base_dir,"..", "PPO_cartpole","log
 if __name__ == "__main__":
     # Example calls for testing
     #expert_collect(output_path = os.path.join(base_dir, "collected_data", "cartpole_expert_60"),policy_path = os.path.join(base_dir, "..", "PPO_cartpole", "logs","batch2","logs_20000_20250123_151149","best_model", "best_model.zip"), num_episodes=60)
-    #random_collect(output_path="rand_pol_rand_env", num_episodes=1000000, env_wrapper=RandomStartCartPole)
-    mixed_random_expert_collect(output_path="mixed_pol_rand_env", num_episodes=10000, env_wrapper=RandomStartCartPole, policy_path="../PPO_cartpole/logs/explore_rand_env/batch_20000_timesteps_rand_env_100k_steps/logs_100000_20250210_110044/best_model/best_model.zip")
+    random_collect(output_path=os.path.join("rand_pol_rand_env","wrapper2"), num_episodes=50000, env_wrapper=RandomStartCartPole)
+
+
+
+    #mixed_random_expert_collect(output_path="mixed_pol_rand_env", num_episodes=10000, env_wrapper=RandomStartCartPole, policy_path="../PPO_cartpole/logs/explore_rand_env/batch_20000_timesteps_rand_env_100k_steps/logs_100000_20250210_110044/best_model/best_model.zip")
     #collect_from_batch(root_dir='../PPO_cartpole/logs/explore/', output_path= os.path.join(base_dir, "collected_data", "explore_rand_env"), env_wrapper=RandomStartCartPole)

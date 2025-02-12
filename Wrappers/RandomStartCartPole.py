@@ -14,7 +14,7 @@ class RandomStartCartPole(gym.Wrapper):
 
 
         cart_position = np.random.uniform(-2.3, 2.3)  # Full cart track range
-        cart_velocity = np.random.uniform(-2.0, 2.0)  # Some random velocity
+        cart_velocity = np.random.uniform(-3.0, 3.0)  # Some random velocity
         pole_angle = np.random.uniform(-.2094, .2094)  # Random pole angle
         pole_angular_velocity = np.random.uniform(-2.0, 2.0)  # Random spin
 

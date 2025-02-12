@@ -6,12 +6,11 @@ import os
 base_dir = os.path.dirname(os.path.abspath(__file__))
 
 def vae_ppo_average (output_file,base_log_dir = os.path.join(base_dir, "..", "VAE_PPO_train", "logs", "batch2")) :
-    # Automatically populate log_dirs with subdirectories containing logs
-    log_dirs = [
-        os.path.join(base_log_dir, folder, "eval")
-        for folder in os.listdir(base_log_dir)
-        if os.path.isdir(os.path.join(base_log_dir, folder, "eval"))
-    ]
+    # Recursively find all "eval" directories
+    log_dirs = []
+    for root, dirs, files in os.walk(base_log_dir):
+        if "eval" in dirs:  # If "eval" is a subdirectory at this level
+            log_dirs.append(os.path.join(root, "eval"))  # Append the full path
     #log_dirs = [
     #    "../VAE_PPO_train/logs/logs_20000_vae_15000_vae_offline_expert_20250114_165817_20250114_172631/eval/",
     #    "../VAE_PPO_train/logs/logs_20000_vae_offline_expert_20250114_160136/eval/",
@@ -51,11 +50,11 @@ def vae_ppo_average (output_file,base_log_dir = os.path.join(base_dir, "..", "VA
 def ppo_average(output_file,base_log_dir = os.path.join(base_dir,"..", "PPO_cartpole", "logs" , "batch2")) :# Define the base directory (directory of the current script)
 
     # Automatically populate log_dirs with subdirectories containing logs
-    log_dirs = [
-        os.path.join(base_log_dir, folder, "eval")
-        for folder in os.listdir(base_log_dir)
-        if os.path.isdir(os.path.join(base_log_dir, folder, "eval"))
-    ]
+    # Recursively find all "eval" directories
+    log_dirs = []
+    for root, dirs, files in os.walk(base_log_dir):
+        if "eval" in dirs:  # If "eval" is a subdirectory at this level
+            log_dirs.append(os.path.join(root, "eval"))  # Append the full path
     #log_dirs = [
     #    "../VAE_PPO_train/logs/logs_20000_vae_15000_vae_offline_expert_20250114_165817_20250114_172631/eval/",
     #    "../VAE_PPO_train/logs/logs_20000_vae_offline_expert_20250114_160136/eval/",

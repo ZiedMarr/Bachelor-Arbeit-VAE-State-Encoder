@@ -25,7 +25,7 @@ def check_num_states(data_path):
 
 if __name__ == "__main__":
     # Example usage
-    data_file = "collected_data/explore_rand_env/cartpole_ppo_data_1.npz"  # Replace with the actual file path
+    data_file = "collected_data/mixed_pol_rand_env/mixed_pol_rand_env.npz"  # Replace with the actual file path
     num_states = check_num_states(data_file)
     print(num_states)
 

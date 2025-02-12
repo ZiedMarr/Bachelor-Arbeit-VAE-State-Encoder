@@ -15,12 +15,12 @@ DECODER_HIDDEN3 = 8
 DECODER_HIDDEN4 = 12
 BETA_KL_DIV = 0.002
 TRAIN_FREQUENCY = 3
-EPOCHS = 10
+EPOCHS = 3
 LOSS_FUNC = "MSE_loss_feature_Standardization"
 ENCODER_N_LAYERS = 6
 DECODER_N_LAYERS = 6
 ACT_FUNC = "LeakyReLU(0.1)"
-NORM_FUNC = "InstanceNorm1d"
+NORM_FUNC = "LayerNorm"
 
-VAE_Version = "VAE_Version_3.12"
+VAE_Version = "VAE_Version_3.13"
 
