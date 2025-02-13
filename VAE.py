@@ -10,30 +10,30 @@ class VAE(nn.Module):
         # Encoder with Batch Normalization
         self.encoder = nn.Sequential(
             #normalize Input
-            nn.LayerNorm(input_dim),
+            nn.LayerNorm([input_dim]),
             nn.Linear(input_dim, config.ENCODER_HIDDEN),
-            nn.LayerNorm(config.ENCODER_HIDDEN),
+            nn.LayerNorm([config.ENCODER_HIDDEN]),
             nn.LeakyReLU(0.1),
 
             nn.Linear(config.ENCODER_HIDDEN, config.ENCODER_HIDDEN2),
-            nn.LayerNorm(config.ENCODER_HIDDEN2),
+            nn.LayerNorm([config.ENCODER_HIDDEN2]),
             nn.LeakyReLU(0.1),
 
             nn.Linear(config.ENCODER_HIDDEN2, config.ENCODER_HIDDEN3),
-            nn.LayerNorm(config.ENCODER_HIDDEN3),
+            nn.LayerNorm([config.ENCODER_HIDDEN3]),
             nn.LeakyReLU(0.1),
 
             nn.Linear(config.ENCODER_HIDDEN3, config.ENCODER_HIDDEN4),
-            nn.LayerNorm(config.ENCODER_HIDDEN4),
+            nn.LayerNorm([config.ENCODER_HIDDEN4]),
             nn.LeakyReLU(0.1),
 
             # New additional layers
             nn.Linear(config.ENCODER_HIDDEN4, config.ENCODER_HIDDEN4 * 2),
-            nn.LayerNorm(config.ENCODER_HIDDEN4 * 2),
+            nn.LayerNorm([config.ENCODER_HIDDEN4 * 2]),
             nn.LeakyReLU(0.1),
 
             nn.Linear(config.ENCODER_HIDDEN4 * 2, config.ENCODER_HIDDEN4 * 2),
-            nn.LayerNorm(config.ENCODER_HIDDEN4 * 2),
+            nn.LayerNorm([config.ENCODER_HIDDEN4 * 2]),
             nn.LeakyReLU(0.1),
         )
 
@@ -44,28 +44,28 @@ class VAE(nn.Module):
         # Decoder with Batch Normalization
         self.decoder = nn.Sequential(
             nn.Linear(latent_dim, config.DECODER_HIDDEN),
-            nn.LayerNorm(config.DECODER_HIDDEN),
+            nn.LayerNorm([config.DECODER_HIDDEN]),
             nn.LeakyReLU(0.1),
 
             nn.Linear(config.DECODER_HIDDEN, config.DECODER_HIDDEN2),
-            nn.LayerNorm(config.DECODER_HIDDEN2),
+            nn.LayerNorm([config.DECODER_HIDDEN2]),
             nn.LeakyReLU(0.1),
 
             nn.Linear(config.DECODER_HIDDEN2, config.DECODER_HIDDEN3),
-            nn.LayerNorm(config.DECODER_HIDDEN3),
+            nn.LayerNorm([config.DECODER_HIDDEN3]),
             nn.LeakyReLU(0.1),
 
             nn.Linear(config.DECODER_HIDDEN3, config.DECODER_HIDDEN4),
-            nn.LayerNorm(config.DECODER_HIDDEN4),
+            nn.LayerNorm([config.DECODER_HIDDEN4]),
             nn.LeakyReLU(0.1),
 
             # New additional layers
             nn.Linear(config.DECODER_HIDDEN4, config.DECODER_HIDDEN4 * 2),
-            nn.LayerNorm(config.DECODER_HIDDEN4 * 2),
+            nn.LayerNorm([config.DECODER_HIDDEN4 * 2]),
             nn.LeakyReLU(0.1),
 
             nn.Linear(config.DECODER_HIDDEN4 * 2, config.DECODER_HIDDEN4 * 2),
-            nn.LayerNorm(config.DECODER_HIDDEN4 * 2),
+            nn.LayerNorm([config.DECODER_HIDDEN4 * 2]),
             nn.LeakyReLU(0.1),
 
 
@@ -91,20 +91,7 @@ class VAE(nn.Module):
         return self.decoder(z)
 
     def forward(self, x):
-        ##############test############
-        print("Input shape:", x.shape)
 
-        # Track through encoder
-        for i, layer in enumerate(self.encoder):
-            try:
-                x = layer(x)
-                if isinstance(layer, (nn.Linear, nn.LayerNorm)):
-                    print(f"Layer {i} ({type(layer).__name__}): {x.shape}")
-            except Exception as e:
-                print(f"Error at layer {i} ({type(layer).__name__}):")
-                print(f"Input shape to failing layer: {x.shape}")
-                raise e
-        ##############test############
         mu, log_var = self.encode_full(x)
         z = self.reparameterize(mu, log_var)
         return self.decode(z), mu, log_var, z
