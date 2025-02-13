@@ -92,12 +92,18 @@ class VAE(nn.Module):
 
     def forward(self, x):
         ##############test############
-        print(f"Input shape: {x.shape}")
+        print("Input shape:", x.shape)
 
+        # Track through encoder
         for i, layer in enumerate(self.encoder):
-            x = layer(x)
-            if isinstance(layer, (nn.Linear, nn.LayerNorm)):
-                print(f"After layer {i} ({type(layer).__name__}): {x.shape}")
+            try:
+                x = layer(x)
+                if isinstance(layer, (nn.Linear, nn.LayerNorm)):
+                    print(f"Layer {i} ({type(layer).__name__}): {x.shape}")
+            except Exception as e:
+                print(f"Error at layer {i} ({type(layer).__name__}):")
+                print(f"Input shape to failing layer: {x.shape}")
+                raise e
         ##############test############
         mu, log_var = self.encode_full(x)
         z = self.reparameterize(mu, log_var)
