@@ -91,7 +91,14 @@ class VAE(nn.Module):
         return self.decoder(z)
 
     def forward(self, x):
+        ##############test############
+        print(f"Input shape: {x.shape}")
 
+        for i, layer in enumerate(self.encoder):
+            x = layer(x)
+            if isinstance(layer, (nn.Linear, nn.LayerNorm)):
+                print(f"After layer {i} ({type(layer).__name__}): {x.shape}")
+        ##############test############
         mu, log_var = self.encode_full(x)
         z = self.reparameterize(mu, log_var)
         return self.decode(z), mu, log_var, z
