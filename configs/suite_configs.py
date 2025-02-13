@@ -1,6 +1,6 @@
 SUITE_CONFIGS = {
     'config_A': {
-    'INPUT_STATE_SIZE' : 4,
+    'INPUT_STATE_SIZE' : 3,
     'OUTPUT_STATE_SIZE' : 2,
     'LATENT_DIM' : 4,
 
@@ -24,7 +24,7 @@ SUITE_CONFIGS = {
 
     },
 'config_B': {
-    'INPUT_STATE_SIZE' : 4,
+    'INPUT_STATE_SIZE' : 3,
     'OUTPUT_STATE_SIZE' : 2,
     'LATENT_DIM' : 4,
 
@@ -48,7 +48,7 @@ SUITE_CONFIGS = {
 
     },
 'config_C': {
-    'INPUT_STATE_SIZE' : 4,
+    'INPUT_STATE_SIZE' : 3,
     'OUTPUT_STATE_SIZE' : 2,
     'LATENT_DIM' : 4,
 
@@ -72,7 +72,7 @@ SUITE_CONFIGS = {
 
     },
 'config_D': {
-    'INPUT_STATE_SIZE' : 4,
+    'INPUT_STATE_SIZE' : 3,
     'OUTPUT_STATE_SIZE' : 2,
     'LATENT_DIM' : 4,
 
@@ -96,7 +96,7 @@ SUITE_CONFIGS = {
 
     },
 'config_E': {
-    'INPUT_STATE_SIZE' : 4,
+    'INPUT_STATE_SIZE' : 3,
     'OUTPUT_STATE_SIZE' : 2,
     'LATENT_DIM' : 4,
 
@@ -120,7 +120,7 @@ SUITE_CONFIGS = {
 
     },
 'config_F': {
-    'INPUT_STATE_SIZE' : 4,
+    'INPUT_STATE_SIZE' : 3,
     'OUTPUT_STATE_SIZE' : 2,
     'LATENT_DIM' : 4,
 
