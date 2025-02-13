@@ -80,7 +80,7 @@ def worker(process_id: int,
         current_config = Config(base_config_dict)
 
         # Update global config module values for compatibility
-        for key, value in base_config_dict.items():
+        for key, value in vars(current_config).items():
             setattr(config_module, key, value)
 
         # Define evaluation data path

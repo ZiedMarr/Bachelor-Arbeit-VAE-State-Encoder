@@ -29,8 +29,10 @@ def save_vae_code():
     # Path to VAE.py
     vae_file_path = os.path.join(base_dir,"..", "VAE.py")
 
-    # Define the directory where the VAE code will be saved
-    save_directory = os.path.join(base_dir, "VAE_pretrain", "pretrained_vae", f'{config.VAE_Version}')
+    # Extract all variables dynamically (excluding built-in attributes)
+    config_dict = {k: v for k, v in vars(config).items() if not k.startswith("__")}
+    # Define the directory where the config file will be saved
+    save_directory =  os.path.join(base_dir, "..","VAE_pretrain", "pretrained_vae", f'{config_dict["VAE_Version"]}' )  # <-- Change this to your desired path
     os.makedirs(save_directory, exist_ok=True)  # Ensure directory exists
 
     # Define the file path

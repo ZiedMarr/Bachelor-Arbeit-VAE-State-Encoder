@@ -1,0 +1,8 @@
+VAE Model: vae_rand_50k_config_A_3
+Dataset Path: C:\Users\ziedm\Refernce File\Studium\WiSe 24-25\BA\code\source\VAE_pretrain\..\Data_Collection\collected_data\eval\random_50000_20250211_151832.npz
+Evaluation Frequency: 5
+
+Results:
+--------------------------------------------------
+Average Standardized MSE: 0.277666
+Total Standardized MSE: 23089.279539

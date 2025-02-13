@@ -1,6 +1,6 @@
 SUITE_CONFIGS = {
     'config_A': {
-    'INPUT_STATE_SIZE' : 3,
+    'INPUT_STATE_SIZE' : 4,
     'OUTPUT_STATE_SIZE' : 2,
     'LATENT_DIM' : 4,
 
@@ -17,6 +17,7 @@ SUITE_CONFIGS = {
 
     'BETA_KL_DIV': 0.001,
     'LOSS_FUNC' : "MSE_loss_feature_Standardization",
+    'EPOCHS': 5,
 
     'EVAL_SEED' : [1, 33, 545, 65 ,6 , 66, 78, 48 , 24 , 98],
 
@@ -24,7 +25,7 @@ SUITE_CONFIGS = {
 
     },
 'config_B': {
-    'INPUT_STATE_SIZE' : 3,
+    'INPUT_STATE_SIZE' : 4,
     'OUTPUT_STATE_SIZE' : 2,
     'LATENT_DIM' : 4,
 
@@ -41,6 +42,7 @@ SUITE_CONFIGS = {
 
     'BETA_KL_DIV': 0.001,
     'LOSS_FUNC' : "MSE_loss_feature_Standardization",
+    'EPOCHS': 2,
 
     'EVAL_SEED' : [1, 33, 545, 65 ,6 , 66, 78, 48 , 24 , 98],
 
@@ -48,7 +50,7 @@ SUITE_CONFIGS = {
 
     },
 'config_C': {
-    'INPUT_STATE_SIZE' : 3,
+    'INPUT_STATE_SIZE' : 4,
     'OUTPUT_STATE_SIZE' : 2,
     'LATENT_DIM' : 4,
 
@@ -65,6 +67,7 @@ SUITE_CONFIGS = {
 
     'BETA_KL_DIV': 0.001,
     'LOSS_FUNC' : "MSE_loss_feature_Standardization",
+    'EPOCHS': 5,
 
     'EVAL_SEED' : [1, 33, 545, 65 ,6 , 66, 78, 48 , 24 , 98],
 
@@ -72,7 +75,7 @@ SUITE_CONFIGS = {
 
     },
 'config_D': {
-    'INPUT_STATE_SIZE' : 3,
+    'INPUT_STATE_SIZE' : 4,
     'OUTPUT_STATE_SIZE' : 2,
     'LATENT_DIM' : 4,
 
@@ -91,12 +94,13 @@ SUITE_CONFIGS = {
     'LOSS_FUNC' : "MSE_loss_feature_Standardization",
 
     'EVAL_SEED' : [1, 33, 545, 65 ,6 , 66, 78, 48 , 24 , 98],
+    'EPOCHS': 5,
 
     'VAE_Version' : "VAE_Version_3.17"
 
     },
 'config_E': {
-    'INPUT_STATE_SIZE' : 3,
+    'INPUT_STATE_SIZE' : 4,
     'OUTPUT_STATE_SIZE' : 2,
     'LATENT_DIM' : 4,
 
@@ -113,6 +117,7 @@ SUITE_CONFIGS = {
 
     'BETA_KL_DIV': 0.002,
     'LOSS_FUNC' : "MSE_loss_feature_Standardization",
+    'EPOCHS': 2,
 
     'EVAL_SEED' : [1, 33, 545, 65 ,6 , 66, 78, 48 , 24 , 98],
 
@@ -120,7 +125,7 @@ SUITE_CONFIGS = {
 
     },
 'config_F': {
-    'INPUT_STATE_SIZE' : 3,
+    'INPUT_STATE_SIZE' : 4,
     'OUTPUT_STATE_SIZE' : 2,
     'LATENT_DIM' : 4,
 
@@ -137,7 +142,7 @@ SUITE_CONFIGS = {
 
     'BETA_KL_DIV': 0.0015,
     'LOSS_FUNC' : "MSE_loss_feature_Standardization",
-
+    'EPOCHS' : 5 ,
     'EVAL_SEED' : [1, 33, 545, 65 ,6 , 66, 78, 48 , 24 , 98],
 
     'VAE_Version' : "VAE_Version_3.17"
