@@ -39,6 +39,8 @@ SUITE_CONFIGS = {
     'DECODER_HIDDEN3': 8,
     'DECODER_HIDDEN4' : 8,
 
+    'EPOCHS' : 5,
+
     'BETA_KL_DIV': 0.001,
     'LOSS_FUNC' : "MSE_loss_feature_Standardization",
 

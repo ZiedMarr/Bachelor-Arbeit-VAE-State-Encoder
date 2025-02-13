@@ -1,6 +1,8 @@
 import os
 import torch
 import torch.multiprocessing as mp
+
+import configs.config
 from configs.save_config import save_config, save_vae_code
 from configs import config as config_module
 from configs.suite_configs import SUITE_CONFIGS
@@ -92,7 +94,7 @@ def worker(process_id: int,
 
         # Process each dataset size
         for vae_name_base, data_file in datasets:
-            vae_name = f"{vae_name_base}_{config_name}_{timestamp}"
+            vae_name = f"{vae_name_base}_{config_name}_{configs.config.EPOCHS}"
             train_data = os.path.join(base_dir, "..", "Data_Collection", "collected_data",
                                       "rand_pol_rand_env","wrapper2", data_file)
 
