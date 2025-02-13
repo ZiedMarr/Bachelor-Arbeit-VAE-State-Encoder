@@ -105,4 +105,12 @@ def call_latent_colored(vae_name, data_dir=None, show=False, reduction=True, dat
 
 
 if __name__ == "__main__":
-    call_latent_colored("vae_rand_100k", reduction=True)
+    #call_latent_colored("vae_rand_100k", reduction=True)
+
+    model_path = os.path.join(base_dir, "..", "VAE_PPO_train", "trained_vae", "batch_V3.14_kl=0.001_ConfigB_50k_evalconfig3_200k",
+                              "200000_vae_rand_50k_config_B_20250211_162257_20250212_130249"
+                              )
+    vae = VAE(input_dim=config.INPUT_DIMENSION, latent_dim=config.LATENT_DIM, output_dim=config.OUTPUT_DIMENSION)
+    vae.load_state_dict(torch.load(model_path))
+    data_path = os.path.join(base_dir, "..", "Data_Collection", "collected_data", "eval","random_10000_20250211_150118.npz")
+    plot_latent_space(vae=vae, data_paths= data_path , show=True )
