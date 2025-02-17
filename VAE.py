@@ -28,13 +28,22 @@ class VAE(nn.Module):
             nn.LeakyReLU(0.1),
 
             # New additional layers
-            nn.Linear(config.ENCODER_HIDDEN4, config.ENCODER_HIDDEN4 * 2),
-            nn.LayerNorm([config.ENCODER_HIDDEN4 * 2]),
+            nn.Linear(config.ENCODER_HIDDEN4, config.ENCODER_HIDDEN5),
+            nn.LayerNorm([config.ENCODER_HIDDEN5]),
             nn.LeakyReLU(0.1),
 
-            nn.Linear(config.ENCODER_HIDDEN4 * 2, config.ENCODER_HIDDEN4 * 2),
-            nn.LayerNorm([config.ENCODER_HIDDEN4 * 2]),
+            nn.Linear(config.ENCODER_HIDDEN5, config.ENCODER_HIDDEN6),
+            nn.LayerNorm([config.ENCODER_HIDDEN6]),
             nn.LeakyReLU(0.1),
+
+            nn.Linear(config.ENCODER_HIDDEN6, config.ENCODER_HIDDEN7),
+            nn.LayerNorm([config.ENCODER_HIDDEN7]),
+            nn.LeakyReLU(0.1),
+
+            nn.Linear(config.ENCODER_HIDDEN7, config.ENCODER_HIDDEN7),
+            nn.LayerNorm([config.ENCODER_HIDDEN8]),
+            nn.LeakyReLU(0.1),
+
         )
 
         # Latent space layers
@@ -60,17 +69,22 @@ class VAE(nn.Module):
             nn.LeakyReLU(0.1),
 
             # New additional layers
-            nn.Linear(config.DECODER_HIDDEN4, config.DECODER_HIDDEN4 * 2),
-            nn.LayerNorm([config.DECODER_HIDDEN4 * 2]),
+            nn.Linear(config.DECODER_HIDDEN4, config.DECODER_HIDDEN5),
+            nn.LayerNorm([config.DECODER_HIDDEN5]),
             nn.LeakyReLU(0.1),
 
-            nn.Linear(config.DECODER_HIDDEN4 * 2, config.DECODER_HIDDEN4 * 2),
-            nn.LayerNorm([config.DECODER_HIDDEN4 * 2]),
+            nn.Linear(config.DECODER_HIDDEN5, config.DECODER_HIDDEN6),
+            nn.LayerNorm([config.DECODER_HIDDEN6]),
+            nn.LeakyReLU(0.1),
+
+            nn.Linear(config.DECODER_HIDDEN6, config.DECODER_HIDDEN7),
+            nn.LayerNorm([config.DECODER_HIDDEN7]),
             nn.LeakyReLU(0.1),
 
 
 
-            nn.Linear(config.DECODER_HIDDEN4 * 2, output_dim)
+
+            nn.Linear(config.DECODER_HIDDEN7, output_dim)
         )
 
     def encode(self, x):

@@ -7,7 +7,7 @@ from configs.suite_configs import SUITE_CONFIGS
 base_dir = os.path.dirname(os.path.abspath(__file__))
 
 from VAE_pretrain.VAE_offline_pretrain import call_pretrain
-from VAE_Latent_Space_Eval.VAE_reconstructions import call_reconstruction
+from VAE_Latent_Space_Eval.VAE_reconstructions_cartpole import call_reconstruction
 from VAE_Latent_Space_Eval.VAE_score_Eval import vae_score_call
 from VAE_Latent_Space_Eval.Multi_Data_Latent_Colored_Plots import call_latent_colored
 

@@ -7,21 +7,28 @@ SUITE_CONFIGS = {
 
 
     'ENCODER_HIDDEN' : 96,
-    'ENCODER_HIDDEN2': 64,
-    'ENCODER_HIDDEN3' : 32,
-    'ENCODER_HIDDEN4' : 24,
+    'ENCODER_HIDDEN2': 84,
+    'ENCODER_HIDDEN3' : 72,
+    'ENCODER_HIDDEN4' : 64,
+    'ENCODER_HIDDEN5' : 52,
+    'ENCODER_HIDDEN6' : 32,
+    'ENCODER_HIDDEN7' : 24,
+    'ENCODER_HIDDEN8' : 12,
     'DECODER_HIDDEN' : 12,
     'DECODER_HIDDEN2' : 12,
     'DECODER_HIDDEN3': 24 ,
     'DECODER_HIDDEN4' : 32,
+    'DECODER_HIDDEN5': 32,
+    'DECODER_HIDDEN6': 52,
+    'DECODER_HIDDEN7': 64,
 
     'BETA_KL_DIV': 0.01,
     'LOSS_FUNC' : "MSE_loss_feature_Standardization",
-    'EPOCHS': 20,
+    'EPOCHS': 10,
 
     'EVAL_SEED' : [1, 33, 545, 65 ,6 , 66, 78, 48 , 24 , 98],
 
-    'VAE_Version' : "VAE_Version_2"
+    'VAE_Version' : "VAE_Version_3"
 
     },
     'config_B': {
@@ -30,21 +37,28 @@ SUITE_CONFIGS = {
         'LATENT_DIM': 6,
 
         'ENCODER_HIDDEN': 96,
-        'ENCODER_HIDDEN2': 64,
-        'ENCODER_HIDDEN3': 32,
-        'ENCODER_HIDDEN4': 24,
+        'ENCODER_HIDDEN2': 84,
+        'ENCODER_HIDDEN3': 72,
+        'ENCODER_HIDDEN4': 64,
+        'ENCODER_HIDDEN5': 52,
+        'ENCODER_HIDDEN6': 32,
+        'ENCODER_HIDDEN7': 24,
+        'ENCODER_HIDDEN8': 12,
         'DECODER_HIDDEN': 12,
         'DECODER_HIDDEN2': 12,
         'DECODER_HIDDEN3': 24,
         'DECODER_HIDDEN4': 32,
+        'DECODER_HIDDEN5': 32,
+        'DECODER_HIDDEN6': 52,
+        'DECODER_HIDDEN7': 64,
 
         'BETA_KL_DIV': 0.01,
         'LOSS_FUNC': "MSE_loss_feature_Standardization",
-        'EPOCHS': 20,
+        'EPOCHS': 10,
 
         'EVAL_SEED': [1, 33, 545, 65, 6, 66, 78, 48, 24, 98],
 
-        'VAE_Version': "VAE_Version_2"
+        'VAE_Version': "VAE_Version_3"
 
     },
     'config_C': {
@@ -53,21 +67,28 @@ SUITE_CONFIGS = {
         'LATENT_DIM': 6,
 
         'ENCODER_HIDDEN': 96,
-        'ENCODER_HIDDEN2': 64,
-        'ENCODER_HIDDEN3': 32,
-        'ENCODER_HIDDEN4': 24,
+        'ENCODER_HIDDEN2': 84,
+        'ENCODER_HIDDEN3': 72,
+        'ENCODER_HIDDEN4': 64,
+        'ENCODER_HIDDEN5': 52,
+        'ENCODER_HIDDEN6': 32,
+        'ENCODER_HIDDEN7': 24,
+        'ENCODER_HIDDEN8': 12,
         'DECODER_HIDDEN': 12,
         'DECODER_HIDDEN2': 12,
         'DECODER_HIDDEN3': 24,
         'DECODER_HIDDEN4': 32,
+        'DECODER_HIDDEN5': 32,
+        'DECODER_HIDDEN6': 52,
+        'DECODER_HIDDEN7': 64,
 
         'BETA_KL_DIV': 0.01,
         'LOSS_FUNC': "MSE_loss_feature_Standardization",
-        'EPOCHS': 20,
+        'EPOCHS': 10,
 
         'EVAL_SEED': [1, 33, 545, 65, 6, 66, 78, 48, 24, 98],
 
-        'VAE_Version': "VAE_Version_2"
+        'VAE_Version': "VAE_Version_3"
 
     },
     'config_D': {
@@ -76,21 +97,28 @@ SUITE_CONFIGS = {
         'LATENT_DIM': 6,
 
         'ENCODER_HIDDEN': 96,
-        'ENCODER_HIDDEN2': 64,
-        'ENCODER_HIDDEN3': 32,
-        'ENCODER_HIDDEN4': 24,
+        'ENCODER_HIDDEN2': 84,
+        'ENCODER_HIDDEN3': 72,
+        'ENCODER_HIDDEN4': 64,
+        'ENCODER_HIDDEN5': 52,
+        'ENCODER_HIDDEN6': 32,
+        'ENCODER_HIDDEN7': 24,
+        'ENCODER_HIDDEN8': 12,
         'DECODER_HIDDEN': 12,
         'DECODER_HIDDEN2': 12,
         'DECODER_HIDDEN3': 24,
         'DECODER_HIDDEN4': 32,
+        'DECODER_HIDDEN5': 32,
+        'DECODER_HIDDEN6': 52,
+        'DECODER_HIDDEN7': 64,
 
         'BETA_KL_DIV': 0.01,
         'LOSS_FUNC': "MSE_loss_feature_Standardization",
-        'EPOCHS': 20,
+        'EPOCHS': 10,
 
         'EVAL_SEED': [1, 33, 545, 65, 6, 66, 78, 48, 24, 98],
 
-        'VAE_Version': "VAE_Version_2"
+        'VAE_Version': "VAE_Version_3"
 
     },
     'config_E': {
@@ -99,21 +127,28 @@ SUITE_CONFIGS = {
         'LATENT_DIM': 6,
 
         'ENCODER_HIDDEN': 96,
-        'ENCODER_HIDDEN2': 64,
-        'ENCODER_HIDDEN3': 32,
-        'ENCODER_HIDDEN4': 24,
+        'ENCODER_HIDDEN2': 84,
+        'ENCODER_HIDDEN3': 72,
+        'ENCODER_HIDDEN4': 64,
+        'ENCODER_HIDDEN5': 52,
+        'ENCODER_HIDDEN6': 32,
+        'ENCODER_HIDDEN7': 24,
+        'ENCODER_HIDDEN8': 12,
         'DECODER_HIDDEN': 12,
         'DECODER_HIDDEN2': 12,
         'DECODER_HIDDEN3': 24,
         'DECODER_HIDDEN4': 32,
+        'DECODER_HIDDEN5': 32,
+        'DECODER_HIDDEN6': 52,
+        'DECODER_HIDDEN7': 64,
 
-        'BETA_KL_DIV': 0.012,
+        'BETA_KL_DIV': 0.01,
         'LOSS_FUNC': "MSE_loss_feature_Standardization",
-        'EPOCHS': 20,
+        'EPOCHS': 10,
 
         'EVAL_SEED': [1, 33, 545, 65, 6, 66, 78, 48, 24, 98],
 
-        'VAE_Version': "VAE_Version_2"
+        'VAE_Version': "VAE_Version_3"
 
     },
     'config_F': {
@@ -122,21 +157,28 @@ SUITE_CONFIGS = {
         'LATENT_DIM': 6,
 
         'ENCODER_HIDDEN': 96,
-        'ENCODER_HIDDEN2': 64,
-        'ENCODER_HIDDEN3': 32,
-        'ENCODER_HIDDEN4': 24,
+        'ENCODER_HIDDEN2': 84,
+        'ENCODER_HIDDEN3': 72,
+        'ENCODER_HIDDEN4': 64,
+        'ENCODER_HIDDEN5': 52,
+        'ENCODER_HIDDEN6': 32,
+        'ENCODER_HIDDEN7': 24,
+        'ENCODER_HIDDEN8': 12,
         'DECODER_HIDDEN': 12,
         'DECODER_HIDDEN2': 12,
         'DECODER_HIDDEN3': 24,
         'DECODER_HIDDEN4': 32,
+        'DECODER_HIDDEN5': 32,
+        'DECODER_HIDDEN6': 52,
+        'DECODER_HIDDEN7': 64,
 
-        'BETA_KL_DIV': 0.012,
+        'BETA_KL_DIV': 0.01,
         'LOSS_FUNC': "MSE_loss_feature_Standardization",
-        'EPOCHS': 20,
+        'EPOCHS': 10,
 
         'EVAL_SEED': [1, 33, 545, 65, 6, 66, 78, 48, 24, 98],
 
-        'VAE_Version': "VAE_Version_2"
+        'VAE_Version': "VAE_Version_3"
 
     },
     'config_G': {
@@ -145,21 +187,28 @@ SUITE_CONFIGS = {
         'LATENT_DIM': 6,
 
         'ENCODER_HIDDEN': 96,
-        'ENCODER_HIDDEN2': 64,
-        'ENCODER_HIDDEN3': 32,
-        'ENCODER_HIDDEN4': 24,
+        'ENCODER_HIDDEN2': 84,
+        'ENCODER_HIDDEN3': 72,
+        'ENCODER_HIDDEN4': 64,
+        'ENCODER_HIDDEN5': 52,
+        'ENCODER_HIDDEN6': 32,
+        'ENCODER_HIDDEN7': 24,
+        'ENCODER_HIDDEN8': 12,
         'DECODER_HIDDEN': 12,
         'DECODER_HIDDEN2': 12,
         'DECODER_HIDDEN3': 24,
         'DECODER_HIDDEN4': 32,
+        'DECODER_HIDDEN5': 32,
+        'DECODER_HIDDEN6': 52,
+        'DECODER_HIDDEN7': 64,
 
-        'BETA_KL_DIV': 0.012,
+        'BETA_KL_DIV': 0.01,
         'LOSS_FUNC': "MSE_loss_feature_Standardization",
-        'EPOCHS': 20,
+        'EPOCHS': 10,
 
         'EVAL_SEED': [1, 33, 545, 65, 6, 66, 78, 48, 24, 98],
 
-        'VAE_Version': "VAE_Version_2"
+        'VAE_Version': "VAE_Version_3"
 
     },
     'config_H': {
@@ -168,90 +217,28 @@ SUITE_CONFIGS = {
         'LATENT_DIM': 6,
 
         'ENCODER_HIDDEN': 96,
-        'ENCODER_HIDDEN2': 64,
-        'ENCODER_HIDDEN3': 32,
-        'ENCODER_HIDDEN4': 24,
+        'ENCODER_HIDDEN2': 84,
+        'ENCODER_HIDDEN3': 72,
+        'ENCODER_HIDDEN4': 64,
+        'ENCODER_HIDDEN5': 52,
+        'ENCODER_HIDDEN6': 32,
+        'ENCODER_HIDDEN7': 24,
+        'ENCODER_HIDDEN8': 12,
         'DECODER_HIDDEN': 12,
         'DECODER_HIDDEN2': 12,
         'DECODER_HIDDEN3': 24,
         'DECODER_HIDDEN4': 32,
-
-        'BETA_KL_DIV': 0.012,
-        'LOSS_FUNC': "MSE_loss_feature_Standardization",
-        'EPOCHS': 20,
-
-        'EVAL_SEED': [1, 33, 545, 65, 6, 66, 78, 48, 24, 98],
-
-        'VAE_Version': "VAE_Version_2"
-
-    },
-    'config_I': {
-        'INPUT_STATE_SIZE': 4,
-        'OUTPUT_STATE_SIZE': 2,
-        'LATENT_DIM': 6,
-
-        'ENCODER_HIDDEN': 96,
-        'ENCODER_HIDDEN2': 64,
-        'ENCODER_HIDDEN3': 32,
-        'ENCODER_HIDDEN4': 24,
-        'DECODER_HIDDEN': 12,
-        'DECODER_HIDDEN2': 12,
-        'DECODER_HIDDEN3': 24,
-        'DECODER_HIDDEN4': 32,
-
-        'BETA_KL_DIV': 0.001,
-        'LOSS_FUNC': "MSE_loss_feature_Standardization",
-        'EPOCHS': 20,
-
-        'EVAL_SEED': [1, 33, 545, 65, 6, 66, 78, 48, 24, 98],
-
-        'VAE_Version': "VAE_Version_2"
-
-    },
-    'config_J': {
-        'INPUT_STATE_SIZE': 4,
-        'OUTPUT_STATE_SIZE': 2,
-        'LATENT_DIM': 6,
-
-        'ENCODER_HIDDEN': 96,
-        'ENCODER_HIDDEN2': 64,
-        'ENCODER_HIDDEN3': 32,
-        'ENCODER_HIDDEN4': 24,
-        'DECODER_HIDDEN': 12,
-        'DECODER_HIDDEN2': 12,
-        'DECODER_HIDDEN3': 24,
-        'DECODER_HIDDEN4': 32,
-
-        'BETA_KL_DIV': 0.001,
-        'LOSS_FUNC': "MSE_loss_feature_Standardization",
-        'EPOCHS': 20,
-
-        'EVAL_SEED': [1, 33, 545, 65, 6, 66, 78, 48, 24, 98],
-
-        'VAE_Version': "VAE_Version_2"
-
-    },
-    'config_K': {
-        'INPUT_STATE_SIZE': 4,
-        'OUTPUT_STATE_SIZE': 2,
-        'LATENT_DIM': 6,
-
-        'ENCODER_HIDDEN': 96,
-        'ENCODER_HIDDEN2': 64,
-        'ENCODER_HIDDEN3': 32,
-        'ENCODER_HIDDEN4': 24,
-        'DECODER_HIDDEN': 12,
-        'DECODER_HIDDEN2': 12,
-        'DECODER_HIDDEN3': 24,
-        'DECODER_HIDDEN4': 32,
+        'DECODER_HIDDEN5': 32,
+        'DECODER_HIDDEN6': 52,
+        'DECODER_HIDDEN7': 64,
 
         'BETA_KL_DIV': 0.01,
         'LOSS_FUNC': "MSE_loss_feature_Standardization",
-        'EPOCHS': 20,
+        'EPOCHS': 10,
 
         'EVAL_SEED': [1, 33, 545, 65, 6, 66, 78, 48, 24, 98],
 
-        'VAE_Version': "VAE_Version_2"
+        'VAE_Version': "VAE_Version_3"
 
     },
 

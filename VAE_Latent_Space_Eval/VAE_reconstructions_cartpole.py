@@ -1,8 +1,8 @@
 import os
 import numpy as np
 import torch
-from Data_Collection.gym_data_collection import load_data
-from VAE import VAE
+from Data_Collection.gym_data_collection import load_data  # Assuming this is the file with data functions
+from VAE import VAE  # Assuming the VAE class is defined in VAE.py
 import gymnasium as gym
 import imageio
 
@@ -11,30 +11,21 @@ from configs import config
 # get base_dir path
 base_dir = os.path.dirname(os.path.abspath(__file__))
 
-
-def render_bipedalwalker_from_observations(observations,
-                                           gif_path=os.path.join(base_dir, "GIF", "bipedalwalker_render.gif")):
+def render_cartpole_from_observations(observations, gif_path=os.path.join(base_dir, "GIF", "cartpole_render.gif")):
     """
-    Render a BipedalWalker environment using a sequence of observations and save it as a GIF.
+    Render a CartPole environment using a sequence of observations and save it as a GIF.
 
     :param observations: A sequence of observations (state vectors).
     :param gif_path: Path to save the generated GIF.
     """
-    # Create the BipedalWalker environment in "rgb_array" mode for rendering
-    env = gym.make("BipedalWalker-v3", render_mode="rgb_array")
+    # Create the CartPole environment in "rgb_array" mode for rendering
+    env = gym.make("CartPole-v1", render_mode="rgb_array")
     frames = []
 
     # Loop through each observation and render the environment
     for obs in observations:
         env.reset()  # Reset the environment for each observation
-        env.unwrapped.hull.position[0] = obs[0]  # x position
-        env.unwrapped.hull.position[1] = obs[1]  # y position
-        env.unwrapped.hull.angle = obs[2]  # hull angle
-
-        # Set joint angles and velocities
-        for i, joint in enumerate(env.unwrapped.joints):
-            joint.angle = obs[4 + i * 2]
-            joint.speed = obs[5 + i * 2]
+        env.unwrapped.state = obs  # Manually set the environment's state
 
         # Render the environment as an RGB image
         frame = env.render()
@@ -44,8 +35,7 @@ def render_bipedalwalker_from_observations(observations,
 
     # Save the frames as a GIF
     imageio.mimsave(gif_path, frames, duration=0.1)
-    print(f"BipedalWalker rendering saved to {gif_path}")
-
+    print(f"CartPole rendering saved to {gif_path}")
 
 def stack_data_per_episode(episodes, n, m):
     """
@@ -70,8 +60,12 @@ def stack_data_per_episode(episodes, n, m):
 
     return np.array(inputs), np.array(outputs)
 
-
 def main(data_path, vae_model_path):
+
+    # File paths
+    #data_path = os.path.join(base_dir, "..", "Data_collection", "collected_data", "cartpole_data_random_1.npz")
+    #vae_model_path = os.path.join(base_dir, "..", "VAE_pretrain", "pretrained_vae", "5_in_2_out", "vae_random_10")
+
     # Load the data
     reconstructed_episodes, _, _ = load_data(data_path)
 
@@ -82,6 +76,11 @@ def main(data_path, vae_model_path):
     # Prepare data while respecting episode boundaries
     inputs, outputs = stack_data_per_episode(reconstructed_episodes, n, m)
 
+    # Initialize the VAE (adjust dimensions to your setup)
+    #input_dim = inputs.shape[1]  # Flattened input dimension
+    #output_dim = outputs.shape[1]  # Flattened output dimension
+    #latent_dim = LATENT_DIM  # Latent space dimension
+
     vae = VAE(input_dim=config.INPUT_DIMENSION, latent_dim=config.LATENT_DIM, output_dim=config.OUTPUT_DIMENSION)
 
     # Load pretrained weights
@@ -91,7 +90,6 @@ def main(data_path, vae_model_path):
         print("Loaded pretrained VAE model.")
     else:
         raise FileNotFoundError(f"Pretrained VAE model not found at {vae_model_path}")
-
     vae_name = os.path.basename(vae_model_path)
     category = os.path.basename(os.path.dirname(vae_model_path))
     in_out_spaces = f"{n}_{m}"
@@ -109,19 +107,17 @@ def main(data_path, vae_model_path):
         predicted_outputs, _, _, _ = vae(inputs_tensor)
 
     # Print input and output in a clear format
-    for i, (inp, true_out, pred_out) in enumerate(
-            zip(selected_inputs, corresponding_outputs, predicted_outputs.numpy())):
-        print(f"Example {i + 1}")
+
+    for i, (inp, true_out, pred_out) in enumerate(zip(selected_inputs, corresponding_outputs, predicted_outputs.numpy())):
+        print(f"Example {i+1}")
         print("Input: \n", inp.reshape(n, -1))  # Reshape to n rows of state dimensions
         print("True Output: \n", true_out.reshape(m, -1))  # Reshape to m rows of state dimensions
         print("Predicted Output: \n", pred_out.reshape(m, -1))  # Reshape to m rows of state dimensions
         print("-" * 50)
 
     # produce gifs
-    for i, (inp, true_out, pred_out) in enumerate(
-            zip(selected_inputs, corresponding_outputs, predicted_outputs.numpy())):
-        folder_path = os.path.join(base_dir, "gif", config.VAE_Version, in_out_spaces, category, vae_name,
-                                   f"example_{i}")
+    for i, (inp, true_out, pred_out) in enumerate(zip(selected_inputs, corresponding_outputs, predicted_outputs.numpy())):
+        folder_path = os.path.join(base_dir,"gif", config.VAE_Version, in_out_spaces, category, vae_name, f"example_{i}")
         os.makedirs(folder_path, exist_ok=True)
 
         input_gif_path = os.path.join(folder_path, "input.gif")
@@ -130,29 +126,20 @@ def main(data_path, vae_model_path):
         input_true_output_gif_path = os.path.join(folder_path, "input_true_output.gif")
         input_pred_output_gif_path = os.path.join(folder_path, "input_pred_output.gif")
 
-        # combine for full episode
+        #combine for full episode :
+
         combined_true = np.concatenate((inp.reshape(n, -1), true_out.reshape(m, -1)), axis=0)
         combined_pred = np.concatenate((inp.reshape(n, -1), pred_out.reshape(m, -1)), axis=0)
 
-        render_bipedalwalker_from_observations(inp.reshape(n, -1), input_gif_path)
-        render_bipedalwalker_from_observations(true_out.reshape(m, -1), true_output_gif_path)
-        render_bipedalwalker_from_observations(pred_out.reshape(m, -1), predicted_output_gif_path)
-        render_bipedalwalker_from_observations(combined_true, input_true_output_gif_path)
-        render_bipedalwalker_from_observations(combined_pred, input_pred_output_gif_path)
+        render_cartpole_from_observations(inp.reshape(n, -1), input_gif_path)
+        render_cartpole_from_observations(true_out.reshape(m, -1), true_output_gif_path)
+        render_cartpole_from_observations(pred_out.reshape(m, -1), predicted_output_gif_path)
+        render_cartpole_from_observations(combined_true, input_true_output_gif_path)
+        render_cartpole_from_observations(combined_pred, input_pred_output_gif_path)
 
-
-def call_reconstruction(vae_name,
-                        data_path=os.path.join(base_dir, "..", "Data_Collection", "collected_data", "1000_rand_Eval",
-                                               "bipedalwalker_random_1000.npz")):
-    main(data_path=data_path,
-         vae_model_path=os.path.join(base_dir, "..", "VAE_pretrain", "pretrained_vae", config.VAE_Version,
-                                     f"{config.INPUT_STATE_SIZE}_{config.OUTPUT_STATE_SIZE}",
-                                     f"KL-D_{config.BETA_KL_DIV}", vae_name))
+def call_reconstruction(vae_name, data_path=os.path.join(base_dir, "..", "Data_Collection", "collected_data", "1000_rand_Eval","random_1000_20250130_122312.npz")) :
+    main(data_path=data_path, vae_model_path=os.path.join(base_dir, "..", "VAE_pretrain", "pretrained_vae", config.VAE_Version, f"{config.INPUT_STATE_SIZE}_{config.OUTPUT_STATE_SIZE}", f"KL-D_{config.BETA_KL_DIV}", vae_name))
 
 
 if __name__ == "__main__":
-    main(data_path=os.path.join(base_dir, "..", "Data_Collection", "collected_data", "1000_rand_Eval",
-                                "bipedalwalker_random_1000.npz"),
-         vae_model_path=os.path.join(base_dir, "..", "VAE_pretrain", "pretrained_vae", config.VAE_Version,
-                                     f"{config.INPUT_STATE_SIZE}_{config.OUTPUT_STATE_SIZE}",
-                                     f"KL-D_{config.BETA_KL_DIV}", "vae_rand_100k"))
+    main(data_path=os.path.join(base_dir, "..", "Data_collection", "collected_data", "1000_rand_Eval","random_1000_20250130_122312.npz"), vae_model_path=os.path.join(base_dir, "..", "VAE_pretrain", "pretrained_vae", config.VAE_Version, f"{config.INPUT_STATE_SIZE}_{config.OUTPUT_STATE_SIZE}", f"KL-D_{config.BETA_KL_DIV}", "vae_rand_100k"))
