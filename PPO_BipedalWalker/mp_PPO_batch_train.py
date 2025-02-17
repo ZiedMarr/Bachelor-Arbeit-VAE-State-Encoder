@@ -4,7 +4,6 @@ import torch.multiprocessing as mp
 from PPO_BipedalWalker.train_ppo_BipedalWalker import train_ppo_BipedalWalker
 from configs import eval_config
 from configs.save_config import save_eval_config
-from Wrappers.RandomStartCartpoleEval import RandomStartCartPoleEval
 from Wrappers.RandomStartBipedalWalker import RandomStartBipedalWalker
 import psutil
 from typing import Optional
@@ -61,7 +60,7 @@ def main(batch = "batch_evalconfig3_100k"):
     total_timesteps = eval_config.TOTAL_TIMESTEPS
 
     # Setup log directory
-    log_batch_dir = os.path.join(script_dir, "logs", "explore", batch)
+    log_batch_dir = os.path.join(script_dir, "logs", "eval", batch)
 
     # Save evaluation config
     save_eval_config(log_batch_dir)
@@ -88,7 +87,7 @@ def main(batch = "batch_evalconfig3_100k"):
             # Create and start process
             p = mp.Process(
                 target=worker,
-                args=(i, log_batch_dir, total_timesteps, seeds[i], RandomStartCartPoleEval)
+                args=(i, log_batch_dir, total_timesteps, seeds[i], RandomStartBipedalWalker)
             )
             p.start()
             processes.append(p)
@@ -121,4 +120,4 @@ def main(batch = "batch_evalconfig3_100k"):
 
 
 if __name__ == "__main__":
-    main(batch = "batch_explore_50k")
+    main(batch = "batch_10_50k")
