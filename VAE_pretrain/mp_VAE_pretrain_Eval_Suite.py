@@ -33,8 +33,8 @@ class Config:
         self.VAE_Version = config_dict.get("VAE_Version", "3.13")
 
         # Calculate derived values
-        self.INPUT_DIMENSION = self.INPUT_STATE_SIZE * 4
-        self.OUTPUT_DIMENSION = self.OUTPUT_STATE_SIZE * 4
+        self.INPUT_DIMENSION = self.INPUT_STATE_SIZE * 24
+        self.OUTPUT_DIMENSION = self.OUTPUT_STATE_SIZE * 24
 
 
 def get_base_config() -> Dict[str, Any]:
@@ -85,25 +85,25 @@ def worker(process_id: int,
 
         # Define evaluation data path
         eval_data = os.path.join(base_dir, "..", "Data_Collection", "collected_data",
-                                 "eval", "random_50000_20250211_151832.npz")
+                                 "train","explore_pol_standard_env","ppo_50k_noisy_100ep","noise_scale_0.6_random2","BipedalWalker_ppo_data_4.npz")
 
         # Training datasets and their corresponding VAE names
         datasets = [
-            ("vae_rand_50k", "random_50000_20250211_151915.npz")
+            ("vae_ppo_noisy_100ep", "BipedalWalker_ppo_data_8.npz")
         ]
 
         # Process each dataset size
         for vae_name_base, data_file in datasets:
             vae_name = f"{vae_name_base}_{config_name}_{configs.config.EPOCHS}"
             train_data = os.path.join(base_dir, "..", "Data_Collection", "collected_data",
-                                      "rand_pol_rand_env","wrapper2", data_file)
+                                      "train","explore_pol_standard_env","ppo_50k_noisy_100ep","noise_scale_0.6_random2", data_file)
 
             print(f"Process {process_id} starting training for {vae_name}")
 
             # Run training and evaluation pipeline
             call_pretrain(vae_name=vae_name, data_dir=train_data)
-            call_latent_colored(vae_name=vae_name, show=False)
-            call_reconstruction(vae_name)
+            call_latent_colored(vae_name=vae_name, show=False, data_path=eval_data)
+            call_reconstruction(vae_name,data_path=eval_data)
             vae_score_call(data_path=eval_data, vae_name=vae_name)
 
         # Save configurations

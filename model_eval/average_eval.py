@@ -47,7 +47,7 @@ def vae_ppo_average (output_file,base_log_dir = os.path.join(base_dir, "..", "VA
     print(f"Averaged log saved to: {output_file}")
 
 
-def ppo_average(output_file,base_log_dir = os.path.join(base_dir,"..", "PPO_cartpole", "logs" , "batch2")) :# Define the base directory (directory of the current script)
+def ppo_average(output_file,base_log_dir = os.path.join(base_dir,"..", "PPO_BipedalWalker", "logs" , "batch2")) :# Define the base directory (directory of the current script)
 
     # Automatically populate log_dirs with subdirectories containing logs
     # Recursively find all "eval" directories
@@ -92,5 +92,5 @@ def ppo_average(output_file,base_log_dir = os.path.join(base_dir,"..", "PPO_cart
 
 
 if __name__ == "__main__":
-    ppo_average(output_file=os.path.join(base_dir,"logs", "PPO" , "averaged_evaluation_explore_rand_env_seed10.npz" ),base_log_dir=os.path.join(base_dir,"..", "PPO_cartpole", "logs" , "explore_rand_env", "batch_20000_timesteps_rand_env"))
+    ppo_average(output_file=os.path.join(base_dir,"logs", "PPO" , "averaged_evaluation_explore_rand_env_seed10.npz" ),base_log_dir=os.path.join(base_dir,"..", "PPO_BipedalWalker", "logs" , "explore_rand_env", "batch_20000_timesteps_rand_env"))
     vae_ppo_average(output_file= os.path.join("logs", "VAE_PPO" ,"V3.12", "averaged_evaluation_batch_V3.12_kl=0.002_100k_seed10.npz") ,base_log_dir=os.path.join(base_dir,"..", "VAE_PPO_train", "logs" , "batch_V3.12_kl=0.002_100k"))

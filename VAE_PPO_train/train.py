@@ -2,7 +2,8 @@ import gymnasium as gym
 import torch
 from stable_baselines3 import PPO
 
-from Wrappers.RandomStartCartpoleEval import RandomStartCartPoleEval
+from Wrappers.RandomStartBipedalWalker import RandomStartBipedalWalker
+
 from Wrappers.Wrapped_environment import VAEWrapperWithHistory
 from Callbacks.VAE_callback_PPO import VAETrainingCallback
 from stable_baselines3.common.logger import configure
@@ -55,10 +56,10 @@ def train(vae_model_path, vae_save_folder, log_batch_dir,total_timesteps = 20000
     # Define environment :
     # set a random seed
 
-    env = gym.make("CartPole-v1")
+    env = gym.make("BipedalWalker-v3")
     env.reset(seed=seed)
     env.observation_space.seed(seed)
-    env = RandomStartCartPoleEval(env)
+    env = RandomStartBipedalWalker(env)
     wrapped_env = VAEWrapperWithHistory(env, vae, n=n, m=m, vae_optimizer=vae_optimizer)
     wrapped_env = Monitor(wrapped_env)
 
@@ -73,7 +74,7 @@ def train(vae_model_path, vae_save_folder, log_batch_dir,total_timesteps = 20000
 
     # Initialize Callbacks
     vae_callback = VAETrainingCallback(
-        vae=vae, optimizer=vae_optimizer, train_frequency=2, n=n, m=m, verbose=1, original_obs_shape=4
+        vae=vae, optimizer=vae_optimizer, train_frequency=2, n=n, m=m, verbose=1, original_obs_shape=24
     )
     #initialize eval_callback
     eval_callback = EvalCallback(

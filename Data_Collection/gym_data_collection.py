@@ -3,7 +3,7 @@ import numpy as np
 from stable_baselines3 import PPO  # Import stable-baselines3 for pre-trained policy
 from datetime import datetime
 import os
-from Wrappers.RandomStartCartPole import RandomStartCartPole
+from Wrappers.RandomStartBipedalWalker import RandomStartBipedalWalker
 
 
 # Define the base directory (directory of the current script)
@@ -19,7 +19,7 @@ def random_collect( output_path= "" , num_episodes =10 , env_wrapper= None) :
     path = os.path.join(save_dir , f"random_{num_episodes}_{timestamp}.npz")
 
     #create env
-    env = gym.make('CartPole-v1')
+    env = gym.make('BipedalWalker-v3')
     if env_wrapper is not None :
         env = env_wrapper(env)
 
@@ -75,18 +75,18 @@ def random_collect( output_path= "" , num_episodes =10 , env_wrapper= None) :
     return all_observations, episode_starts , episode_lengths
 ################################################
 ################################################
-def expert_collect(  output_path, policy_path=os.path.join(base_dir, "path_to_expert_policy.zip"), num_episodes =20, env_wrapper=None) :
+def expert_collect(  output_path, policy_path=os.path.join(base_dir, "path_to_expert_policy.zip"), num_episodes =20, env_wrapper=None, noise=False ,noise_scale=0.3) :
     # Generate dynamic path
     policy_name = policy_path.split('/')[-1].split('.')[0]
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
     if output_path is None :
-        output_path = os.path.join(base_dir, "collected_data", f"{policy_name}_{num_episodes}_{timestamp}.npz")
+        output_path = os.path.join(base_dir, "collected_data", "train", "explore_pol_standard_env", f"{policy_name}_{num_episodes}_{timestamp}.npz")
 
     # Load a pre-trained policy
     pretrained_policy = PPO.load(policy_path)
 
     # create env
-    env = gym.make('CartPole-v1')
+    env = gym.make('BipedalWalker-v3')
 
     if env_wrapper is not None :
         env = env_wrapper(env)
@@ -107,7 +107,12 @@ def expert_collect(  output_path, policy_path=os.path.join(base_dir, "path_to_ex
         while not done :
             episode_observations.append(observation)
             # Use the pre-trained policy to select an action
+
             action, _ = pretrained_policy.predict(observation, deterministic=True)
+            if noise :
+                noise_value = np.random.normal(0, noise_scale, size=4)
+                action = np.clip(action + noise_value, -1, 1)
+
 
             observation, _ , done, truncated,_ = env.step(action)
             step_count += 1
@@ -158,7 +163,7 @@ def mixed_random_expert_collect(  output_path, policy_path=os.path.join(base_dir
     pretrained_policy = PPO.load(policy_path)
 
     # create env
-    env = gym.make('CartPole-v1')
+    env = gym.make('BipedalWalker-v3')
 
     if env_wrapper is not None :
         env = env_wrapper(env)
@@ -238,7 +243,7 @@ def load_data(path = os.path.join(base_dir, "collected_data", "cartpole_data.npz
     return reconstructed_episodes, episode_starts_loaded,episode_lengths_loaded
 
 ################# Collect data from batch of policies #####################
-def collect_data_from_model(model_path, index, num_episodes=60, output_path = os.path.join(base_dir,"explore_expert") , env_wrapper = None):
+def collect_data_from_model(model_path, index, num_episodes=50, output_path = os.path.join(base_dir,"collected_data", "train", "explore_pol_standard_env") , env_wrapper = None, noise=False, noise_scale=0.3):
     """
     Collect data using the expert_collect function and save it with an indexed filename.
 
@@ -248,16 +253,16 @@ def collect_data_from_model(model_path, index, num_episodes=60, output_path = os
     - num_episodes (int): Number of episodes to collect data over.
     """
     # Define the output path with the given index
-    output_path = os.path.join(output_path, f"cartpole_ppo_data_{index}.npz")
+    output_path = os.path.join(output_path, f"BipedalWalker_ppo_data_{index}.npz")
 
     # Ensure the output directory exists
     os.makedirs(os.path.dirname(output_path), exist_ok=True)
 
     # Collect data using the expert_collect function
-    expert_collect(output_path=output_path, policy_path=model_path, num_episodes=num_episodes , env_wrapper=env_wrapper)
+    expert_collect(output_path=output_path, policy_path=model_path, num_episodes=num_episodes , env_wrapper=env_wrapper, noise=noise, noise_scale=noise_scale)
 
 
-def collect_from_batch(root_dir= os.path.join(base_dir,"..", "PPO_cartpole","logs", "batch2"), output_path  = os.path.join(base_dir, "explore_expert") , env_wrapper = None):
+def collect_from_batch(root_dir= os.path.join(base_dir,"..", "PPO_BipedalWalker","logs", "explore"), output_path  = os.path.join(base_dir, "explore_expert") , env_wrapper = None, noise=False, noise_scale=0.3, num_episodes=50):
 
     # Initialize index
     index = 0
@@ -271,7 +276,7 @@ def collect_from_batch(root_dir= os.path.join(base_dir,"..", "PPO_cartpole","log
 
                 print(f" collecting data of {model_path}")
                 # Collect data from the model
-                collect_data_from_model(model_path, index, output_path=output_path, env_wrapper=env_wrapper)
+                collect_data_from_model(model_path, index, output_path=output_path, env_wrapper=env_wrapper, noise=noise, noise_scale=noise_scale, num_episodes=num_episodes)
 
                 # Increment the index for the next file
                 index += 1
@@ -281,10 +286,11 @@ def collect_from_batch(root_dir= os.path.join(base_dir,"..", "PPO_cartpole","log
 
 if __name__ == "__main__":
     # Example calls for testing
-    #expert_collect(output_path = os.path.join(base_dir, "collected_data", "cartpole_expert_60"),policy_path = os.path.join(base_dir, "..", "PPO_cartpole", "logs","batch2","logs_20000_20250123_151149","best_model", "best_model.zip"), num_episodes=60)
-    random_collect(output_path=os.path.join("rand_pol_rand_env","wrapper2"), num_episodes=50000, env_wrapper=RandomStartCartPole)
+    #expert_collect(output_path = os.path.join(base_dir, "collected_data", "cartpole_expert_60"),policy_path = os.path.join(base_dir, "..", "PPO_BipedalWalker", "logs","batch2","logs_20000_20250123_151149","best_model", "best_model.zip"), num_episodes=60)
+    #random_collect(output_path=os.path.join("train","rand_pol_rand_env"), num_episodes=10000, env_wrapper=RandomStartBipedalWalker)
+    collect_from_batch(root_dir= os.path.join(base_dir,"..", "PPO_BipedalWalker","logs", "explore"),output_path=os.path.join(base_dir,"collected_data", "train", "explore_pol_standard_env","ppo_50k_noisy_100ep", "noise_scale_0.6_random2"), noise=True,noise_scale=0.6, num_episodes=200,env_wrapper=RandomStartBipedalWalker)
 
 
 
-    #mixed_random_expert_collect(output_path="mixed_pol_rand_env", num_episodes=10000, env_wrapper=RandomStartCartPole, policy_path="../PPO_cartpole/logs/explore_rand_env/batch_20000_timesteps_rand_env_100k_steps/logs_100000_20250210_110044/best_model/best_model.zip")
-    #collect_from_batch(root_dir='../PPO_cartpole/logs/explore/', output_path= os.path.join(base_dir, "collected_data", "explore_rand_env"), env_wrapper=RandomStartCartPole)
+    #mixed_random_expert_collect(output_path="mixed_pol_rand_env", num_episodes=10000, env_wrapper=RandomStartCartPole, policy_path="../PPO_BipedalWalker/logs/explore_rand_env/batch_20000_timesteps_rand_env_100k_steps/logs_100000_20250210_110044/best_model/best_model.zip")
+    #collect_from_batch(root_dir='../PPO_BipedalWalker/logs/explore/', output_path= os.path.join(base_dir, "collected_data", "explore_rand_env"), env_wrapper=RandomStartCartPole)

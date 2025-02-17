@@ -98,7 +98,7 @@ if __name__ == "__main__":
 
     #average the rewards :
     ppo_average(output_file=os.path.join(ppo_average_dir, "rand_env_200k.npz"),
-                base_log_dir=os.path.join(base_dir, "..", "PPO_cartpole", "logs", "eval","batch_evalconfig3_200k"))
+                base_log_dir=os.path.join(base_dir, "..", "PPO_BipedalWalker", "logs", "eval","batch_evalconfig3_200k"))
     vae_ppo_average(
         output_file= os.path.join(vae_ppo_average_dir , "rand_env_200k.npz"),
         base_log_dir=os.path.join(base_dir, "..", "VAE_PPO_train", "logs", "batch_V3.14_kl=0.001_ConfigB_50k_evalconfig3_200k"))

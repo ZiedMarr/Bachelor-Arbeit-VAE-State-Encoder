@@ -1,8 +1,0 @@
-VAE Model: vae_rand_100k
-Dataset Path: /home/zied/BA-code/Bachelor-Arbeit-VAE-State-Encoder/VAE_pretrain/../Data_Collection/collected_data/1000_rand_Eval/random_1000_20250130_122312.npz
-Evaluation Frequency: 5
-
-Results:
---------------------------------------------------
-Average Standardized MSE: 0.409914
-Total Standardized MSE: 187.740732

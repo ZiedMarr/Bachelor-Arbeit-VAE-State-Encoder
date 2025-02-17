@@ -5,7 +5,7 @@ from configs import config
 
 
 class VAETrainingCallback(BaseCallback):
-    def __init__(self, vae, optimizer, train_frequency, n, m, verbose=0, original_obs_shape=4, batch_size=32):
+    def __init__(self, vae, optimizer, train_frequency, n, m, verbose=0, original_obs_shape=24, batch_size=32):
         super(VAETrainingCallback, self).__init__(verbose)
         self.vae = vae
         self.optimizer = optimizer

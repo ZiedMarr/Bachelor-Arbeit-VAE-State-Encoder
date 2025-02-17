@@ -1,5 +1,6 @@
 import gymnasium as gym
 import numpy as np
+from Wrappers.RandomStartBipedalWalker import RandomStartBipedalWalker
 
 class RandomStartCartPole(gym.Wrapper):
     def reset(self, **kwargs):
@@ -13,19 +14,19 @@ class RandomStartCartPole(gym.Wrapper):
         pole_angular_velocity = np.random.uniform(-1.0, 1.0)  # Random spin
 
         # Set new randomized initial state
-        self.env.unwrapped.state = [cart_position, cart_velocity, pole_angle, pole_angular_velocity]
+        self.env.unwrapped.state = [.5 , .5 , .5 , .5 , .5,.5 , .5 , .5 , .5 , .5,.5 , .5 , .5 , .5 , .5,.5 , .5 , .5 , .5 , .5, .5]
 
         return np.array(self.env.unwrapped.state, dtype=np.float32), info
 
 # Create environment with the custom wrapper
-env = RandomStartCartPole(gym.make("CartPole-v1", render_mode="human"))
+env = RandomStartBipedalWalker(gym.make("BipedalWalker-v3", render_mode="human"))
 
 # Run a few episodes to check the new initialization
 for _ in range(5):
     obs, _ = env.reset()
     print("Randomized Initial Observation:", obs)
 
-    for _ in range(10):
+    for _ in range(100):
         action = env.action_space.sample()  # Take a random action
         obs, reward, terminated, truncated, _ = env.step(action)
         env.render()
