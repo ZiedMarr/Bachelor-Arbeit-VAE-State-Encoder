@@ -17,7 +17,7 @@ SUITE_CONFIGS = {
 
     'BETA_KL_DIV': 0.01,
     'LOSS_FUNC' : "MSE_loss_feature_Standardization",
-    'EPOCHS': 3,
+    'EPOCHS': 20,
 
     'EVAL_SEED' : [1, 33, 545, 65 ,6 , 66, 78, 48 , 24 , 98],
 
@@ -40,7 +40,7 @@ SUITE_CONFIGS = {
 
         'BETA_KL_DIV': 0.01,
         'LOSS_FUNC': "MSE_loss_feature_Standardization",
-        'EPOCHS': 3,
+        'EPOCHS': 20,
 
         'EVAL_SEED': [1, 33, 545, 65, 6, 66, 78, 48, 24, 98],
 
@@ -63,7 +63,7 @@ SUITE_CONFIGS = {
 
         'BETA_KL_DIV': 0.01,
         'LOSS_FUNC': "MSE_loss_feature_Standardization",
-        'EPOCHS': 3,
+        'EPOCHS': 20,
 
         'EVAL_SEED': [1, 33, 545, 65, 6, 66, 78, 48, 24, 98],
 
@@ -86,7 +86,7 @@ SUITE_CONFIGS = {
 
         'BETA_KL_DIV': 0.01,
         'LOSS_FUNC': "MSE_loss_feature_Standardization",
-        'EPOCHS': 3,
+        'EPOCHS': 20,
 
         'EVAL_SEED': [1, 33, 545, 65, 6, 66, 78, 48, 24, 98],
 
@@ -109,7 +109,7 @@ SUITE_CONFIGS = {
 
         'BETA_KL_DIV': 0.012,
         'LOSS_FUNC': "MSE_loss_feature_Standardization",
-        'EPOCHS': 3,
+        'EPOCHS': 20,
 
         'EVAL_SEED': [1, 33, 545, 65, 6, 66, 78, 48, 24, 98],
 
@@ -132,7 +132,7 @@ SUITE_CONFIGS = {
 
         'BETA_KL_DIV': 0.012,
         'LOSS_FUNC': "MSE_loss_feature_Standardization",
-        'EPOCHS': 3,
+        'EPOCHS': 20,
 
         'EVAL_SEED': [1, 33, 545, 65, 6, 66, 78, 48, 24, 98],
 
@@ -155,7 +155,7 @@ SUITE_CONFIGS = {
 
         'BETA_KL_DIV': 0.012,
         'LOSS_FUNC': "MSE_loss_feature_Standardization",
-        'EPOCHS': 3,
+        'EPOCHS': 20,
 
         'EVAL_SEED': [1, 33, 545, 65, 6, 66, 78, 48, 24, 98],
 
@@ -178,7 +178,7 @@ SUITE_CONFIGS = {
 
         'BETA_KL_DIV': 0.012,
         'LOSS_FUNC': "MSE_loss_feature_Standardization",
-        'EPOCHS': 3,
+        'EPOCHS': 20,
 
         'EVAL_SEED': [1, 33, 545, 65, 6, 66, 78, 48, 24, 98],
 
@@ -201,7 +201,7 @@ SUITE_CONFIGS = {
 
         'BETA_KL_DIV': 0.001,
         'LOSS_FUNC': "MSE_loss_feature_Standardization",
-        'EPOCHS': 3,
+        'EPOCHS': 20,
 
         'EVAL_SEED': [1, 33, 545, 65, 6, 66, 78, 48, 24, 98],
 
@@ -224,7 +224,7 @@ SUITE_CONFIGS = {
 
         'BETA_KL_DIV': 0.001,
         'LOSS_FUNC': "MSE_loss_feature_Standardization",
-        'EPOCHS': 3,
+        'EPOCHS': 20,
 
         'EVAL_SEED': [1, 33, 545, 65, 6, 66, 78, 48, 24, 98],
 
@@ -247,7 +247,7 @@ SUITE_CONFIGS = {
 
         'BETA_KL_DIV': 0.01,
         'LOSS_FUNC': "MSE_loss_feature_Standardization",
-        'EPOCHS': 3,
+        'EPOCHS': 20,
 
         'EVAL_SEED': [1, 33, 545, 65, 6, 66, 78, 48, 24, 98],
 
