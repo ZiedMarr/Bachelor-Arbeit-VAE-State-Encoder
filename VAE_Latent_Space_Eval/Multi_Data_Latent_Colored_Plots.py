@@ -107,10 +107,10 @@ def call_latent_colored(vae_name, data_dir=None, show=False, reduction=True, dat
 if __name__ == "__main__":
     #call_latent_colored("vae_rand_100k", reduction=True)
 
-    model_path = os.path.join(base_dir, "..", "VAE_PPO_train", "trained_vae", "batch_V3.14_kl=0.001_ConfigB_50k_evalconfig3_200k",
-                              "200000_vae_rand_50k_config_B_20250211_162257_20250212_130249"
+    model_path = os.path.join(base_dir, "..", "VAE_PPO_train", "trained_vae", "batch_V3.17_kl=0.001_ConfigA.2",
+                              "50000_vae_ppo_noisy_100ep_config_A_3_20250217_112556"
                               )
     vae = VAE(input_dim=config.INPUT_DIMENSION, latent_dim=config.LATENT_DIM, output_dim=config.OUTPUT_DIMENSION)
     vae.load_state_dict(torch.load(model_path))
-    data_path = os.path.join(base_dir, "..", "Data_Collection", "collected_data", "eval","random_10000_20250211_150118.npz")
+    data_path = os.path.join(base_dir, "..", "Data_Collection", "collected_data", "train","explore_pol_standard_env" , "ppo_50k_noisy_100ep" , "noise_scale_0.6_random2" , "BipedalWalker_ppo_data_3.npz" )
     plot_latent_space(vae=vae, data_paths= data_path , show=True )
