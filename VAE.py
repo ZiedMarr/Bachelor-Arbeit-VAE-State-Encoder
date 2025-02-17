@@ -47,8 +47,8 @@ class VAE(nn.Module):
         )
 
         # Latent space layers
-        self.fc_mu = nn.Linear(config.ENCODER_HIDDEN4 * 2, latent_dim)
-        self.fc_var = nn.Linear(config.ENCODER_HIDDEN4 * 2, latent_dim)
+        self.fc_mu = nn.Linear(config.ENCODER_HIDDEN8 , latent_dim)
+        self.fc_var = nn.Linear(config.ENCODER_HIDDEN8, latent_dim)
 
         # Decoder with Batch Normalization
         self.decoder = nn.Sequential(
