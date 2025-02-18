@@ -76,7 +76,7 @@ if __name__ == "__main__":
     '''
     #data_paths = ['./collected_data/cartpole_data_random_50.npz', "./collected_data/cartpole_data_expert.npz" , "./collected_data/cartpole_data_random_10.npz" ] # Replace with your actual file path
     '''
-    directory = "./collected_data/train/explore_pol_standard_env/ppo_50k_noisy_100ep/noise_scale_0.6_random2"
+    directory = "./collected_data/train/"
     data_paths = []
     # Iterate through the directory
     for file_name in os.listdir(directory):
@@ -87,19 +87,19 @@ if __name__ == "__main__":
             if os.path.isfile(full_path):
                 data_paths.append(full_path)
 
-    data_path = "collected_data/train/rand_pol_rand_env/random_10000_20250214_151610.npz"
+    data_path = "collected_data/eval/rand_pol_rand_env/random_5000_20250218_162835.npz"
 
     data_name = os.path.basename(data_path)
     name_without_extension, _ = os.path.splitext(data_name)
 
     if filter_1_episodes :
-        save_dir = save_path = os.path.join("./Data_distribution", "explore_pol_standard_env","ppo_50k_noisy_100ep", "noise_scale_0.6_rand2",f"{name_without_extension}_filtered")
+        save_dir = save_path = os.path.join("./Data_distribution", "rand_pol_rand_env",f"{name_without_extension}_filtered")
     else :
-        save_dir = save_path=os.path.join("./Data_distribution","explore_pol_standard_env","ppo_50k_noisy_100ep","noise_scale_0.6_rand2",name_without_extension)
+        save_dir = save_path=os.path.join("./Data_distribution","rand_pol_rand_env",name_without_extension)
     # Create the directory if it doesn’t exist
     os.makedirs(save_dir, exist_ok=True)
 
-    for i in range(24) :
-        visualize_observation_distribution(data_paths=data_paths, observation_index=i, save_path=os.path.join(save_dir,f"data_explore_{i}"))
+    for i in range(8) :
+        visualize_observation_distribution(data_paths=data_path, observation_index=i, save_path=os.path.join(save_dir,f"data_explore_{i}"))
     #visualize_observation_distribution(data_paths="./collected_data/cartpole_expert_60.npz", observation_index=3,
     #                               save_path="./Data_distribution/expert_60/data_3")

@@ -2,7 +2,7 @@ import gymnasium as gym
 import torch
 from stable_baselines3 import PPO
 
-from Wrappers.RandomStartBipedalWalker import RandomStartBipedalWalker
+from Wrappers.RandomStartLunarLander import RandomStartBipedalWalker
 
 from Wrappers.Wrapped_environment import VAEWrapperWithHistory
 from Callbacks.VAE_callback_PPO import VAETrainingCallback
@@ -56,7 +56,7 @@ def train(vae_model_path, vae_save_folder, log_batch_dir,total_timesteps = 20000
     # Define environment :
     # set a random seed
 
-    env = gym.make("BipedalWalker-v3")
+    env = gym.make("LunarLander-v3")
     env.reset(seed=seed)
     env.observation_space.seed(seed)
     env = RandomStartBipedalWalker(env)

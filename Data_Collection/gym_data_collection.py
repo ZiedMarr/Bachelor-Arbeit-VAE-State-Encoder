@@ -3,7 +3,7 @@ import numpy as np
 from stable_baselines3 import PPO  # Import stable-baselines3 for pre-trained policy
 from datetime import datetime
 import os
-from Wrappers.RandomStartBipedalWalker import RandomStartBipedalWalker
+from Wrappers.RandomStartLunarLander import RandomStartLunarLander
 
 
 # Define the base directory (directory of the current script)
@@ -19,7 +19,7 @@ def random_collect( output_path= "" , num_episodes =10 , env_wrapper= None) :
     path = os.path.join(save_dir , f"random_{num_episodes}_{timestamp}.npz")
 
     #create env
-    env = gym.make('BipedalWalker-v3')
+    env = gym.make('LunarLander-v3')
     if env_wrapper is not None :
         env = env_wrapper(env)
 
@@ -86,7 +86,7 @@ def expert_collect(  output_path, policy_path=os.path.join(base_dir, "path_to_ex
     pretrained_policy = PPO.load(policy_path)
 
     # create env
-    env = gym.make('BipedalWalker-v3')
+    env = gym.make('LunarLander-v3')
 
     if env_wrapper is not None :
         env = env_wrapper(env)
@@ -163,7 +163,7 @@ def mixed_random_expert_collect(  output_path, policy_path=os.path.join(base_dir
     pretrained_policy = PPO.load(policy_path)
 
     # create env
-    env = gym.make('BipedalWalker-v3')
+    env = gym.make('LunarLander-v3')
 
     if env_wrapper is not None :
         env = env_wrapper(env)
@@ -262,7 +262,7 @@ def collect_data_from_model(model_path, index, num_episodes=50, output_path = os
     expert_collect(output_path=output_path, policy_path=model_path, num_episodes=num_episodes , env_wrapper=env_wrapper, noise=noise, noise_scale=noise_scale)
 
 
-def collect_from_batch(root_dir= os.path.join(base_dir,"..", "PPO_BipedalWalker","logs", "explore"), output_path  = os.path.join(base_dir, "explore_expert") , env_wrapper = None, noise=False, noise_scale=0.3, num_episodes=50):
+def collect_from_batch(root_dir= os.path.join(base_dir,"..", "PPO","logs", "explore"), output_path  = os.path.join(base_dir, "explore_expert") , env_wrapper = None, noise=False, noise_scale=0.3, num_episodes=50):
 
     # Initialize index
     index = 0
@@ -286,11 +286,11 @@ def collect_from_batch(root_dir= os.path.join(base_dir,"..", "PPO_BipedalWalker"
 
 if __name__ == "__main__":
     # Example calls for testing
-    #expert_collect(output_path = os.path.join(base_dir, "collected_data", "cartpole_expert_60"),policy_path = os.path.join(base_dir, "..", "PPO_BipedalWalker", "logs","batch2","logs_20000_20250123_151149","best_model", "best_model.zip"), num_episodes=60)
-    #random_collect(output_path=os.path.join("train","rand_pol_rand_env"), num_episodes=10000, env_wrapper=RandomStartBipedalWalker)
-    collect_from_batch(root_dir= os.path.join(base_dir,"..", "PPO_BipedalWalker","logs", "explore"),output_path=os.path.join(base_dir,"collected_data", "train", "explore_pol_standard_env","ppo_50k_noisy_100ep", "noise_scale_0.6_random2"), noise=True,noise_scale=0.6, num_episodes=200,env_wrapper=RandomStartBipedalWalker)
+    #expert_collect(output_path = os.path.join(base_dir, "collected_data", "cartpole_expert_60"),policy_path = os.path.join(base_dir, "..", "PPO", "logs","batch2","logs_20000_20250123_151149","best_model", "best_model.zip"), num_episodes=60)
+    random_collect(output_path=os.path.join("train","rand_pol_rand_env"), num_episodes=5000, env_wrapper=RandomStartLunarLander)
+    #collect_from_batch(root_dir= os.path.join(base_dir,"..", "PPO","logs", "explore"),output_path=os.path.join(base_dir,"collected_data", "train", "explore_pol_standard_env","ppo_50k_noisy_100ep", "noise_scale_0.6_random2"), noise=True,noise_scale=0.6, num_episodes=200,env_wrapper=RandomStartLunarLander)
 
 
 
-    #mixed_random_expert_collect(output_path="mixed_pol_rand_env", num_episodes=10000, env_wrapper=RandomStartCartPole, policy_path="../PPO_BipedalWalker/logs/explore_rand_env/batch_20000_timesteps_rand_env_100k_steps/logs_100000_20250210_110044/best_model/best_model.zip")
-    #collect_from_batch(root_dir='../PPO_BipedalWalker/logs/explore/', output_path= os.path.join(base_dir, "collected_data", "explore_rand_env"), env_wrapper=RandomStartCartPole)
+    #mixed_random_expert_collect(output_path="mixed_pol_rand_env", num_episodes=10000, env_wrapper=RandomStartCartPole, policy_path="../PPO/logs/explore_rand_env/batch_20000_timesteps_rand_env_100k_steps/logs_100000_20250210_110044/best_model/best_model.zip")
+    #collect_from_batch(root_dir='../PPO/logs/explore/', output_path= os.path.join(base_dir, "collected_data", "explore_rand_env"), env_wrapper=RandomStartCartPole)

@@ -12,7 +12,7 @@ from configs import config
 base_dir = os.path.dirname(os.path.abspath(__file__))
 
 
-def render_bipedalwalker_from_observations(observations,
+def render_lunarlander_from_observations(observations,
                                            gif_path=os.path.join(base_dir, "GIF", "bipedalwalker_render.gif")):
     """
     Render a BipedalWalker environment using a sequence of observations and save it as a GIF.
@@ -21,7 +21,7 @@ def render_bipedalwalker_from_observations(observations,
     :param gif_path: Path to save the generated GIF.
     """
     # Create the BipedalWalker environment in "rgb_array" mode for rendering
-    env = gym.make("BipedalWalker-v3", render_mode="rgb_array")
+    env = gym.make("LunarLander-v3", render_mode="rgb_array")
     frames = []
 
     # Loop through each observation and render the environment
@@ -44,7 +44,7 @@ def render_bipedalwalker_from_observations(observations,
 
     # Save the frames as a GIF
     imageio.mimsave(gif_path, frames, duration=0.1)
-    print(f"BipedalWalker rendering saved to {gif_path}")
+    print(f"LunarLander rendering saved to {gif_path}")
 
 
 def stack_data_per_episode(episodes, n, m):
@@ -134,16 +134,16 @@ def main(data_path, vae_model_path):
         combined_true = np.concatenate((inp.reshape(n, -1), true_out.reshape(m, -1)), axis=0)
         combined_pred = np.concatenate((inp.reshape(n, -1), pred_out.reshape(m, -1)), axis=0)
 
-        render_bipedalwalker_from_observations(inp.reshape(n, -1), input_gif_path)
-        render_bipedalwalker_from_observations(true_out.reshape(m, -1), true_output_gif_path)
-        render_bipedalwalker_from_observations(pred_out.reshape(m, -1), predicted_output_gif_path)
-        render_bipedalwalker_from_observations(combined_true, input_true_output_gif_path)
-        render_bipedalwalker_from_observations(combined_pred, input_pred_output_gif_path)
+        render_lunarlander_from_observations(inp.reshape(n, -1), input_gif_path)
+        render_lunarlander_from_observations(true_out.reshape(m, -1), true_output_gif_path)
+        render_lunarlander_from_observations(pred_out.reshape(m, -1), predicted_output_gif_path)
+        render_lunarlander_from_observations(combined_true, input_true_output_gif_path)
+        render_lunarlander_from_observations(combined_pred, input_pred_output_gif_path)
 
 
 def call_reconstruction(vae_name,
                         data_path=os.path.join(base_dir, "..", "Data_Collection", "collected_data", "1000_rand_Eval",
-                                               "bipedalwalker_random_1000.npz")):
+                                               "lunarlander_random_1000.npz")):
     main(data_path=data_path,
          vae_model_path=os.path.join(base_dir, "..", "VAE_pretrain", "pretrained_vae", config.VAE_Version,
                                      f"{config.INPUT_STATE_SIZE}_{config.OUTPUT_STATE_SIZE}",
@@ -152,7 +152,7 @@ def call_reconstruction(vae_name,
 
 if __name__ == "__main__":
     main(data_path=os.path.join(base_dir, "..", "Data_Collection", "collected_data", "1000_rand_Eval",
-                                "bipedalwalker_random_1000.npz"),
+                                "lunarlander_random_1000.npz"),
          vae_model_path=os.path.join(base_dir, "..", "VAE_pretrain", "pretrained_vae", config.VAE_Version,
                                      f"{config.INPUT_STATE_SIZE}_{config.OUTPUT_STATE_SIZE}",
                                      f"KL-D_{config.BETA_KL_DIV}", "vae_rand_100k"))

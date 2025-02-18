@@ -1,8 +1,0 @@
-VAE Model: vae_ppo_noisy_100ep_config_B_3
-Dataset Path: C:\Users\ziedm\Refernce File\Studium\WiSe 24-25\BA\code\source\VAE_pretrain\..\Data_Collection\collected_data\train\explore_pol_standard_env\ppo_50k_noisy_100ep\noise_scale_0.6_random2\BipedalWalker_ppo_data_4.npz
-Evaluation Frequency: 5
-
-Results:
---------------------------------------------------
-Average Standardized MSE: 1.031737
-Total Standardized MSE: 3397.510880

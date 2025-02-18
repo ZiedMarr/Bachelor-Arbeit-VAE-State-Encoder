@@ -1,6 +1,6 @@
 import gymnasium as gym
 import numpy as np
-from Wrappers.RandomStartBipedalWalker import RandomStartBipedalWalker
+from Wrappers.RandomStartLunarLander import RandomStartLunarLander
 
 class RandomStartCartPole(gym.Wrapper):
     def reset(self, **kwargs):
@@ -19,11 +19,11 @@ class RandomStartCartPole(gym.Wrapper):
         return np.array(self.env.unwrapped.state, dtype=np.float32), info
 
 # Create environment with the custom wrapper
-env = RandomStartBipedalWalker(gym.make("BipedalWalker-v3", render_mode="human"))
-
+env = RandomStartLunarLander(gym.make("LunarLander-v3", render_mode="human"))
+seeds = [2 ,45 ,654 ,77 ,23 , 22 , 323]
 # Run a few episodes to check the new initialization
-for _ in range(5):
-    obs, _ = env.reset()
+for i in range(5):
+    obs, _ = env.reset(seed=seeds[i])
     print("Randomized Initial Observation:", obs)
 
     for _ in range(100):
