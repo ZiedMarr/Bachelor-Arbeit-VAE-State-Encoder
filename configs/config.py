@@ -1,6 +1,6 @@
-INPUT_STATE_SIZE = 4
+INPUT_STATE_SIZE = 2
 OUTPUT_STATE_SIZE = 2
-LATENT_DIM = 4
+LATENT_DIM = 2
 
 INPUT_DIMENSION = INPUT_STATE_SIZE * 8
 OUTPUT_DIMENSION =  OUTPUT_STATE_SIZE * 8
@@ -32,5 +32,5 @@ LOSS_FUNC = "MSE_loss_feature_Standardization"
 ACT_FUNC = "LeakyReLU(0.1)"
 NORM_FUNC = "LayerNorm"
 
-VAE_Version = "VAE_Version_3.17"
+VAE_Version = "VAE_Version_2"
 
