@@ -59,7 +59,7 @@ def train(vae_model_path, vae_save_folder, log_batch_dir,total_timesteps = 20000
     env = gym.make("LunarLander-v3")
     env.reset(seed=seed)
     env.observation_space.seed(seed)
-    env = RandomStartLunarLander(env)
+    #env = RandomStartLunarLander(env)
     wrapped_env = VAEWrapperWithHistory(env, vae, n=n, m=m, vae_optimizer=vae_optimizer)
     wrapped_env = Monitor(wrapped_env)
 
