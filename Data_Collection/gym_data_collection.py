@@ -288,8 +288,8 @@ if __name__ == "__main__":
     # Example calls for testing
     #expert_collect(output_path = os.path.join(base_dir, "collected_data", "cartpole_expert_60"),policy_path = os.path.join(base_dir, "..", "PPO", "logs","batch2","logs_20000_20250123_151149","best_model", "best_model.zip"), num_episodes=60)
     #random_collect(output_path=os.path.join("train","rand_pol_rand_env"), num_episodes=5000, env_wrapper=RandomStartLunarLander)
-    collect_from_batch(root_dir= os.path.join(base_dir,"..", "PPO","logs", "explore", "batch_10_100k"),output_path=os.path.join(base_dir,"collected_data", "train", "explore_pol_standard_env","ppo_100k_noise0.3"), noise=True,noise_scale=0.3, num_episodes=15,env_wrapper=None)
-    collect_from_batch(root_dir= os.path.join(base_dir,"..", "PPO","logs", "explore", "batch_10_200k"),output_path=os.path.join(base_dir,"collected_data", "train", "explore_pol_standard_env","ppo_200k_noise0.3"), noise=True,noise_scale=0.3, num_episodes=15,env_wrapper=None)
+    collect_from_batch(root_dir= os.path.join(base_dir,"..", "PPO","logs", "explore", "batch_10_100k"),output_path=os.path.join(base_dir,"collected_data", "train", "explore_pol_standard_env","ppo_100k_nonoise"), noise=False,noise_scale=0.3, num_episodes=15,env_wrapper=None)
+    collect_from_batch(root_dir= os.path.join(base_dir,"..", "PPO","logs", "explore", "batch_10_200k"),output_path=os.path.join(base_dir,"collected_data", "train", "explore_pol_standard_env","ppo_200k_nonoise"), noise=False,noise_scale=0.3, num_episodes=15,env_wrapper=None)
 
 
 
