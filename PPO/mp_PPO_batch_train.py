@@ -60,7 +60,7 @@ def main(batch = "batch_evalconfig3_100k"):
     total_timesteps = eval_config.TOTAL_TIMESTEPS
 
     # Setup log directory
-    log_batch_dir = os.path.join(script_dir, "logs", "eval", batch)
+    log_batch_dir = os.path.join(script_dir, "logs", "explore", batch)
 
     # Save evaluation config
     save_eval_config(log_batch_dir)
@@ -120,4 +120,4 @@ def main(batch = "batch_evalconfig3_100k"):
 
 
 if __name__ == "__main__":
-    main(batch = "batch_10_100k")
+    main(batch = "batch_10_200k")
