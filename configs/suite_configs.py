@@ -23,8 +23,11 @@ SUITE_CONFIGS = {
         'DECODER_HIDDEN8': 16,
 
         'BETA_KL_DIV': 0.001,
+        'TRAIN_FREQUENCY' : 5,
         'LOSS_FUNC': "MSE_loss_feature_Standardization",
         'EPOCHS': 2,
+        'ACT_FUNC' : "LeakyReLU(0.1)",
+        'NORM_FUNC' : "LayerNorm",
 
         'EVAL_SEED': [1, 33, 545, 65, 6, 66, 78, 48, 24, 98],
 

@@ -27,15 +27,30 @@ class Config:
         self.ENCODER_HIDDEN2 = config_dict.get("ENCODER_HIDDEN2", 32)
         self.ENCODER_HIDDEN3 = config_dict.get("ENCODER_HIDDEN3", 16)
         self.ENCODER_HIDDEN4 = config_dict.get("ENCODER_HIDDEN4", 16)
-        self.ENCODER_HIDDEN5 = config_dict.get("ENCODER_HIDDEN3", 16)
-        self.ENCODER_HIDDEN6 = config_dict.get("ENCODER_HIDDEN3", 16)
-
-
+        self.ENCODER_HIDDEN5 = config_dict.get("ENCODER_HIDDEN5", 16)
+        self.ENCODER_HIDDEN6 = config_dict.get("ENCODER_HIDDEN6", 16)
+        self.ENCODER_HIDDEN7 = config_dict.get("ENCODER_HIDDEN7", 16)
+        self.ENCODER_HIDDEN8 = config_dict.get("ENCODER_HIDDEN8", 16)
+        self.ENCODER_HIDDEN9 = config_dict.get("ENCODER_HIDDEN9", 16)
 
         self.DECODER_HIDDEN = config_dict.get("DECODER_HIDDEN", 16)
         self.DECODER_HIDDEN2 = config_dict.get("DECODER_HIDDEN2", 32)
         self.DECODER_HIDDEN3 = config_dict.get("DECODER_HIDDEN3", 64)
+        self.DECODER_HIDDEN4 = config_dict.get("DECODER_HIDDEN4", 16)
+        self.DECODER_HIDDEN5= config_dict.get("DECODER_HIDDEN5", 16)
+        self.DECODER_HIDDEN6 = config_dict.get("DECODER_HIDDEN6", 16)
+        self.DECODER_HIDDEN7 = config_dict.get("DECODER_HIDDEN7", 16)
+        self.DECODER_HIDDEN8 = config_dict.get("DECODER_HIDDEN8", 16)
+        self.DECODER_HIDDEN9 = config_dict.get("DECODER_HIDDEN9", 16)
+
+
         self.BETA_KL_DIV = config_dict.get("BETA_KL_DIV", 0.001)
+        self.TRAIN_FREQUENCY =config_dict.get("TRAIN_FREQUENCY", 5)
+        self.LOSS_FUNC =config_dict.get("LOSS_FUNC", 5)
+        self.EPOCHS =config_dict.get("EPOCHS", 5)
+        self.ACT_FUNC =config_dict.get("ACT_FUNC", 5)
+        self.NORM_FUNC =config_dict.get("NORM_FUNC", 5)
+
         self.VAE_Version = config_dict.get("VAE_Version", "3.13")
 
         # Calculate derived values
@@ -49,13 +64,30 @@ def get_base_config() -> Dict[str, Any]:
         "INPUT_STATE_SIZE": config_module.INPUT_STATE_SIZE,
         "OUTPUT_STATE_SIZE": config_module.OUTPUT_STATE_SIZE,
         "LATENT_DIM": config_module.LATENT_DIM,
-        "ENCODER_HIDDEN": config_module.ENCODER_HIDDEN,
-        "ENCODER_HIDDEN2": config_module.ENCODER_HIDDEN2,
-        "ENCODER_HIDDEN3": config_module.ENCODER_HIDDEN3,
-        "DECODER_HIDDEN": config_module.DECODER_HIDDEN,
-        "DECODER_HIDDEN2": config_module.DECODER_HIDDEN2,
-        "DECODER_HIDDEN3": config_module.DECODER_HIDDEN3,
+
+        'ENCODER_HIDDEN': config_module.ENCODER_HIDDEN,
+        'ENCODER_HIDDEN2': config_module.ENCODER_HIDDEN2,
+        'ENCODER_HIDDEN3': config_module.ENCODER_HIDDEN3,
+        'ENCODER_HIDDEN4': config_module.ENCODER_HIDDEN4,
+        'ENCODER_HIDDEN5': config_module.ENCODER_HIDDEN5,
+        'ENCODER_HIDDEN6': config_module.ENCODER_HIDDEN6,
+        'ENCODER_HIDDEN7': config_module.ENCODER_HIDDEN7,
+        'ENCODER_HIDDEN8': config_module.ENCODER_HIDDEN8,
+        'DECODER_HIDDEN': config_module.DECODER_HIDDEN,
+        'DECODER_HIDDEN2': config_module.DECODER_HIDDEN2,
+        'DECODER_HIDDEN3': config_module.DECODER_HIDDEN3,
+        'DECODER_HIDDEN4': config_module.DECODER_HIDDEN4,
+        'DECODER_HIDDEN5': config_module.DECODER_HIDDEN5,
+        'DECODER_HIDDEN6': config_module.DECODER_HIDDEN6,
+        'DECODER_HIDDEN7': config_module.DECODER_HIDDEN7,
+        'DECODER_HIDDEN8': config_module.DECODER_HIDDEN8,
         "BETA_KL_DIV": config_module.BETA_KL_DIV,
+        'TRAIN_FREQUENCY': config_module.TRAIN_FREQUENCY,
+        'LOSS_FUNC': config_module.LOSS_FUNC,
+        'EPOCHS': config_module.EPOCHS,
+        'ACT_FUNC': config_module.ACT_FUNC,
+        'NORM_FUNC': config_module.NORM_FUNC,
+
         "VAE_Version": config_module.VAE_Version
     }
 

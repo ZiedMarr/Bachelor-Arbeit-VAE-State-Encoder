@@ -28,8 +28,7 @@ BETA_KL_DIV = 0.001
 TRAIN_FREQUENCY = 5
 EPOCHS = 3
 LOSS_FUNC = "MSE_loss_feature_Standardization"
-ENCODER_N_LAYERS = 6
-DECODER_N_LAYERS = 6
+
 ACT_FUNC = "LeakyReLU(0.1)"
 NORM_FUNC = "LayerNorm"
 
