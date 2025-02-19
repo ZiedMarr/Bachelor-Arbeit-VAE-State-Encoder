@@ -120,6 +120,7 @@ def worker(process_id: int,
         # Update global config module values for compatibility
         for key, value in vars(current_config).items():
             setattr(config_module, key, value)
+        '''
         ########debug#######################
         # Print all attributes inside config_module
         print("Updated config_module:")
@@ -127,7 +128,7 @@ def worker(process_id: int,
             if not key.startswith("__"):  # Exclude built-in attributes
                 print(f"{key}: {value}")
         ########debug#######################
-
+        '''
 
         # Define evaluation data path
         eval_data = os.path.join(base_dir, "..", "Data_Collection", "collected_data",
@@ -149,7 +150,7 @@ def worker(process_id: int,
             # Run training and evaluation pipeline
             call_pretrain(vae_name=vae_name, data_dir=train_data)
             call_latent_colored(vae_name=vae_name, show=False, data_path=eval_data)
-            call_reconstruction(vae_name,data_path=eval_data)
+           # call_reconstruction(vae_name,data_path=eval_data)
             vae_score_call(data_path=eval_data, vae_name=vae_name)
 
         # Save configurations
