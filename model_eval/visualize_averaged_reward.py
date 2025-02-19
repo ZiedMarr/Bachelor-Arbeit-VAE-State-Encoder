@@ -91,17 +91,17 @@ if __name__ == "__main__":
     #visualize(os.path.join(base_dir, "logs", "VAE_PPO" ,"averaged_evaluation_batch2.npz"))
     #define averaged files :
     ppo_average_dir = os.path.join(base_dir, "logs", "PPO","rand_env_config1_50k" )
-    vae_ppo_average_dir = os.path.join("logs", "VAE_PPO", "V3.17", "rand_env_config1_50k")
+    vae_ppo_average_dir = os.path.join("logs", "VAE_PPO", "V2", "rand_env_config1_50k")
     os.makedirs(ppo_average_dir, exist_ok=True)
     os.makedirs(vae_ppo_average_dir, exist_ok=True)
 
 
     #average the rewards :
     ppo_average(output_file=os.path.join(ppo_average_dir, "batch_size_10.npz"),
-                base_log_dir=os.path.join(base_dir, "..", "PPO", "logs", "eval","batch_10_50k"))
+                base_log_dir=os.path.join(base_dir, "..", "PPO", "logs", "eval","batch_20_50k"))
     vae_ppo_average(
         output_file= os.path.join(vae_ppo_average_dir , "batch_size_10.npz"),
-        base_log_dir=os.path.join(base_dir, "..", "VAE_PPO_train", "logs", "batch_V3.17_kl=0.001_ConfigA.2"))
+        base_log_dir=os.path.join(base_dir, "..", "VAE_PPO_train", "logs", "batch_V2"))
     # Define file paths
     ppo_file = os.path.join(ppo_average_dir, "batch_size_10.npz")
     vae_ppo_file =  os.path.join(vae_ppo_average_dir , "batch_size_10.npz")
