@@ -7,6 +7,7 @@ class VAE(nn.Module):
     def __init__(self, input_dim, latent_dim, output_dim):
         super(VAE, self).__init__()
 
+
         # Encoder with Batch Normalization
         self.encoder = nn.Sequential(
             #normalize Input
@@ -40,7 +41,7 @@ class VAE(nn.Module):
             nn.LayerNorm([config.ENCODER_HIDDEN7]),
             nn.LeakyReLU(0.1),
 
-            nn.Linear(config.ENCODER_HIDDEN7, config.ENCODER_HIDDEN7),
+            nn.Linear(config.ENCODER_HIDDEN7, config.ENCODER_HIDDEN8),
             nn.LayerNorm([config.ENCODER_HIDDEN8]),
             nn.LeakyReLU(0.1),
 
@@ -79,6 +80,10 @@ class VAE(nn.Module):
 
             nn.Linear(config.DECODER_HIDDEN6, config.DECODER_HIDDEN7),
             nn.LayerNorm([config.DECODER_HIDDEN7]),
+            nn.LeakyReLU(0.1),
+
+            nn.Linear(config.DECODER_HIDDEN7, config.DECODER_HIDDEN8),
+            nn.LayerNorm([config.DECODER_HIDDEN8]),
             nn.LeakyReLU(0.1),
 
 

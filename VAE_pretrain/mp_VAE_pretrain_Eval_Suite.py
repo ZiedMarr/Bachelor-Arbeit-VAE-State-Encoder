@@ -120,6 +120,14 @@ def worker(process_id: int,
         # Update global config module values for compatibility
         for key, value in vars(current_config).items():
             setattr(config_module, key, value)
+        ########debug#######################
+        # Print all attributes inside config_module
+        print("Updated config_module:")
+        for key, value in config_module.__dict__.items():
+            if not key.startswith("__"):  # Exclude built-in attributes
+                print(f"{key}: {value}")
+        ########debug#######################
+
 
         # Define evaluation data path
         eval_data = os.path.join(base_dir, "..", "Data_Collection", "collected_data",
