@@ -2,5 +2,5 @@ EVAL_SEED = [1, 33, 545, 65, 6, 66, 78, 48, 24, 98, 394 , 122 , 4545 , 12 , 55 ,
 
 
 #eval configs :
-BATCH_SIZE = 10
+BATCH_SIZE = 20
 TOTAL_TIMESTEPS = 50000

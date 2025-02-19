@@ -7,10 +7,11 @@ from stable_baselines3.common.monitor import Monitor
 from stable_baselines3.common.logger import configure
 from datetime import datetime
 from Wrappers.RandomStartEval import RandomStartCartPoleEval
+from Wrappers.RandomStartLunarLander import RandomStartLunarLander
 
 import os
 
-def train_ppo(log_batch_dir, total_timesteps=20000, seed=42,env_wrapper=RandomStartCartPoleEval) :
+def train_ppo(log_batch_dir, total_timesteps=20000, seed=42,env_wrapper=RandomStartLunarLander) :
 
     # Define the base directory (directory of the current script)
     base_dir = os.path.dirname(os.path.abspath(__file__))

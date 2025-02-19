@@ -4,7 +4,7 @@ import torch.multiprocessing as mp
 from PPO.train_ppo import train_ppo
 from configs import eval_config
 from configs.save_config import save_eval_config
-from Wrappers.RandomStartLunarLander import RandomStartBipedalWalker
+from Wrappers.RandomStartLunarLander import  RandomStartLunarLander
 import psutil
 from typing import Optional
 
@@ -87,7 +87,7 @@ def main(batch = "batch_evalconfig3_100k"):
             # Create and start process
             p = mp.Process(
                 target=worker,
-                args=(i, log_batch_dir, total_timesteps, seeds[i], RandomStartBipedalWalker)
+                args=(i, log_batch_dir, total_timesteps, seeds[i], RandomStartLunarLander)
             )
             p.start()
             processes.append(p)
@@ -120,4 +120,4 @@ def main(batch = "batch_evalconfig3_100k"):
 
 
 if __name__ == "__main__":
-    main(batch = "batch_10_50k")
+    main(batch = "batch_20_50k")
