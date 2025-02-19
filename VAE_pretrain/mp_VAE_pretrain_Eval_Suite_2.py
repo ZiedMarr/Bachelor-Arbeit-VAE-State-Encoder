@@ -14,56 +14,64 @@ from VAE_pretrain.VAE_offline_pretrain import call_pretrain
 from VAE_Latent_Space_Eval.VAE_reconstructions import call_reconstruction
 from VAE_Latent_Space_Eval.VAE_score_Eval import vae_score_call
 from VAE_Latent_Space_Eval.Multi_Data_Latent_Colored_Plots import call_latent_colored
+import importlib
+import copy
+from typing import Dict, Any
 
 
-class Config:
-    """Configuration class to hold all parameters"""
+def get_config_with_updates(config_name: str, updates: Dict[str, Any]) -> Dict[str, Any]:
+    """
+    Creates a configuration dictionary by:
+    1. Starting with all values from configs.config
+    2. Adding any new keys from updates
+    3. Overriding any existing keys with values from updates
 
-    def __init__(self, config_dict):
-        self.INPUT_STATE_SIZE = config_dict.get("INPUT_STATE_SIZE", 5)
-        self.OUTPUT_STATE_SIZE = config_dict.get("OUTPUT_STATE_SIZE", 2)
-        self.LATENT_DIM = config_dict.get("LATENT_DIM", 2)
-        self.ENCODER_HIDDEN = config_dict.get("ENCODER_HIDDEN", 64)
-        self.ENCODER_HIDDEN2 = config_dict.get("ENCODER_HIDDEN2", 32)
-        self.ENCODER_HIDDEN3 = config_dict.get("ENCODER_HIDDEN3", 16)
-        self.ENCODER_HIDDEN4 = config_dict.get("ENCODER_HIDDEN4", 16)
-        self.ENCODER_HIDDEN5 = config_dict.get("ENCODER_HIDDEN3", 16)
-        self.ENCODER_HIDDEN6 = config_dict.get("ENCODER_HIDDEN3", 16)
+    Args:
+        config_name: Name of this configuration (for logging purposes)
+        updates: Dictionary of config values to update or add
 
+    Returns:
+        Complete configuration dictionary with all needed values
+    """
+    # Force reload the config module to get fresh values
+    import configs.config
+    importlib.reload(configs.config)
 
+    # Get all attributes from the config module
+    config_dict = {}
+    for attr in dir(configs.config):
+        # Skip private/special attributes
+        if not attr.startswith('__'):
+            config_dict[attr] = getattr(configs.config, attr)
 
-        self.DECODER_HIDDEN = config_dict.get("DECODER_HIDDEN", 16)
-        self.DECODER_HIDDEN2 = config_dict.get("DECODER_HIDDEN2", 32)
-        self.DECODER_HIDDEN3 = config_dict.get("DECODER_HIDDEN3", 64)
-        self.BETA_KL_DIV = config_dict.get("BETA_KL_DIV", 0.001)
-        self.VAE_Version = config_dict.get("VAE_Version", "3.13")
+    # Make a deep copy to avoid modifying the original
+    config_dict = copy.deepcopy(config_dict)
 
-        # Calculate derived values
-        self.INPUT_DIMENSION = self.INPUT_STATE_SIZE * 8
-        self.OUTPUT_DIMENSION = self.OUTPUT_STATE_SIZE * 8
+    # Add/update with new values
+    config_dict.update(updates)
 
-
-def get_base_config() -> Dict[str, Any]:
-    """Get the base configuration as a dictionary"""
-    return {
-        "INPUT_STATE_SIZE": config_module.INPUT_STATE_SIZE,
-        "OUTPUT_STATE_SIZE": config_module.OUTPUT_STATE_SIZE,
-        "LATENT_DIM": config_module.LATENT_DIM,
-        "ENCODER_HIDDEN": config_module.ENCODER_HIDDEN,
-        "ENCODER_HIDDEN2": config_module.ENCODER_HIDDEN2,
-        "ENCODER_HIDDEN3": config_module.ENCODER_HIDDEN3,
-        "DECODER_HIDDEN": config_module.DECODER_HIDDEN,
-        "DECODER_HIDDEN2": config_module.DECODER_HIDDEN2,
-        "DECODER_HIDDEN3": config_module.DECODER_HIDDEN3,
-        "BETA_KL_DIV": config_module.BETA_KL_DIV,
-        "VAE_Version": config_module.VAE_Version
-    }
+    print(f"Configuration '{config_name}' created with {len(updates)} custom values")
+    return config_dict
 
 
-def worker(process_id: int,
-           config_name: str,
-           config_dict: Dict[str, Any],
-           base_dir: str):
+def apply_config_to_module(config_dict: Dict[str, Any]) -> None:
+    """
+    Updates the global configs.config module with values from config_dict.
+    This maintains compatibility with existing code that imports from configs.config.
+
+    Args:
+        config_dict: Dictionary of configuration values to apply
+    """
+    import configs.config
+
+    # Update each attribute in the module
+    for key, value in config_dict.items():
+        setattr(configs.config, key, value)
+
+    print(f"Applied {len(config_dict)} configuration values to configs.config module")
+
+
+def worker(process_id: int, config_name: str, config_updates: Dict[str, Any], base_dir: str):
     """Worker function for training a single VAE configuration."""
     try:
         # Force CPU usage and limit threads per process
@@ -77,21 +85,15 @@ def worker(process_id: int,
         except ImportError:
             pass
 
-        # Create timestamp
-        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+        # Create complete config and apply to global module
+        config_dict = get_config_with_updates(config_name, config_updates)
+        apply_config_to_module(config_dict)
 
-        # Create configuration object
-        base_config_dict = get_base_config()
-        base_config_dict.update(config_dict)  # Override with new config values
-        current_config = Config(base_config_dict)
-
-        # Update global config module values for compatibility
-        for key, value in vars(current_config).items():
-            setattr(config_module, key, value)
+        # Now all functions that import from configs.config will see the updated values
 
         # Define evaluation data path
         eval_data = os.path.join(base_dir, "..", "Data_Collection", "collected_data",
-                                 "eval", "rand_pol_rand_env","random_5000_20250218_162835.npz")
+                                 "eval", "rand_pol_rand_env", "random_5000_20250218_162835.npz")
 
         # Training datasets and their corresponding VAE names
         datasets = [
@@ -102,14 +104,14 @@ def worker(process_id: int,
         for vae_name_base, data_file in datasets:
             vae_name = f"{vae_name_base}_{config_name}_{configs.config.EPOCHS}"
             train_data = os.path.join(base_dir, "..", "Data_Collection", "collected_data",
-                                      "train","rand_pol_rand_env", data_file)
+                                      "train", "rand_pol_rand_env", data_file)
 
             print(f"Process {process_id} starting training for {vae_name}")
 
             # Run training and evaluation pipeline
             call_pretrain(vae_name=vae_name, data_dir=train_data)
             call_latent_colored(vae_name=vae_name, show=False, data_path=eval_data)
-            call_reconstruction(vae_name,data_path=eval_data)
+            call_reconstruction(vae_name, data_path=eval_data)
             vae_score_call(data_path=eval_data, vae_name=vae_name)
 
         # Save configurations
@@ -117,7 +119,6 @@ def worker(process_id: int,
         save_vae_code()
 
         print(f"Process {process_id} completed configuration {config_name}")
-
     except Exception as e:
         print(f"Error in process {process_id} with config {config_name}: {str(e)}")
         raise e
