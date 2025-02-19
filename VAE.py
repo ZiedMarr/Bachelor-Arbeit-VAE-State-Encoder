@@ -26,30 +26,16 @@ class VAE(nn.Module):
 
             nn.Linear(config.ENCODER_HIDDEN3, config.ENCODER_HIDDEN4),
             nn.LayerNorm([config.ENCODER_HIDDEN4]),
-            nn.LeakyReLU(0.1),
+            nn.LeakyReLU(0.1)
 
-            # New additional layers
-            nn.Linear(config.ENCODER_HIDDEN4, config.ENCODER_HIDDEN5),
-            nn.LayerNorm([config.ENCODER_HIDDEN5]),
-            nn.LeakyReLU(0.1),
 
-            nn.Linear(config.ENCODER_HIDDEN5, config.ENCODER_HIDDEN6),
-            nn.LayerNorm([config.ENCODER_HIDDEN6]),
-            nn.LeakyReLU(0.1),
-
-            nn.Linear(config.ENCODER_HIDDEN6, config.ENCODER_HIDDEN7),
-            nn.LayerNorm([config.ENCODER_HIDDEN7]),
-            nn.LeakyReLU(0.1),
-
-            nn.Linear(config.ENCODER_HIDDEN7, config.ENCODER_HIDDEN8),
-            nn.LayerNorm([config.ENCODER_HIDDEN8]),
-            nn.LeakyReLU(0.1),
 
         )
 
+
         # Latent space layers
-        self.fc_mu = nn.Linear(config.ENCODER_HIDDEN8 , latent_dim)
-        self.fc_var = nn.Linear(config.ENCODER_HIDDEN8, latent_dim)
+        self.fc_mu = nn.Linear(config.ENCODER_HIDDEN4 , latent_dim)
+        self.fc_var = nn.Linear(config.ENCODER_HIDDEN4, latent_dim)
 
         # Decoder with Batch Normalization
         self.decoder = nn.Sequential(
@@ -69,27 +55,14 @@ class VAE(nn.Module):
             nn.LayerNorm([config.DECODER_HIDDEN4]),
             nn.LeakyReLU(0.1),
 
-            # New additional layers
-            nn.Linear(config.DECODER_HIDDEN4, config.DECODER_HIDDEN5),
-            nn.LayerNorm([config.DECODER_HIDDEN5]),
-            nn.LeakyReLU(0.1),
-
-            nn.Linear(config.DECODER_HIDDEN5, config.DECODER_HIDDEN6),
-            nn.LayerNorm([config.DECODER_HIDDEN6]),
-            nn.LeakyReLU(0.1),
-
-            nn.Linear(config.DECODER_HIDDEN6, config.DECODER_HIDDEN7),
-            nn.LayerNorm([config.DECODER_HIDDEN7]),
-            nn.LeakyReLU(0.1),
-
-            nn.Linear(config.DECODER_HIDDEN7, config.DECODER_HIDDEN8),
-            nn.LayerNorm([config.DECODER_HIDDEN8]),
-            nn.LeakyReLU(0.1),
 
 
 
 
-            nn.Linear(config.DECODER_HIDDEN7, output_dim)
+
+
+
+            nn.Linear(config.DECODER_HIDDEN4, output_dim)
         )
 
     def encode(self, x):
