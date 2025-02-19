@@ -2,31 +2,17 @@ import gymnasium as gym
 import numpy as np
 from Wrappers.RandomStartLunarLander import RandomStartLunarLander
 
-class RandomStartCartPole(gym.Wrapper):
-    def reset(self, **kwargs):
-        """Resets the environment and sets a random initial position."""
-        obs, info = self.env.reset(**kwargs)
 
-        # Randomize initial state
-        cart_position = -2.2  # Full cart track range
-        cart_velocity = np.random.uniform(-1.0, 1.0)  # Some random velocity
-        pole_angle = np.random.uniform(-0.2, 0.2)  # Random pole angle
-        pole_angular_velocity = np.random.uniform(-1.0, 1.0)  # Random spin
-
-        # Set new randomized initial state
-        self.env.unwrapped.state = [.5 , .5 , .5 , .5 , .5,.5 , .5 , .5 , .5 , .5,.5 , .5 , .5 , .5 , .5,.5 , .5 , .5 , .5 , .5, .5]
-
-        return np.array(self.env.unwrapped.state, dtype=np.float32), info
 
 # Create environment with the custom wrapper
 env = RandomStartLunarLander(gym.make("LunarLander-v3", render_mode="human"))
-seeds = [2 ,45 ,654 ,77 ,23 , 22 , 323]
+seeds = [2 ,45 ,654 ,77 ,23 , 22 , 323, 33 ,43  , 32 ,334 ,53]
 # Run a few episodes to check the new initialization
-for i in range(5):
+for i in range(10):
     obs, _ = env.reset(seed=seeds[i])
     print("Randomized Initial Observation:", obs)
 
-    for _ in range(100):
+    for _ in range(10):
         action = env.action_space.sample()  # Take a random action
         obs, reward, terminated, truncated, _ = env.step(action)
         env.render()

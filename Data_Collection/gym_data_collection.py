@@ -287,8 +287,8 @@ def collect_from_batch(root_dir= os.path.join(base_dir,"..", "PPO","logs", "expl
 if __name__ == "__main__":
     # Example calls for testing
     #expert_collect(output_path = os.path.join(base_dir, "collected_data", "cartpole_expert_60"),policy_path = os.path.join(base_dir, "..", "PPO", "logs","batch2","logs_20000_20250123_151149","best_model", "best_model.zip"), num_episodes=60)
-    random_collect(output_path=os.path.join("train","rand_pol_rand_env"), num_episodes=5000, env_wrapper=RandomStartLunarLander)
-    #collect_from_batch(root_dir= os.path.join(base_dir,"..", "PPO","logs", "explore"),output_path=os.path.join(base_dir,"collected_data", "train", "explore_pol_standard_env","ppo_50k_noisy_100ep", "noise_scale_0.6_random2"), noise=True,noise_scale=0.6, num_episodes=200,env_wrapper=RandomStartLunarLander)
+    #random_collect(output_path=os.path.join("train","rand_pol_rand_env"), num_episodes=5000, env_wrapper=RandomStartLunarLander)
+    collect_from_batch(root_dir= os.path.join(base_dir,"..", "PPO","logs", "eval", "batch_20_50k"),output_path=os.path.join(base_dir,"collected_data", "train", "explore_pol_standard_env","ppo_1M_noisy_200ep", "no_noise"), noise=False,noise_scale=0.6, num_episodes=200,env_wrapper=None)
 
 
 

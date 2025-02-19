@@ -154,7 +154,7 @@ def worker(process_id: int,
             vae_score_call(data_path=eval_data, vae_name=vae_name)
 
         # Save configurations
-        save_config()
+        save_config(config_name)
         save_vae_code()
 
         print(f"Process {process_id} completed configuration {config_name}")
