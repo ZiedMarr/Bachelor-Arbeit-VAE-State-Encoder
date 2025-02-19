@@ -1,77 +1,54 @@
 import os
 import torch
 import torch.multiprocessing as mp
-
-import configs.config
-from configs.save_config import save_config, save_vae_code
-from configs import config as config_module
-from configs.suite_configs import SUITE_CONFIGS
-import psutil
+import importlib
+import sys
 from typing import Dict, Any
 from datetime import datetime
+import psutil
 
-from VAE_pretrain.VAE_offline_pretrain import call_pretrain
-from VAE_Latent_Space_Eval.VAE_reconstructions import call_reconstruction
-from VAE_Latent_Space_Eval.VAE_score_Eval import vae_score_call
-from VAE_Latent_Space_Eval.Multi_Data_Latent_Colored_Plots import call_latent_colored
-import importlib
-import copy
-from typing import Dict, Any
+from configs.suite_configs import SUITE_CONFIGS
+from configs.save_config import save_config, save_vae_code
 
 
-def get_config_with_updates(config_name: str, updates: Dict[str, Any]) -> Dict[str, Any]:
+def update_config_module(config_updates: Dict[str, Any]) -> None:
     """
-    Creates a configuration dictionary by:
-    1. Starting with all values from configs.config
-    2. Adding any new keys from updates
-    3. Overriding any existing keys with values from updates
+    Updates the configs.config module with values from config_updates.
+    Forces module reload to ensure changes take effect.
 
     Args:
-        config_name: Name of this configuration (for logging purposes)
-        updates: Dictionary of config values to update or add
-
-    Returns:
-        Complete configuration dictionary with all needed values
+        config_updates: Dictionary of configuration values to update or add
     """
-    # Force reload the config module to get fresh values
-    import configs.config
-    importlib.reload(configs.config)
-
-    # Get all attributes from the config module
-    config_dict = {}
-    for attr in dir(configs.config):
-        # Skip private/special attributes
-        if not attr.startswith('__'):
-            config_dict[attr] = getattr(configs.config, attr)
-
-    # Make a deep copy to avoid modifying the original
-    config_dict = copy.deepcopy(config_dict)
-
-    # Add/update with new values
-    config_dict.update(updates)
-
-    print(f"Configuration '{config_name}' created with {len(updates)} custom values")
-    return config_dict
-
-
-def apply_config_to_module(config_dict: Dict[str, Any]) -> None:
-    """
-    Updates the global configs.config module with values from config_dict.
-    This maintains compatibility with existing code that imports from configs.config.
-
-    Args:
-        config_dict: Dictionary of configuration values to apply
-    """
-    import configs.config
+    # First, import the module
+    import configs.config as config_module
 
     # Update each attribute in the module
-    for key, value in config_dict.items():
-        setattr(configs.config, key, value)
+    for key, value in config_updates.items():
+        setattr(config_module, key, value)
 
-    print(f"Applied {len(config_dict)} configuration values to configs.config module")
+    # Make sure any modules that already imported config get the updates
+    # This is critical for multiprocessing
+    if 'configs.config' in sys.modules:
+        importlib.reload(sys.modules['configs.config'])
+
+    # Verify changes were applied
+    success = True
+    for key, value in config_updates.items():
+        current_value = getattr(config_module, key, None)
+        if current_value != value:
+            success = False
+            print(f"Failed to update {key}: expected {value}, got {current_value}")
+
+    if success:
+        print(f"Successfully applied {len(config_updates)} configuration values")
+    else:
+        print("Some configuration updates failed")
 
 
-def worker(process_id: int, config_name: str, config_updates: Dict[str, Any], base_dir: str):
+def worker(process_id: int,
+           config_name: str,
+           config_updates: Dict[str, Any],
+           base_dir: str):
     """Worker function for training a single VAE configuration."""
     try:
         # Force CPU usage and limit threads per process
@@ -85,11 +62,23 @@ def worker(process_id: int, config_name: str, config_updates: Dict[str, Any], ba
         except ImportError:
             pass
 
-        # Create complete config and apply to global module
-        config_dict = get_config_with_updates(config_name, config_updates)
-        apply_config_to_module(config_dict)
+        print(f"Process {process_id} applying configuration {config_name}")
 
-        # Now all functions that import from configs.config will see the updated values
+        # Update configuration values
+        update_config_module(config_updates)
+
+        # Import modules that use config AFTER updating it
+        from VAE_pretrain.VAE_offline_pretrain import call_pretrain
+        from VAE_Latent_Space_Eval.VAE_reconstructions import call_reconstruction
+        from VAE_Latent_Space_Eval.VAE_score_Eval import vae_score_call
+        from VAE_Latent_Space_Eval.Multi_Data_Latent_Colored_Plots import call_latent_colored
+
+        # Verify configuration values to ensure they were updated correctly
+        import configs.config as config_module
+        print(f"Configuration verification for {config_name}:")
+        for key, expected_value in config_updates.items():
+            actual_value = getattr(config_module, key)
+            print(f"  {key}: {actual_value} (Expected: {expected_value})")
 
         # Define evaluation data path
         eval_data = os.path.join(base_dir, "..", "Data_Collection", "collected_data",
@@ -100,13 +89,16 @@ def worker(process_id: int, config_name: str, config_updates: Dict[str, Any], ba
             ("vae_ppo_noisy_100ep", "random_10000_20250218_160804.npz")
         ]
 
-        # Process each dataset size
+        # Process each dataset
         for vae_name_base, data_file in datasets:
-            vae_name = f"{vae_name_base}_{config_name}_{configs.config.EPOCHS}"
+            # Import config module here to ensure we get the updated values
+            import configs.config as config_module
+            vae_name = f"{vae_name_base}_{config_name}_{config_module.EPOCHS}"
             train_data = os.path.join(base_dir, "..", "Data_Collection", "collected_data",
                                       "train", "rand_pol_rand_env", data_file)
 
             print(f"Process {process_id} starting training for {vae_name}")
+            print(f"Using configuration: {config_name}")
 
             # Run training and evaluation pipeline
             call_pretrain(vae_name=vae_name, data_dir=train_data)
@@ -119,6 +111,7 @@ def worker(process_id: int, config_name: str, config_updates: Dict[str, Any], ba
         save_vae_code()
 
         print(f"Process {process_id} completed configuration {config_name}")
+
     except Exception as e:
         print(f"Error in process {process_id} with config {config_name}: {str(e)}")
         raise e
@@ -134,7 +127,9 @@ def main():
     # Get base directory
     base_dir = os.path.dirname(os.path.abspath(__file__))
 
-    # Initialize multiprocessing
+    # Initialize multiprocessing with spawn method
+    # 'spawn' creates a completely new Python interpreter process
+    # which is crucial for isolating configurations between processes
     mp.set_start_method('spawn', force=True)
 
     # Determine optimal number of parallel processes
@@ -146,13 +141,14 @@ def main():
 
     try:
         # Launch processes for each configuration
-        for i, (config_name, config_dict) in enumerate(SUITE_CONFIGS.items()):
+        for i, (config_name, config_updates) in enumerate(SUITE_CONFIGS.items()):
             print(f"\nStarting configuration {config_name}")
+            print(f"Configuration updates: {config_updates}")
 
             # Create and start process
             p = mp.Process(
                 target=worker,
-                args=(i, config_name, config_dict, base_dir)
+                args=(i, config_name, config_updates, base_dir)
             )
             p.start()
             processes.append(p)
