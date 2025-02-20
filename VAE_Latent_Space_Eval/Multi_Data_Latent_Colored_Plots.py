@@ -113,7 +113,7 @@ if __name__ == "__main__":
     vae = VAE(input_dim=config.INPUT_DIMENSION, latent_dim=config.LATENT_DIM, output_dim=config.OUTPUT_DIMENSION)
     vae.load_state_dict(torch.load(model_path))
     data_path = os.path.join(base_dir, "..", "Data_Collection", "collected_data",
-                                 "eval", "merged","merged.npz")
+                                 "eval", "merged1","merged1.npz")
     ##################multiple data files######################
     directory = "../Data_Collection/collected_data/eval/explore_pol_standard_env/ppo_1M_noisy_50ep/no_noise"
     data_paths = []

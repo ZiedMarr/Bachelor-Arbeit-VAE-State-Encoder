@@ -7,8 +7,8 @@ def merge_npz_files(file_paths, output_path):
     Merges multiple .npz data files into a single .npz file.
 
     Parameters:
-    - file_paths (list of str): List of paths to the .npz files to be merged.
-    - output_path (str): Path where the merged file should be saved.
+    - file_paths (list of str): List of paths to the .npz files to be merged1.
+    - output_path (str): Path where the merged1 file should be saved.
     """
     all_observations = []
     all_episode_starts = []
@@ -41,7 +41,7 @@ def merge_npz_files(file_paths, output_path):
     merged_episode_starts = np.concatenate(all_episode_starts, axis=0)
     merged_episode_lengths = np.concatenate(all_episode_lengths, axis=0)
 
-    # Save the merged data
+    # Save the merged1 data
     np.savez(output_path,
              observations=merged_observations,
              episode_starts=merged_episode_starts,
@@ -52,26 +52,21 @@ def merge_npz_files(file_paths, output_path):
 
 if __name__ == "__main__" :
     # Example Usage
-    directory = "./collected_data/eval/explore_pol_standard_env/ppo_100k_noise_0.5"
+    directory = "./collected_data/eval/explore_pol_standard_env/ppo_500k_noise_0.5"
     file_paths = [os.path.join(directory, file) for file in os.listdir(directory) if file.endswith(".npz")]
-    output_file = "./collected_data/eval/merged/merged_100k_ppo.npz"
+    output_file = "collected_data/eval/merged1/merged_500k_ppo.npz"
 
     merge_npz_files(file_paths, output_file)
 
     directory = "./collected_data/eval/explore_pol_standard_env/ppo_200k_noise_0.5"
     file_paths = [os.path.join(directory, file) for file in os.listdir(directory) if file.endswith(".npz")]
-    output_file = "./collected_data/eval/merged/merged_200k_ppo.npz"
+    output_file = "collected_data/eval/merged1/merged_200k_ppo.npz"
 
     merge_npz_files(file_paths, output_file)
 
-    directory = "./collected_data/eval/rand_pol_rand_env/100ep"
-    file_paths = [os.path.join(directory, file) for file in os.listdir(directory) if file.endswith(".npz")]
-    output_file = "./collected_data/eval/merged/merged_rand.npz"
 
-    merge_npz_files(file_paths, output_file)
-
-    directory = "./collected_data/eval/merged"
+    directory = "./collected_data/eval/merged1"
     file_paths = [os.path.join(directory, file) for file in os.listdir(directory) if file.endswith(".npz")]
-    output_file = "./collected_data/eval/merged/merged.npz"
+    output_file = "collected_data/eval/merged1/merged1.npz"
 
     merge_npz_files(file_paths, output_file)

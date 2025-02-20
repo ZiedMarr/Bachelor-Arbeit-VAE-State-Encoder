@@ -132,12 +132,12 @@ def worker(process_id: int,
 
         # Define evaluation data path
         eval_data = os.path.join(base_dir, "..", "Data_Collection", "collected_data",
-                                 "eval", "merged","merged.npz")
+                                 "eval", "merged1","merged1.npz")
 
         # Training datasets and their corresponding VAE names
         datasets = [
-            ("vae_random10k", "random_10000_20250218_160804.npz"),
-            ("vae_mix_10ep" , "merged.npz")
+            ("vae_random_100ep", "random_100_20250220_163649.npz"),
+            ("vae_mix_10ep" , "merged1.npz")
         ]
 
         # Process each dataset size
