@@ -52,21 +52,26 @@ def merge_npz_files(file_paths, output_path):
 
 if __name__ == "__main__" :
     # Example Usage
-    directory = "./collected_data/train/explore_pol_standard_env/explore_random_mix"
+    directory = "./collected_data/eval/explore_pol_standard_env/ppo_100k_noise_0.5"
     file_paths = [os.path.join(directory, file) for file in os.listdir(directory) if file.endswith(".npz")]
-    output_file = "collected_data/train/explore_pol_standard_env/explore_random_mix/merged.npz"
-
-    merge_npz_files(file_paths, output_file)
-    '''
-    directory = "./collected_data/train/explore_pol_standard_env/ppo_100k_noise_0.5"
-    file_paths = [os.path.join(directory, file) for file in os.listdir(directory) if file.endswith(".npz")]
-    output_file = "collected_data/train/explore_pol_standard_env/100k_200k_0.5noise_mix/100k_noise0.5.npz"
+    output_file = "./collected_data/eval/merged/merged_100k_ppo.npz"
 
     merge_npz_files(file_paths, output_file)
 
-    directory = "./collected_data/train/explore_pol_standard_env/100k_200k_0.5noise_mix"
+    directory = "./collected_data/eval/explore_pol_standard_env/ppo_200k_noise_0.5"
     file_paths = [os.path.join(directory, file) for file in os.listdir(directory) if file.endswith(".npz")]
-    output_file = "collected_data/train/explore_pol_standard_env/100k_200k_0.5noise_mix/noise0.5_merged.npz"
+    output_file = "./collected_data/eval/merged/merged_200k_ppo.npz"
 
     merge_npz_files(file_paths, output_file)
-'''
+
+    directory = "./collected_data/eval/rand_pol_rand_env/100ep"
+    file_paths = [os.path.join(directory, file) for file in os.listdir(directory) if file.endswith(".npz")]
+    output_file = "./collected_data/eval/merged/merged_rand.npz"
+
+    merge_npz_files(file_paths, output_file)
+
+    directory = "./collected_data/eval/merged"
+    file_paths = [os.path.join(directory, file) for file in os.listdir(directory) if file.endswith(".npz")]
+    output_file = "./collected_data/eval/merged/merged.npz"
+
+    merge_npz_files(file_paths, output_file)

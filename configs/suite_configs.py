@@ -31,7 +31,7 @@ SUITE_CONFIGS = {
 
         'EVAL_SEED': [1, 33, 545, 65, 6, 66, 78, 48, 24, 98],
 
-        'VAE_Version': "VAE_Version_2"
+        'VAE_Version': "VAE_Version_2.1"
 
     },
     'config_B': {
@@ -65,7 +65,7 @@ SUITE_CONFIGS = {
 
         'EVAL_SEED': [1, 33, 545, 65, 6, 66, 78, 48, 24, 98],
 
-        'VAE_Version': "VAE_Version_2"
+        'VAE_Version': "VAE_Version_2.1"
 
     },
     'config_C': {
@@ -99,7 +99,7 @@ SUITE_CONFIGS = {
 
         'EVAL_SEED': [1, 33, 545, 65, 6, 66, 78, 48, 24, 98],
 
-        'VAE_Version': "VAE_Version_2"
+        'VAE_Version': "VAE_Version_2.1"
 
     },
     'config_D': {
@@ -133,7 +133,7 @@ SUITE_CONFIGS = {
 
         'EVAL_SEED': [1, 33, 545, 65, 6, 66, 78, 48, 24, 98],
 
-        'VAE_Version': "VAE_Version_2"
+        'VAE_Version': "VAE_Version_2.1"
 
     },
     'config_E': {
@@ -167,7 +167,7 @@ SUITE_CONFIGS = {
 
         'EVAL_SEED': [1, 33, 545, 65, 6, 66, 78, 48, 24, 98],
 
-        'VAE_Version': "VAE_Version_2"
+        'VAE_Version': "VAE_Version_2.1"
 
     },
 'config_E2': {
@@ -201,7 +201,7 @@ SUITE_CONFIGS = {
 
         'EVAL_SEED': [1, 33, 545, 65, 6, 66, 78, 48, 24, 98],
 
-        'VAE_Version': "VAE_Version_2"
+        'VAE_Version': "VAE_Version_2.1"
 
     },
 'config_E3': {
@@ -235,7 +235,7 @@ SUITE_CONFIGS = {
 
         'EVAL_SEED': [1, 33, 545, 65, 6, 66, 78, 48, 24, 98],
 
-        'VAE_Version': "VAE_Version_2"
+        'VAE_Version': "VAE_Version_2.1"
 
     },
 'config_F': {
@@ -260,7 +260,7 @@ SUITE_CONFIGS = {
         'DECODER_HIDDEN7': 16,
         'DECODER_HIDDEN8': 16,
 
-        'BETA_KL_DIV': 0.01,
+        'BETA_KL_DIV': 0.0008,
         'TRAIN_FREQUENCY': 4,
         'LOSS_FUNC': "MSE_loss_feature_Standardization",
         'EPOCHS': 2,
@@ -269,7 +269,7 @@ SUITE_CONFIGS = {
 
         'EVAL_SEED': [1, 33, 545, 65, 6, 66, 78, 48, 24, 98],
 
-        'VAE_Version': "VAE_Version_2"
+        'VAE_Version': "VAE_Version_2.1"
 
     },
     'config_F2': {
@@ -294,7 +294,7 @@ SUITE_CONFIGS = {
         'DECODER_HIDDEN7': 16,
         'DECODER_HIDDEN8': 16,
 
-        'BETA_KL_DIV': 0.01,
+        'BETA_KL_DIV': 0.0011,
         'TRAIN_FREQUENCY': 4,
         'LOSS_FUNC': "MSE_loss_feature_Standardization",
         'EPOCHS': 2,
@@ -303,7 +303,7 @@ SUITE_CONFIGS = {
 
         'EVAL_SEED': [1, 33, 545, 65, 6, 66, 78, 48, 24, 98],
 
-        'VAE_Version': "VAE_Version_2"
+        'VAE_Version': "VAE_Version_2.1"
 
     },
     'config_F3': {
@@ -328,7 +328,7 @@ SUITE_CONFIGS = {
         'DECODER_HIDDEN7': 16,
         'DECODER_HIDDEN8': 16,
 
-        'BETA_KL_DIV': 0.01,
+        'BETA_KL_DIV': 0.0012,
         'TRAIN_FREQUENCY': 4,
         'LOSS_FUNC': "MSE_loss_feature_Standardization",
         'EPOCHS': 2,
@@ -337,7 +337,7 @@ SUITE_CONFIGS = {
 
         'EVAL_SEED': [1, 33, 545, 65, 6, 66, 78, 48, 24, 98],
 
-        'VAE_Version': "VAE_Version_2"
+        'VAE_Version': "VAE_Version_2.1"
 
     },
     'config_F4': {
@@ -362,7 +362,7 @@ SUITE_CONFIGS = {
         'DECODER_HIDDEN7': 16,
         'DECODER_HIDDEN8': 16,
 
-        'BETA_KL_DIV': 0.01,
+        'BETA_KL_DIV': 0.0009,
         'TRAIN_FREQUENCY': 4,
         'LOSS_FUNC': "MSE_loss_feature_Standardization",
         'EPOCHS': 2,
@@ -371,7 +371,7 @@ SUITE_CONFIGS = {
 
         'EVAL_SEED': [1, 33, 545, 65, 6, 66, 78, 48, 24, 98],
 
-        'VAE_Version': "VAE_Version_2"
+        'VAE_Version': "VAE_Version_2.1"
 
     },
 
@@ -406,7 +406,7 @@ SUITE_CONFIGS = {
 
         'EVAL_SEED': [1, 33, 545, 65, 6, 66, 78, 48, 24, 98],
 
-        'VAE_Version': "VAE_Version_2"
+        'VAE_Version': "VAE_Version_2.1"
 
     },
     'config_G2': {
@@ -440,7 +440,7 @@ SUITE_CONFIGS = {
 
         'EVAL_SEED': [1, 33, 545, 65, 6, 66, 78, 48, 24, 98],
 
-        'VAE_Version': "VAE_Version_2"
+        'VAE_Version': "VAE_Version_2.1"
 
     },
     'config_G3': {
@@ -474,7 +474,7 @@ SUITE_CONFIGS = {
 
         'EVAL_SEED': [1, 33, 545, 65, 6, 66, 78, 48, 24, 98],
 
-        'VAE_Version': "VAE_Version_2"
+        'VAE_Version': "VAE_Version_2.1"
 
     },
     'config_H': {
@@ -499,7 +499,7 @@ SUITE_CONFIGS = {
         'DECODER_HIDDEN7': 16,
         'DECODER_HIDDEN8': 16,
 
-        'BETA_KL_DIV': 0.01,
+        'BETA_KL_DIV': 0.0008,
         'TRAIN_FREQUENCY': 4,
         'LOSS_FUNC': "MSE_loss_feature_Standardization",
         'EPOCHS': 2,
@@ -508,7 +508,7 @@ SUITE_CONFIGS = {
 
         'EVAL_SEED': [1, 33, 545, 65, 6, 66, 78, 48, 24, 98],
 
-        'VAE_Version': "VAE_Version_2"
+        'VAE_Version': "VAE_Version_2.1"
 
     },
     'config_H2': {
@@ -533,7 +533,7 @@ SUITE_CONFIGS = {
         'DECODER_HIDDEN7': 16,
         'DECODER_HIDDEN8': 16,
 
-        'BETA_KL_DIV': 0.01,
+        'BETA_KL_DIV': 0.0008,
         'TRAIN_FREQUENCY': 4,
         'LOSS_FUNC': "MSE_loss_feature_Standardization",
         'EPOCHS': 2,
@@ -542,7 +542,7 @@ SUITE_CONFIGS = {
 
         'EVAL_SEED': [1, 33, 545, 65, 6, 66, 78, 48, 24, 98],
 
-        'VAE_Version': "VAE_Version_2"
+        'VAE_Version': "VAE_Version_2.1"
 
     },
     'config_H3': {
@@ -567,7 +567,7 @@ SUITE_CONFIGS = {
         'DECODER_HIDDEN7': 16,
         'DECODER_HIDDEN8': 16,
 
-        'BETA_KL_DIV': 0.01,
+        'BETA_KL_DIV': 0.0012,
         'TRAIN_FREQUENCY': 4,
         'LOSS_FUNC': "MSE_loss_feature_Standardization",
         'EPOCHS': 2,
@@ -576,7 +576,7 @@ SUITE_CONFIGS = {
 
         'EVAL_SEED': [1, 33, 545, 65, 6, 66, 78, 48, 24, 98],
 
-        'VAE_Version': "VAE_Version_2"
+        'VAE_Version': "VAE_Version_2.1"
 
     },
     'config_I': {
@@ -610,7 +610,7 @@ SUITE_CONFIGS = {
 
         'EVAL_SEED': [1, 33, 545, 65, 6, 66, 78, 48, 24, 98],
 
-        'VAE_Version': "VAE_Version_2"
+        'VAE_Version': "VAE_Version_2.1"
 
     },
     'config_I2': {
@@ -644,7 +644,7 @@ SUITE_CONFIGS = {
 
         'EVAL_SEED': [1, 33, 545, 65, 6, 66, 78, 48, 24, 98],
 
-        'VAE_Version': "VAE_Version_2"
+        'VAE_Version': "VAE_Version_2.1"
 
     },
 
@@ -679,7 +679,7 @@ SUITE_CONFIGS = {
 
         'EVAL_SEED': [1, 33, 545, 65, 6, 66, 78, 48, 24, 98],
 
-        'VAE_Version': "VAE_Version_2"
+        'VAE_Version': "VAE_Version_2.1"
 
     },
 
@@ -705,7 +705,7 @@ SUITE_CONFIGS = {
         'DECODER_HIDDEN7': 16,
         'DECODER_HIDDEN8': 16,
 
-        'BETA_KL_DIV': 0.01,
+        'BETA_KL_DIV': 0.0009,
         'TRAIN_FREQUENCY': 4,
         'LOSS_FUNC': "MSE_loss_feature_Standardization",
         'EPOCHS': 2,
@@ -714,7 +714,7 @@ SUITE_CONFIGS = {
 
         'EVAL_SEED': [1, 33, 545, 65, 6, 66, 78, 48, 24, 98],
 
-        'VAE_Version': "VAE_Version_2"
+        'VAE_Version': "VAE_Version_2.1"
 
     },
 'config_K1': {
@@ -739,7 +739,7 @@ SUITE_CONFIGS = {
         'DECODER_HIDDEN7': 16,
         'DECODER_HIDDEN8': 16,
 
-        'BETA_KL_DIV': 0.01,
+        'BETA_KL_DIV': 0.001,
         'TRAIN_FREQUENCY': 4,
         'LOSS_FUNC': "MSE_loss_feature_Standardization",
         'EPOCHS': 2,
@@ -748,7 +748,7 @@ SUITE_CONFIGS = {
 
         'EVAL_SEED': [1, 33, 545, 65, 6, 66, 78, 48, 24, 98],
 
-        'VAE_Version': "VAE_Version_2"
+        'VAE_Version': "VAE_Version_2.1"
 
     },
 'config_K2': {
@@ -773,7 +773,7 @@ SUITE_CONFIGS = {
         'DECODER_HIDDEN7': 16,
         'DECODER_HIDDEN8': 16,
 
-        'BETA_KL_DIV': 0.01,
+        'BETA_KL_DIV': 0.0008,
         'TRAIN_FREQUENCY': 4,
         'LOSS_FUNC': "MSE_loss_feature_Standardization",
         'EPOCHS': 2,
@@ -782,7 +782,7 @@ SUITE_CONFIGS = {
 
         'EVAL_SEED': [1, 33, 545, 65, 6, 66, 78, 48, 24, 98],
 
-        'VAE_Version': "VAE_Version_2"
+        'VAE_Version': "VAE_Version_2.1"
 
     },
 'config_L': {
@@ -807,7 +807,7 @@ SUITE_CONFIGS = {
         'DECODER_HIDDEN7': 16,
         'DECODER_HIDDEN8': 16,
 
-        'BETA_KL_DIV': 0.01,
+        'BETA_KL_DIV': 0.0012,
         'TRAIN_FREQUENCY': 4,
         'LOSS_FUNC': "MSE_loss_feature_Standardization",
         'EPOCHS': 2,
@@ -816,7 +816,7 @@ SUITE_CONFIGS = {
 
         'EVAL_SEED': [1, 33, 545, 65, 6, 66, 78, 48, 24, 98],
 
-        'VAE_Version': "VAE_Version_2"
+        'VAE_Version': "VAE_Version_2.1"
 
     },
 'config_L2': {
@@ -841,7 +841,7 @@ SUITE_CONFIGS = {
         'DECODER_HIDDEN7': 16,
         'DECODER_HIDDEN8': 16,
 
-        'BETA_KL_DIV': 0.01,
+        'BETA_KL_DIV': 0.0012,
         'TRAIN_FREQUENCY': 4,
         'LOSS_FUNC': "MSE_loss_feature_Standardization",
         'EPOCHS': 2,
@@ -850,7 +850,7 @@ SUITE_CONFIGS = {
 
         'EVAL_SEED': [1, 33, 545, 65, 6, 66, 78, 48, 24, 98],
 
-        'VAE_Version': "VAE_Version_2"
+        'VAE_Version': "VAE_Version_2.1"
 
     },
 'config_L3': {
@@ -875,7 +875,7 @@ SUITE_CONFIGS = {
         'DECODER_HIDDEN7': 16,
         'DECODER_HIDDEN8': 16,
 
-        'BETA_KL_DIV': 0.01,
+        'BETA_KL_DIV': 0.0012,
         'TRAIN_FREQUENCY': 4,
         'LOSS_FUNC': "MSE_loss_feature_Standardization",
         'EPOCHS': 2,
@@ -884,7 +884,7 @@ SUITE_CONFIGS = {
 
         'EVAL_SEED': [1, 33, 545, 65, 6, 66, 78, 48, 24, 98],
 
-        'VAE_Version': "VAE_Version_2"
+        'VAE_Version': "VAE_Version_2.1"
 
     },
 
@@ -919,7 +919,7 @@ SUITE_CONFIGS = {
 
         'EVAL_SEED': [1, 33, 545, 65, 6, 66, 78, 48, 24, 98],
 
-        'VAE_Version': "VAE_Version_2"
+        'VAE_Version': "VAE_Version_2.1"
 
     },
 'config_M1': {
@@ -953,7 +953,7 @@ SUITE_CONFIGS = {
 
         'EVAL_SEED': [1, 33, 545, 65, 6, 66, 78, 48, 24, 98],
 
-        'VAE_Version': "VAE_Version_2"
+        'VAE_Version': "VAE_Version_2.1"
 
     },
 'config_M2': {
@@ -987,7 +987,7 @@ SUITE_CONFIGS = {
 
         'EVAL_SEED': [1, 33, 545, 65, 6, 66, 78, 48, 24, 98],
 
-        'VAE_Version': "VAE_Version_2"
+        'VAE_Version': "VAE_Version_2.1"
 
     },
     # Add additional configurations as needed
