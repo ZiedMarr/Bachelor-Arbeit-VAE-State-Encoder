@@ -21,7 +21,7 @@ def random_collect( output_path= "" , num_episodes =10 , env_wrapper= None) :
     path = os.path.join(save_dir , f"random_{num_episodes}_{timestamp}.npz")
 
     #create env
-    env = gym.make('LBipedalWalker-v3')
+    env = gym.make('BipedalWalker-v3')
     if env_wrapper is not None :
         env = env_wrapper(env)
 
