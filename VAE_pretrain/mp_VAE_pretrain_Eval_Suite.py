@@ -54,8 +54,8 @@ class Config:
         self.VAE_Version = config_dict.get("VAE_Version", "3.13")
 
         # Calculate derived values
-        self.INPUT_DIMENSION = self.INPUT_STATE_SIZE * 8
-        self.OUTPUT_DIMENSION = self.OUTPUT_STATE_SIZE * 8
+        self.INPUT_DIMENSION = self.INPUT_STATE_SIZE * 24
+        self.OUTPUT_DIMENSION = self.OUTPUT_STATE_SIZE * 24
 
 
 def get_base_config() -> Dict[str, Any]:
