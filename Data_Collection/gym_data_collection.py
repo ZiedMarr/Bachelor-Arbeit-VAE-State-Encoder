@@ -21,7 +21,7 @@ def random_collect( output_path= "" , num_episodes =10 , env_wrapper= None) :
     path = os.path.join(save_dir , f"random_{num_episodes}_{timestamp}.npz")
 
     #create env
-    env = gym.make('LunarLander-v3')
+    env = gym.make('LBipedalWalker-v3')
     if env_wrapper is not None :
         env = env_wrapper(env)
 
@@ -88,7 +88,7 @@ def expert_collect(  output_path, policy_path=os.path.join(base_dir, "path_to_ex
     pretrained_policy = PPO.load(policy_path, device='cpu')
 
     # create env
-    env = gym.make('LunarLander-v3')
+    env = gym.make('BipedalWalker-v3')
 
     if env_wrapper is not None :
         env = env_wrapper(env)
@@ -169,7 +169,7 @@ def mixed_random_expert_collect(  output_path, policy_path=os.path.join(base_dir
     pretrained_policy = PPO.load(policy_path)
 
     # create env
-    env = gym.make('LunarLander-v3')
+    env = gym.make('BipedalWalker-v3')
 
     if env_wrapper is not None :
         env = env_wrapper(env)
@@ -259,7 +259,7 @@ def collect_data_from_model(model_path, index, num_episodes=50, output_path = os
     - num_episodes (int): Number of episodes to collect data over.
     """
     # Define the output path with the given index
-    output_path = os.path.join(output_path, f"LunarLander_ppo_data_{index}.npz")
+    output_path = os.path.join(output_path, f"BipedalWalker_ppo_data_{index}.npz")
 
     # Ensure the output directory exists
     os.makedirs(os.path.dirname(output_path), exist_ok=True)
