@@ -85,26 +85,8 @@ def visualize_2graphs(ax, file_path, title):
     ax.legend()
     ax.grid()
 
+def two_graphs(ppo_file, vae_ppo_file):
 
-if __name__ == "__main__":
-    #visualize(os.path.join(base_dir, "logs", "PPO" ,"averaged_evaluation_batch2.npz"))
-    #visualize(os.path.join(base_dir, "logs", "VAE_PPO" ,"averaged_evaluation_batch2.npz"))
-    #define averaged files :
-    ppo_average_dir = os.path.join(base_dir, "logs", "PPO","rand_env_config1_50k" )
-    vae_ppo_average_dir = os.path.join("logs", "VAE_PPO", "V3.17", "rand_env_config1_50k")
-    os.makedirs(ppo_average_dir, exist_ok=True)
-    os.makedirs(vae_ppo_average_dir, exist_ok=True)
-
-
-    #average the rewards :
-    ppo_average(output_file=os.path.join(ppo_average_dir, "batch_size_10.npz"),
-                base_log_dir=os.path.join(base_dir, "..", "PPO_BipedalWalker", "logs", "eval","batch_10_50k"))
-    vae_ppo_average(
-        output_file= os.path.join(vae_ppo_average_dir , "batch_size_10.npz"),
-        base_log_dir=os.path.join(base_dir, "..", "VAE_PPO_train", "logs", "batch_V3.17_kl=0.001_ConfigA.2"))
-    # Define file paths
-    ppo_file = os.path.join(ppo_average_dir, "batch_size_10.npz")
-    vae_ppo_file =  os.path.join(vae_ppo_average_dir , "batch_size_10.npz")
 
     # Create a single figure with two subplots
     fig, axes = plt.subplots(1, 2, figsize=(16, 6))  # 1 row, 2 columns
@@ -118,3 +100,81 @@ if __name__ == "__main__":
     # Adjust layout and show the plots
     plt.tight_layout()
     plt.show()
+
+def visualize_combined(ppo_file, vae_ppo_file):
+    """
+    Plot PPO and VAE-PPO rewards on the same graph with different colors.
+
+    Args:
+        ppo_file (str): Path to the PPO results file.
+        vae_ppo_file (str): Path to the VAE-PPO results file.
+    """
+    # Load PPO data
+    ppo_data = np.load(ppo_file)
+    ppo_timesteps = ppo_data["timesteps"]
+    ppo_mean_rewards = ppo_data["mean_rewards"]
+    ppo_std_rewards = ppo_data["std_rewards"]
+
+    # Load VAE-PPO data
+    vae_ppo_data = np.load(vae_ppo_file)
+    vae_ppo_timesteps = vae_ppo_data["timesteps"]
+    vae_ppo_mean_rewards = vae_ppo_data["mean_rewards"]
+    vae_ppo_std_rewards = vae_ppo_data["std_rewards"]
+
+    # Create a single figure
+    plt.figure(figsize=(10, 6))
+
+    # Plot PPO with color blue
+    sns.lineplot(x=ppo_timesteps, y=ppo_mean_rewards, label="PPO Mean Reward", color="blue")
+    plt.fill_between(
+        ppo_timesteps,
+        ppo_mean_rewards - ppo_std_rewards,
+        ppo_mean_rewards + ppo_std_rewards,
+        alpha=0.2,
+        color="blue",
+        label="PPO Std Dev"
+    )
+
+    # Plot VAE-PPO with color red
+    sns.lineplot(x=vae_ppo_timesteps, y=vae_ppo_mean_rewards, label="VAE-PPO Mean Reward", color="red")
+    plt.fill_between(
+        vae_ppo_timesteps,
+        vae_ppo_mean_rewards - vae_ppo_std_rewards,
+        vae_ppo_mean_rewards + vae_ppo_std_rewards,
+        alpha=0.2,
+        color="red",
+        label="VAE-PPO Std Dev"
+    )
+
+    # Customize the plot
+    plt.xlabel("Timesteps")
+    plt.ylabel("Reward")
+    plt.title("Comparison of PPO and VAE-PPO: Averaged Rewards Over Time")
+    plt.legend()
+    plt.grid()
+    plt.show()
+
+
+
+if __name__ == "__main__":
+    #visualize(os.path.join(base_dir, "logs", "PPO" ,"averaged_evaluation_batch2.npz"))
+    #visualize(os.path.join(base_dir, "logs", "VAE_PPO" ,"averaged_evaluation_batch2.npz"))
+    #define averaged files :
+    ppo_average_dir = os.path.join(base_dir, "logs", "PPO","rand_env_config1_50k" )
+    vae_ppo_average_dir = os.path.join("logs", "VAE_PPO", "V3.17", "rand_env_config1_50k")
+    #os.makedirs(ppo_average_dir, exist_ok=True)
+    #os.makedirs(vae_ppo_average_dir, exist_ok=True)
+
+    """
+    #average the rewards :
+    ppo_average(output_file=os.path.join(ppo_average_dir, "batch_size_10.npz"),
+                base_log_dir=os.path.join(base_dir, "..", "PPO_BipedalWalker", "logs", "eval","batch_10_50k"))
+    vae_ppo_average(
+        output_file= os.path.join(vae_ppo_average_dir , "batch_size_10.npz"),
+        base_log_dir=os.path.join(base_dir, "..", "VAE_PPO_train", "logs", "batch_V3.17_kl=0.001_ConfigA.2"))
+        """
+    # Define file paths
+    ppo_file = os.path.join(ppo_average_dir, "batch_size_10.npz")
+    vae_ppo_file =  os.path.join(vae_ppo_average_dir , "batch_size_10.npz")
+
+    visualize_combined(ppo_file , vae_ppo_file)
