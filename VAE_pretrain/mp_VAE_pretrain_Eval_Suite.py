@@ -136,14 +136,15 @@ def worker(process_id: int,
 
         # Training datasets and their corresponding VAE names
         datasets = [
-            ("vae_ppo_noisy_100ep", "random_10000_20250218_160804.npz")
+            ("vae_random10k", "random_10000_20250218_160804.npz"),
+            ("vae_mix_10ep" , "merged.npz")
         ]
 
         # Process each dataset size
         for vae_name_base, data_file in datasets:
             vae_name = f"{vae_name_base}_{config_name}_{configs.config.EPOCHS}"
             train_data = os.path.join(base_dir, "..", "Data_Collection", "collected_data",
-                                      "train","rand_pol_rand_env", data_file)
+                                      "train_dataset", data_file)
 
             print(f"Process {process_id} starting training for {vae_name}")
 

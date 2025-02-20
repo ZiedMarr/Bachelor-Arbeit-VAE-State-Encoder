@@ -76,7 +76,7 @@ if __name__ == "__main__":
 
     data_paths = ['./collected_data/cartpole_data_random_50.npz', "./collected_data/cartpole_data_expert.npz" , "./collected_data/cartpole_data_random_10.npz" ] # Replace with your actual file path
 
-    directory = "./collected_data/train/explore_pol_standard_env/ppo_200k_nonoise"
+    directory = "./collected_data/train/rand_pol_rand_env"
     data_paths = []
     # Iterate through the directory
     for file_name in os.listdir(directory):
@@ -87,15 +87,15 @@ if __name__ == "__main__":
             if os.path.isfile(full_path):
                 data_paths.append(full_path)
 
-    data_path = "./collected_data/train/explore_pol_standard_env/ppo_100k_noise_0.3/200k_noise0.3_merged.npz"
+    data_path = "./collected_data/train/explore_pol_standard_env/explore_random_mix/merged.npz"
 
     data_name = os.path.basename(data_path)
     name_without_extension, _ = os.path.splitext(data_name)
 
     if filter_1_episodes :
-        save_dir = save_path = os.path.join("./Data_distribution", "explore_pol_standard_env","200k_noise0.3_10ep") #f"{name_without_extension}_filtered"
+        save_dir = save_path = os.path.join("./Data_distribution", "explore_pol_standard_env",f"explore_random_mix") #f"{name_without_extension}_filtered"
     else :
-        save_dir = save_path=os.path.join("./Data_distribution","explore_pol_standard_env", "200k_noise0.3_10ep") #name_without_extension
+        save_dir = save_path=os.path.join("./Data_distribution","explore_pol_standard_env", "explore_random_mix") #name_without_extension
     # Create the directory if it doesn’t exist
     os.makedirs(save_dir, exist_ok=True)
 
