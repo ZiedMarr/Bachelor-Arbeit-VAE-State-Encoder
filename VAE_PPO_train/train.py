@@ -56,7 +56,7 @@ def train(vae_model_path, vae_save_folder, log_batch_dir,total_timesteps = 20000
     # Define environment :
     # set a random seed
 
-    env = gym.make("LunarLander-v3")
+    env = gym.make("BipedalWalker-v3")
     env.reset(seed=seed)
     env.observation_space.seed(seed)
     #env = RandomStartLunarLander(env)

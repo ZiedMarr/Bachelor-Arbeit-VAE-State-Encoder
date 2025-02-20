@@ -1,8 +1,0 @@
-VAE Model: vae_ppo_noisy_100ep_config_L2_2
-Dataset Path: /home/zied/BA-code/Bachelor-Arbeit-VAE-State-Encoder/VAE_pretrain/../Data_Collection/collected_data/eval/rand_pol_rand_env/random_5000_20250218_162835.npz
-Evaluation Frequency: 5
-
-Results:
---------------------------------------------------
-Average Standardized MSE: 0.468665
-Total Standardized MSE: 41182.560329

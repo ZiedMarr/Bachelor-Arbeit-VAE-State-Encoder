@@ -24,7 +24,7 @@ def train_ppo(log_batch_dir, total_timesteps=20000, seed=42,env_wrapper=RandomSt
 
 
     # Create the evaluation environment
-    eval_env = gym.make("LunarLander-v3")
+    eval_env = gym.make("BipedalWalker-v3")
     eval_env.reset(seed=seed)
     #eval_env = env_wrapper(eval_env)
     eval_env = Monitor(eval_env)  # Monitor to log evaluation statistics
