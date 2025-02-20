@@ -107,12 +107,13 @@ def call_latent_colored(vae_name, data_dir=None, show=False, reduction=True, dat
 if __name__ == "__main__":
     #call_latent_colored("vae_rand_100k", reduction=True)
 
-    model_path = os.path.join(base_dir, "..", "VAE_PPO_train", "trained_vae", "batch_V2",
-                              "1000000_vae_ppo_noisy_100ep_config_D_5_20250219_145209"
+    model_path = os.path.join(base_dir, "..", "VAE_PPO_train", "trained_vae", "batch_V2.1_random10k_config_H2_2",
+                              "1000000_vae_random10k_config_H2_2_20250220_113314"
                               )
     vae = VAE(input_dim=config.INPUT_DIMENSION, latent_dim=config.LATENT_DIM, output_dim=config.OUTPUT_DIMENSION)
     vae.load_state_dict(torch.load(model_path))
-    data_path = os.path.join(base_dir, "..", "Data_Collection", "collected_data", "eval","explore_pol_standard_env" , "random_5000_20250218_162835.npz" )
+    data_path = os.path.join(base_dir, "..", "Data_Collection", "collected_data",
+                                 "eval", "merged","merged.npz")
     ##################multiple data files######################
     directory = "../Data_Collection/collected_data/eval/explore_pol_standard_env/ppo_1M_noisy_50ep/no_noise"
     data_paths = []
@@ -126,4 +127,4 @@ if __name__ == "__main__":
             data_paths.append(full_path)
     ##################multiple data files######################
 
-    plot_latent_space(vae=vae, data_paths= data_paths , show=True )
+    plot_latent_space(vae=vae, data_paths= data_path , show=True )
