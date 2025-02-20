@@ -74,7 +74,7 @@ def train(vae_model_path, vae_save_folder, log_batch_dir,total_timesteps = 20000
 
     # Initialize Callbacks
     vae_callback = VAETrainingCallback(
-        vae=vae, optimizer=vae_optimizer, train_frequency=2, n=n, m=m, verbose=1, original_obs_shape=8
+        vae=vae, optimizer=vae_optimizer, train_frequency=2, n=n, m=m, verbose=1, original_obs_shape=24
     )
     #initialize eval_callback
     eval_callback = EvalCallback(

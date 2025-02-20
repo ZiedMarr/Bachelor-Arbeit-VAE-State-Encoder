@@ -156,21 +156,20 @@ def visualize_combined(ppo_file, vae_ppo_file):
     plt.show()
 
 if __name__ == "__main__" :
-    # visualize(os.path.join(base_dir, "logs", "PPO" ,"averaged_evaluation_batch2.npz"))
-    # visualize(os.path.join(base_dir, "logs", "VAE_PPO" ,"averaged_evaluation_batch2.npz"))
+
     # define averaged files :
-    ppo_average_dir = os.path.join(base_dir, "logs", "PPO", "rand_env_config1_1M")
-    vae_ppo_average_dir = os.path.join("logs", "VAE_PPO", "V2", "rand_env_config1_1M")
+    ppo_average_dir = os.path.join(base_dir, "logs", "PPO", "rand_env_200k")
+    #vae_ppo_average_dir = os.path.join("logs", "VAE_PPO", "V2", "rand_env_config1_1M")
     os.makedirs(ppo_average_dir, exist_ok=True)
-    os.makedirs(vae_ppo_average_dir, exist_ok=True)
+    #os.makedirs(vae_ppo_average_dir, exist_ok=True)
 
     # average the rewards :
     ppo_average(output_file=os.path.join(ppo_average_dir, "batch_size_20.npz"),
-                base_log_dir=os.path.join(base_dir, "..", "PPO", "logs", "eval", "batch_20_50k"))
-    vae_ppo_average(
-        output_file=os.path.join(vae_ppo_average_dir, "batch_size_20.npz"),
-        base_log_dir=os.path.join(base_dir, "..", "VAE_PPO_train", "logs", "batch_V2"))
+                base_log_dir=os.path.join(base_dir, "..", "PPO", "logs", "explore", "batch_10_200k"))
+    #vae_ppo_average(
+    #    output_file=os.path.join(vae_ppo_average_dir, "batch_size_20.npz"),
+    #    base_log_dir=os.path.join(base_dir, "..", "VAE_PPO_train", "logs", "batch_V2"))
     # Define file paths
     ppo_file = os.path.join(ppo_average_dir, "batch_size_20.npz")
-    vae_ppo_file = os.path.join(vae_ppo_average_dir, "batch_size_20.npz")
-    visualize_combined(ppo_file , vae_ppo_file)
+    #vae_ppo_file = os.path.join(vae_ppo_average_dir, "batch_size_20.npz")
+    visualize_combined(ppo_file , ppo_file)

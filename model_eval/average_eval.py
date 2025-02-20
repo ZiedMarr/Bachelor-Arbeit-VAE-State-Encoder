@@ -61,7 +61,6 @@ def ppo_average(output_file,base_log_dir = os.path.join(base_dir,"..", "PPO", "l
     #    "../VAE_PPO_train/logs/logs_20000_vae_offline_expert_20250114_165649/eval/",
         # Add more paths as needed
     #]
-
     # Initialize storage for rewards and timesteps
     all_rewards = []
     timesteps = None
@@ -80,6 +79,7 @@ def ppo_average(output_file,base_log_dir = os.path.join(base_dir,"..", "PPO", "l
 
     # Convert to numpy array
     all_rewards = np.array(all_rewards)  # Shape: (n_runs, n_evals, n_episodes)
+    print("Shape of all_rewards:", all_rewards.shape)
 
     # Compute average and std across runs
     mean_rewards = all_rewards.mean(axis=(0, 2))  # Average across runs and episodes
