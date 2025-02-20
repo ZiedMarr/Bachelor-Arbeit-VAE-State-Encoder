@@ -26,5 +26,3 @@ LOSS_FUNC = MSE_loss_feature_Standardization
 ACT_FUNC = LeakyReLU(0.1)
 NORM_FUNC = LayerNorm
 VAE_Version = VAE_Version_2.1
-ENCODER_HIDDEN9 = 16
-DECODER_HIDDEN9 = 16
