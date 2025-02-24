@@ -47,7 +47,7 @@ class Config:
     def __init__(self, config_dict):
         for key, value in config_dict.items():
             setattr(self, key, value)  # Dynamically add attributes
-
+'''
 # Load config dictionary from file
 config_dict = load_config_from_file("VAE_pretrain/pretrained_vae/VAE_Version_2.1/2_2/KL-D_0.001/VAE_config_config_B.txt")
 
@@ -60,3 +60,13 @@ for key, value in vars(config).items():
 
 # Print the attributes to verify
 print(vars(config_module))
+'''
+from pathlib import Path
+
+file_path = Path("/home/user/documents/example.txt")
+
+# Replace extension
+new_file_path = file_path.with_suffix(".png")
+
+print(new_file_path)
+# Output: /home/user/documents/example.png

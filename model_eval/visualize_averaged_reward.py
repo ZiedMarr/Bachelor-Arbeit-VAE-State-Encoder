@@ -4,6 +4,7 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 import os
 from average_eval import ppo_average, vae_ppo_average
+from pathlib import Path
 
 
 
@@ -102,7 +103,7 @@ def two_graphs(ppo_file, vae_ppo_file):
     plt.tight_layout()
     plt.show()
 
-def visualize_combined(ppo_file, vae_ppo_file):
+def visualize_combined(ppo_file, vae_ppo_file, save = False, show = True):
     """
     Plot PPO and VAE-PPO rewards on the same graph with different colors.
 
@@ -153,22 +154,46 @@ def visualize_combined(ppo_file, vae_ppo_file):
     plt.title("Comparison of PPO and VAE-PPO: Averaged Rewards Over Time")
     plt.legend()
     plt.grid()
-    plt.show()
+    if show :
+        plt.show()
+    if save :
+        fig_path = Path(vae_ppo_file)
+        fig_path = fig_path.with_suffix(".png")
+        plt.savefig(fig_path)
+
+def call_visualize_combined(vae_batch, vae_version) :
+    vae_ppo_average_dir = os.path.join("logs", "VAE_PPO", vae_version, "rand_env_1M")
+    os.makedirs(vae_ppo_average_dir, exist_ok=True)
+
+    vae_ppo_average(
+        output_file=os.path.join(vae_ppo_average_dir, f"{vae_batch}.npz"),
+        base_log_dir=os.path.join(base_dir, "..", "VAE_PPO_train", "logs", vae_batch))
+
+    vae_ppo_file = os.path.join(vae_ppo_average_dir, f"{vae_batch}.npz")
+
+    #define ppo average file :
+    ppo_average_dir = os.path.join(base_dir, "logs", "PPO", "rand_env_1M")
+    ppo_file = os.path.join(ppo_average_dir, "batch_size_10.npz")
+
+
+    visualize_combined(ppo_file, vae_ppo_file, save = True, show=False)
+
+
 
 if __name__ == "__main__" :
 
     # define averaged files :
-    ppo_average_dir = os.path.join(base_dir, "logs", "PPO", "rand_env_500k")
-    vae_ppo_average_dir = os.path.join("logs", "VAE_PPO", "V2.1", "rand_env_500k")
+    ppo_average_dir = os.path.join(base_dir, "logs", "PPO", "rand_env_1M")
+    vae_ppo_average_dir = os.path.join("logs", "VAE_PPO", "V2.1", "rand_env_1M")
     os.makedirs(ppo_average_dir, exist_ok=True)
     os.makedirs(vae_ppo_average_dir, exist_ok=True)
 
     # average the rewards :
     ppo_average(output_file=os.path.join(ppo_average_dir, "batch_size_10.npz"),
-                base_log_dir=os.path.join(base_dir, "..", "PPO", "logs", "explore", "batch_10_500k"))
+                base_log_dir=os.path.join(base_dir, "..", "PPO", "logs", "eval", "batch_10_1M"))
     vae_ppo_average(
         output_file=os.path.join(vae_ppo_average_dir, "batch_size_10.npz"),
-        base_log_dir=os.path.join(base_dir, "..", "VAE_PPO_train", "logs", "batch_V2.1_random100ep_config_H_2"))
+        base_log_dir=os.path.join(base_dir, "..", "VAE_PPO_train", "logs", "batch_1M_V2.1_random100ep_config_H_2"))
     # Define file paths
     ppo_file = os.path.join(ppo_average_dir, "batch_size_10.npz")
     vae_ppo_file = os.path.join(vae_ppo_average_dir, "batch_size_10.npz")
