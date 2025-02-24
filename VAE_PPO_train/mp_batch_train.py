@@ -5,10 +5,47 @@ from configs import eval_config
 from configs.save_config import save_eval_config
 from VAE_PPO_train.train import train
 import psutil
+from configs import config as config_module
 from typing import Optional
 
 # Get the current script's directory
 script_dir = os.path.dirname(os.path.abspath(__file__))
+
+def load_config_from_file(file_path):
+    """Load configuration from a text file into a dictionary."""
+    config_dict = {}
+
+    with open(file_path, "r") as f:
+        for line in f:
+            line = line.strip()
+            if line and "=" in line:  # Ignore empty lines
+                key, value = map(str.strip, line.split("=", 1))
+
+                # Convert numerical values if possible
+                try:
+                    value = eval(value)  # Convert numbers & tuples (be careful with eval)
+                except:
+                    pass  # Keep as string if conversion fails
+
+                config_dict[key] = value
+
+    return config_dict
+
+class Config:
+    """Dynamically loads attributes from a dictionary."""
+    def __init__(self, config_dict):
+        for key, value in config_dict.items():
+            setattr(self, key, value)  # Dynamically add attributes
+
+def update_config(config_path) :
+    # Load config dictionary from file
+    config_dict = load_config_from_file(config_path)
+    # Create a Config object with loaded values
+    config = Config(config_dict)
+    #update config_module
+    # Update global config module values for compatibility
+    for key, value in vars(config).items():
+        setattr(config_module, key, value)
 
 def worker(process_id: int,
            vae_model_path: str,
@@ -129,4 +166,5 @@ def main(batch = "batch_V3.13_kl=0.002_evalconfig3_100k" ,   vae_model_path = os
 
 
 if __name__ == "__main__":
+    update_config(os.path.join(script_dir, "..", "VAE_pretrain", "pretrained_vae","VAE_Version_2.1", "4_2", "KL-D_0.0008", "VAE_config_config_H.txt") )
     main(batch = "batch_1M_V2.1_random100ep_config_H_2", vae_model_path = os.path.join(script_dir, "..", "VAE_pretrain", "pretrained_vae","VAE_Version_2.1", "4_2", "KL-D_0.0008", "vae_random_100ep_config_H_2"))
