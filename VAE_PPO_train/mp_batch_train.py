@@ -173,7 +173,8 @@ def batch_train_module(  vae_name , vae_config ,vae_path=os.path.join("..", "VAE
     update_config(os.path.join(script_dir, vae_path, vae_config) )
     vae_version =  getattr(config_module, "VAE_Version", "default_value")
     #train :
-    main(batch = f"batch_1M_{vae_version}_{vae_name}", vae_model_path = os.path.join(script_dir, vae_path, vae_name))
+    vae_model_path = os.path.join(script_dir, vae_path, vae_name)
+    main(batch = f"batch_1M_{vae_version}_{vae_name}", vae_model_path = vae_model_path)
     #visualize :
     batch = f"batch_{vae_name}"
     call_visualize_combined(vae_batch=batch, vae_version=vae_version)
