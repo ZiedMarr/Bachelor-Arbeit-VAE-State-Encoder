@@ -193,7 +193,7 @@ if __name__ == "__main__" :
                 base_log_dir=os.path.join(base_dir, "..", "PPO", "logs", "eval", "batch_10_1M"))
     vae_ppo_average(
         output_file=os.path.join(vae_ppo_average_dir, "batch_size_10.npz"),
-        base_log_dir=os.path.join(base_dir, "..", "VAE_PPO_train", "logs", "batch_1M_V2.1_random100ep_config_H_2"))
+        base_log_dir=os.path.join(base_dir, "..", "VAE_PPO_train", "logs", "batch_1M_VAE_Version_2.1_vae_mix_10ep_config_A_2"))
     # Define file paths
     ppo_file = os.path.join(ppo_average_dir, "batch_size_10.npz")
     vae_ppo_file = os.path.join(vae_ppo_average_dir, "batch_size_10.npz")

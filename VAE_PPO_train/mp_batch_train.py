@@ -171,20 +171,21 @@ def main(vae_config, batch = "batch_V3.13_kl=0.002_evalconfig3_100k" ,   vae_mod
 
     print("All training processes completed successfully!")
 
-def batch_train_module(  vae_name , vae_config ,vae_path=os.path.join("..", "VAE_pretrain", "pretrained_vae","VAE_Version_2.1", "4_2", "KL-D_0.0008") ) :
+def batch_train_module(  vae_version,vae_name , vae_config ,vae_path=os.path.join("..", "VAE_pretrain", "pretrained_vae","VAE_Version_2.1", "4_2", "KL-D_0.0008") ) :
     vae_config_path = os.path.join(script_dir, vae_path, vae_config)
 
-    #print(vars(config_module))
-    vae_version =  getattr(config_module, "VAE_Version", "default_value")
+
     #train :
     vae_model_path = os.path.join(script_dir, vae_path, vae_name)
-    main(batch = f"batch_1M_{vae_version}_{vae_name}", vae_model_path = vae_model_path, vae_config=vae_config_path)
+    batch = f"batch_1M_{vae_version}_{vae_name}"
+    main(batch = batch, vae_model_path = vae_model_path, vae_config=vae_config_path)
     #visualize :
-    batch = f"batch_{vae_name}"
+
     call_visualize_combined(vae_batch=batch, vae_version=vae_version)
 
 if __name__ == "__main__":
+    vae_version = "VAE_Version_2.2"
     vae_path = os.path.join("..", "VAE_pretrain", "pretrained_vae","VAE_Version_2.2", "2_2", "KL-D_0.001")
-    batch_train_module(vae_name="vae_mix_10ep_config_A_2", vae_config="VAE_config_config_A_2.txt", vae_path=vae_path)
-    batch_train_module(vae_name="vae_random_100ep_config_A_3_3", vae_config="VAE_config_config_A_3.txt", vae_path=vae_path)
+    batch_train_module(vae_name="vae_random_100ep_config_A_4_t2_3", vae_config="VAE_config_config_A_4_t2.txt", vae_path=vae_path , vae_version=vae_version)
+    batch_train_module(vae_name="vae_random_100ep_config_A_3_3", vae_config="VAE_config_config_A_3.txt", vae_path=vae_path, vae_version=vae_version)
 
