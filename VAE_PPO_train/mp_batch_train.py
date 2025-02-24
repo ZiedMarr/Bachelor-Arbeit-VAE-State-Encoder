@@ -55,7 +55,8 @@ def worker(process_id: int,
            vae_save_folder: str,
            log_batch_dir: str,
            total_timesteps: int,
-           seed: int):
+           seed: int,
+           vae_config : str):
     """Worker function for each training process."""
     try:
         # Force CPU usage
@@ -72,6 +73,9 @@ def worker(process_id: int,
         # Create unique log directory for this process
         process_log_dir = os.path.join(log_batch_dir, f"process_{process_id}")
         os.makedirs(process_log_dir, exist_ok=True)
+
+        #modifiy config_module
+        update_config(vae_config)
 
         # Run training
         train(
@@ -96,7 +100,7 @@ def get_optimal_process_count() -> int:
     return max(1, int(cpu_count * 0.75))
 
 
-def main(batch = "batch_V3.13_kl=0.002_evalconfig3_100k" ,   vae_model_path = os.path.join(script_dir, "..", "VAE_pretrain", "pretrained_vae","VAE_Version_3.13", "2_2", "KL-D_0.002", "vae_rand_500k")):
+def main(vae_config, batch = "batch_V3.13_kl=0.002_evalconfig3_100k" ,   vae_model_path = os.path.join(script_dir, "..", "VAE_pretrain", "pretrained_vae","VAE_Version_3.13", "2_2", "KL-D_0.002", "vae_rand_500k")):
 
 
     # Setup batch configuration
@@ -136,7 +140,7 @@ def main(batch = "batch_V3.13_kl=0.002_evalconfig3_100k" ,   vae_model_path = os
             p = mp.Process(
                 target=worker,
                 args=(i, vae_model_path, vae_save_folder, log_batch_dir,
-                      total_timesteps, seeds[i])
+                      total_timesteps, seeds[i], vae_config)
             )
             p.start()
             processes.append(p)
@@ -168,13 +172,13 @@ def main(batch = "batch_V3.13_kl=0.002_evalconfig3_100k" ,   vae_model_path = os
     print("All training processes completed successfully!")
 
 def batch_train_module(  vae_name , vae_config ,vae_path=os.path.join("..", "VAE_pretrain", "pretrained_vae","VAE_Version_2.1", "4_2", "KL-D_0.0008") ) :
-    vae_name = vae_name
-    vae_config = vae_config
-    update_config(os.path.join(script_dir, vae_path, vae_config) )
+    vae_config_path = os.path.join(script_dir, vae_path, vae_config)
+
+    #print(vars(config_module))
     vae_version =  getattr(config_module, "VAE_Version", "default_value")
     #train :
     vae_model_path = os.path.join(script_dir, vae_path, vae_name)
-    main(batch = f"batch_1M_{vae_version}_{vae_name}", vae_model_path = vae_model_path)
+    main(batch = f"batch_1M_{vae_version}_{vae_name}", vae_model_path = vae_model_path, vae_config=vae_config_path)
     #visualize :
     batch = f"batch_{vae_name}"
     call_visualize_combined(vae_batch=batch, vae_version=vae_version)
