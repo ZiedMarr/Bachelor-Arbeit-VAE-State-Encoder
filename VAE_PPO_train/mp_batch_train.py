@@ -2,7 +2,7 @@ import os
 import torch
 import torch.multiprocessing as mp
 
-from VAE_PPO_train.model_batch_train import vae_model_path
+#from VAE_PPO_train.model_batch_train import vae_model_path
 from configs import eval_config
 from configs.save_config import save_eval_config
 from VAE_PPO_train.train import train
