@@ -185,7 +185,13 @@ def batch_train_module(  vae_version,vae_name , vae_config ,vae_path=os.path.joi
 
 if __name__ == "__main__":
     vae_version = "VAE_Version_2.2"
-    vae_path = os.path.join("..", "VAE_pretrain", "pretrained_vae","VAE_Version_2.2", "2_2", "KL-D_0.001")
-    batch_train_module(vae_name="vae_random_100ep_config_A_4_t2_3", vae_config="VAE_config_config_A_4_t2.txt", vae_path=vae_path , vae_version=vae_version)
-    batch_train_module(vae_name="vae_random_100ep_config_A_3_3", vae_config="VAE_config_config_A_3.txt", vae_path=vae_path, vae_version=vae_version)
+    vae_path = os.path.join("..", "VAE_pretrain", "pretrained_vae","VAE_Version_2.2", "2_2", "KL-D_0.0008")
+    batch_train_module(vae_name="vae_random_100ep_config_B_4_3", vae_config="VAE_config_config_B_4.txt", vae_path=vae_path , vae_version=vae_version)
+
+    vae_path = os.path.join("..", "VAE_pretrain", "pretrained_vae", "VAE_Version_2.2", "4_2", "KL-D_0.0008")
+    batch_train_module(vae_name="vae_mix_10ep_config_D_2_2", vae_config="VAE_config_config_D_2.txt", vae_path=vae_path , vae_version=vae_version)
+
+    vae_path = os.path.join("..", "VAE_pretrain", "pretrained_vae","VAE_Version_2.2", "2_2", "KL-D_0.0009")
+    batch_train_module(vae_name="vae_random_100ep_config_C_2_2", vae_config="VAE_config_config_C_2.txt", vae_path=vae_path , vae_version=vae_version)
+
 
