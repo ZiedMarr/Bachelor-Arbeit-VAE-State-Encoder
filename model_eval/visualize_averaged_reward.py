@@ -162,7 +162,7 @@ def visualize_combined(ppo_file, vae_ppo_file, save = False, show = True):
         plt.savefig(fig_path)
 
 def call_visualize_combined(vae_batch, vae_version) :
-    vae_ppo_average_dir = os.path.join("logs", "VAE_PPO", vae_version, "rand_env_1M")
+    vae_ppo_average_dir = os.path.join(base_dir,"logs", "VAE_PPO", vae_version, "rand_env_1M")
     os.makedirs(vae_ppo_average_dir, exist_ok=True)
 
     vae_ppo_average(
