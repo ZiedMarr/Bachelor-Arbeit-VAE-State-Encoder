@@ -187,46 +187,46 @@ if __name__ == "__main__":
     # First batch of VAE trainings from VAE_Version_2.1
     vae_version = "VAE_Version_2.1"
     vae_path = os.path.join("..", "VAE_pretrain", "pretrained_vae", vae_version, "2_2", "KL-D_0.0008")
-    batch_train_module(vae_name="vae_random_100ep_config_F_2", vae_config="VAE_config_config_F.txt", vae_path=vae_path,
+    batch_train_module(vae_name="vae_random_100ep_config_H2_2", vae_config="VAE_config_config_H2.txt", vae_path=vae_path,
                        vae_version=vae_version)
 
     vae_path = os.path.join("..", "VAE_pretrain", "pretrained_vae", vae_version, "2_2", "KL-D_0.001")
-    batch_train_module(vae_name="vae_random_100ep_config_A_2", vae_config="VAE_config_config_A_2.txt",
+    batch_train_module(vae_name="vae_random_100ep_config_A_2", vae_config="VAE_config_config_A.txt",
                        vae_path=vae_path, vae_version=vae_version)
 
     vae_path = os.path.join("..", "VAE_pretrain", "pretrained_vae", vae_version, "4_2", "KL-D_0.0009")
-    batch_train_module(vae_name="vae_random_100ep_config_K_2", vae_config="VAE_config_config_K_2.txt",
+    batch_train_module(vae_name="vae_random_100ep_config_K_2", vae_config="VAE_config_config_K.txt",
                        vae_path=vae_path, vae_version=vae_version)
 
     vae_path = os.path.join("..", "VAE_pretrain", "pretrained_vae", vae_version, "5_2", "KL-D_0.001")
-    batch_train_module(vae_name="vae_random_100ep_config_M_2", vae_config="VAE_config_config_M_2.txt",
+    batch_train_module(vae_name="vae_random_100ep_config_M_2", vae_config="VAE_config_config_M.txt",
                        vae_path=vae_path, vae_version=vae_version)
 
     # Second batch from VAE_Version_2.2
     vae_version = "VAE_Version_2.2"
     vae_path = os.path.join("..", "VAE_pretrain", "pretrained_vae", vae_version, "2_2", "KL-D_0.0008")
-    batch_train_module(vae_name="vae_random_100ep_config_B_2", vae_config="VAE_config_config_B_2.txt",
+    batch_train_module(vae_name="vae_random_100ep_config_B_2", vae_config="VAE_config_config_B.txt",
                        vae_path=vae_path, vae_version=vae_version)
 
     vae_path = os.path.join("..", "VAE_pretrain", "pretrained_vae", vae_version, "2_2", "KL-D_0.0009")
-    batch_train_module(vae_name="vae_random_100ep_config_C_2", vae_config="VAE_config_config_C_2.txt",
+    batch_train_module(vae_name="vae_random_100ep_config_C_2", vae_config="VAE_config_config_C.txt",
                        vae_path=vae_path, vae_version=vae_version)
 
     vae_path = os.path.join("..", "VAE_pretrain", "pretrained_vae", vae_version, "2_2", "KL-D_0.001")
-    batch_train_module(vae_name="vae_random_100ep_config_A_2", vae_config="VAE_config_config_A_2.txt",
+    batch_train_module(vae_name="vae_random_100ep_config_A_2", vae_config="VAE_config_config_A.txt",
                        vae_path=vae_path, vae_version=vae_version)
 
     vae_path = os.path.join("..", "VAE_pretrain", "pretrained_vae", vae_version, "4_2", "KL-D_0.0008")
-    batch_train_module(vae_name="vae_random_100ep_config_D_2", vae_config="VAE_config_config_D_2.txt",
+    batch_train_module(vae_name="vae_random_100ep_config_D_2", vae_config="VAE_config_config_D.txt",
                        vae_path=vae_path, vae_version=vae_version)
 
     vae_path = os.path.join("..", "VAE_pretrain", "pretrained_vae", vae_version, "4_2", "KL-D_0.001")
-    batch_train_module(vae_name="vae_random_100ep_config_E_2", vae_config="VAE_config_config_E_2.txt",
+    batch_train_module(vae_name="vae_random_100ep_config_E_2", vae_config="VAE_config_config_E.txt",
                        vae_path=vae_path, vae_version=vae_version)
 
     # Last batch from VAE_Version_2.1 (another unique one)
     vae_version = "VAE_Version_2.1"
     vae_path = os.path.join("..", "VAE_pretrain", "pretrained_vae", vae_version, "4_2", "KL-D_0.001")
-    batch_train_module(vae_name="vae_random_100ep_config_G_2", vae_config="VAE_config_config_G_2.txt",
+    batch_train_module(vae_name="vae_random_100ep_config_G_2", vae_config="VAE_config_config_G.txt",
                        vae_path=vae_path, vae_version=vae_version)
 
