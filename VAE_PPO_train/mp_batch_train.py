@@ -13,6 +13,10 @@ from model_eval.visualize_averaged_reward import call_visualize_combined
 
 # Get the current script's directory
 script_dir = os.path.dirname(os.path.abspath(__file__))
+# List to keep track of results
+success_list = []
+error_list = []
+
 
 def load_config_from_file(file_path):
     """Load configuration from a text file into a dictionary."""
@@ -183,50 +187,68 @@ def batch_train_module(  vae_version,vae_name , vae_config ,vae_path=os.path.joi
 
     call_visualize_combined(vae_batch=batch, vae_version=vae_version)
 
+def safe_batch_train(vae_name, vae_config, vae_path, vae_version):
+    """Wrapper for batch_train_module that handles errors and logs successes."""
+    try:
+        batch_train_module(vae_name=vae_name, vae_config=vae_config, vae_path=vae_path, vae_version=vae_version)
+        success_list.append(f"✅ SUCCESS: {vae_name} with {vae_config}")
+    except Exception as e:
+        error_list.append(f"❌ ERROR: {vae_name} with {vae_config} → {str(e)}")
+
+
 if __name__ == "__main__":
     # First batch of VAE trainings from VAE_Version_2.1
     vae_version = "VAE_Version_2.1"
-    vae_path = os.path.join("..", "VAE_pretrain", "pretrained_vae", vae_version, "2_2", "KL-D_0.0008")
-    batch_train_module(vae_name="vae_random_100ep_config_H2_2", vae_config="VAE_config_config_H2.txt", vae_path=vae_path,
+    vae_path = os.path.join("..", "VAE_pretrain", "pretrained_vae", vae_version, "4_2", "KL-D_0.0008")
+    safe_batch_train(vae_name="vae_random_100ep_config_H2_2", vae_config="VAE_config_config_H2.txt", vae_path=vae_path,
                        vae_version=vae_version)
 
     vae_path = os.path.join("..", "VAE_pretrain", "pretrained_vae", vae_version, "2_2", "KL-D_0.001")
-    batch_train_module(vae_name="vae_random_100ep_config_A_2", vae_config="VAE_config_config_A.txt",
+    safe_batch_train(vae_name="vae_random_100ep_config_A_2", vae_config="VAE_config_config_A.txt",
                        vae_path=vae_path, vae_version=vae_version)
 
     vae_path = os.path.join("..", "VAE_pretrain", "pretrained_vae", vae_version, "4_2", "KL-D_0.0009")
-    batch_train_module(vae_name="vae_random_100ep_config_K_2", vae_config="VAE_config_config_K.txt",
+    safe_batch_train(vae_name="vae_random_100ep_config_K_2", vae_config="VAE_config_config_K.txt",
                        vae_path=vae_path, vae_version=vae_version)
 
     vae_path = os.path.join("..", "VAE_pretrain", "pretrained_vae", vae_version, "5_2", "KL-D_0.001")
-    batch_train_module(vae_name="vae_random_100ep_config_M_2", vae_config="VAE_config_config_M.txt",
+    safe_batch_train(vae_name="vae_random_100ep_config_M_2", vae_config="VAE_config_config_M.txt",
                        vae_path=vae_path, vae_version=vae_version)
 
     # Second batch from VAE_Version_2.2
     vae_version = "VAE_Version_2.2"
     vae_path = os.path.join("..", "VAE_pretrain", "pretrained_vae", vae_version, "2_2", "KL-D_0.0008")
-    batch_train_module(vae_name="vae_random_100ep_config_B_2", vae_config="VAE_config_config_B.txt",
+    safe_batch_train(vae_name="vae_random_100ep_config_B_2", vae_config="VAE_config_config_B.txt",
                        vae_path=vae_path, vae_version=vae_version)
 
     vae_path = os.path.join("..", "VAE_pretrain", "pretrained_vae", vae_version, "2_2", "KL-D_0.0009")
-    batch_train_module(vae_name="vae_random_100ep_config_C_2", vae_config="VAE_config_config_C.txt",
+    safe_batch_train(vae_name="vae_random_100ep_config_C_2", vae_config="VAE_config_config_C.txt",
                        vae_path=vae_path, vae_version=vae_version)
 
     vae_path = os.path.join("..", "VAE_pretrain", "pretrained_vae", vae_version, "2_2", "KL-D_0.001")
-    batch_train_module(vae_name="vae_random_100ep_config_A_2", vae_config="VAE_config_config_A.txt",
+    safe_batch_train(vae_name="vae_random_100ep_config_A_2", vae_config="VAE_config_config_A.txt",
                        vae_path=vae_path, vae_version=vae_version)
 
     vae_path = os.path.join("..", "VAE_pretrain", "pretrained_vae", vae_version, "4_2", "KL-D_0.0008")
-    batch_train_module(vae_name="vae_random_100ep_config_D_2", vae_config="VAE_config_config_D.txt",
+    safe_batch_train(vae_name="vae_random_100ep_config_D_2", vae_config="VAE_config_config_D.txt",
                        vae_path=vae_path, vae_version=vae_version)
 
     vae_path = os.path.join("..", "VAE_pretrain", "pretrained_vae", vae_version, "4_2", "KL-D_0.001")
-    batch_train_module(vae_name="vae_random_100ep_config_E_2", vae_config="VAE_config_config_E.txt",
+    safe_batch_train(vae_name="vae_random_100ep_config_E_2", vae_config="VAE_config_config_E.txt",
                        vae_path=vae_path, vae_version=vae_version)
 
     # Last batch from VAE_Version_2.1 (another unique one)
     vae_version = "VAE_Version_2.1"
     vae_path = os.path.join("..", "VAE_pretrain", "pretrained_vae", vae_version, "4_2", "KL-D_0.001")
-    batch_train_module(vae_name="vae_random_100ep_config_G_2", vae_config="VAE_config_config_G.txt",
+    safe_batch_train(vae_name="vae_random_100ep_config_G_2", vae_config="VAE_config_config_G.txt",
                        vae_path=vae_path, vae_version=vae_version)
 
+    # Print results
+    print("\n=== SUMMARY REPORT ===")
+    print("\n✔ Successful Runs:")
+    for success in success_list:
+        print(success)
+
+    print("\n❌ Errors Encountered:")
+    for error in error_list:
+        print(error)
