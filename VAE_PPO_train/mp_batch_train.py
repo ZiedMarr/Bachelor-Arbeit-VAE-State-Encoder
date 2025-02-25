@@ -197,6 +197,7 @@ def safe_batch_train(vae_name, vae_config, vae_path, vae_version, in_out , kl):
 
 
 if __name__ == "__main__":
+    '''
     # 1st VAE
     vae_version = "VAE_Version_4.1"
     in_out = "2_2"
@@ -318,7 +319,7 @@ if __name__ == "__main__":
     safe_batch_train(vae_name="vae_random_100ep_config_pyramid_2", vae_config="VAE_config_config_pyramid.txt",
                      vae_path=vae_path, vae_version=vae_version, in_out=in_out, kl=kl)
                      
-    '''
+
 
     # Define log file path
     log_dir = os.path.join(script_dir, "training_log")
