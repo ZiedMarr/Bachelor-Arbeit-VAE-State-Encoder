@@ -175,7 +175,7 @@ def main(vae_config, batch = "batch_V3.13_kl=0.002_evalconfig3_100k" ,   vae_mod
 
     print("All training processes completed successfully!")
 
-def batch_train_module(  vae_version,vae_name , vae_config ,vae_path=os.path.join("..", "VAE_pretrain", "pretrained_vae","VAE_Version_2.1", "4_2", "KL-D_0.0008") ) :
+def batch_train_module(  vae_version,vae_name, in_out , kl , vae_config ,vae_path=os.path.join("..", "VAE_pretrain", "pretrained_vae","VAE_Version_2.1", "4_2", "KL-D_0.0008") ) :
     vae_config_path = os.path.join(script_dir, vae_path, vae_config)
 
 
@@ -185,12 +185,12 @@ def batch_train_module(  vae_version,vae_name , vae_config ,vae_path=os.path.joi
     main(batch = batch, vae_model_path = vae_model_path, vae_config=vae_config_path)
     #visualize :
 
-    call_visualize_combined(vae_batch=batch, vae_version=vae_version)
+    call_visualize_combined(vae_batch=batch, vae_version=vae_version, in_out=in_out , kl=kl)
 
-def safe_batch_train(vae_name, vae_config, vae_path, vae_version):
+def safe_batch_train(vae_name, vae_config, vae_path, vae_version, in_out , kl):
     """Wrapper for batch_train_module that handles errors and logs successes."""
     try:
-        batch_train_module(vae_name=vae_name, vae_config=vae_config, vae_path=vae_path, vae_version=vae_version)
+        batch_train_module(vae_name=vae_name, vae_config=vae_config, vae_path=vae_path, vae_version=vae_version, in_out=in_out , kl=kl)
         success_list.append(f"✅ SUCCESS: {vae_name} with {vae_config}")
     except Exception as e:
         error_list.append(f"❌ ERROR: {vae_name} with {vae_config} → {str(e)}")
@@ -199,9 +199,11 @@ def safe_batch_train(vae_name, vae_config, vae_path, vae_version):
 if __name__ == "__main__":
     # First batch of VAE trainings from VAE_Version_2.1
     vae_version = "VAE_Version_2.1"
-    vae_path = os.path.join("..", "VAE_pretrain", "pretrained_vae", vae_version, "4_2", "KL-D_0.0008")
+    in_out = "4_2"
+    kl = "KL-D_0.0008"
+    vae_path = os.path.join("..", "VAE_pretrain", "pretrained_vae", vae_version, in_out, kl)
     safe_batch_train(vae_name="vae_random_100ep_config_H2_2", vae_config="VAE_config_config_H2.txt", vae_path=vae_path,
-                       vae_version=vae_version)
+                       vae_version=vae_version, in_out=in_out , kl=kl)
 
     vae_path = os.path.join("..", "VAE_pretrain", "pretrained_vae", vae_version, "2_2", "KL-D_0.001")
     safe_batch_train(vae_name="vae_random_100ep_config_A_2", vae_config="VAE_config_config_A.txt",
