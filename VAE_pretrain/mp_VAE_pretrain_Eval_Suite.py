@@ -31,7 +31,7 @@ class Config:
         self.ENCODER_HIDDEN6 = config_dict.get("ENCODER_HIDDEN6", 16)
         self.ENCODER_HIDDEN7 = config_dict.get("ENCODER_HIDDEN7", 16)
         self.ENCODER_HIDDEN8 = config_dict.get("ENCODER_HIDDEN8", 16)
-        self.ENCODER_HIDDEN9 = config_dict.get("ENCODER_HIDDEN9", 16)
+       # self.ENCODER_HIDDEN9 = config_dict.get("ENCODER_HIDDEN9", 16)
 
         self.DECODER_HIDDEN = config_dict.get("DECODER_HIDDEN", 16)
         self.DECODER_HIDDEN2 = config_dict.get("DECODER_HIDDEN2", 32)
@@ -41,7 +41,7 @@ class Config:
         self.DECODER_HIDDEN6 = config_dict.get("DECODER_HIDDEN6", 16)
         self.DECODER_HIDDEN7 = config_dict.get("DECODER_HIDDEN7", 16)
         self.DECODER_HIDDEN8 = config_dict.get("DECODER_HIDDEN8", 16)
-        self.DECODER_HIDDEN9 = config_dict.get("DECODER_HIDDEN9", 16)
+       # self.DECODER_HIDDEN9 = config_dict.get("DECODER_HIDDEN9", 16)
 
 
         self.BETA_KL_DIV = config_dict.get("BETA_KL_DIV", 0.001)
