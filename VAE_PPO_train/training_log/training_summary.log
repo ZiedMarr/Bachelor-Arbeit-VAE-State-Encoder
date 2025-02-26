@@ -1,10 +1,15 @@
 === SUMMARY REPORT ===
 
 ✔ Successful Runs:
-✅ SUCCESS: vae_random_100ep_config_compact_2 with VAE_config_config_compact.txt
-✅ SUCCESS: vae_random_100ep_config_bottleneck_2 with VAE_config_config_bottleneck.txt
-✅ SUCCESS: vae_random_100ep_config_wide_2 with VAE_config_config_wide.txt
-✅ SUCCESS: vae_random_100ep_config_minimal_2 with VAE_config_config_minimal.txt
-✅ SUCCESS: vae_random_100ep_config_latent_rich_2 with VAE_config_config_latent_rich.txt
+✅ SUCCESS: vae_random_100ep_config_dense_2 with VAE_config_config_dense.txt
+✅ SUCCESS: vae_random_100ep_config_asymmetric_2 with VAE_config_config_asymmetric.txt
+✅ SUCCESS: vae_random_100ep_config_complex_2 with VAE_config_config_complex.txt
+✅ SUCCESS: vae_random_100ep_config_balanced_2 with VAE_config_config_balanced.txt
+✅ SUCCESS: vae_random_100ep_config_narrow_2 with VAE_config_config_narrow.txt
+✅ SUCCESS: vae_random_100ep_config_exp_decay_2 with VAE_config_config_exp_decay.txt
+✅ SUCCESS: vae_random_100ep_config_deeper_latent_2 with VAE_config_config_deeper_latent.txt
+✅ SUCCESS: vae_random_100ep_config_wider_io_2 with VAE_config_config_wider_io.txt
+✅ SUCCESS: vae_random_100ep_config_pyramid_2 with VAE_config_config_pyramid.txt
 
 ❌ Errors Encountered:
+❌ ERROR: vae_random_100ep_config_micro_2 with VAE_config_config_micro.txt → axis 2 is out of bounds for array of dimension 1
