@@ -134,7 +134,7 @@ def worker(process_id: int,
         eval_data = os.path.join(base_dir, "..", "Data_Collection", "collected_data",
                                  "eval", "merged1","merged1.npz")
 
-        # Training datasets and their corresponding VAE names
+        # Training datasets and their corresponding  VAE names
         datasets = [
             ("vae_random_400ep", "random_400_20250227_111220.npz"),
             ("vae_random_200ep" , "random_200_20250227_105642.npz")
