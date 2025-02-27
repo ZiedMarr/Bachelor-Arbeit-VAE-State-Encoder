@@ -4,5 +4,5 @@ Evaluation Frequency: 5
 
 Results:
 --------------------------------------------------
-Average Standardized MSE: 0.467438
-Total Standardized MSE: 33350.751315
+Average Standardized MSE: 0.458896
+Total Standardized MSE: 32741.309389
