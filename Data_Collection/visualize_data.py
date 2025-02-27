@@ -86,15 +86,15 @@ if __name__ == "__main__":
             if os.path.isfile(full_path):
                 data_paths.append(full_path)
     '''
-    data_path = "collected_data/eval/merged1/merged1.npz"
+    data_path = "./collected_data/train_dataset/random_400_20250227_111220.npz"
 
     data_name = os.path.basename(data_path)
     name_without_extension, _ = os.path.splitext(data_name)
 
     if filter_1_episodes :
-        save_dir = save_path = os.path.join("./Data_distribution", "merged",f"merged1") #f"{name_without_extension}_filtered"
+        save_dir = save_path = os.path.join("./Data_distribution", "rand_pol_rand_env",f"random_400") #f"{name_without_extension}_filtered"
     else :
-        save_dir = save_path=os.path.join("./Data_distribution","merged", "merged1") #name_without_extension
+        save_dir = save_path=os.path.join("./Data_distribution","rand_pol_rand_env", "random_400") #name_without_extension
     # Create the directory if it doesn’t exist
     os.makedirs(save_dir, exist_ok=True)
 
