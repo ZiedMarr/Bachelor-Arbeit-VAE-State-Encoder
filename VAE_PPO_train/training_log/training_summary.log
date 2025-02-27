@@ -1,8 +1,8 @@
 === SUMMARY REPORT ===
 
 ✔ Successful Runs:
-✅ SUCCESS: vae_random_100ep_config_v5_moderate_2 with VAE_config_config_v5_moderate.txt
-✅ SUCCESS: vae_random_100ep_config_v5_compact_2 with VAE_config_config_v5_compact.txt
-✅ SUCCESS: vae_random_100ep_config_pyramid_2 with VAE_config_config_pyramid.txt
+✅ SUCCESS: vae_random_100ep_config_v5_pyramid_structure_2 with VAE_config_config_v5_pyramid_structure.txt
+✅ SUCCESS: vae_random_100ep_config_v5_compact_balanced_2 with VAE_config_config_v5_compact_balanced.txt
+✅ SUCCESS: vae_random_100ep_config_v5_linear_reduction_2 with VAE_config_config_v5_linear_reduction.txt
 
 ❌ Errors Encountered:
