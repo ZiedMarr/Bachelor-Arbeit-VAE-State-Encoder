@@ -199,26 +199,29 @@ def safe_batch_train(vae_name, vae_config, vae_path, vae_version, in_out , kl):
 if __name__ == "__main__":
 
     # 1st VAE
-    vae_version = "VAE_Version_5.18"
+    vae_version = "VAE_Version_5.26"
     in_out = "2_2"
-    kl = "KL-D_0.0008"
+    kl = "KL-D_0.00082"
     vae_path = os.path.join("..", "VAE_pretrain", "pretrained_vae", vae_version, in_out, kl)
-    safe_batch_train(vae_name="vae_random_100ep_config_v5_moderate_2", vae_config="VAE_config_config_v5_moderate.txt",
+    safe_batch_train(vae_name="vae_random_100ep_config_v5_pyramid_structure_2", vae_config="VAE_config_config_v5_pyramid_structure.txt",
                      vae_path=vae_path, vae_version=vae_version, in_out=in_out, kl=kl)
 
-    # 12nd VAE
-    vae_version = "VAE_Version_5.02"
+    # 2
+    vae_version = "VAE_Version_5.28"
     in_out = "2_2"
-    kl = "KL-D_0.0005"
+    kl = "KL-D_0.00072"
     vae_path = os.path.join("..", "VAE_pretrain", "pretrained_vae", vae_version, in_out, kl)
-    safe_batch_train(vae_name="vae_random_100ep_config_v5_compact_2", vae_config="VAE_config_config_v5_compact.txt",
+    safe_batch_train(vae_name="vae_random_100ep_config_v5_compact_balanced_2",
+                     vae_config="VAE_config_config_v5_compact_balanced.txt",
                      vae_path=vae_path, vae_version=vae_version, in_out=in_out, kl=kl)
 
-    vae_version = "VAE_Version_4.24"
+    # 3
+    vae_version = "VAE_Version_5.29"
     in_out = "2_2"
-    kl = "KL-D_0.0009"
+    kl = "KL-D_0.00077"
     vae_path = os.path.join("..", "VAE_pretrain", "pretrained_vae", vae_version, in_out, kl)
-    safe_batch_train(vae_name="vae_random_100ep_config_pyramid_2", vae_config="VAE_config_config_pyramid.txt",
+    safe_batch_train(vae_name="vae_random_100ep_config_v5_linear_reduction_2",
+                     vae_config="VAE_config_config_v5_linear_reduction.txt",
                      vae_path=vae_path, vae_version=vae_version, in_out=in_out, kl=kl)
 
     # Define log file path
