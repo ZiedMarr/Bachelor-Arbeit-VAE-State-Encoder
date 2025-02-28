@@ -138,7 +138,8 @@ def worker(process_id: int,
         datasets = [
             ("vae_random_100ep", "random_100_20250220_163649.npz"),
             ("vae_random_200ep" , "random_200_20250227_105642.npz"),
-            ("vae_random_10ep" , "random_10_20250228_103336.npz")
+            ("vae_random_10ep" , "random_10_20250228_103336.npz"),
+            ("vae_mix_10ep" , "merged1.npz")
         ]
 
         # Process each dataset size

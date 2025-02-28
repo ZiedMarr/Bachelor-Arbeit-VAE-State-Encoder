@@ -57,15 +57,15 @@ def offline_pretrain_batched(vae_save_path, data_path, vae_model_path, batch_siz
     # Create DataLoader for batched training
     dataset = torch.utils.data.TensorDataset(inputs_tensor, targets_tensor)
     dataloader = torch.utils.data.DataLoader(dataset, batch_size=batch_size, shuffle=True)
-
+    warmup_epochs = config.EPOCHS / 2
     # Batch training loop
     for epoch in range(config.EPOCHS):
         for batch_inputs, batch_targets in dataloader:
             predicted_next_states, mu, log_var, _ = vae(batch_inputs)
-
-            loss = vae.MSE_Loss(mu=mu, log_var=log_var,
+            temp_beta = min(epoch / warmup_epochs, 1.0) * config.BETA_KL_DIV
+            loss = vae.MSE_Loss(mu=mu, log_var=log_var,temp_beta=temp_beta,
                                 predicted_next_states=predicted_next_states,
-                                target_tensor=batch_targets)
+                                target_tensor=batch_targets, beta_increase=True)
 
             vae_optimizer.zero_grad()
             loss.backward()

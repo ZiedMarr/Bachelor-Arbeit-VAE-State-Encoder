@@ -1,6 +1,6 @@
 SUITE_CONFIGS = {
 
-'config_v6_triple_input_small_latent': {
+'config_v6_triple_input_small_latent_GB': {
     'INPUT_STATE_SIZE': 3,
     'OUTPUT_STATE_SIZE': 2,
     'LATENT_DIM': 2,
@@ -25,14 +25,15 @@ SUITE_CONFIGS = {
     'BETA_KL_DIV': 0.00080,
     'TRAIN_FREQUENCY': 5,
     'LOSS_FUNC': "MSE_loss_feature_Standardization",
-    'EPOCHS': 2,
+    'EPOCHS': 4,
     'ACT_FUNC': "LeakyReLU(0.1)",
     'NORM_FUNC': "LayerNorm",
     'EVAL_SEED': [1, 33, 545, 65, 6, 66, 78, 48, 24, 98],
-    'VAE_Version': "VAE_Version_6.13"
+    'VAE_Version': "VAE_Version_6.13",
+    'gradual_beta': "True"
 },
 
-'config_v6_triple_input_medium_latent': {
+'config_v6_triple_input_medium_latent_GB': {
     'INPUT_STATE_SIZE': 3,
     'OUTPUT_STATE_SIZE': 2,
     'LATENT_DIM': 4,
@@ -57,14 +58,15 @@ SUITE_CONFIGS = {
     'BETA_KL_DIV': 0.00085,
     'TRAIN_FREQUENCY': 5,
     'LOSS_FUNC': "MSE_loss_feature_Standardization",
-    'EPOCHS': 1,
+    'EPOCHS': 5,
     'ACT_FUNC': "LeakyReLU(0.1)",
     'NORM_FUNC': "LayerNorm",
     'EVAL_SEED': [1, 33, 545, 65, 6, 66, 78, 48, 24, 98],
-    'VAE_Version': "VAE_Version_6.14"
+    'VAE_Version': "VAE_Version_6.14",
+    'gradual_beta': "True"
 },
 
-'config_v6_triple_input_large_latent': {
+'config_v6_triple_input_large_latent_GB': {
     'INPUT_STATE_SIZE': 3,
     'OUTPUT_STATE_SIZE': 2,
     'LATENT_DIM': 8,
@@ -89,14 +91,15 @@ SUITE_CONFIGS = {
     'BETA_KL_DIV': 0.00090,
     'TRAIN_FREQUENCY': 5,
     'LOSS_FUNC': "MSE_loss_feature_Standardization",
-    'EPOCHS': 3,
+    'EPOCHS': 6,
     'ACT_FUNC': "LeakyReLU(0.1)",
     'NORM_FUNC': "LayerNorm",
     'EVAL_SEED': [1, 33, 545, 65, 6, 66, 78, 48, 24, 98],
-    'VAE_Version': "VAE_Version_6.15"
+    'VAE_Version': "VAE_Version_6.15",
+    'gradual_beta': "True"
 },
 
-'config_v6_quad_input_small_latent': {
+'config_v6_quad_input_small_latent_GB': {
     'INPUT_STATE_SIZE': 4,
     'OUTPUT_STATE_SIZE': 2,
     'LATENT_DIM': 3,
@@ -121,14 +124,15 @@ SUITE_CONFIGS = {
     'BETA_KL_DIV': 0.00075,
     'TRAIN_FREQUENCY': 5,
     'LOSS_FUNC': "MSE_loss_feature_Standardization",
-    'EPOCHS': 2,
+    'EPOCHS': 7,
     'ACT_FUNC': "LeakyReLU(0.1)",
     'NORM_FUNC': "LayerNorm",
     'EVAL_SEED': [1, 33, 545, 65, 6, 66, 78, 48, 24, 98],
-    'VAE_Version': "VAE_Version_6.16"
+    'VAE_Version': "VAE_Version_6.16",
+    'gradual_beta': "True"
 },
 
-'config_v6_quad_input_medium_latent': {
+'config_v6_quad_input_medium_latent_GB': {
     'INPUT_STATE_SIZE': 4,
     'OUTPUT_STATE_SIZE': 2,
     'LATENT_DIM': 5,
@@ -153,14 +157,15 @@ SUITE_CONFIGS = {
     'BETA_KL_DIV': 0.00095,
     'TRAIN_FREQUENCY': 5,
     'LOSS_FUNC': "MSE_loss_feature_Standardization",
-    'EPOCHS': 1,
+    'EPOCHS': 8,
     'ACT_FUNC': "LeakyReLU(0.1)",
     'NORM_FUNC': "LayerNorm",
     'EVAL_SEED': [1, 33, 545, 65, 6, 66, 78, 48, 24, 98],
-    'VAE_Version': "VAE_Version_6.17"
+    'VAE_Version': "VAE_Version_6.17",
+    'gradual_beta': "True"
 },
 
-'config_v6_quad_input_large_latent': {
+'config_v6_quad_input_large_latent_GB': {
     'INPUT_STATE_SIZE': 4,
     'OUTPUT_STATE_SIZE': 2,
     'LATENT_DIM': 8,
@@ -185,14 +190,15 @@ SUITE_CONFIGS = {
     'BETA_KL_DIV': 0.00100,
     'TRAIN_FREQUENCY': 5,
     'LOSS_FUNC': "MSE_loss_feature_Standardization",
-    'EPOCHS': 3,
+    'EPOCHS': 4,
     'ACT_FUNC': "LeakyReLU(0.1)",
     'NORM_FUNC': "LayerNorm",
     'EVAL_SEED': [1, 33, 545, 65, 6, 66, 78, 48, 24, 98],
-    'VAE_Version': "VAE_Version_6.18"
+    'VAE_Version': "VAE_Version_6.18",
+    'gradual_beta': "True"
 },
 
-'config_v6_penta_input_small_latent': {
+'config_v6_penta_input_small_latent_GB': {
     'INPUT_STATE_SIZE': 5,
     'OUTPUT_STATE_SIZE': 2,
     'LATENT_DIM': 2,
@@ -217,14 +223,15 @@ SUITE_CONFIGS = {
     'BETA_KL_DIV': 0.00070,
     'TRAIN_FREQUENCY': 5,
     'LOSS_FUNC': "MSE_loss_feature_Standardization",
-    'EPOCHS': 2,
+    'EPOCHS': 5,
     'ACT_FUNC': "LeakyReLU(0.1)",
     'NORM_FUNC': "LayerNorm",
     'EVAL_SEED': [1, 33, 545, 65, 6, 66, 78, 48, 24, 98],
-    'VAE_Version': "VAE_Version_6.19"
+    'VAE_Version': "VAE_Version_6.19",
+    'gradual_beta': "True"
 },
 
-'config_v6_penta_input_medium_latent': {
+'config_v6_penta_input_medium_latent_GB': {
     'INPUT_STATE_SIZE': 5,
     'OUTPUT_STATE_SIZE': 2,
     'LATENT_DIM': 4,
@@ -249,14 +256,15 @@ SUITE_CONFIGS = {
     'BETA_KL_DIV': 0.00080,
     'TRAIN_FREQUENCY': 5,
     'LOSS_FUNC': "MSE_loss_feature_Standardization",
-    'EPOCHS': 1,
+    'EPOCHS': 6,
     'ACT_FUNC': "LeakyReLU(0.1)",
     'NORM_FUNC': "LayerNorm",
     'EVAL_SEED': [1, 33, 545, 65, 6, 66, 78, 48, 24, 98],
-    'VAE_Version': "VAE_Version_6.20"
+    'VAE_Version': "VAE_Version_6.20",
+    'gradual_beta': "True"
 },
 
-'config_v6_penta_input_large_latent': {
+'config_v6_penta_input_large_latent_GB': {
     'INPUT_STATE_SIZE': 5,
     'OUTPUT_STATE_SIZE': 2,
     'LATENT_DIM': 7,
@@ -281,14 +289,15 @@ SUITE_CONFIGS = {
     'BETA_KL_DIV': 0.00090,
     'TRAIN_FREQUENCY': 5,
     'LOSS_FUNC': "MSE_loss_feature_Standardization",
-    'EPOCHS': 3,
+    'EPOCHS': 7,
     'ACT_FUNC': "LeakyReLU(0.1)",
     'NORM_FUNC': "LayerNorm",
     'EVAL_SEED': [1, 33, 545, 65, 6, 66, 78, 48, 24, 98],
-    'VAE_Version': "VAE_Version_6.21"
+    'VAE_Version': "VAE_Version_6.21",
+    'gradual_beta': "True"
 },
 
-'config_v6_hexa_input_small_latent': {
+'config_v6_hexa_input_small_latent_GB': {
     'INPUT_STATE_SIZE': 6,
     'OUTPUT_STATE_SIZE': 2,
     'LATENT_DIM': 3,
@@ -313,14 +322,15 @@ SUITE_CONFIGS = {
     'BETA_KL_DIV': 0.00075,
     'TRAIN_FREQUENCY': 5,
     'LOSS_FUNC': "MSE_loss_feature_Standardization",
-    'EPOCHS': 2,
+    'EPOCHS': 8,
     'ACT_FUNC': "LeakyReLU(0.1)",
     'NORM_FUNC': "LayerNorm",
     'EVAL_SEED': [1, 33, 545, 65, 6, 66, 78, 48, 24, 98],
-    'VAE_Version': "VAE_Version_6.22"
+    'VAE_Version': "VAE_Version_6.22",
+    'gradual_beta': "True"
 },
 
-'config_v6_hexa_input_medium_latent': {
+'config_v6_hexa_input_medium_latent_GB': {
     'INPUT_STATE_SIZE': 6,
     'OUTPUT_STATE_SIZE': 2,
     'LATENT_DIM': 6,
@@ -345,14 +355,15 @@ SUITE_CONFIGS = {
     'BETA_KL_DIV': 0.00085,
     'TRAIN_FREQUENCY': 5,
     'LOSS_FUNC': "MSE_loss_feature_Standardization",
-    'EPOCHS': 1,
+    'EPOCHS': 4,
     'ACT_FUNC': "LeakyReLU(0.1)",
     'NORM_FUNC': "LayerNorm",
     'EVAL_SEED': [1, 33, 545, 65, 6, 66, 78, 48, 24, 98],
-    'VAE_Version': "VAE_Version_6.23"
+    'VAE_Version': "VAE_Version_6.23",
+    'gradual_beta': "True"
 },
 
-'config_v6_hexa_input_large_latent': {
+'config_v6_hexa_input_large_latent_GB': {
     'INPUT_STATE_SIZE': 6,
     'OUTPUT_STATE_SIZE': 2,
     'LATENT_DIM': 8,
@@ -377,15 +388,16 @@ SUITE_CONFIGS = {
     'BETA_KL_DIV': 0.00095,
     'TRAIN_FREQUENCY': 5,
     'LOSS_FUNC': "MSE_loss_feature_Standardization",
-    'EPOCHS': 3,
+    'EPOCHS': 5,
     'ACT_FUNC': "LeakyReLU(0.1)",
     'NORM_FUNC': "LayerNorm",
     'EVAL_SEED': [1, 33, 545, 65, 6, 66, 78, 48, 24, 98],
-    'VAE_Version': "VAE_Version_6.24"
+    'VAE_Version': "VAE_Version_6.24",
+    'gradual_beta': "True"
 },
 
 # Double configurations (repeats)
-'config_v6_triple_input_medium_latent_2': {
+'config_v6_triple_input_medium_latent_GB_2': {
     'INPUT_STATE_SIZE': 3,
     'OUTPUT_STATE_SIZE': 2,
     'LATENT_DIM': 4,
@@ -410,14 +422,15 @@ SUITE_CONFIGS = {
     'BETA_KL_DIV': 0.00085,
     'TRAIN_FREQUENCY': 5,
     'LOSS_FUNC': "MSE_loss_feature_Standardization",
-    'EPOCHS': 1,
+    'EPOCHS': 5,
     'ACT_FUNC': "LeakyReLU(0.1)",
     'NORM_FUNC': "LayerNorm",
     'EVAL_SEED': [1, 33, 545, 65, 6, 66, 78, 48, 24, 98],
-    'VAE_Version': "VAE_Version_6.14"
+    'VAE_Version': "VAE_Version_6.14",
+    'gradual_beta': "True"
 },
 
-'config_v6_quad_input_large_latent_2': {
+'config_v6_quad_input_large_latent_GB_2': {
     'INPUT_STATE_SIZE': 4,
     'OUTPUT_STATE_SIZE': 2,
     'LATENT_DIM': 8,
@@ -442,14 +455,15 @@ SUITE_CONFIGS = {
     'BETA_KL_DIV': 0.00100,
     'TRAIN_FREQUENCY': 5,
     'LOSS_FUNC': "MSE_loss_feature_Standardization",
-    'EPOCHS': 3,
+    'EPOCHS': 4,
     'ACT_FUNC': "LeakyReLU(0.1)",
     'NORM_FUNC': "LayerNorm",
     'EVAL_SEED': [1, 33, 545, 65, 6, 66, 78, 48, 24, 98],
-    'VAE_Version': "VAE_Version_6.18"
+    'VAE_Version': "VAE_Version_6.18",
+    'gradual_beta': "True"
 },
 
-'config_v6_penta_input_small_latent_2': {
+'config_v6_penta_input_small_latent_GB_2': {
     'INPUT_STATE_SIZE': 5,
     'OUTPUT_STATE_SIZE': 2,
     'LATENT_DIM': 2,
@@ -474,15 +488,16 @@ SUITE_CONFIGS = {
     'BETA_KL_DIV': 0.00070,
     'TRAIN_FREQUENCY': 5,
     'LOSS_FUNC': "MSE_loss_feature_Standardization",
-    'EPOCHS': 2,
+    'EPOCHS': 5,
     'ACT_FUNC': "LeakyReLU(0.1)",
     'NORM_FUNC': "LayerNorm",
     'EVAL_SEED': [1, 33, 545, 65, 6, 66, 78, 48, 24, 98],
-    'VAE_Version': "VAE_Version_6.19"
+    'VAE_Version': "VAE_Version_6.19",
+    'gradual_beta': "True"
 },
 
 # Additional configurations with unique parameter combinations
-'config_v6_mixed_triple_latent': {
+'config_v6_mixed_triple_latent_GB': {
     'INPUT_STATE_SIZE': 3,
     'OUTPUT_STATE_SIZE': 2,
     'LATENT_DIM': 6,
@@ -507,14 +522,15 @@ SUITE_CONFIGS = {
     'BETA_KL_DIV': 0.00085,
     'TRAIN_FREQUENCY': 5,
     'LOSS_FUNC': "MSE_loss_feature_Standardization",
-    'EPOCHS': 2,
+    'EPOCHS': 6,
     'ACT_FUNC': "LeakyReLU(0.1)",
     'NORM_FUNC': "LayerNorm",
     'EVAL_SEED': [1, 33, 545, 65, 6, 66, 78, 48, 24, 98],
-    'VAE_Version': "VAE_Version_6.25"
+    'VAE_Version': "VAE_Version_6.25",
+    'gradual_beta': "True"
 },
 
-'config_v6_mixed_quad_latent': {
+'config_v6_mixed_quad_latent_GB': {
     'INPUT_STATE_SIZE': 4,
     'OUTPUT_STATE_SIZE': 2,
     'LATENT_DIM': 7,
@@ -539,106 +555,11 @@ SUITE_CONFIGS = {
     'BETA_KL_DIV': 0.00093,
     'TRAIN_FREQUENCY': 5,
     'LOSS_FUNC': "MSE_loss_feature_Standardization",
-    'EPOCHS': 3,
+    'EPOCHS': 7,
     'ACT_FUNC': "LeakyReLU(0.1)",
     'NORM_FUNC': "LayerNorm",
     'EVAL_SEED': [1, 33, 545, 65, 6, 66, 78, 48, 24, 98],
-    'VAE_Version': "VAE_Version_6.26"
-},
-
-'config_v6_mixed_penta_latent': {
-    'INPUT_STATE_SIZE': 5,
-    'OUTPUT_STATE_SIZE': 2,
-    'LATENT_DIM': 5,
-    'ENCODER_HIDDEN': 45,
-    'ENCODER_HIDDEN2': 35,
-    'ENCODER_HIDDEN3': 25,
-    'ENCODER_HIDDEN4': 15,
-    'ENCODER_HIDDEN5': 0,
-    'ENCODER_HIDDEN6': 0,
-    'ENCODER_HIDDEN7': 0,
-    'ENCODER_HIDDEN8': 0,
-    'ENCODER_HIDDEN9': 0,
-    'DECODER_HIDDEN': 15,
-    'DECODER_HIDDEN2': 25,
-    'DECODER_HIDDEN3': 35,
-    'DECODER_HIDDEN4': 45,
-    'DECODER_HIDDEN5': 0,
-    'DECODER_HIDDEN6': 0,
-    'DECODER_HIDDEN7': 0,
-    'DECODER_HIDDEN8': 0,
-    'DECODER_HIDDEN9': 0,
-    'BETA_KL_DIV': 0.00078,
-    'TRAIN_FREQUENCY': 5,
-    'LOSS_FUNC': "MSE_loss_feature_Standardization",
-    'EPOCHS': 1,
-    'ACT_FUNC': "LeakyReLU(0.1)",
-    'NORM_FUNC': "LayerNorm",
-    'EVAL_SEED': [1, 33, 545, 65, 6, 66, 78, 48, 24, 98],
-    'VAE_Version': "VAE_Version_6.27"
-},
-
-'config_v6_mixed_hexa_latent': {
-    'INPUT_STATE_SIZE': 6,
-    'OUTPUT_STATE_SIZE': 2,
-    'LATENT_DIM': 4,
-    'ENCODER_HIDDEN': 54,
-    'ENCODER_HIDDEN2': 40,
-    'ENCODER_HIDDEN3': 28,
-    'ENCODER_HIDDEN4': 8,
-    'ENCODER_HIDDEN5': 0,
-    'ENCODER_HIDDEN6': 0,
-    'ENCODER_HIDDEN7': 0,
-    'ENCODER_HIDDEN8': 0,
-    'ENCODER_HIDDEN9': 0,
-    'DECODER_HIDDEN': 8,
-    'DECODER_HIDDEN2': 16,
-    'DECODER_HIDDEN3': 24,
-    'DECODER_HIDDEN4': 32,
-    'DECODER_HIDDEN5': 0,
-    'DECODER_HIDDEN6': 0,
-    'DECODER_HIDDEN7': 0,
-    'DECODER_HIDDEN8': 0,
-    'DECODER_HIDDEN9': 0,
-    'BETA_KL_DIV': 0.00070,
-    'TRAIN_FREQUENCY': 5,
-    'LOSS_FUNC': "MSE_loss_feature_Standardization",
-    'EPOCHS': 1,
-    'ACT_FUNC': "LeakyReLU(0.1)",
-    'NORM_FUNC': "LayerNorm",
-    'EVAL_SEED': [1, 33, 545, 65, 6, 66, 78, 48, 24, 98],
-    'VAE_Version': "VAE_Version_6.11"
-},
-
-'config_v6_asymmetric_h': {
-    'INPUT_STATE_SIZE': 6,
-    'OUTPUT_STATE_SIZE': 2,
-    'LATENT_DIM': 4,
-    'ENCODER_HIDDEN': 42,
-    'ENCODER_HIDDEN2': 32,
-    'ENCODER_HIDDEN3': 22,
-    'ENCODER_HIDDEN4': 12,
-    'ENCODER_HIDDEN5': 0,
-    'ENCODER_HIDDEN6': 0,
-    'ENCODER_HIDDEN7': 0,
-    'ENCODER_HIDDEN8': 0,
-    'ENCODER_HIDDEN9': 0,
-    'DECODER_HIDDEN': 10,
-    'DECODER_HIDDEN2': 18,
-    'DECODER_HIDDEN3': 26,
-    'DECODER_HIDDEN4': 34,
-    'DECODER_HIDDEN5': 0,
-    'DECODER_HIDDEN6': 0,
-    'DECODER_HIDDEN7': 0,
-    'DECODER_HIDDEN8': 0,
-    'DECODER_HIDDEN9': 0,
-    'BETA_KL_DIV': 0.00086,
-    'TRAIN_FREQUENCY': 5,
-    'LOSS_FUNC': "MSE_loss_feature_Standardization",
-    'EPOCHS': 4,
-    'ACT_FUNC': "LeakyReLU(0.1)",
-    'NORM_FUNC': "LayerNorm",
-    'EVAL_SEED': [1, 33, 545, 65, 6, 66, 78, 48, 24, 98],
-    'VAE_Version': "VAE_Version_6.12"
+    'VAE_Version': "VAE_Version_6.26",
+    'gradual_beta': "True"
 }
 }
