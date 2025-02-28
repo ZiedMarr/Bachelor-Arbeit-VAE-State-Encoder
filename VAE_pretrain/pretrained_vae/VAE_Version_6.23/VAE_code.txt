@@ -1,3 +1,5 @@
+from pickle import FALSE
+
 import torch.nn as nn
 import torch
 from configs import config
@@ -81,10 +83,13 @@ class VAE(nn.Module):
         z = self.reparameterize(mu, log_var)
         return self.decode(z), mu, log_var, z
 
-    def MSE_Loss(self, mu , log_var, predicted_next_states, target_tensor):
+    def MSE_Loss(self ,mu , log_var, predicted_next_states, target_tensor, beta_increase = FALSE , temp_beta=config.BETA_KL_DIV ):
         reconstruction_loss = torch.nn.MSELoss()(predicted_next_states, target_tensor)
         kl_loss = -0.5 * torch.sum(1 + log_var - mu.pow(2) - log_var.exp())
-        loss = reconstruction_loss + config.BETA_KL_DIV * kl_loss
+        if beta_increase :
+            loss = reconstruction_loss + temp_beta* kl_loss
+        else :
+            loss = reconstruction_loss + config.BETA_KL_DIV * kl_loss
 
         return loss
 
