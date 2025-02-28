@@ -1,8 +1,12 @@
 === SUMMARY REPORT ===
 
 ✔ Successful Runs:
-✅ SUCCESS: vae_random_100ep_config_v5_pyramid_structure_2 with VAE_config_config_v5_pyramid_structure.txt
-✅ SUCCESS: vae_random_100ep_config_v5_compact_balanced_2 with VAE_config_config_v5_compact_balanced.txt
-✅ SUCCESS: vae_random_100ep_config_v5_linear_reduction_2 with VAE_config_config_v5_linear_reduction.txt
+✅ SUCCESS: vae_random_10ep_config_v6_triple_input_large_latent_3 with VAE_config_config_v6_triple_input_large_latent.txt
+✅ SUCCESS: vae_random_10ep_config_v6_quad_input_large_latent_3 with VAE_config_config_v6_quad_input_large_latent.txt
+✅ SUCCESS: vae_random_10ep_config_v6_penta_input_small_latent_2 with VAE_config_config_v6_penta_input_small_latent.txt
+✅ SUCCESS: vae_random_10ep_config_v6_penta_input_medium_latent_1 with VAE_config_config_v6_penta_input_medium_latent.txt
+✅ SUCCESS: vae_random_200ep_config_v6_hexa_input_medium_latent_1 with VAE_config_config_v6_hexa_input_medium_latent.txt
+✅ SUCCESS: vae_random_200ep_config_v6_mixed_penta_latent_1 with VAE_config_config_v6_mixed_penta_latent.txt
+✅ SUCCESS: vae_random_10ep_config_v6_mixed_penta_latent_1 with VAE_config_config_v6_mixed_penta_latent.txt
 
 ❌ Errors Encountered:
