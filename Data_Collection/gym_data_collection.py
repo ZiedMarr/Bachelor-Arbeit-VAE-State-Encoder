@@ -288,6 +288,8 @@ def collect_from_batch(root_dir= os.path.join(base_dir,"..", "PPO","logs", "expl
                 index += 1
                 print(index)
 
+#TODO :  def expert_vae_ppo_collect()
+# in order to collect data using that policy to then visualize the latent representation of the trained vae
 
 
 if __name__ == "__main__":

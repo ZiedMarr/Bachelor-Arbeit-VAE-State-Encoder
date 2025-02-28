@@ -107,8 +107,8 @@ def call_latent_colored(vae_name, data_dir=None, show=False, reduction=True, dat
 if __name__ == "__main__":
     #call_latent_colored("vae_rand_100k", reduction=True)
 
-    model_path = os.path.join(base_dir, "..", "VAE_PPO_train", "trained_vae", "batch_1M_VAE_Version_4.14_vae_random_100ep_config_wider_io_2",
-                              "1000000_vae_random_100ep_config_wider_io_2_20250225_231325"
+    model_path = os.path.join(base_dir, "..", "VAE_PPO_train", "trained_vae", "batch_1M_VAE_Version_6.27_vae_random_200ep_config_v6_mixed_penta_latent_1",
+                              "1000000_vae_random_200ep_config_v6_mixed_penta_latent_1_20250228_134655"
                               )
     vae = VAE(input_dim=config.INPUT_DIMENSION, latent_dim=config.LATENT_DIM, output_dim=config.OUTPUT_DIMENSION)
     vae.load_state_dict(torch.load(model_path))
