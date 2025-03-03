@@ -151,9 +151,19 @@ def visualize_combined(ppo_file, vae_ppo_file):
     plt.xlabel("Timesteps")
     plt.ylabel("Reward")
     plt.title("Comparison of PPO and VAE-PPO: Averaged Rewards Over Time")
+
+    # Add a horizontal line at y=250
+    plt.axhline(y=300, color='g', linestyle='--', linewidth=1, label="y=300")
+
+    # Add 250 as a tick on the y-axis
+    yticks = plt.yticks()[0]  # Get current y-ticks
+    plt.yticks(list(yticks) + [300])  # Add 250 to the list of y-ticks
+
     plt.legend()
     plt.grid()
+    plt.savefig("./logs/VAE_PPO/V2/rand_env_config1_1M.png", dpi=300, bbox_inches='tight')
     plt.show()
+    plt.close()
 
 if __name__ == "__main__" :
     # visualize(os.path.join(base_dir, "logs", "PPO" ,"averaged_evaluation_batch2.npz"))
