@@ -198,7 +198,7 @@ if __name__ == "__main__" :
     # Define file paths
     '''
 
-    ppo_file = os.path.join(ppo_average_dir, "averaged_evaluation_rand_env_seed10_100k_4.npz")
+    ppo_file = os.path.join(ppo_average_dir, "averaged_evaluation_rand_env_seed10_100k_7.npz")
     vae_ppo_average_dir = os.path.join("logs", "VAE_PPO", "VAE_Version_1.02", "4_2", "KL-D_0.00075", "rand_env_1M")
     vae_ppo_file = os.path.join(vae_ppo_average_dir, "batch_1M_VAE_Version_1.02_vae_random_50k_config_v1_quad_input_small_latent_2.npz")
     visualize_combined(ppo_file , vae_ppo_file ,save=False)

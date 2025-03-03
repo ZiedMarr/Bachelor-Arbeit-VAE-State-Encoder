@@ -199,118 +199,137 @@ def safe_batch_train(vae_name, vae_config, vae_path, vae_version, in_out , kl):
 if __name__ == "__main__":
 
     # 1st VAE
-    vae_version = "VAE_Version_1.01"
-    in_out = "4_2"
-    kl = "KL-D_0.00072"
-    vae_path = os.path.join("..", "VAE_pretrain", "pretrained_vae", vae_version, in_out, kl)
-    safe_batch_train(vae_name="vae_random_50k_config_v1_quad_input_minimal_latent_3",
-                     vae_config="VAE_config_config_v1_quad_input_minimal_latent.txt",
-                     vae_path=vae_path, vae_version=vae_version, in_out=in_out, kl=kl)
-
-    # 2nd VAE
     vae_version = "VAE_Version_1.02"
     in_out = "4_2"
     kl = "KL-D_0.00075"
     vae_path = os.path.join("..", "VAE_pretrain", "pretrained_vae", vae_version, in_out, kl)
-    safe_batch_train(vae_name="vae_random_50k_config_v1_quad_input_small_latent_2",
+    safe_batch_train(vae_name="vae_exp_0.3noise_10ep_config_v1_quad_input_small_latent_2",
                      vae_config="VAE_config_config_v1_quad_input_small_latent.txt",
                      vae_path=vae_path, vae_version=vae_version, in_out=in_out, kl=kl)
 
-    safe_batch_train(vae_name="vae_random_50k_config_v1_quad_input_small_latent_v2_2",
+    safe_batch_train(vae_name="vae_exp_0.3noise_10ep_config_v1_quad_input_small_latent_v2_2",
                      vae_config="VAE_config_config_v1_quad_input_small_latent_v2.txt",
                      vae_path=vae_path, vae_version=vae_version, in_out=in_out, kl=kl)
 
-    # 3rd VAE
+    safe_batch_train(vae_name="vae_exp_no_noise_10ep_config_v1_quad_input_small_latent_2",
+                     vae_config="VAE_config_config_v1_quad_input_small_latent.txt",
+                     vae_path=vae_path, vae_version=vae_version, in_out=in_out, kl=kl)
+
+    safe_batch_train(vae_name="vae_exp_no_noise_10ep_config_v1_quad_input_small_latent_v2_2",
+                     vae_config="VAE_config_config_v1_quad_input_small_latent_v2.txt",
+                     vae_path=vae_path, vae_version=vae_version, in_out=in_out, kl=kl)
+
+    # 2nd VAE
     vae_version = "VAE_Version_1.03"
     in_out = "4_2"
     kl = "KL-D_0.0008"
     vae_path = os.path.join("..", "VAE_pretrain", "pretrained_vae", vae_version, in_out, kl)
-    safe_batch_train(vae_name="vae_random_50k_config_v1_quad_input_mid_latent_4",
+    safe_batch_train(vae_name="vae_exp_0.3noise_10ep_config_v1_quad_input_mid_latent_4",
                      vae_config="VAE_config_config_v1_quad_input_mid_latent.txt",
                      vae_path=vae_path, vae_version=vae_version, in_out=in_out, kl=kl)
 
-    # 4th VAE
+    safe_batch_train(vae_name="vae_exp_no_noise_10ep_config_v1_quad_input_mid_latent_4",
+                     vae_config="VAE_config_config_v1_quad_input_mid_latent.txt",
+                     vae_path=vae_path, vae_version=vae_version, in_out=in_out, kl=kl)
+
+    # 3rd VAE
     vae_version = "VAE_Version_1.04"
     in_out = "4_2"
     kl = "KL-D_0.00094"
     vae_path = os.path.join("..", "VAE_pretrain", "pretrained_vae", vae_version, in_out, kl)
-    safe_batch_train(vae_name="vae_random_50k_config_v1_quad_input_large_latent_1",
+    safe_batch_train(vae_name="vae_exp_0.3noise_10ep_config_v1_quad_input_large_latent_1",
                      vae_config="VAE_config_config_v1_quad_input_large_latent.txt",
                      vae_path=vae_path, vae_version=vae_version, in_out=in_out, kl=kl)
 
-    # 5th VAE
-    vae_version = "VAE_Version_1.05"
-    in_out = "5_2"
-    kl = "KL-D_0.00083"
-    vae_path = os.path.join("..", "VAE_pretrain", "pretrained_vae", vae_version, in_out, kl)
-    safe_batch_train(vae_name="vae_random_50k_config_v1_penta_input_minimal_latent_5",
-                     vae_config="VAE_config_config_v1_penta_input_minimal_latent.txt",
+    safe_batch_train(vae_name="vae_exp_no_noise_10ep_config_v1_quad_input_large_latent_1",
+                     vae_config="VAE_config_config_v1_quad_input_large_latent.txt",
                      vae_path=vae_path, vae_version=vae_version, in_out=in_out, kl=kl)
 
-    # 6th VAE
+    # 4th VAE
     vae_version = "VAE_Version_1.06"
     in_out = "5_2"
     kl = "KL-D_0.00089"
     vae_path = os.path.join("..", "VAE_pretrain", "pretrained_vae", vae_version, in_out, kl)
-    safe_batch_train(vae_name="vae_random_50k_config_v1_penta_input_small_latent_3",
+    safe_batch_train(vae_name="vae_exp_0.3noise_10ep_config_v1_penta_input_small_latent_3",
                      vae_config="VAE_config_config_v1_penta_input_small_latent.txt",
                      vae_path=vae_path, vae_version=vae_version, in_out=in_out, kl=kl)
 
-    # 7th VAE
+    safe_batch_train(vae_name="vae_exp_no_noise_10ep_config_v1_penta_input_small_latent_3",
+                     vae_config="VAE_config_config_v1_penta_input_small_latent.txt",
+                     vae_path=vae_path, vae_version=vae_version, in_out=in_out, kl=kl)
+
+    # 5th VAE
     vae_version = "VAE_Version_1.07"
     in_out = "5_2"
     kl = "KL-D_0.0007"
     vae_path = os.path.join("..", "VAE_pretrain", "pretrained_vae", vae_version, in_out, kl)
-    safe_batch_train(vae_name="vae_random_50k_config_v1_penta_input_mid_latent_2",
+    safe_batch_train(vae_name="vae_exp_0.3noise_10ep_config_v1_penta_input_mid_latent_2",
                      vae_config="VAE_config_config_v1_penta_input_mid_latent.txt",
                      vae_path=vae_path, vae_version=vae_version, in_out=in_out, kl=kl)
 
-    safe_batch_train(vae_name="vae_random_50k_config_v1_penta_input_mid_latent_v2_2",
+    safe_batch_train(vae_name="vae_exp_no_noise_10ep_config_v1_penta_input_mid_latent_2",
+                     vae_config="VAE_config_config_v1_penta_input_mid_latent.txt",
+                     vae_path=vae_path, vae_version=vae_version, in_out=in_out, kl=kl)
+
+    safe_batch_train(vae_name="vae_exp_0.3noise_10ep_config_v1_penta_input_mid_latent_v2_2",
                      vae_config="VAE_config_config_v1_penta_input_mid_latent_v2.txt",
                      vae_path=vae_path, vae_version=vae_version, in_out=in_out, kl=kl)
 
-    # 8th VAE
+    safe_batch_train(vae_name="vae_exp_no_noise_10ep_config_v1_penta_input_mid_latent_v2_2",
+                     vae_config="VAE_config_config_v1_penta_input_mid_latent_v2.txt",
+                     vae_path=vae_path, vae_version=vae_version, in_out=in_out, kl=kl)
+
+    # 6th VAE
     vae_version = "VAE_Version_1.08"
     in_out = "5_2"
     kl = "KL-D_0.00097"
     vae_path = os.path.join("..", "VAE_pretrain", "pretrained_vae", vae_version, in_out, kl)
-    safe_batch_train(vae_name="vae_random_50k_config_v1_penta_input_large_latent_5",
+    safe_batch_train(vae_name="vae_exp_0.3noise_10ep_config_v1_penta_input_large_latent_5",
                      vae_config="VAE_config_config_v1_penta_input_large_latent.txt",
                      vae_path=vae_path, vae_version=vae_version, in_out=in_out, kl=kl)
 
-    # 9th VAE
-    vae_version = "VAE_Version_1.09"
-    in_out = "6_2"
-    kl = "KL-D_0.00076"
-    vae_path = os.path.join("..", "VAE_pretrain", "pretrained_vae", vae_version, in_out, kl)
-    safe_batch_train(vae_name="vae_random_50k_config_v1_hexa_input_minimal_latent_2",
-                     vae_config="VAE_config_config_v1_hexa_input_minimal_latent.txt",
+    safe_batch_train(vae_name="vae_exp_no_noise_10ep_config_v1_penta_input_large_latent_5",
+                     vae_config="VAE_config_config_v1_penta_input_large_latent.txt",
                      vae_path=vae_path, vae_version=vae_version, in_out=in_out, kl=kl)
 
-    # 10th VAE
+    # 7th VAE
     vae_version = "VAE_Version_1.10"
     in_out = "6_2"
     kl = "KL-D_0.00085"
     vae_path = os.path.join("..", "VAE_pretrain", "pretrained_vae", vae_version, in_out, kl)
-    safe_batch_train(vae_name="vae_random_50k_config_v1_hexa_input_small_latent_4",
+    safe_batch_train(vae_name="vae_exp_0.3noise_10ep_config_v1_hexa_input_small_latent_4",
                      vae_config="VAE_config_config_v1_hexa_input_small_latent.txt",
                      vae_path=vae_path, vae_version=vae_version, in_out=in_out, kl=kl)
 
-    # 11th VAE
+    safe_batch_train(vae_name="vae_exp_no_noise_10ep_config_v1_hexa_input_small_latent_4",
+                     vae_config="VAE_config_config_v1_hexa_input_small_latent.txt",
+                     vae_path=vae_path, vae_version=vae_version, in_out=in_out, kl=kl)
+
+    # 8th VAE - VAE_Version_1.11
     vae_version = "VAE_Version_1.11"
     in_out = "6_2"
     kl = "KL-D_0.00095"
     vae_path = os.path.join("..", "VAE_pretrain", "pretrained_vae", vae_version, in_out, kl)
-    safe_batch_train(vae_name="vae_random_50k_config_v1_hexa_input_mid_latent_3",
+
+    safe_batch_train(vae_name="vae_exp_0.3noise_10ep_config_v1_hexa_input_mid_latent_3",
                      vae_config="VAE_config_config_v1_hexa_input_mid_latent.txt",
                      vae_path=vae_path, vae_version=vae_version, in_out=in_out, kl=kl)
 
-    # 12th VAE
+    safe_batch_train(vae_name="vae_exp_no_noise_10ep_config_v1_hexa_input_mid_latent_3",
+                     vae_config="VAE_config_config_v1_hexa_input_mid_latent.txt",
+                     vae_path=vae_path, vae_version=vae_version, in_out=in_out, kl=kl)
+
+    # 9th VAE - VAE_Version_1.12
     vae_version = "VAE_Version_1.12"
     in_out = "6_2"
     kl = "KL-D_0.00082"
     vae_path = os.path.join("..", "VAE_pretrain", "pretrained_vae", vae_version, in_out, kl)
-    safe_batch_train(vae_name="vae_random_50k_config_v1_hexa_input_large_latent_1",
+
+    safe_batch_train(vae_name="vae_exp_0.3noise_10ep_config_v1_hexa_input_large_latent_1",
+                     vae_config="VAE_config_config_v1_hexa_input_large_latent.txt",
+                     vae_path=vae_path, vae_version=vae_version, in_out=in_out, kl=kl)
+
+    safe_batch_train(vae_name="vae_exp_no_noise_10ep_config_v1_hexa_input_large_latent_1",
                      vae_config="VAE_config_config_v1_hexa_input_large_latent.txt",
                      vae_path=vae_path, vae_version=vae_version, in_out=in_out, kl=kl)
 

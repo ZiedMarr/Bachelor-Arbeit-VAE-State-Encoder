@@ -92,5 +92,6 @@ def ppo_average(output_file,base_log_dir = os.path.join(base_dir,"..", "PPO", "l
 
 
 if __name__ == "__main__":
-    ppo_average(output_file=os.path.join(base_dir,"logs", "PPO" , "averaged_evaluation_rand_env_seed10_100k_4.npz" ),base_log_dir=os.path.join(base_dir,"..", "PPO", "logs" , "eval", "batch_eval_100k_4"))
+    for i in range(5,10) :
+        ppo_average(output_file=os.path.join(base_dir,"logs", "PPO" , f"averaged_evaluation_rand_env_seed10_100k_{i}.npz" ),base_log_dir=os.path.join(base_dir,"..", "PPO", "logs" , "eval", f"batch_eval_100k_{i}"))
     #vae_ppo_average(output_file= os.path.join("logs", "VAE_PPO" ,"V3.12", "averaged_evaluation_batch_V3.12_kl=0.002_100k_seed10.npz") ,base_log_dir=os.path.join(base_dir,"..", "VAE_PPO_train", "logs" , "batch_V3.12_kl=0.002_100k"))
