@@ -1,11 +1,12 @@
 import gymnasium as gym
 import numpy as np
+from model_eval.visualize_averaged_reward import call_visualize_combined
 
 from Wrappers.RandomStartCartpoleEval import RandomStartCartPoleEval
 from Wrappers.RandomStartLunarLander import RandomStartLunarLander
 from configs import config as config_module
 
-
+'''
 # Create environment with the custom wrapper
 env = RandomStartCartPoleEval(gym.make("CartPole-v1", render_mode="human"))
 seeds = [2 ,45 ,654 ,77 ,23 , 22 , 323, 33 ,43  , 32 ,334 ,53]
@@ -23,4 +24,6 @@ for i in range(10):
             break  # Restart if episode ends early
 
 env.close()
+'''
 
+call_visualize_combined()

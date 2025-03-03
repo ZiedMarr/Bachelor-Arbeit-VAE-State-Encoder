@@ -121,4 +121,4 @@ def main(batch = "batch_evalconfig3_100k"):
 
 
 if __name__ == "__main__":
-    main(batch = "batch_eval_100k")
+    main(batch = "batch_eval_100k_2")
