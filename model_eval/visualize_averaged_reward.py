@@ -174,7 +174,7 @@ def call_visualize_combined(vae_batch, vae_version, in_out , kl) :
 
     #define ppo average file :
     ppo_average_dir = os.path.join(base_dir, "logs", "PPO")
-    ppo_file = os.path.join(ppo_average_dir, "averaged_evaluation_rand_env_seed10_100k_2.npz")
+    ppo_file = os.path.join(ppo_average_dir, "averaged_evaluation_rand_env_seed10_100k_nowrapper.npz")
 
 
     visualize_combined(ppo_file, vae_ppo_file, save = True, show=False)
@@ -198,7 +198,7 @@ if __name__ == "__main__" :
     # Define file paths
     '''
 
-    ppo_file = os.path.join(ppo_average_dir, "averaged_evaluation_rand_env_seed10_100k_2.npz")
+    ppo_file = os.path.join(ppo_average_dir, "averaged_evaluation_rand_env_seed10_100k_3.npz")
     vae_ppo_average_dir = os.path.join("logs", "VAE_PPO", "VAE_Version_1.02", "4_2", "KL-D_0.00075", "rand_env_1M")
-    vae_ppo_file = os.path.join(vae_ppo_average_dir, "batch_1M_VAE_Version_1.02_vae_random_50k_config_v1_quad_input_small_latent_v2_2.npz")
-    visualize_combined(ppo_file , vae_ppo_file ,save=True)
+    vae_ppo_file = os.path.join(vae_ppo_average_dir, "batch_1M_VAE_Version_1.02_vae_random_50k_config_v1_quad_input_small_latent_2.npz")
+    visualize_combined(ppo_file , vae_ppo_file ,save=False)
