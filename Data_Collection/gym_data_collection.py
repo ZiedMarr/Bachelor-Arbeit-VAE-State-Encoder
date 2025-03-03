@@ -290,17 +290,18 @@ def collect_from_batch(root_dir= os.path.join(base_dir,"..", "PPO","logs", "expl
 
 #TODO :  def expert_vae_ppo_collect()
 # in order to collect data using that policy to then visualize the latent representation of the trained vae
+# use env wrapper to collect and remove the 2 last obs of all observations
 
 
 if __name__ == "__main__":
     # Example calls for testing
     #expert_collect(output_path = os.path.join(base_dir, "collected_data", "cartpole_expert_60"),policy_path = os.path.join(base_dir, "..", "PPO", "logs","batch2","logs_20000_20250123_151149","best_model", "best_model.zip"), num_episodes=60)
 
-    random_collect(output_path=os.path.join("train","rand_pol_rand_env"), num_episodes=30, env_wrapper=None)
-    random_collect(output_path=os.path.join("train","rand_pol_rand_env"), num_episodes=50, env_wrapper=None)
+    #random_collect(output_path=os.path.join("train","rand_pol_rand_env"), num_episodes=30, env_wrapper=None)
+    #random_collect(output_path=os.path.join("train","rand_pol_rand_env"), num_episodes=50, env_wrapper=None)
 
 
-    #collect_from_batch(root_dir= os.path.join(base_dir,"..", "PPO","logs", "explore", "batch_10_500k"),output_path=os.path.join(base_dir,"collected_data", "eval", "explore_pol_standard_env","ppo_500k_noise_0.5"), noise=True,noise_scale=0.5, num_episodes=10,env_wrapper=None)
+    collect_from_batch(root_dir= os.path.join(base_dir,"..", "PPO","logs", "explore", "batch_10_500k"),output_path=os.path.join(base_dir,"collected_data", "eval", "explore_pol_standard_env","ppo_500k_no_noise"), noise=False, num_episodes=10,env_wrapper=None)
     #collect_from_batch(root_dir= os.path.join(base_dir,"..", "PPO","logs", "explore", "batch_10_200k"),output_path=os.path.join(base_dir,"collected_data", "eval", "explore_pol_standard_env","ppo_200k_noise_0.5"), noise=True,noise_scale=0.5, num_episodes=10,env_wrapper=None)
 
 

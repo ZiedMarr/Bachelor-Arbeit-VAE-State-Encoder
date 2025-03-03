@@ -242,7 +242,7 @@ if __name__ == "__main__":
                      vae_config="VAE_config_config_v6_hexa_input_medium_latent.txt",
                      vae_path=vae_path, vae_version=vae_version, in_out=in_out, kl=kl)
 
- 
+
 
 
 
