@@ -199,6 +199,53 @@ if __name__ == "__main__" :
     '''
 
     ppo_file = os.path.join(ppo_average_dir, "averaged_evaluation_rand_env_seed10_100k_7.npz")
-    vae_ppo_average_dir = os.path.join("logs", "VAE_PPO", "VAE_Version_1.02", "4_2", "KL-D_0.00075", "rand_env_1M")
-    vae_ppo_file = os.path.join(vae_ppo_average_dir, "batch_1M_VAE_Version_1.02_vae_random_50k_config_v1_quad_input_small_latent_2.npz")
-    visualize_combined(ppo_file , vae_ppo_file ,save=False)
+
+    # List of VAE paths to evaluate (excluding 'random_50k' entries)
+    vae_blocks = [
+        # VAE_Version_1.02
+        ("VAE_Version_1.02", "4_2", "KL-D_0.00075", "vae_exp_0.3noise_10ep_config_v1_quad_input_small_latent_2"),
+        ("VAE_Version_1.02", "4_2", "KL-D_0.00075", "vae_exp_0.3noise_10ep_config_v1_quad_input_small_latent_v2_2"),
+        ("VAE_Version_1.02", "4_2", "KL-D_0.00075", "vae_exp_no_noise_10ep_config_v1_quad_input_small_latent_2"),
+        ("VAE_Version_1.02", "4_2", "KL-D_0.00075", "vae_exp_no_noise_10ep_config_v1_quad_input_small_latent_v2_2"),
+
+        # VAE_Version_1.03
+        ("VAE_Version_1.03", "4_2", "KL-D_0.0008", "vae_exp_0.3noise_10ep_config_v1_quad_input_mid_latent_4"),
+        ("VAE_Version_1.03", "4_2", "KL-D_0.0008", "vae_exp_no_noise_10ep_config_v1_quad_input_mid_latent_4"),
+
+        # VAE_Version_1.04
+        ("VAE_Version_1.04", "4_2", "KL-D_0.00094", "vae_exp_0.3noise_10ep_config_v1_quad_input_large_latent_1"),
+        ("VAE_Version_1.04", "4_2", "KL-D_0.00094", "vae_exp_no_noise_10ep_config_v1_quad_input_large_latent_1"),
+
+        # VAE_Version_1.06
+        ("VAE_Version_1.06", "5_2", "KL-D_0.00089", "vae_exp_0.3noise_10ep_config_v1_penta_input_small_latent_3"),
+        ("VAE_Version_1.06", "5_2", "KL-D_0.00089", "vae_exp_no_noise_10ep_config_v1_penta_input_small_latent_3"),
+
+        # VAE_Version_1.07
+        ("VAE_Version_1.07", "5_2", "KL-D_0.0007", "vae_exp_0.3noise_10ep_config_v1_penta_input_mid_latent_2"),
+        ("VAE_Version_1.07", "5_2", "KL-D_0.0007", "vae_exp_0.3noise_10ep_config_v1_penta_input_mid_latent_v2_2"),
+        ("VAE_Version_1.07", "5_2", "KL-D_0.0007", "vae_exp_no_noise_10ep_config_v1_penta_input_mid_latent_2"),
+        ("VAE_Version_1.07", "5_2", "KL-D_0.0007", "vae_exp_no_noise_10ep_config_v1_penta_input_mid_latent_v2_2"),
+
+        # VAE_Version_1.08
+        ("VAE_Version_1.08", "5_2", "KL-D_0.00097", "vae_exp_0.3noise_10ep_config_v1_penta_input_large_latent_5"),
+        ("VAE_Version_1.08", "5_2", "KL-D_0.00097", "vae_exp_no_noise_10ep_config_v1_penta_input_large_latent_5"),
+
+        # VAE_Version_1.10
+        ("VAE_Version_1.10", "6_2", "KL-D_0.00085", "vae_exp_0.3noise_10ep_config_v1_hexa_input_small_latent_4"),
+        ("VAE_Version_1.10", "6_2", "KL-D_0.00085", "vae_exp_no_noise_10ep_config_v1_hexa_input_small_latent_4"),
+
+        # VAE_Version_1.11
+        ("VAE_Version_1.11", "6_2", "KL-D_0.00095", "vae_exp_0.3noise_10ep_config_v1_hexa_input_mid_latent_3"),
+        ("VAE_Version_1.11", "6_2", "KL-D_0.00095", "vae_exp_no_noise_10ep_config_v1_hexa_input_mid_latent_3"),
+
+        # VAE_Version_1.12
+        ("VAE_Version_1.12", "6_2", "KL-D_0.00082", "vae_exp_0.3noise_10ep_config_v1_hexa_input_large_latent_1"),
+        ("VAE_Version_1.12", "6_2", "KL-D_0.00082", "vae_exp_no_noise_10ep_config_v1_hexa_input_large_latent_1"),
+    ]
+
+    # Iterate through all VAE configurations and visualize
+    for vae_version, in_out, kl, vae_name in vae_blocks:
+        vae_ppo_average_dir = os.path.join("logs", "VAE_PPO", vae_version, in_out, kl, "rand_env_1M")
+        vae_ppo_file = os.path.join(vae_ppo_average_dir, f"batch_1M_{vae_version}_{vae_name}.npz")
+
+        visualize_combined(ppo_file, vae_ppo_file, save=True, show=False)
