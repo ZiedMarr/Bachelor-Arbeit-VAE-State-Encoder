@@ -206,41 +206,6 @@ if __name__ == "__main__":
     safe_batch_train(vae_name="vae_mix_10ep_config_v6_triple_input_large_latent_GB_6", vae_config="VAE_config_config_v6_triple_input_large_latent.txt",
                      vae_path=vae_path, vae_version=vae_version, in_out=in_out, kl=kl)
 
-    #2
-    vae_version = "VAE_Version_6.18"
-    in_out = "4_2"
-    kl = "KL-D_0.001"
-    vae_path = os.path.join("..", "VAE_pretrain", "pretrained_vae", vae_version, in_out, kl)
-    safe_batch_train(vae_name="vae_mix_10ep_config_v6_quad_input_large_latent_GB_4",
-                     vae_config="VAE_config_config_v6_quad_input_large_latent.txt",
-                     vae_path=vae_path, vae_version=vae_version, in_out=in_out, kl=kl)
-
-    # 3
-    vae_version = "VAE_Version_6.19"
-    in_out = "5_2"
-    kl = "KL-D_0.0007"
-    vae_path = os.path.join("..", "VAE_pretrain", "pretrained_vae", vae_version, in_out, kl)
-    safe_batch_train(vae_name="vae_mix_10ep_config_v6_penta_input_small_latent_GB_5",
-                     vae_config="VAE_config_config_v6_penta_input_small_latent.txt",
-                     vae_path=vae_path, vae_version=vae_version, in_out=in_out, kl=kl)
-
-    # 4
-    vae_version = "VAE_Version_6.20"
-    in_out = "5_2"
-    kl = "KL-D_0.0008"
-    vae_path = os.path.join("..", "VAE_pretrain", "pretrained_vae", vae_version, in_out, kl)
-    safe_batch_train(vae_name="vae_mix_10ep_config_v6_penta_input_medium_latent_GB_6",
-                     vae_config="VAE_config_config_v6_penta_input_medium_latent.txt",
-                     vae_path=vae_path, vae_version=vae_version, in_out=in_out, kl=kl)
-
-    # 5
-    vae_version = "VAE_Version_6.23"
-    in_out = "6_2"
-    kl = "KL-D_0.00085"
-    vae_path = os.path.join("..", "VAE_pretrain", "pretrained_vae", vae_version, in_out, kl)
-    safe_batch_train(vae_name="vae_mix_10ep_config_v6_hexa_input_medium_latent_GB_4",
-                     vae_config="VAE_config_config_v6_hexa_input_medium_latent.txt",
-                     vae_path=vae_path, vae_version=vae_version, in_out=in_out, kl=kl)
 
 
 
