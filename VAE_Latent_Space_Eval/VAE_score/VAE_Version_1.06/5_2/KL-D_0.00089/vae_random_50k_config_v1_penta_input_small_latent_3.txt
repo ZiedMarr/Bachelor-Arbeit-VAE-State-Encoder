@@ -1,0 +1,8 @@
+VAE Model: vae_random_50k_config_v1_penta_input_small_latent_3
+Dataset Path: /home/zied/BA-code/Bachelor-Arbeit-VAE-State-Encoder/VAE_pretrain/../Data_Collection/collected_data/eval/explore_policy_rand_env/ppo_no_noise/ppo_no_noise_merged.npz
+Evaluation Frequency: 5
+
+Results:
+--------------------------------------------------
+Average Standardized MSE: 0.995740
+Total Standardized MSE: 4485.807515
