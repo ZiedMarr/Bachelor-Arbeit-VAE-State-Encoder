@@ -1,10 +1,19 @@
 === SUMMARY REPORT ===
 
 ✔ Successful Runs:
-✅ SUCCESS: vae_mix_10ep_config_v6_triple_input_large_latent_GB_6 with VAE_config_config_v6_triple_input_large_latent.txt
-✅ SUCCESS: vae_mix_10ep_config_v6_quad_input_large_latent_GB_4 with VAE_config_config_v6_quad_input_large_latent.txt
-✅ SUCCESS: vae_mix_10ep_config_v6_penta_input_small_latent_GB_5 with VAE_config_config_v6_penta_input_small_latent.txt
-✅ SUCCESS: vae_mix_10ep_config_v6_penta_input_medium_latent_GB_6 with VAE_config_config_v6_penta_input_medium_latent.txt
-✅ SUCCESS: vae_mix_10ep_config_v6_hexa_input_medium_latent_GB_4 with VAE_config_config_v6_hexa_input_medium_latent.txt
 
 ❌ Errors Encountered:
+❌ ERROR: vae_random_50k_config_v1_quad_input_minimal_latent_3 with VAE_config_config_v1_quad_input_minimal_latent.txt → axis 2 is out of bounds for array of dimension 1
+❌ ERROR: vae_random_50k_config_v1_quad_input_small_latent_2 with VAE_config_config_v1_quad_input_small_latent.txt → [Errno 2] No such file or directory: '/home/zied/BA-code/Bachelor-Arbeit-VAE-State-Encoder/model_eval/logs/PPO/rand_env_1M/batch_size_10.npz'
+❌ ERROR: vae_random_50k_config_v1_quad_input_small_latent_v2_2 with VAE_config_config_v1_quad_input_small_latent_v2.txt → [Errno 2] No such file or directory: '/home/zied/BA-code/Bachelor-Arbeit-VAE-State-Encoder/model_eval/logs/PPO/rand_env_1M/batch_size_10.npz'
+❌ ERROR: vae_random_50k_config_v1_quad_input_mid_latent_4 with VAE_config_config_v1_quad_input_mid_latent.txt → [Errno 2] No such file or directory: '/home/zied/BA-code/Bachelor-Arbeit-VAE-State-Encoder/model_eval/logs/PPO/rand_env_1M/batch_size_10.npz'
+❌ ERROR: vae_random_50k_config_v1_quad_input_large_latent_1 with VAE_config_config_v1_quad_input_large_latent.txt → [Errno 2] No such file or directory: '/home/zied/BA-code/Bachelor-Arbeit-VAE-State-Encoder/model_eval/logs/PPO/rand_env_1M/batch_size_10.npz'
+❌ ERROR: vae_random_50k_config_v1_penta_input_minimal_latent_5 with VAE_config_config_v1_penta_input_minimal_latent.txt → axis 2 is out of bounds for array of dimension 1
+❌ ERROR: vae_random_50k_config_v1_penta_input_small_latent_3 with VAE_config_config_v1_penta_input_small_latent.txt → [Errno 2] No such file or directory: '/home/zied/BA-code/Bachelor-Arbeit-VAE-State-Encoder/model_eval/logs/PPO/rand_env_1M/batch_size_10.npz'
+❌ ERROR: vae_random_50k_config_v1_penta_input_mid_latent_2 with VAE_config_config_v1_penta_input_mid_latent.txt → [Errno 2] No such file or directory: '/home/zied/BA-code/Bachelor-Arbeit-VAE-State-Encoder/model_eval/logs/PPO/rand_env_1M/batch_size_10.npz'
+❌ ERROR: vae_random_50k_config_v1_penta_input_mid_latent_v2_2 with VAE_config_config_v1_penta_input_mid_latent_v2.txt → [Errno 2] No such file or directory: '/home/zied/BA-code/Bachelor-Arbeit-VAE-State-Encoder/model_eval/logs/PPO/rand_env_1M/batch_size_10.npz'
+❌ ERROR: vae_random_50k_config_v1_penta_input_large_latent_5 with VAE_config_config_v1_penta_input_large_latent.txt → [Errno 2] No such file or directory: '/home/zied/BA-code/Bachelor-Arbeit-VAE-State-Encoder/model_eval/logs/PPO/rand_env_1M/batch_size_10.npz'
+❌ ERROR: vae_random_50k_config_v1_hexa_input_minimal_latent_2 with VAE_config_config_v1_hexa_input_minimal_latent.txt → axis 2 is out of bounds for array of dimension 1
+❌ ERROR: vae_random_50k_config_v1_hexa_input_small_latent_4 with VAE_config_config_v1_hexa_input_small_latent.txt → [Errno 2] No such file or directory: '/home/zied/BA-code/Bachelor-Arbeit-VAE-State-Encoder/model_eval/logs/PPO/rand_env_1M/batch_size_10.npz'
+❌ ERROR: vae_random_50k_config_v1_hexa_input_mid_latent_3 with VAE_config_config_v1_hexa_input_mid_latent.txt → [Errno 2] No such file or directory: '/home/zied/BA-code/Bachelor-Arbeit-VAE-State-Encoder/model_eval/logs/PPO/rand_env_1M/batch_size_10.npz'
+❌ ERROR: vae_random_50k_config_v1_hexa_input_large_latent_1 with VAE_config_config_v1_hexa_input_large_latent.txt → [Errno 2] No such file or directory: '/home/zied/BA-code/Bachelor-Arbeit-VAE-State-Encoder/model_eval/logs/PPO/rand_env_1M/batch_size_10.npz'
