@@ -54,8 +54,8 @@ class Config:
         self.VAE_Version = config_dict.get("VAE_Version", "3.13")
 
         # Calculate derived values
-        self.INPUT_DIMENSION = self.INPUT_STATE_SIZE * 24
-        self.OUTPUT_DIMENSION = self.OUTPUT_STATE_SIZE * 24
+        self.INPUT_DIMENSION = self.INPUT_STATE_SIZE * 4
+        self.OUTPUT_DIMENSION = self.OUTPUT_STATE_SIZE * 4
 
 
 def get_base_config() -> Dict[str, Any]:
@@ -136,10 +136,10 @@ def worker(process_id: int,
 
         # Training datasets and their corresponding  VAE names
         datasets = [
-            ("vae_random_100ep", "random_100_20250220_163649.npz"),
-            ("vae_random_200ep" , "random_200_20250227_105642.npz"),
-            ("vae_random_10ep" , "random_10_20250228_103336.npz"),
-            ("vae_mix_10ep" , "merged1.npz")
+            ("vae_random_50k", "random_50000_20250211_151915.npz"),
+            ("vae_exp_0.3noise_10ep" , "ppo_0.3noise_merged.npz"),
+            ("vae_exp_no_noise_10ep" , "ppo_no_noise_merged.npz")
+
         ]
 
         # Process each dataset size

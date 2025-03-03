@@ -2,6 +2,7 @@ import os
 import torch
 import torch.multiprocessing as mp
 from PPO.train_ppo import train_ppo
+from Wrappers.RandomStartCartpoleEval import RandomStartCartPoleEval
 from configs import eval_config
 from configs.save_config import save_eval_config
 from Wrappers.RandomStartLunarLander import  RandomStartLunarLander
@@ -60,7 +61,7 @@ def main(batch = "batch_evalconfig3_100k"):
     total_timesteps = eval_config.TOTAL_TIMESTEPS
 
     # Setup log directory
-    log_batch_dir = os.path.join(script_dir, "logs", "eval", batch)
+    log_batch_dir = os.path.join(script_dir, "logs", "explore", batch)
 
     # Save evaluation config
     save_eval_config(log_batch_dir)
@@ -87,7 +88,7 @@ def main(batch = "batch_evalconfig3_100k"):
             # Create and start process
             p = mp.Process(
                 target=worker,
-                args=(i, log_batch_dir, total_timesteps, seeds[i], RandomStartLunarLander)
+                args=(i, log_batch_dir, total_timesteps, seeds[i], RandomStartCartPoleEval)
             )
             p.start()
             processes.append(p)
@@ -120,4 +121,4 @@ def main(batch = "batch_evalconfig3_100k"):
 
 
 if __name__ == "__main__":
-    main(batch = "batch_10_1M")
+    main(batch = "batch_explore_1")

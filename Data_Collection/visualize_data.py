@@ -86,19 +86,19 @@ if __name__ == "__main__":
             if os.path.isfile(full_path):
                 data_paths.append(full_path)
     '''
-    data_path = "./collected_data/train_dataset/random_400_20250227_111220.npz"
+    data_path = "collected_data/train_dataset/ppo_0.3noise_merged.npz"
 
     data_name = os.path.basename(data_path)
     name_without_extension, _ = os.path.splitext(data_name)
 
     if filter_1_episodes :
-        save_dir = save_path = os.path.join("./Data_distribution", "rand_pol_rand_env",f"random_400") #f"{name_without_extension}_filtered"
+        save_dir = save_path = os.path.join("./Data_distribution", "explore_pol_rand_env",f"ppo_0.3noise") #f"{name_without_extension}_filtered"
     else :
-        save_dir = save_path=os.path.join("./Data_distribution","rand_pol_rand_env", "random_400") #name_without_extension
+        save_dir = save_path=os.path.join("./Data_distribution","explore_pol_rand_env", "ppo_0.3noise") #name_without_extension
     # Create the directory if it doesn’t exist
     os.makedirs(save_dir, exist_ok=True)
 
-    for i in range(24) :
+    for i in range(4) :
         visualize_observation_distribution(data_paths=data_path, observation_index=i, save_path=os.path.join(save_dir,f"data_explore_{i}"))
     #visualize_observation_distribution(data_paths="./collected_data/cartpole_expert_60.npz", observation_index=3,
     #                               save_path="./Data_distribution/expert_60/data_3")

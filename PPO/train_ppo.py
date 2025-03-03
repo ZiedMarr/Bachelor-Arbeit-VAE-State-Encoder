@@ -7,11 +7,11 @@ from stable_baselines3.common.monitor import Monitor
 from stable_baselines3.common.logger import configure
 from datetime import datetime
 from Wrappers.RandomStartEval import RandomStartCartPoleEval
-from Wrappers.RandomStartLunarLander import RandomStartLunarLander
+from Wrappers.RandomStartCartPole import RandomStartCartPole
 
 import os
 
-def train_ppo(log_batch_dir, total_timesteps=20000, seed=42,env_wrapper=RandomStartLunarLander) :
+def train_ppo(log_batch_dir, total_timesteps=20000, seed=42,env_wrapper=RandomStartCartPoleEval) :
 
     # Define the base directory (directory of the current script)
     base_dir = os.path.dirname(os.path.abspath(__file__))
@@ -24,9 +24,9 @@ def train_ppo(log_batch_dir, total_timesteps=20000, seed=42,env_wrapper=RandomSt
 
 
     # Create the evaluation environment
-    eval_env = gym.make("BipedalWalker-v3")
+    eval_env = gym.make("CartPole-v1")
     eval_env.reset(seed=seed)
-    #eval_env = env_wrapper(eval_env)
+    eval_env = env_wrapper(eval_env)
     eval_env = Monitor(eval_env)  # Monitor to log evaluation statistics
 
     # Initialize the PPO model
