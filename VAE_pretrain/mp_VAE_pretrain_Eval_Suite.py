@@ -132,7 +132,7 @@ def worker(process_id: int,
 
         # Define evaluation data path
         eval_data = os.path.join(base_dir, "..", "Data_Collection", "collected_data",
-                                 "eval", "merged1","merged1.npz")
+                                 "eval", "explore_policy_rand_env","ppo_no_noise", "ppo_no_noise_merged.npz")
 
         # Training datasets and their corresponding  VAE names
         datasets = [

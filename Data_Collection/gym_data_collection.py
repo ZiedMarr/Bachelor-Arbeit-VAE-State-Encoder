@@ -303,7 +303,7 @@ if __name__ == "__main__":
     #random_collect(output_path=os.path.join("train","rand_pol_rand_env"), num_episodes=50, env_wrapper=None)
 
 
-    collect_from_batch(root_dir= os.path.join(base_dir,"..", "PPO","logs", "explore", "batch_explore_1"),output_path=os.path.join(base_dir,"collected_data", "train", "explore_policy_rand_env","ppo_no_noise"), noise=False ,  num_episodes=50,env_wrapper=RandomStartCartPoleEval)
+    collect_from_batch(root_dir= os.path.join(base_dir,"..", "PPO","logs", "eval", "batch_eval_1"),output_path=os.path.join(base_dir,"collected_data", "eval", "explore_policy_rand_env","ppo_no_noise"), noise=True, noise_scale=0.3 ,  num_episodes=20,env_wrapper=RandomStartCartPoleEval)
     #collect_from_batch(root_dir= os.path.join(base_dir,"..", "PPO","logs", "explore", "batch_10_200k"),output_path=os.path.join(base_dir,"collected_data", "eval", "explore_pol_standard_env","ppo_200k_noise_0.5"), noise=True,noise_scale=0.5, num_episodes=10,env_wrapper=None)
 
 

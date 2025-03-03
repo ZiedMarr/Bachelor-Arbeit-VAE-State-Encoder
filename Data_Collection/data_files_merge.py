@@ -52,9 +52,9 @@ def merge_npz_files(file_paths, output_path):
 
 if __name__ == "__main__" :
     # Example Usage
-    directory = "./collected_data/train/explore_policy_rand_env/ppo_no_noise"
+    directory = "./collected_data/eval/explore_policy_rand_env/ppo_no_noise"
     file_paths = [os.path.join(directory, file) for file in os.listdir(directory) if file.endswith(".npz")]
-    output_file = "./collected_data/train/explore_policy_rand_env/ppo_no_noise/ppo_no_noise_merged.npz"
+    output_file = "./collected_data/eval/explore_policy_rand_env/ppo_no_noise/ppo_no_noise_merged.npz"
 
     merge_npz_files(file_paths, output_file)
 
