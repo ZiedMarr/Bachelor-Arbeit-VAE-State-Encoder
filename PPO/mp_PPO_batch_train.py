@@ -147,8 +147,4 @@ def main(batch = "batch_evalconfig3_100k"):
 
 
 if __name__ == "__main__":
-    main(batch = "batch_eval_100k_5")
-    main(batch = "batch_eval_100k_6")
-    main(batch = "batch_eval_100k_7")
-    main(batch = "batch_eval_100k_8")
-    main(batch = "batch_eval_100k_9")
+    main(batch = "batch_eval_100k_time_measure")
