@@ -3,9 +3,15 @@ import json
 import pandas as pd
 
 
-def collect_training_times(log_batch_dir):
+def collect_training_times(log_batch_dir, output_dir = "./"):
     """Collect all training times from process directories and create a summary."""
     all_times = []
+    import os
+
+
+
+    # Create directory if it doesn't exist
+    os.makedirs(output_dir, exist_ok=True)
 
     # Iterate through all process directories
     for item in os.listdir(log_batch_dir):
@@ -37,8 +43,8 @@ def collect_training_times(log_batch_dir):
         }
 
         # Save to CSV and summary JSON
-        df.to_csv(os.path.join(log_batch_dir, "all_training_times.csv"), index=False)
-        with open(os.path.join(log_batch_dir, "time_summary.json"), 'w') as f:
+        df.to_csv(os.path.join(output_dir, "all_training_times.csv"), index=False)
+        with open(os.path.join(output_dir, "time_summary.json"), 'w') as f:
             json.dump(summary, f, indent=4)
 
         return df, summary
@@ -46,4 +52,4 @@ def collect_training_times(log_batch_dir):
     return None, None
 
 if __name__ == "__main__" :
-    collect_training_times("../../VAE_PPO_train/")
+    collect_training_times("../../VAE_PPO_train/logs/batch_1M_VAE_Version_1.10_vae_exp_0.3noise_10ep_config_v1_hexa_input_small_latent_4", output_dir= "./vae_6_2_batch_1M_VAE_Version_1.10_vae_exp_0.3noise_10ep_config_v1_hexa_input_small_latent_4")
