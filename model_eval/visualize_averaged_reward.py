@@ -4,6 +4,7 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 import os
 from model_eval.average_eval import ppo_average, vae_ppo_average
+from pathlib import Path
 
 
 
@@ -102,7 +103,7 @@ def two_graphs(ppo_file, vae_ppo_file):
     plt.tight_layout()
     plt.show()
 
-def visualize_combined(ppo_file, vae_ppo_file):
+def visualize_combined(ppo_file, vae_ppo_file, save = False, show = True):
     """
     Plot PPO and VAE-PPO rewards on the same graph with different colors.
 
@@ -151,36 +152,100 @@ def visualize_combined(ppo_file, vae_ppo_file):
     plt.xlabel("Timesteps")
     plt.ylabel("Reward")
     plt.title("Comparison of PPO and VAE-PPO: Averaged Rewards Over Time")
-
-    # Add a horizontal line at y=250
-    plt.axhline(y=300, color='g', linestyle='--', linewidth=1, label="y=300")
-
-    # Add 250 as a tick on the y-axis
-    yticks = plt.yticks()[0]  # Get current y-ticks
-    plt.yticks(list(yticks) + [300])  # Add 250 to the list of y-ticks
-
     plt.legend()
     plt.grid()
-    plt.savefig("./logs/VAE_PPO/V2/rand_env_config1_1M.png", dpi=300, bbox_inches='tight')
-    plt.show()
-    plt.close()
+    if save :
+        fig_path = Path(vae_ppo_file)
+        fig_path = fig_path.with_suffix(".png")
+        plt.savefig(fig_path)
+    if show :
+        plt.show()
 
-if __name__ == "__main__" :
-    # visualize(os.path.join(base_dir, "logs", "PPO" ,"averaged_evaluation_batch2.npz"))
-    # visualize(os.path.join(base_dir, "logs", "VAE_PPO" ,"averaged_evaluation_batch2.npz"))
-    # define averaged files :
-    ppo_average_dir = os.path.join(base_dir, "logs", "PPO", "rand_env_config1_1M")
-    vae_ppo_average_dir = os.path.join("logs", "VAE_PPO", "V2", "rand_env_config1_1M")
-    os.makedirs(ppo_average_dir, exist_ok=True)
+
+def call_visualize_combined(vae_batch, vae_version, in_out , kl) :
+    vae_ppo_average_dir = os.path.join(base_dir,"logs", "VAE_PPO", vae_version, in_out, kl, "rand_env_1M")
     os.makedirs(vae_ppo_average_dir, exist_ok=True)
 
-    # average the rewards :
-    ppo_average(output_file=os.path.join(ppo_average_dir, "batch_size_20.npz"),
-                base_log_dir=os.path.join(base_dir, "..", "PPO", "logs", "eval", "batch_20_50k"))
     vae_ppo_average(
-        output_file=os.path.join(vae_ppo_average_dir, "batch_size_20.npz"),
-        base_log_dir=os.path.join(base_dir, "..", "VAE_PPO_train", "logs", "batch_V2"))
+        output_file=os.path.join(vae_ppo_average_dir, f"{vae_batch}.npz"),
+        base_log_dir=os.path.join(base_dir, "..", "VAE_PPO_train", "logs", vae_batch))
+
+    vae_ppo_file = os.path.join(vae_ppo_average_dir, f"{vae_batch}.npz")
+
+    #define ppo average file :
+    ppo_average_dir = os.path.join(base_dir, "logs", "PPO")
+    ppo_file = os.path.join(ppo_average_dir, "averaged_evaluation_rand_env_seed10_100k_nowrapper.npz")
+
+
+    visualize_combined(ppo_file, vae_ppo_file, save = True, show=False)
+
+
+
+if __name__ == "__main__" :
+
+    # define averaged files :
+    ppo_average_dir = os.path.join(base_dir, "logs", "PPO")
+    vae_ppo_average_dir = os.path.join("logs", "VAE_PPO", "V2.1", "rand_env_1M")
+    os.makedirs(ppo_average_dir, exist_ok=True)
+    os.makedirs(vae_ppo_average_dir, exist_ok=True)
+    '''
+    # average the rewards :
+    ppo_average(output_file=os.path.join(ppo_average_dir, "batch_size_10.npz"),
+                base_log_dir=os.path.join(base_dir, "..", "PPO", "logs", "eval", "batch_10_1M"))
+    vae_ppo_average(
+        output_file=os.path.join(vae_ppo_average_dir, "batch_size_10.npz"),
+        base_log_dir=os.path.join(base_dir, "..", "VAE_PPO_train", "logs", "batch_1M_VAE_Version_2.1_vae_mix_10ep_config_A_2"))
     # Define file paths
-    ppo_file = os.path.join(ppo_average_dir, "batch_size_20.npz")
-    vae_ppo_file = os.path.join(vae_ppo_average_dir, "batch_size_20.npz")
-    visualize_combined(ppo_file , vae_ppo_file)
+    '''
+
+    ppo_file = os.path.join(ppo_average_dir, "averaged_evaluation_rand_env_seed10_100k_7.npz")
+
+    # List of VAE paths to evaluate (excluding 'random_50k' entries)
+    vae_blocks = [
+        # VAE_Version_1.02
+        ("VAE_Version_1.02", "4_2", "KL-D_0.00075", "vae_exp_0.3noise_10ep_config_v1_quad_input_small_latent_2"),
+        ("VAE_Version_1.02", "4_2", "KL-D_0.00075", "vae_exp_0.3noise_10ep_config_v1_quad_input_small_latent_v2_2"),
+        ("VAE_Version_1.02", "4_2", "KL-D_0.00075", "vae_exp_no_noise_10ep_config_v1_quad_input_small_latent_2"),
+        ("VAE_Version_1.02", "4_2", "KL-D_0.00075", "vae_exp_no_noise_10ep_config_v1_quad_input_small_latent_v2_2"),
+
+        # VAE_Version_1.03
+        ("VAE_Version_1.03", "4_2", "KL-D_0.0008", "vae_exp_0.3noise_10ep_config_v1_quad_input_mid_latent_4"),
+        ("VAE_Version_1.03", "4_2", "KL-D_0.0008", "vae_exp_no_noise_10ep_config_v1_quad_input_mid_latent_4"),
+
+        # VAE_Version_1.04
+        ("VAE_Version_1.04", "4_2", "KL-D_0.00094", "vae_exp_0.3noise_10ep_config_v1_quad_input_large_latent_1"),
+        ("VAE_Version_1.04", "4_2", "KL-D_0.00094", "vae_exp_no_noise_10ep_config_v1_quad_input_large_latent_1"),
+
+        # VAE_Version_1.06
+        ("VAE_Version_1.06", "5_2", "KL-D_0.00089", "vae_exp_0.3noise_10ep_config_v1_penta_input_small_latent_3"),
+        ("VAE_Version_1.06", "5_2", "KL-D_0.00089", "vae_exp_no_noise_10ep_config_v1_penta_input_small_latent_3"),
+
+        # VAE_Version_1.07
+        ("VAE_Version_1.07", "5_2", "KL-D_0.0007", "vae_exp_0.3noise_10ep_config_v1_penta_input_mid_latent_2"),
+        ("VAE_Version_1.07", "5_2", "KL-D_0.0007", "vae_exp_0.3noise_10ep_config_v1_penta_input_mid_latent_v2_2"),
+        ("VAE_Version_1.07", "5_2", "KL-D_0.0007", "vae_exp_no_noise_10ep_config_v1_penta_input_mid_latent_2"),
+        ("VAE_Version_1.07", "5_2", "KL-D_0.0007", "vae_exp_no_noise_10ep_config_v1_penta_input_mid_latent_v2_2"),
+
+        # VAE_Version_1.08
+        ("VAE_Version_1.08", "5_2", "KL-D_0.00097", "vae_exp_0.3noise_10ep_config_v1_penta_input_large_latent_5"),
+        ("VAE_Version_1.08", "5_2", "KL-D_0.00097", "vae_exp_no_noise_10ep_config_v1_penta_input_large_latent_5"),
+
+        # VAE_Version_1.10
+        ("VAE_Version_1.10", "6_2", "KL-D_0.00085", "vae_exp_0.3noise_10ep_config_v1_hexa_input_small_latent_4"),
+        ("VAE_Version_1.10", "6_2", "KL-D_0.00085", "vae_exp_no_noise_10ep_config_v1_hexa_input_small_latent_4"),
+
+        # VAE_Version_1.11
+        ("VAE_Version_1.11", "6_2", "KL-D_0.00095", "vae_exp_0.3noise_10ep_config_v1_hexa_input_mid_latent_3"),
+        ("VAE_Version_1.11", "6_2", "KL-D_0.00095", "vae_exp_no_noise_10ep_config_v1_hexa_input_mid_latent_3"),
+
+        # VAE_Version_1.12
+        ("VAE_Version_1.12", "6_2", "KL-D_0.00082", "vae_exp_0.3noise_10ep_config_v1_hexa_input_large_latent_1"),
+        ("VAE_Version_1.12", "6_2", "KL-D_0.00082", "vae_exp_no_noise_10ep_config_v1_hexa_input_large_latent_1"),
+    ]
+
+    # Iterate through all VAE configurations and visualize
+    for vae_version, in_out, kl, vae_name in vae_blocks:
+        vae_ppo_average_dir = os.path.join("logs", "VAE_PPO", vae_version, in_out, kl, "rand_env_1M")
+        vae_ppo_file = os.path.join(vae_ppo_average_dir, f"batch_1M_{vae_version}_{vae_name}.npz")
+
+        visualize_combined(ppo_file, vae_ppo_file, save=True, show=False)

@@ -211,7 +211,7 @@ def batch_train_module(  vae_version,vae_name, in_out , kl , vae_config ,vae_pat
     main(batch = batch, vae_model_path = vae_model_path, vae_config=vae_config_path)
     #visualize :
 
-    call_visualize_combined(vae_batch=batch, vae_version=vae_version, in_out=in_out , kl=kl)
+    #call_visualize_combined(vae_batch=batch, vae_version=vae_version, in_out=in_out , kl=kl)
 
 def safe_batch_train(vae_name, vae_config, vae_path, vae_version, in_out , kl):
     """Wrapper for batch_train_module that handles errors and logs successes."""
