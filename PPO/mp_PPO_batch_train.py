@@ -7,6 +7,9 @@ from configs.save_config import save_eval_config
 from Wrappers.RandomStartLunarLander import  RandomStartLunarLander
 import psutil
 from typing import Optional
+import time
+import json
+from datetime import datetime, timedelta
 
 
 def worker(process_id: int,
@@ -31,6 +34,9 @@ def worker(process_id: int,
         process_log_dir = os.path.join(log_batch_dir, f"process_{process_id}")
         os.makedirs(process_log_dir, exist_ok=True)
 
+        # Start timing
+        start_time = time.time()
+
         # Run training
         train_ppo(
             log_batch_dir=process_log_dir,
@@ -38,6 +44,24 @@ def worker(process_id: int,
             seed=seed,
             env_wrapper=env_wrapper
         )
+
+        # End timing
+        end_time = time.time()
+        training_time = end_time - start_time
+
+        # Save timing data to a JSON file in the process directory
+        timing_info = {
+            'process_id': process_id,
+            'start_time': datetime.fromtimestamp(start_time).strftime("%Y-%m-%d %H:%M:%S"),
+            'end_time': datetime.fromtimestamp(end_time).strftime("%Y-%m-%d %H:%M:%S"),
+            'training_time_seconds': training_time,
+            'training_time_formatted': str(timedelta(seconds=int(training_time))),
+        }
+
+        # Write timing data to process directory
+        timing_file = os.path.join(process_log_dir, "training_time.json")
+        with open(timing_file, 'w') as f:
+            json.dump(timing_info, f, indent=4)
 
     except Exception as e:
         print(f"Error in process {process_id}: {str(e)}")
