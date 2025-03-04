@@ -1,7 +1,6 @@
 === SUMMARY REPORT ===
 
 ✔ Successful Runs:
-✅ SUCCESS: vae_mix_10ep_config_K_2 with VAE_config_config_K.txt
 ✅ SUCCESS: vae_mix_10ep_config_M_2 with VAE_config_config_M.txt
 
 ❌ Errors Encountered:
