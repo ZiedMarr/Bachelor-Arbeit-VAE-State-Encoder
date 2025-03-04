@@ -63,8 +63,8 @@ bars = plt.bar(categories, values, color=['blue', 'green', 'orange'])
 
 # Add labels and title
 plt.xlabel('Training data Type')
-plt.ylabel('Average Standardized MSE')
-plt.title('Average Standardized MSE by training data type')
+plt.ylabel('Average Standardized MSE per prediction')
+plt.title('Average Standardized MSE by training data type for VAE prediction task')
 
 # Add value labels on top of bars
 for bar in bars:

@@ -5,6 +5,30 @@ import os
 
 base_dir = os.path.dirname(os.path.abspath(__file__))
 
+#######################test labels ###############################
+def know_labels (base_log_dir = os.path.join(base_dir, "..", "VAE_PPO_train", "logs", "batch2"))  :
+    log_dirs = []
+    for root, dirs, files in os.walk(base_log_dir):
+        if "eval" in dirs:  # If "eval" is a subdirectory at this level
+            log_dirs.append(os.path.join(root, "eval"))  # Append the full path
+    # log_dirs = [
+    #    "../VAE_PPO_train/logs/logs_20000_vae_15000_vae_offline_expert_20250114_165817_20250114_172631/eval/",
+    #    "../VAE_PPO_train/logs/logs_20000_vae_offline_expert_20250114_160136/eval/",
+    #    "../VAE_PPO_train/logs/logs_20000_vae_offline_expert_20250114_165649/eval/",
+    # Add more paths as needed
+    # ]
+
+    # Initialize storage for rewards and timesteps
+    all_rewards = []
+    timesteps = None
+
+    # Load rewards from each log
+    for log_dir in log_dirs:
+        eval_file = os.path.join(log_dir, "evaluations.npz")
+        data = np.load(eval_file)
+        print(data.files)
+
+
 def vae_ppo_average (output_file,base_log_dir = os.path.join(base_dir, "..", "VAE_PPO_train", "logs", "batch2")) :
     # Recursively find all "eval" directories
     log_dirs = []
@@ -92,6 +116,7 @@ def ppo_average(output_file,base_log_dir = os.path.join(base_dir,"..", "PPO", "l
 
 
 if __name__ == "__main__":
-    for i in range(5,10) :
-        ppo_average(output_file=os.path.join(base_dir,"logs", "PPO" , f"averaged_evaluation_rand_env_seed10_100k_{i}.npz" ),base_log_dir=os.path.join(base_dir,"..", "PPO", "logs" , "eval", f"batch_eval_100k_{i}"))
+    know_labels(base_log_dir=os.path.join(base_dir,"..", "PPO", "logs" , "eval", f"batch_eval_100k_6"))
+    #for i in range(5,10) :
+       # ppo_average(output_file=os.path.join(base_dir,"logs", "PPO" , f"averaged_evaluation_rand_env_seed10_100k_{i}.npz" ),base_log_dir=os.path.join(base_dir,"..", "PPO", "logs" , "eval", f"batch_eval_100k_{i}"))
     #vae_ppo_average(output_file= os.path.join("logs", "VAE_PPO" ,"V3.12", "averaged_evaluation_batch_V3.12_kl=0.002_100k_seed10.npz") ,base_log_dir=os.path.join(base_dir,"..", "VAE_PPO_train", "logs" , "batch_V3.12_kl=0.002_100k"))
