@@ -232,6 +232,14 @@ if __name__ == "__main__":
     safe_batch_train(vae_name="vae_exp_0.3noise_10ep_config_v1_quad_input_small_latent_2",
                      vae_config="VAE_config_config_v1_quad_input_small_latent.txt",
                      vae_path=vae_path, vae_version=vae_version, in_out=in_out, kl=kl)
+
+    vae_version = "VAE_Version_1.10"
+    in_out = "6_2"
+    kl = "KL-D_0.00085"
+    vae_path = os.path.join("..", "VAE_pretrain", "pretrained_vae", vae_version, in_out, kl)
+    safe_batch_train(vae_name="vae_exp_0.3noise_10ep_config_v1_hexa_input_small_latent_4",
+                     vae_config="VAE_config_config_v1_hexa_input_small_latent.txt",
+                     vae_path=vae_path, vae_version=vae_version, in_out=in_out, kl=kl)
     '''
     safe_batch_train(vae_name="vae_exp_0.3noise_10ep_config_v1_quad_input_small_latent_v2_2",
                      vae_config="VAE_config_config_v1_quad_input_small_latent_v2.txt",
