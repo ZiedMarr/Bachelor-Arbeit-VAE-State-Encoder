@@ -223,7 +223,7 @@ def safe_batch_train(vae_name, vae_config, vae_path, vae_version, in_out , kl):
 
 
 if __name__ == "__main__":
-
+    '''
     # 1st VAE
     vae_version = "VAE_Version_2.1"
     in_out = "4_2"
@@ -232,8 +232,8 @@ if __name__ == "__main__":
     safe_batch_train(vae_name="vae_mix_10ep_config_K_2",
                      vae_config="VAE_config_config_K.txt",
                      vae_path=vae_path, vae_version=vae_version, in_out=in_out, kl=kl)
-
-    vae_version = "VAE_Version_1.10"
+    '''
+    vae_version = "VAE_Version_2.1"
     in_out = "5_2"
     kl = "KL-D_0.001"
     vae_path = os.path.join("..", "VAE_pretrain", "pretrained_vae", vae_version, in_out, kl)
