@@ -3,7 +3,7 @@ import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
 import os
-from average_eval import ppo_average, vae_ppo_average
+from model_eval.average_eval import ppo_average, vae_ppo_average
 
 
 
