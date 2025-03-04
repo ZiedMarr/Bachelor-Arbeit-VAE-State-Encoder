@@ -1,7 +1,9 @@
 import os
 import torch
 import torch.multiprocessing as mp
-
+import time
+import json
+from datetime import datetime, timedelta
 #from VAE_PPO_train.model_batch_train import vae_model_path
 from configs import eval_config
 from configs.save_config import save_eval_config
@@ -81,6 +83,9 @@ def worker(process_id: int,
         #modifiy config_module
         update_config(vae_config)
 
+        # Start timing
+        start_time = time.time()
+
         # Run training
         train(
             vae_model_path=vae_model_path,
@@ -89,6 +94,25 @@ def worker(process_id: int,
             total_timesteps=total_timesteps,
             seed=seed
         )
+
+        # End timing
+        end_time = time.time()
+        training_time = end_time - start_time
+
+        # Save timing data to a JSON file in the process directory
+        timing_info = {
+            'process_id': process_id,
+            'start_time': datetime.fromtimestamp(start_time).strftime("%Y-%m-%d %H:%M:%S"),
+            'end_time': datetime.fromtimestamp(end_time).strftime("%Y-%m-%d %H:%M:%S"),
+            'training_time_seconds': training_time,
+            'training_time_formatted': str(timedelta(seconds=int(training_time))),
+        }
+
+        # Write timing data to process directory
+        timing_file = os.path.join(process_log_dir, "training_time.json")
+        with open(timing_file, 'w') as f:
+            json.dump(timing_info, f, indent=4)
+
 
     except Exception as e:
         print(f"Error in process {process_id}: {str(e)}")
