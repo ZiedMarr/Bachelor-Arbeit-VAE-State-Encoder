@@ -235,7 +235,7 @@ if __name__ == "__main__":
     '''
     vae_version = "VAE_Version_2"
     in_out = "2_2"
-    kl = "KL-D_0.0001"
+    kl = "KL-D_0.001"
     vae_path = os.path.join("..", "VAE_pretrain", "pretrained_vae", vae_version, in_out, kl)
     safe_batch_train(vae_name="vae_ppo_noisy_100ep_config_D_5",
                      vae_config="VAE_config_D5.txt",
