@@ -187,13 +187,13 @@ def visualize_combined_vaes(ppo_file, vae_ppo_file, save = False, show = True):
     plt.figure(figsize=(10, 6))
 
     # Plot PPO with color blue
-    sns.lineplot(x=ppo_timesteps, y=ppo_mean_rewards, label="VAE-PPO without tuning Mean Reward", color="blue")
+    sns.lineplot(x=ppo_timesteps, y=ppo_mean_rewards, label="VAE-PPO without tuning Mean Reward", color="green")
     plt.fill_between(
         ppo_timesteps,
         ppo_mean_rewards - ppo_std_rewards,
         ppo_mean_rewards + ppo_std_rewards,
         alpha=0.2,
-        color="blue",
+        color="green",
         label="VAE-PPO without tuning Mean Reward Std Dev"
     )
 
@@ -216,7 +216,7 @@ def visualize_combined_vaes(ppo_file, vae_ppo_file, save = False, show = True):
     plt.legend()
     plt.grid()
     if save :
-        fig_path = Path(vae_ppo_file)
+        fig_path = Path(vae_ppo_no_tuning_average_file)
         fig_path = fig_path.with_suffix(".png")
         plt.savefig(fig_path)
     if show :
@@ -246,14 +246,20 @@ def call_visualize_combined(vae_batch, vae_version, in_out , kl) :
 if __name__ == "__main__" :
 
     # define averaged files :
-    ppo_average_dir = os.path.join(base_dir, "logs", "PPO", "rand_env_config1_1M")
+    vae_ppo_no_tuning_average_dir = os.path.join("logs", "VAE_PPO", "V2", "rand_env_config1_1M")
     vae_ppo_average_dir = os.path.join("logs", "VAE_PPO", "V2", "rand_env_config1_1M")
-    os.makedirs(ppo_average_dir, exist_ok=True)
+    os.makedirs(vae_ppo_no_tuning_average_dir, exist_ok=True)
     os.makedirs(vae_ppo_average_dir, exist_ok=True)
-    ppo_file = os.path.join(ppo_average_dir, "batch_size_20.npz")
+
+    vae_ppo_average(
+        output_file=os.path.join(vae_ppo_average_dir, "batch_no_tuning_size_20.npz"),
+        base_log_dir=os.path.join(base_dir, "..", "VAE_PPO_train", "logs",
+                                  "batch_1M_no_tuning_VAE_Version_2_vae_ppo_noisy_100ep_config_D_5"))
+
+    vae_ppo_no_tuning_average_file = os.path.join(vae_ppo_no_tuning_average_dir, "batch_no_tuning_size_20.npz")
     vae_ppo_file = os.path.join(vae_ppo_average_dir, "batch_size_20.npz")
 
-    visualize_combined(ppo_file, vae_ppo_file, save=False, show=True)
+    visualize_combined_vaes(vae_ppo_no_tuning_average_file, vae_ppo_file, save=True, show=True)
 
     '''
     # average the rewards :
