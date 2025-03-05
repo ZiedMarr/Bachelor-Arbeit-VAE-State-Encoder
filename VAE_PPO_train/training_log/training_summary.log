@@ -1,7 +1,6 @@
 === SUMMARY REPORT ===
 
 ✔ Successful Runs:
-✅ SUCCESS: vae_exp_0.3noise_10ep_config_v1_quad_input_small_latent_2 with VAE_config_config_v1_quad_input_small_latent.txt
-✅ SUCCESS: vae_exp_0.3noise_10ep_config_v1_hexa_input_small_latent_4 with VAE_config_config_v1_hexa_input_small_latent.txt
+✅ SUCCESS: vae_exp_0.3noise_10ep_config_v1_penta_input_large_latent_5 with VAE_config_config_v1_penta_input_large_latent.txt
 
 ❌ Errors Encountered:
