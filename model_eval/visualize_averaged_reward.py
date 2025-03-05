@@ -161,6 +161,66 @@ def visualize_combined(ppo_file, vae_ppo_file, save = False, show = True):
         fig_path = fig_path.with_suffix(".png")
         plt.savefig(fig_path)
 
+def visualize_combined_vaes( vae_ppo_no_tuning_average_file,vae_ppo_file, save = False, show = True):
+    """
+    Plot PPO and VAE-PPO rewards on the same graph with different colors.
+
+    Args:
+        ppo_file (str): Path to the PPO results file.
+        vae_ppo_file (str): Path to the VAE-PPO results file.
+    """
+    # Load PPO data
+    ppo_data = np.load(vae_ppo_no_tuning_average_file)
+    ppo_timesteps = ppo_data["timesteps"]
+    ppo_mean_rewards = ppo_data["mean_rewards"]
+    ppo_std_rewards = ppo_data["std_rewards"]
+
+    # Load VAE-PPO data
+    vae_ppo_data = np.load(vae_ppo_file)
+    vae_ppo_timesteps = vae_ppo_data["timesteps"]
+    vae_ppo_mean_rewards = vae_ppo_data["mean_rewards"]
+    vae_ppo_std_rewards = vae_ppo_data["std_rewards"]
+
+    # Create a single figure
+    plt.figure(figsize=(10, 6))
+
+    # Plot PPO with color blue
+    sns.lineplot(x=ppo_timesteps, y=ppo_mean_rewards, label="VAE-PPO without tuning Mean Reward", color="green")
+    plt.fill_between(
+        ppo_timesteps,
+        ppo_mean_rewards - ppo_std_rewards,
+        ppo_mean_rewards + ppo_std_rewards,
+        alpha=0.2,
+        color="green",
+        label="VAE-PPO without tuning Mean Reward Std Dev"
+    )
+
+    # Plot VAE-PPO with color red
+    sns.lineplot(x=vae_ppo_timesteps, y=vae_ppo_mean_rewards, label="VAE-PPO Mean Reward", color="red")
+    plt.fill_between(
+        vae_ppo_timesteps,
+        vae_ppo_mean_rewards - vae_ppo_std_rewards,
+        vae_ppo_mean_rewards + vae_ppo_std_rewards,
+        alpha=0.2,
+        color="red",
+        label="VAE-PPO Std Dev"
+    )
+
+
+    # Customize the plot
+    plt.xlabel("Timesteps")
+    plt.ylabel("Reward")
+    plt.title("Comparison of VAE-PPO without tuning and VAE-PPO: Averaged Rewards Over Time")
+    plt.legend()
+    plt.grid()
+    if save :
+        fig_path = Path(vae_ppo_no_tuning_average_file)
+        fig_path = fig_path.with_suffix(".png")
+        plt.savefig(fig_path)
+    if show :
+        plt.show()
+
+
 def call_visualize_combined(vae_batch, vae_version, in_out , kl) :
     vae_ppo_average_dir = os.path.join(base_dir,"logs", "VAE_PPO", vae_version, in_out, kl, "rand_env_1M")
     os.makedirs(vae_ppo_average_dir, exist_ok=True)

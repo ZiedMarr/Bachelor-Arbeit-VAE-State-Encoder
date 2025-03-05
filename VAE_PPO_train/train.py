@@ -94,7 +94,9 @@ def train(vae_model_path, vae_save_folder, log_batch_dir,total_timesteps = 20000
 
 
     # Train PPO with VAE training in the callback
-    ppo_model.learn(total_timesteps=total_timesteps, callback=[vae_callback, eval_callback])
+    #ppo_model.learn(total_timesteps=total_timesteps, callback=[vae_callback, eval_callback])
+    ppo_model.learn(total_timesteps=total_timesteps, callback=[ eval_callback])
+
 
     # Create the directory if it does not exist
     os.makedirs(os.path.dirname(vae_save_path), exist_ok=True)
