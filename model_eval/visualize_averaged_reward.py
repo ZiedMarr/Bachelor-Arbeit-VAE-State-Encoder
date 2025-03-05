@@ -161,7 +161,7 @@ def visualize_combined(ppo_file, vae_ppo_file, save = False, show = True):
     if show :
         plt.show()
 
-def visualize_combined_vaes(ppo_file, vae_ppo_file, save = False, show = True):
+def visualize_combined_vaes(ppo_file, vae_ppo_no_tuning_average_file, save = False, show = True):
     """
     Plot PPO and VAE-PPO rewards on the same graph with different colors.
 
