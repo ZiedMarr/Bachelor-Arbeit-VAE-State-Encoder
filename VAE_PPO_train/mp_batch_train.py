@@ -207,7 +207,7 @@ def batch_train_module(  vae_version,vae_name, in_out , kl , vae_config ,vae_pat
 
     #train :
     vae_model_path = os.path.join(script_dir, vae_path, vae_name)
-    batch = f"batch_1M_{vae_version}_{vae_name}"
+    batch = f"batch_1M_no_tuning_{vae_version}_{vae_name}"
     main(batch = batch, vae_model_path = vae_model_path, vae_config=vae_config_path)
     #visualize :
 
@@ -233,12 +233,12 @@ if __name__ == "__main__":
                      vae_config="VAE_config_config_K.txt",
                      vae_path=vae_path, vae_version=vae_version, in_out=in_out, kl=kl)
     '''
-    vae_version = "VAE_Version_2.1"
-    in_out = "5_2"
-    kl = "KL-D_0.001"
+    vae_version = "VAE_Version_2"
+    in_out = "2_2"
+    kl = "KL-D_0.0001"
     vae_path = os.path.join("..", "VAE_pretrain", "pretrained_vae", vae_version, in_out, kl)
-    safe_batch_train(vae_name="vae_mix_10ep_config_M_2",
-                     vae_config="VAE_config_config_M.txt",
+    safe_batch_train(vae_name="vae_ppo_noisy_100ep_config_D_5",
+                     vae_config="VAE_config_D5.txt",
                      vae_path=vae_path, vae_version=vae_version, in_out=in_out, kl=kl)
     '''
     safe_batch_train(vae_name="vae_exp_0.3noise_10ep_config_v1_quad_input_small_latent_v2_2",
