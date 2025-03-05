@@ -52,4 +52,6 @@ def collect_training_times(log_batch_dir, output_dir = "./"):
     return None, None
 
 if __name__ == "__main__" :
-    collect_training_times("../../VAE_PPO_train/logs/batch_1M_VAE_Version_1.10_vae_exp_0.3noise_10ep_config_v1_hexa_input_small_latent_4", output_dir= "./vae_6_2_batch_1M_VAE_Version_1.10_vae_exp_0.3noise_10ep_config_v1_hexa_input_small_latent_4")
+    collect_training_times("../../VAE_PPO_train/logs/batch_1M_VAE_Version_2.1_vae_mix_10ep_config_K_2", output_dir= "./vae_4_2_batch_1M_VAE_Version_2.1_vae_mix_10ep_config_K_2")
+    collect_training_times("../../VAE_PPO_train/logs/batch_1M_VAE_Version_2.1_vae_mix_10ep_config_M_2", output_dir= "./vae_5_2_batch_1M_VAE_Version_2.1_vae_mix_10ep_config_M_2")
+    collect_training_times("../../PPO/logs/explore/batch_10_500k_time", output_dir= "./PPO")
