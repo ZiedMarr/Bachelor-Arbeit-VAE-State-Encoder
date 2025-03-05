@@ -161,7 +161,7 @@ def visualize_combined(ppo_file, vae_ppo_file, save = False, show = True):
     if show :
         plt.show()
 
-def visualize_combined_vaes(ppo_file, vae_ppo_no_tuning_average_file, save = False, show = True):
+def visualize_combined_vaes( vae_ppo_no_tuning_average_file,vae_ppo_file, save = False, show = True):
     """
     Plot PPO and VAE-PPO rewards on the same graph with different colors.
 
@@ -170,7 +170,7 @@ def visualize_combined_vaes(ppo_file, vae_ppo_no_tuning_average_file, save = Fal
         vae_ppo_file (str): Path to the VAE-PPO results file.
     """
     # Load PPO data
-    ppo_data = np.load(ppo_file)
+    ppo_data = np.load(vae_ppo_no_tuning_average_file)
     ppo_timesteps = ppo_data["timesteps"]
     ppo_mean_rewards = ppo_data["mean_rewards"]
     ppo_std_rewards = ppo_data["std_rewards"]
@@ -244,9 +244,17 @@ if __name__ == "__main__" :
 
     # define averaged files :
     ppo_average_dir = os.path.join(base_dir, "logs", "PPO")
-    vae_ppo_average_dir = os.path.join("logs", "VAE_PPO", "V2.1", "rand_env_1M")
+    vae_ppo_no_tuning_average_dir = './logs/VAE_PPO/VAE_Version_1.08/5_2/KL-D_0.00097/rand_env_1M'
+
+    vae_ppo_average_dir = './logs/VAE_PPO/VAE_Version_1.08/5_2/KL-D_0.00097/rand_env_1M'
     os.makedirs(ppo_average_dir, exist_ok=True)
     os.makedirs(vae_ppo_average_dir, exist_ok=True)
+
+    vae_ppo_no_tuning_average_file = os.path.join(vae_ppo_no_tuning_average_dir , "batch_1M_no_tuning_VAE_Version_1.08_vae_exp_0.3noise_10ep_config_v1_penta_input_large_latent_5.npz")
+    vae_ppo_average_file = os.path.join(vae_ppo_average_dir , "batch_1M_VAE_Version_1.08_vae_exp_0.3noise_10ep_config_v1_penta_input_large_latent_5.npz")
+
+    visualize_combined_vaes(vae_ppo_no_tuning_average_file , vae_ppo_average_file , save=True , show=True)
+
     '''
     # average the rewards :
     ppo_average(output_file=os.path.join(ppo_average_dir, "batch_size_10.npz"),
@@ -255,7 +263,7 @@ if __name__ == "__main__" :
         output_file=os.path.join(vae_ppo_average_dir, "batch_size_10.npz"),
         base_log_dir=os.path.join(base_dir, "..", "VAE_PPO_train", "logs", "batch_1M_VAE_Version_2.1_vae_mix_10ep_config_A_2"))
     # Define file paths
-    '''
+    
 
     ppo_file = os.path.join(ppo_average_dir, "averaged_evaluation_rand_env_seed10_100k_7.npz")
 
@@ -308,3 +316,4 @@ if __name__ == "__main__" :
         vae_ppo_file = os.path.join(vae_ppo_average_dir, f"batch_1M_{vae_version}_{vae_name}.npz")
 
         visualize_combined(ppo_file, vae_ppo_file, save=True, show=False)
+    '''
