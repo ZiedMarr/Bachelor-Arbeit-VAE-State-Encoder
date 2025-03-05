@@ -207,7 +207,7 @@ def batch_train_module(  vae_version,vae_name, in_out , kl , vae_config ,vae_pat
 
     #train :
     vae_model_path = os.path.join(script_dir, vae_path, vae_name)
-    batch = f"batch_1M_{vae_version}_{vae_name}"
+    batch = f"batch_1M_no_tuning_{vae_version}_{vae_name}"
     main(batch = batch, vae_model_path = vae_model_path, vae_config=vae_config_path)
     #visualize :
 
@@ -224,6 +224,14 @@ def safe_batch_train(vae_name, vae_config, vae_path, vae_version, in_out , kl):
 
 if __name__ == "__main__":
 
+    vae_version = "VAE_Version_1.08"
+    in_out = "5_2"
+    kl = "KL-D_0.00097"
+    vae_path = os.path.join("..", "VAE_pretrain", "pretrained_vae", vae_version, in_out, kl)
+    safe_batch_train(vae_name="vae_exp_0.3noise_10ep_config_v1_penta_input_large_latent_5",
+                     vae_config="VAE_config_config_v1_penta_input_large_latent.txt",
+                     vae_path=vae_path, vae_version=vae_version, in_out=in_out, kl=kl)
+    '''
     # 1st VAE
     vae_version = "VAE_Version_1.02"
     in_out = "4_2"
@@ -240,7 +248,7 @@ if __name__ == "__main__":
     safe_batch_train(vae_name="vae_exp_0.3noise_10ep_config_v1_hexa_input_small_latent_4",
                      vae_config="VAE_config_config_v1_hexa_input_small_latent.txt",
                      vae_path=vae_path, vae_version=vae_version, in_out=in_out, kl=kl)
-    '''
+    
     safe_batch_train(vae_name="vae_exp_0.3noise_10ep_config_v1_quad_input_small_latent_v2_2",
                      vae_config="VAE_config_config_v1_quad_input_small_latent_v2.txt",
                      vae_path=vae_path, vae_version=vae_version, in_out=in_out, kl=kl)
