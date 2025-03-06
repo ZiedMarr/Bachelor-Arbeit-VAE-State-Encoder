@@ -1,0 +1,8 @@
+VAE Model: 1000000_vae_ppo_noisy_100ep_config_D_5_20250219_145209
+Dataset Path: C:\Users\ziedm\Refernce File\Studium\WiSe 24-25\BA\code\source\VAE_Latent_Space_Eval\..\Data_Collection\collected_data\eval\merged\merged.npz
+Evaluation Frequency: 5
+
+Results:
+--------------------------------------------------
+Average Standardized MSE: 0.450756
+Total Standardized MSE: 4932.171589

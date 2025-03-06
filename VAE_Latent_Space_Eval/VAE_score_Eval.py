@@ -133,4 +133,11 @@ def vae_score_call(data_path=os.path.join(base_dir, "..", "Data_Collection", "co
 
 
 if __name__ == "__main__":
-    vae_score_call()
+    #vae_score_call()
+    evaluate_vae(vae_path="../VAE_PPO_train/trained_vae/batch_V2/1000000_vae_ppo_noisy_100ep_config_D_5_20250219_145209", data_path=os.path.join(base_dir, "..", "Data_Collection", "collected_data",
+                                 "eval", "merged","merged.npz"), output_path="VAE_score/VAE_Version_2/2_2/KL-D_0.001/post-training_vae_ppo_noisy_100ep_config_A_2.txt")
+    evaluate_vae(
+        vae_path="../VAE_PPO_train/trained_vae/batch_V2/1000000_vae_ppo_noisy_100ep_config_D_5_20250219_145209",
+        data_path=os.path.join(base_dir, "..", "Data_Collection", "collected_data",
+                               "eval", "merged", "merged.npz"),
+        output_path="VAE_score/VAE_Version_2/2_2/KL-D_0.001/post-training_vae_ppo_noisy_100ep_config_A_2.txt")

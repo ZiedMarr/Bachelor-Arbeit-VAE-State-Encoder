@@ -207,7 +207,7 @@ def batch_train_module(  vae_version,vae_name, in_out , kl , vae_config ,vae_pat
 
     #train :
     vae_model_path = os.path.join(script_dir, vae_path, vae_name)
-    batch = f"batch_1M_no_tuning_{vae_version}_{vae_name}"
+    batch = f"batch_1M_{vae_version}_{vae_name}"
     main(batch = batch, vae_model_path = vae_model_path, vae_config=vae_config_path)
     #visualize :
 
@@ -224,15 +224,7 @@ def safe_batch_train(vae_name, vae_config, vae_path, vae_version, in_out , kl):
 
 if __name__ == "__main__":
     '''
-    # 1st VAE
-    vae_version = "VAE_Version_2.1"
-    in_out = "4_2"
-    kl = "KL-D_0.0009"
-    vae_path = os.path.join("..", "VAE_pretrain", "pretrained_vae", vae_version, in_out, kl)
-    safe_batch_train(vae_name="vae_mix_10ep_config_K_2",
-                     vae_config="VAE_config_config_K.txt",
-                     vae_path=vae_path, vae_version=vae_version, in_out=in_out, kl=kl)
-    '''
+    # The right vae :
     vae_version = "VAE_Version_2"
     in_out = "2_2"
     kl = "KL-D_0.001"
@@ -240,6 +232,44 @@ if __name__ == "__main__":
     safe_batch_train(vae_name="vae_ppo_noisy_100ep_config_D_5",
                      vae_config="VAE_config_D5.txt",
                      vae_path=vae_path, vae_version=vae_version, in_out=in_out, kl=kl)
+                     
+    '''
+    # 1st VAE
+    vae_version = "VAE_Version_1"
+    in_out = "2_2"
+    kl = "KL-D_0.001"
+    vae_path = os.path.join("..", "VAE_pretrain", "pretrained_vae", vae_version, in_out, kl)
+    safe_batch_train(vae_name="vae_ppo_noisy_100ep_config_I_2",
+                     vae_config="VAE_config.txt",
+                     vae_path=vae_path, vae_version=vae_version, in_out=in_out, kl=kl)
+
+    # 2nd VAE (Updated)
+    vae_version = "VAE_Version_2.1"
+    in_out = "2_2"
+    kl = "KL-D_0.001"
+    vae_path = os.path.join("..", "VAE_pretrain", "pretrained_vae", vae_version, in_out, kl)
+    safe_batch_train(vae_name="vae_mix_10ep_config_A_2",
+                     vae_config="VAE_config_config_A.txt",
+                     vae_path=vae_path, vae_version=vae_version, in_out=in_out, kl=kl)
+
+    # 3rd VAE
+    vae_version = "VAE_Version_2"
+    in_out = "4_2"
+    kl = "KL-D_0.001"
+    vae_path = os.path.join("..", "VAE_pretrain", "pretrained_vae", vae_version, in_out, kl)
+    safe_batch_train(vae_name="vae_ppo_noisy_100ep_config_G_2",
+                     vae_config="VAE_config_G.txt",
+                     vae_path=vae_path, vae_version=vae_version, in_out=in_out, kl=kl)
+
+    # 4th VAE
+    vae_version = "VAE_Version_2.1"
+    in_out = "5_2"
+    kl = "KL-D_0.001"
+    vae_path = os.path.join("..", "VAE_pretrain", "pretrained_vae", vae_version, in_out, kl)
+    safe_batch_train(vae_name="vae_mix_10ep_config_M1_2",
+                     vae_config="VAE_config_config_M1.txt",
+                     vae_path=vae_path, vae_version=vae_version, in_out=in_out, kl=kl)
+
     '''
     safe_batch_train(vae_name="vae_exp_0.3noise_10ep_config_v1_quad_input_small_latent_v2_2",
                      vae_config="VAE_config_config_v1_quad_input_small_latent_v2.txt",
