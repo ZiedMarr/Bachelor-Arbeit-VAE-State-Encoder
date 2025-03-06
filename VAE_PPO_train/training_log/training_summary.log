@@ -1,7 +1,6 @@
 === SUMMARY REPORT ===
 
 ✔ Successful Runs:
-✅ SUCCESS: vae_mix_10ep_config_v6_quad_input_large_latent_GB_4 with VAE_config_config_v6_quad_input_large_latent.txt
-✅ SUCCESS: vae_mix_10ep_config_v6_hexa_input_medium_latent_GB_4 with VAE_config_config_v6_hexa_input_medium_latent.txt
+✅ SUCCESS: vae_random_100ep_config_A_2 with VAE_config_config_A.txt
 
 ❌ Errors Encountered:
