@@ -1,5 +1,6 @@
 from random import random
 
+
 import gymnasium as gym
 import numpy as np
 from stable_baselines3 import PPO  # Import stable-baselines3 for pre-trained policy
@@ -301,10 +302,8 @@ if __name__ == "__main__":
     #random_collect(output_path=os.path.join("train","rand_pol_rand_env"), num_episodes=50, env_wrapper=None)
 
 
-    collect_from_batch(root_dir= os.path.join(base_dir,"..", "PPO","logs", "explore", "batch_10_500k"),output_path=os.path.join(base_dir,"collected_data", "eval", "explore_pol_standard_env","ppo_500k_no_noise"), noise=False, num_episodes=10,env_wrapper=None)
-    #collect_from_batch(root_dir= os.path.join(base_dir,"..", "PPO","logs", "explore", "batch_10_200k"),output_path=os.path.join(base_dir,"collected_data", "eval", "explore_pol_standard_env","ppo_200k_noise_0.5"), noise=True,noise_scale=0.5, num_episodes=10,env_wrapper=None)
 
-
+    collect_from_batch(root_dir= os.path.join(base_dir,"..", "PPO","logs", "explore", "batch_10_200k"),output_path=os.path.join(base_dir,"collected_data", "eval", "explore_pol_standard_env","ppo_200k_noise_0.5"), noise=True,noise_scale=0.5, num_episodes=10,env_wrapper=None)
 
     #mixed_random_expert_collect(output_path="mixed_pol_rand_env", num_episodes=10000, env_wrapper=RandomStartCartPole, policy_path="../PPO/logs/explore_rand_env/batch_20000_timesteps_rand_env_100k_steps/logs_100000_20250210_110044/best_model/best_model.zip")
     #collect_from_batch(root_dir='../PPO/logs/explore/', output_path= os.path.join(base_dir, "collected_data", "explore_rand_env"), env_wrapper=RandomStartCartPole)

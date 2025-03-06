@@ -133,4 +133,6 @@ def vae_score_call(data_path=os.path.join(base_dir, "..", "Data_Collection", "co
 
 
 if __name__ == "__main__":
-    vae_score_call()
+    #vae_score_call(os.path.join(base_dir, "..", "Data_Collection", "collected_data","eval", "merged1","merged1.npz"), vae)
+    evaluate_vae(vae_path="../VAE_PPO_train/trained_vae/batch_1M_VAE_Version_2.1_vae_random_100ep_config_A_2/1000000_vae_random_100ep_config_A_2_20250225_102523", data_path=os.path.join(base_dir, "..", "Data_Collection", "collected_data",
+                                 "eval", "merged1","merged1.npz"), output_path="VAE_score/VAE_Version_2.1/2_2/KL-D_0.001/vae_withuning_configA")
