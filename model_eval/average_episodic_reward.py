@@ -3,6 +3,7 @@ import torch
 import numpy as np
 from stable_baselines3 import PPO
 import os
+from tqdm import tqdm
 import json
 from datetime import datetime
 
@@ -11,7 +12,7 @@ from VAE import VAE
 from configs import config
 
 
-def evaluate_model(vae_model_path, ppo_model_path, n_episodes=100, seed=43, save_path=None):
+def evaluate_model(vae_model_path, ppo_model_path, n_episodes=100, seed=42, save_path=None):
     """
     Load VAE and PPO models and evaluate them over n episodes.
 
@@ -62,7 +63,7 @@ def evaluate_model(vae_model_path, ppo_model_path, n_episodes=100, seed=43, save
     # Run evaluation episodes
     all_rewards = []
 
-    for episode in range(n_episodes):
+    for episode in range(n_episodes):  # Removed tqdm to fix potential dependency issues
         obs, _ = wrapped_env.reset(seed=seed + episode)  # Different seed for each episode
         done = False
         truncated = False
@@ -74,6 +75,7 @@ def evaluate_model(vae_model_path, ppo_model_path, n_episodes=100, seed=43, save
             total_reward += reward
 
         all_rewards.append(total_reward)
+        print(f"Episode {episode + 1}/{n_episodes}: Reward = {total_reward:.2f}")
 
     # Calculate statistics
     mean_reward = np.mean(all_rewards)
@@ -98,7 +100,7 @@ def evaluate_model(vae_model_path, ppo_model_path, n_episodes=100, seed=43, save
 
         # Extract model names for the filename
         vae_name = os.path.basename(vae_model_path)
-        ppo_name = os.path.basename(ppo_model_path)
+        ppo_name = os.path.basename(ppo_model_path).replace(".zip", "")
 
         # Save individual rewards to numpy file
         rewards_np_path = os.path.join(save_path, f"rewards_{vae_name}_{ppo_name}_{timestamp}.npy")
@@ -150,16 +152,19 @@ def evaluate_model(vae_model_path, ppo_model_path, n_episodes=100, seed=43, save
     return mean_reward, std_reward, all_rewards
 
 
-# Set your parameters directly in the script
+# Set your parameters directly in the script using os.path.join
 if __name__ == "__main__":
-    # Model paths
-    vae_model_path = "../VAE_PPO_train/trained_vae/batch_V2/1000000_vae_ppo_noisy_100ep_config_D_5_20250219_143544"  # Path to your VAE model
-    ppo_model_path = "../VAE_PPO_train/logs/batch_V2/process_19/logs_1000000_vae_ppo_noisy_100ep_config_D_5/best_model/best_model.zip"  # Path to your PPO model
+    # Model paths using os.path.join
+    vae_model_path = os.path.join("..", "VAE_PPO_train", "trained_vae", "batch_V2",
+                                  "1000000_vae_ppo_noisy_100ep_config_D_5_20250219_143544")
+
+    ppo_model_path = os.path.join("..", "VAE_PPO_train", "logs", "batch_V2", "process_19",
+                                  "logs_1000000_vae_ppo_noisy_100ep_config_D_5", "best_model", "best_model.zip")
 
     # Evaluation parameters
     n_episodes = 20  # Number of episodes to evaluate
     seed = 43
-    save_path = "./average_episodic_rewards/2_2_D5"  # Directory to save results
+    save_path = os.path.join(".", "average_episodic_rewards", "2_2_D5")  # Directory to save results
 
     # Run evaluation
     mean_reward, std_reward, all_rewards = evaluate_model(
