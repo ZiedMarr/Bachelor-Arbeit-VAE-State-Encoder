@@ -3,7 +3,7 @@ import torch
 import numpy as np
 from stable_baselines3 import PPO
 import os
-from tqdm import tqdm
+
 import json
 from datetime import datetime
 
