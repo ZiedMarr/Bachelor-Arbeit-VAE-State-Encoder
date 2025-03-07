@@ -134,6 +134,7 @@ def vae_score_call(data_path=os.path.join(base_dir, "..", "Data_Collection", "co
 
 if __name__ == "__main__":
     #vae_score_call()
+    '''
     evaluate_vae(vae_path="../VAE_PPO_train/trained_vae/batch_V2/1000000_vae_ppo_noisy_100ep_config_D_5_20250219_145209", data_path=os.path.join(base_dir, "..", "Data_Collection", "collected_data",
                                  "eval", "merged","merged.npz"), output_path="VAE_score/VAE_Version_2/2_2/KL-D_0.001/post-training_vae_ppo_noisy_100ep_config_A_2.txt")
     evaluate_vae(
@@ -141,3 +142,31 @@ if __name__ == "__main__":
         data_path=os.path.join(base_dir, "..", "Data_Collection", "collected_data",
                                "eval", "merged", "merged.npz"),
         output_path="VAE_score/VAE_Version_2/2_2/KL-D_0.001/post-training_vae_ppo_noisy_100ep_config_A_2.txt")
+    '''
+    # 1st VAE
+    evaluate_vae(
+        vae_path="../VAE_PPO_train/trained_vae/batch_1M_VAE_Version_1_vae_ppo_noisy_100ep_config_I_2/",
+        data_path=os.path.join(base_dir, "..", "Data_Collection", "collected_data", "eval", "merged", "merged.npz"),
+        output_path="VAE_score/VAE_Version_1/2_2/KL-D_0.001/post-training_vae_ppo_noisy_100ep_config_I_2.txt"
+    )
+
+    # 2nd VAE
+    evaluate_vae(
+        vae_path="../VAE_PPO_train/trained_vae/batch_1M_VAE_Version_2.1_vae_mix_10ep_config_A_2/",
+        data_path=os.path.join(base_dir, "..", "Data_Collection", "collected_data", "eval", "merged", "merged.npz"),
+        output_path="VAE_score/VAE_Version_2.1/2_2/KL-D_0.001/post-training_vae_mix_10ep_config_A_2.txt"
+    )
+
+    # 3rd VAE
+    evaluate_vae(
+        vae_path="../VAE_PPO_train/trained_vae/batch_1M_VAE_Version_2_vae_ppo_noisy_100ep_config_G_2/",
+        data_path=os.path.join(base_dir, "..", "Data_Collection", "collected_data", "eval", "merged", "merged.npz"),
+        output_path="VAE_score/VAE_Version_2/4_2/KL-D_0.001/post-training_vae_ppo_noisy_100ep_config_G_2.txt"
+    )
+
+    # 4th VAE
+    evaluate_vae(
+        vae_path="../VAE_PPO_train/trained_vae/batch_1M_VAE_Version_2.1_vae_mix_10ep_config_M1_2/",
+        data_path=os.path.join(base_dir, "..", "Data_Collection", "collected_data", "eval", "merged", "merged.npz"),
+        output_path="VAE_score/VAE_Version_2.1/5_2/KL-D_0.001/post-training_vae_mix_10ep_config_M1_2.txt"
+    )
