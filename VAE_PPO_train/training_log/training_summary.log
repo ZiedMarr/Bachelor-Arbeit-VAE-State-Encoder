@@ -1,9 +1,6 @@
 === SUMMARY REPORT ===
 
 ✔ Successful Runs:
-✅ SUCCESS: vae_ppo_noisy_100ep_config_I_2 with VAE_config.txt
-✅ SUCCESS: vae_mix_10ep_config_A_2 with VAE_config_config_A.txt
-✅ SUCCESS: vae_ppo_noisy_100ep_config_G_2 with VAE_config_G.txt
-✅ SUCCESS: vae_mix_10ep_config_M1_2 with VAE_config_config_M1.txt
+✅ SUCCESS: vae_mix_10ep_config_B_2 with VAE_config_config_B.txt
 
 ❌ Errors Encountered:
