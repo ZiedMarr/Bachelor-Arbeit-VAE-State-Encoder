@@ -60,7 +60,7 @@ def evaluate_model(vae_model_path, ppo_model_path, n_episodes=100, seed=42, save
     wrapped_env = VAEWrapperWithHistory(env, vae, n=n, m=m, vae_optimizer=vae_optimizer)
 
     # Load PPO model
-    ppo_model = PPO.load(ppo_model_path, env=wrapped_env)
+    ppo_model = PPO.load(ppo_model_path, device='cpu')
 
     # Run evaluation episodes
     all_rewards = []
@@ -157,16 +157,14 @@ def evaluate_model(vae_model_path, ppo_model_path, n_episodes=100, seed=42, save
 # Set your parameters directly in the script using os.path.join
 if __name__ == "__main__":
     # Model paths using os.path.join
-    vae_model_path = os.path.join(current_dir, "VAE_PPO_train", "trained_vae", "batch_V2",
-                                  "1000000_vae_ppo_noisy_100ep_config_D_5_20250219_145209")
+    vae_model_path = '../VAE_PPO_train/trained_vae/batch_1M_VAE_Version_2.1_vae_mix_10ep_config_M_2/500000_vae_mix_10ep_config_M_2_20250304_173945'
 
-    ppo_model_path = os.path.join(current_dir, "VAE_PPO_train", "logs", "batch_V2", "process_19",
-                                  "logs_1000000_vae_ppo_noisy_100ep_config_D_5", "best_model", "best_model.zip")
+    ppo_model_path = '../VAE_PPO_train/logs/batch_1M_VAE_Version_2.1_vae_mix_10ep_config_M_2/process_9/logs_500000_vae_mix_10ep_config_M_2/best_model/best_model.zip'
 
     # Evaluation parameters
-    n_episodes = 20  # Number of episodes to evaluate
+    n_episodes = 100  # Number of episodes to evaluate
     seed = 43
-    save_path = os.path.join(".", "average_episodic_rewards", "2_2_D5")  # Directory to save results
+    save_path = os.path.join(".", "average_episodic_rewards", "5_2_M2")  # Directory to save results
 
     # Run evaluation
     mean_reward, std_reward, all_rewards = evaluate_model(

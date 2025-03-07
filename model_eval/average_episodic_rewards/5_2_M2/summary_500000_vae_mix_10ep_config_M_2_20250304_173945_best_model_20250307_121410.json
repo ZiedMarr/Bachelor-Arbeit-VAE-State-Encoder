@@ -1,0 +1,14 @@
+{
+    "vae_model": "../VAE_PPO_train/trained_vae/batch_1M_VAE_Version_2.1_vae_mix_10ep_config_M_2/500000_vae_mix_10ep_config_M_2_20250304_173945",
+    "ppo_model": "../VAE_PPO_train/logs/batch_1M_VAE_Version_2.1_vae_mix_10ep_config_M_2/process_9/logs_500000_vae_mix_10ep_config_M_2/best_model/best_model.zip",
+    "episodes": 100,
+    "seed": 43,
+    "statistics": {
+        "mean": 236.34529049140946,
+        "std": 61.22963094618123,
+        "median": 251.31699164337348,
+        "min": -29.07810681770455,
+        "max": 288.8582933021706
+    },
+    "timestamp": "20250307_121410"
+}
