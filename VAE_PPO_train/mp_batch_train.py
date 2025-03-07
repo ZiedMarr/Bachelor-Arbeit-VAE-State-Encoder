@@ -235,13 +235,14 @@ if __name__ == "__main__":
                      
     '''
     # 1st VAE
-    vae_version = "VAE_Version_1"
-    in_out = "2_2"
+    vae_version = "VAE_Version_2.2"
+    in_out = "6_2"
     kl = "KL-D_0.001"
     vae_path = os.path.join("..", "VAE_pretrain", "pretrained_vae", vae_version, in_out, kl)
-    safe_batch_train(vae_name="vae_ppo_noisy_100ep_config_I_2",
-                     vae_config="VAE_config.txt",
+    safe_batch_train(vae_name="vae_mix_10ep_config_B_2",
+                     vae_config="VAE_config_config_B.txt",
                      vae_path=vae_path, vae_version=vae_version, in_out=in_out, kl=kl)
+    '''
 
     # 2nd VAE (Updated)
     vae_version = "VAE_Version_2.1"
@@ -270,7 +271,7 @@ if __name__ == "__main__":
                      vae_config="VAE_config_config_M1.txt",
                      vae_path=vae_path, vae_version=vae_version, in_out=in_out, kl=kl)
 
-    '''
+    
     safe_batch_train(vae_name="vae_exp_0.3noise_10ep_config_v1_quad_input_small_latent_v2_2",
                      vae_config="VAE_config_config_v1_quad_input_small_latent_v2.txt",
                      vae_path=vae_path, vae_version=vae_version, in_out=in_out, kl=kl)

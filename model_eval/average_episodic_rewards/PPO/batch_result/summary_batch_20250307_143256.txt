@@ -1,0 +1,24 @@
+Batch Evaluation of PPO models from ../PPO/logs/eval/batch_20_50k
+Number of models: 20
+Number of episodes per model: 10
+Seed: 120
+
+--------------------------------------------------
+Overall Mean reward: 195.2212
+Overall Std reward: 88.0756
+Overall Min reward: -114.7281
+Overall Max reward: 304.7699
+Overall Median reward: 240.1879
+--------------------------------------------------
+
+Mean reward per episode:
+Episode 1: 117.9436 ± 109.2333
+Episode 2: 181.5039 ± 96.0863
+Episode 3: 227.9711 ± 72.9374
+Episode 4: 232.2957 ± 55.0168
+Episode 5: 218.5514 ± 109.1519
+Episode 6: 237.6880 ± 44.5480
+Episode 7: 205.5000 ± 113.3793
+Episode 8: 155.0358 ± 123.2577
+Episode 9: 241.1612 ± 35.1348
+Episode 10: 134.5614 ± 122.0105
