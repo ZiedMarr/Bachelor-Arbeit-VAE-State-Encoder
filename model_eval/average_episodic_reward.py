@@ -11,6 +11,8 @@ from Wrappers.Wrapped_environment import VAEWrapperWithHistory
 from VAE import VAE
 from configs import config
 
+# Get the current working directory
+current_dir = os.getcwd()
 
 def evaluate_model(vae_model_path, ppo_model_path, n_episodes=100, seed=42, save_path=None):
     """
@@ -155,10 +157,10 @@ def evaluate_model(vae_model_path, ppo_model_path, n_episodes=100, seed=42, save
 # Set your parameters directly in the script using os.path.join
 if __name__ == "__main__":
     # Model paths using os.path.join
-    vae_model_path = os.path.join("..", "VAE_PPO_train", "trained_vae", "batch_V2",
+    vae_model_path = os.path.join(current_dir,"..", "VAE_PPO_train", "trained_vae", "batch_V2",
                                   "1000000_vae_ppo_noisy_100ep_config_D_5_20250219_145209")
 
-    ppo_model_path = os.path.join("..", "VAE_PPO_train", "logs", "batch_V2", "process_19",
+    ppo_model_path = os.path.join(current_dir,"..", "VAE_PPO_train", "logs", "batch_V2", "process_19",
                                   "logs_1000000_vae_ppo_noisy_100ep_config_D_5", "best_model", "best_model.zip")
 
     # Evaluation parameters
