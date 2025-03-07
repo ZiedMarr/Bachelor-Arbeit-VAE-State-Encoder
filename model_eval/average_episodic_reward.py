@@ -156,7 +156,7 @@ def evaluate_model(vae_model_path, ppo_model_path, n_episodes=100, seed=42, save
 if __name__ == "__main__":
     # Model paths using os.path.join
     vae_model_path = os.path.join("..", "VAE_PPO_train", "trained_vae", "batch_V2",
-                                  "1000000_vae_ppo_noisy_100ep_config_D_5_20250219_143544")
+                                  "1000000_vae_ppo_noisy_100ep_config_D_5_20250219_145209")
 
     ppo_model_path = os.path.join("..", "VAE_PPO_train", "logs", "batch_V2", "process_19",
                                   "logs_1000000_vae_ppo_noisy_100ep_config_D_5", "best_model", "best_model.zip")
