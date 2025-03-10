@@ -252,9 +252,9 @@ if __name__ == "__main__":
     ###########################VAE-PPO BLOCK ######################################
 
     # Model paths using os.path.join
-    vae_model_path = '../VAE_PPO_train/trained_vae/batch_V2/1000000_vae_ppo_noisy_100ep_config_D_5_20250219_145209'
+    vae_model_path = '../VAE_PPO_train/trained_vae/batch_1M_VAE_Version_2.2_vae_mix_10ep_config_B_2/500000_vae_mix_10ep_config_B_2_20250307_143717'
 
-    ppo_model_batch = '../VAE_PPO_train/logs/batch_V2'
+    ppo_model_batch = '../VAE_PPO_train/logs/batch_1M_VAE_Version_2.2_vae_mix_10ep_config_B_2'
 
     model_paths = []
     for root, _, files in os.walk(ppo_model_batch):
@@ -266,7 +266,7 @@ if __name__ == "__main__":
     # Evaluation parameters
     n_episodes = 10  # Number of episodes to evaluate
     seed = 120
-    save_path = os.path.join(".", "average_episodic_rewards", "2_2_D5")  # Directory to save results
+    save_path = os.path.join(".", "average_episodic_rewards", "6_2_B2")  # Directory to save results
     os.makedirs(save_path, exist_ok=True)
 
     # Run evaluation
