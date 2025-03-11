@@ -228,7 +228,7 @@ if __name__ == "__main__":
     in_out = "2_2"
     kl = "KL-D_0.0001"
     vae_path = os.path.join("..", "VAE_pretrain", "pretrained_vae", vae_version, in_out, kl)
-    safe_batch_train(vae_name="vae_test",
+    safe_batch_train(vae_name="vae_1.08_test_kl0.0001",
                      vae_config="VAE_config_config_v1_penta_input_large_latent.txt",
                      vae_path=vae_path, vae_version=vae_version, in_out=in_out, kl=kl)
                      
@@ -237,7 +237,7 @@ if __name__ == "__main__":
     in_out = "2_2"
     kl = "KL-D_0.01"
     vae_path = os.path.join("..", "VAE_pretrain", "pretrained_vae", vae_version, in_out, kl)
-    safe_batch_train(vae_name="vae_test",
+    safe_batch_train(vae_name="vae_1.08_test_kl0.01",
                      vae_config="VAE_config_config_v1_penta_input_large_latent.txt",
                      vae_path=vae_path, vae_version=vae_version, in_out=in_out, kl=kl)
     '''

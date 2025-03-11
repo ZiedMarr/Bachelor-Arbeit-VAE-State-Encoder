@@ -269,7 +269,7 @@ if __name__ == "__main__":
     # Evaluation parameters
     n_episodes = 10  # Number of episodes to evaluate
     seed = 120
-    save_path = os.path.join(".", "average_episodic_rewards", "latent_space eval","4")  # Directory to save results
+    save_path = os.path.join(".", "average_episodic_rewards", "kl-D evals","0.01")  # Directory to save results
     os.makedirs(save_path, exist_ok=True)
 
     # Run evaluation
