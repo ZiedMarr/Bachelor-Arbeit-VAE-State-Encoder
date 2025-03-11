@@ -77,18 +77,18 @@ def create_reward_bar_plot(rewards, x_labels, x_title="Algorithms", y_title="Ave
 # Example usage
 if __name__ == "__main__":
     # Input your data here
-    rewards = [401.19,470.46 ,397.59 ]  # Your three reward values
-    x_labels = ["1", "4", "5"]  # Your x-axis labels
+    rewards = [477.94, 470.46 , 420.09 ]  # Your three reward values
+    x_labels = ["0.0001", "0.00097", "0.01"]  # Your x-axis labels
 
     # Set your axis titles here
-    x_axis_title = "Latent-Space size"  # Change this to describe what your x-axis represents
+    x_axis_title = "KL-Divergence Coefficient"  # Change this to describe what your x-axis represents
     y_axis_title = "Average Episodic Rewards"
 
     # Set your plot title
     plot_title = "Performance Comparison of 10 VAE-PPO agents over 10 episodes"
 
     # Set your save path here
-    save_location = "./Latent_Space_Size.png"  # Change this to your desired location
+    save_location = "./KL-D.png"  # Change this to your desired location
 
     # Create and save the plot
     fig, ax = create_reward_bar_plot(
