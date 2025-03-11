@@ -5,8 +5,7 @@ import gymnasium as gym
 from datetime import datetime
 
 # Set base directories
-batch_dir = "../PPO/logs/eval/batch_20_50k"  # Change to your batch directory
-env_name = "LunarLander-v3"  # Change if needed
+batch_dir = "../PPO/logs/eval/batch_10_1M"  # Change to your batch directory
 n_episodes = 10  # Number of episodes per model
 seed = 120  # Random seed for consistency
 save_path = os.path.join(".", "average_episodic_rewards", "PPO", "batch_result")  # Where to save results
@@ -22,7 +21,7 @@ for root, _, files in os.walk(batch_dir):
 
 print(f"Found {len(model_paths)} models.")
 
-def evaluate_model(ppo_model_path,  n_episodes, seed, env_name="LunarLander-v3"):
+def evaluate_model(ppo_model_path,  n_episodes, seed):
     """
     Evaluates a PPO model over multiple episodes.
 
@@ -41,7 +40,7 @@ def evaluate_model(ppo_model_path,  n_episodes, seed, env_name="LunarLander-v3")
     model = PPO.load(ppo_model_path, device='cpu')
 
     # Create environment
-    env = gym.make("LunarLander-v3")
+    env = gym.make("BipedalWalker-v3")
     env.reset(seed=seed)
     env.observation_space.seed(seed)
 
@@ -111,7 +110,7 @@ def compute_and_save_results(all_rewards, output_path):
     print(f"Batch evaluation completed. Results saved to: {summary_file}")
 
 # Evaluate all models and store results
-all_rewards = [evaluate_model(model_path, n_episodes, seed , env_name=env_name) for model_path in model_paths]
+all_rewards = [evaluate_model(model_path, n_episodes, seed) for model_path in model_paths]
 
 # Compute and save final results
 compute_and_save_results(all_rewards, save_path)

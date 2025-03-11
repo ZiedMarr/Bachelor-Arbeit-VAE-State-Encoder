@@ -36,7 +36,7 @@ def evaluate_ppo_model(ppo_model_path, n_episodes=100, seed=42, save_path=None):
     print(f"Using device: {device}")
 
     # Create environment
-    env = gym.make("LunarLander-v3")
+    env = gym.make("BipedalWalker-v3")
     env.reset(seed=seed)
     env.observation_space.seed(seed)
 
@@ -169,7 +169,7 @@ def evaluate_model(vae_model_path, ppo_model_path, n_episodes=100, seed=42, save
     vae_optimizer = torch.optim.Adam(vae.parameters(), lr=1e-3)
 
     # Create environment with VAE wrapper
-    env = gym.make("LunarLander-v3")
+    env = gym.make("BipedalWalker-v3")
     env.reset(seed=seed)
     env.observation_space.seed(seed)
 
@@ -252,9 +252,9 @@ if __name__ == "__main__":
     ###########################VAE-PPO BLOCK ######################################
 
     # Model paths using os.path.join
-    vae_model_path = '../VAE_PPO_train/trained_vae/batch_V2/1000000_vae_ppo_noisy_100ep_config_D_5_20250219_145209'
+    vae_model_path = '../VAE_PPO_train/trained_vae/batch_1M_VAE_Version_2.1_vae_random_100ep_config_M_2/1000000_vae_random_100ep_config_M_2_20250225_112505'
 
-    ppo_model_batch = '../VAE_PPO_train/logs/batch_V2'
+    ppo_model_batch = '../VAE_PPO_train/logs/batch_1M_VAE_Version_2.1_vae_random_100ep_config_M_2'
 
     model_paths = []
     for root, _, files in os.walk(ppo_model_batch):
@@ -266,7 +266,7 @@ if __name__ == "__main__":
     # Evaluation parameters
     n_episodes = 10  # Number of episodes to evaluate
     seed = 120
-    save_path = os.path.join(".", "average_episodic_rewards", "2_2_D5")  # Directory to save results
+    save_path = os.path.join(".", "average_episodic_rewards", "5_2_M_2")  # Directory to save results
     os.makedirs(save_path, exist_ok=True)
 
     # Run evaluation
