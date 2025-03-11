@@ -244,16 +244,18 @@ if __name__ == "__main__" :
 
     # define averaged files :
     ppo_average_dir = os.path.join(base_dir, "logs", "PPO")
-    vae_ppo_no_tuning_average_dir = './logs/VAE_PPO/VAE_Version_1.08/5_2/KL-D_0.00097/rand_env_1M'
 
-    vae_ppo_average_dir = './logs/VAE_PPO/VAE_Version_1.08/5_2/KL-D_0.00097/rand_env_1M'
+
+    vae_ppo_average_dir = './logs/VAE_PPO/VAE_Version_1.08/2_2/KL-D_0.00097/rand_env_1M'
     os.makedirs(ppo_average_dir, exist_ok=True)
     os.makedirs(vae_ppo_average_dir, exist_ok=True)
 
-    vae_ppo_no_tuning_average_file = os.path.join(vae_ppo_no_tuning_average_dir , "batch_1M_no_tuning_VAE_Version_1.08_vae_exp_0.3noise_10ep_config_v1_penta_input_large_latent_5.npz")
-    vae_ppo_average_file = os.path.join(vae_ppo_average_dir , "batch_1M_VAE_Version_1.08_vae_exp_0.3noise_10ep_config_v1_penta_input_large_latent_5.npz")
+    vae_ppo_average_file = os.path.join(vae_ppo_average_dir , "batch_100k_VAE_Version_1.08_vae_exp_0.3noise_10ep_2.npz")
+    ppo_file = os.path.join(ppo_average_dir, "averaged_evaluation_rand_env_seed10_100k_7.npz")
 
-    visualize_combined_vaes(vae_ppo_no_tuning_average_file , vae_ppo_average_file , save=True , show=True)
+    visualize_combined(ppo_file , vae_ppo_average_file , save=True , show=True)
+
+
 
     '''
     # average the rewards :

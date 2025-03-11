@@ -136,9 +136,9 @@ def worker(process_id: int,
 
         # Training datasets and their corresponding  VAE names
         datasets = [
-            ("vae_random_50k", "random_50000_20250211_151915.npz"),
-            ("vae_exp_0.3noise_10ep" , "ppo_0.3noise_merged.npz"),
-            ("vae_exp_no_noise_10ep" , "ppo_no_noise_merged.npz")
+
+            ("vae_exp_0.3noise_10ep" , "ppo_0.3noise_merged.npz")
+
 
         ]
 

@@ -1,0 +1,24 @@
+Batch Evaluation of PPO models from ../VAE_PPO_train/logs/batch_100k_VAE_Version_1.08_vae_exp_0.3noise_10ep_3
+Number of models: 10
+Number of episodes per model: 10
+Seed: 120
+
+--------------------------------------------------
+Overall Mean reward: 437.1100
+Overall Std reward: 127.0672
+Overall Min reward: 2.0000
+Overall Max reward: 500.0000
+Overall Median reward: 500.0000
+--------------------------------------------------
+
+Mean reward per episode:
+Episode 1: 431.2000 ± 150.4425
+Episode 2: 359.2000 ± 215.5295
+Episode 3: 366.7000 ± 204.2518
+Episode 4: 500.0000 ± 0.0000
+Episode 5: 409.1000 ± 181.8001
+Episode 6: 453.4000 ± 139.8000
+Episode 7: 471.7000 ± 84.9000
+Episode 8: 426.8000 ± 152.9482
+Episode 9: 500.0000 ± 0.0000
+Episode 10: 453.0000 ± 141.0000

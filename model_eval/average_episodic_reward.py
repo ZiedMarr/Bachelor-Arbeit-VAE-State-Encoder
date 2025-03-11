@@ -10,6 +10,7 @@ from datetime import datetime
 from Wrappers.Wrapped_environment import VAEWrapperWithHistory
 from VAE import VAE
 from configs import config
+from Wrappers.RandomStartCartpoleEval import RandomStartCartPoleEval
 
 # Get the current working directory
 current_dir = os.getcwd()
@@ -36,7 +37,8 @@ def evaluate_ppo_model(ppo_model_path, n_episodes=100, seed=42, save_path=None):
     print(f"Using device: {device}")
 
     # Create environment
-    env = gym.make("LunarLander-v3")
+    env = gym.make("CartPole-v1")
+    env = RandomStartCartPoleEval(env)
     env.reset(seed=seed)
     env.observation_space.seed(seed)
 
@@ -169,7 +171,8 @@ def evaluate_model(vae_model_path, ppo_model_path, n_episodes=100, seed=42, save
     vae_optimizer = torch.optim.Adam(vae.parameters(), lr=1e-3)
 
     # Create environment with VAE wrapper
-    env = gym.make("LunarLander-v3")
+    env = gym.make("CartPole-v1")
+    env = RandomStartCartPoleEval(env)
     env.reset(seed=seed)
     env.observation_space.seed(seed)
 
@@ -252,9 +255,9 @@ if __name__ == "__main__":
     ###########################VAE-PPO BLOCK ######################################
 
     # Model paths using os.path.join
-    vae_model_path = '../VAE_PPO_train/trained_vae/batch_V2/1000000_vae_ppo_noisy_100ep_config_D_5_20250219_145209'
+    vae_model_path = '../VAE_PPO_train/trained_vae/batch_100k_VAE_Version_1.08_vae_exp_0.3noise_10ep_3/100000_vae_exp_0.3noise_10ep_3_20250311_114322'
 
-    ppo_model_batch = '../VAE_PPO_train/logs/batch_V2'
+    ppo_model_batch = '../VAE_PPO_train/logs/batch_100k_VAE_Version_1.08_vae_exp_0.3noise_10ep_3'
 
     model_paths = []
     for root, _, files in os.walk(ppo_model_batch):
@@ -266,7 +269,7 @@ if __name__ == "__main__":
     # Evaluation parameters
     n_episodes = 10  # Number of episodes to evaluate
     seed = 120
-    save_path = os.path.join(".", "average_episodic_rewards", "2_2_D5")  # Directory to save results
+    save_path = os.path.join(".", "average_episodic_rewards", "4_2_v1.08")  # Directory to save results
     os.makedirs(save_path, exist_ok=True)
 
     # Run evaluation
