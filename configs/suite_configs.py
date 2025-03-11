@@ -1,7 +1,7 @@
 SUITE_CONFIGS = {
 
 
-'config_v1_penta_input_large_latent_2': {
+'config_v1_penta': {
     'INPUT_STATE_SIZE': 2,
     'OUTPUT_STATE_SIZE': 2,
     'LATENT_DIM': 4,
@@ -23,7 +23,7 @@ SUITE_CONFIGS = {
     'DECODER_HIDDEN7': 0,
     'DECODER_HIDDEN8': 0,
     'DECODER_HIDDEN9': 0,
-    'BETA_KL_DIV': 0.00097,
+    'BETA_KL_DIV': 0.01,
     'TRAIN_FREQUENCY': 5,
     'LOSS_FUNC': "MSE_loss_feature_Standardization",
     'EPOCHS': 5,
@@ -33,9 +33,8 @@ SUITE_CONFIGS = {
     'VAE_Version': "VAE_Version_1.08",
     'gradual_beta': "True"
 },
-
-'config_v1_penta_input_large_latent_3': {
-    'INPUT_STATE_SIZE': 4,
+'config_v1_penta_2': {
+    'INPUT_STATE_SIZE': 2,
     'OUTPUT_STATE_SIZE': 2,
     'LATENT_DIM': 4,
     'ENCODER_HIDDEN': 36,
@@ -56,7 +55,7 @@ SUITE_CONFIGS = {
     'DECODER_HIDDEN7': 0,
     'DECODER_HIDDEN8': 0,
     'DECODER_HIDDEN9': 0,
-    'BETA_KL_DIV': 0.00097,
+    'BETA_KL_DIV': 0.0001,
     'TRAIN_FREQUENCY': 5,
     'LOSS_FUNC': "MSE_loss_feature_Standardization",
     'EPOCHS': 5,
