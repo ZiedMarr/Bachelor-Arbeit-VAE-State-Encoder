@@ -3,5 +3,5 @@
 ✔ Successful Runs:
 
 ❌ Errors Encountered:
-❌ ERROR: vae_test with VAE_config_config_v1_penta_input_large_latent.txt → [Errno 2] No such file or directory: '/home/zied/BA-code/Bachelor-Arbeit-VAE-State-Encoder/model_eval/logs/PPO_results/averaged_evaluation_rand_env_seed10_100k_nowrapper.npz'
-❌ ERROR: vae_test with VAE_config_config_v1_penta_input_large_latent.txt → [Errno 2] No such file or directory: '/home/zied/BA-code/Bachelor-Arbeit-VAE-State-Encoder/model_eval/logs/PPO_results/averaged_evaluation_rand_env_seed10_100k_nowrapper.npz'
+❌ ERROR: vae_1.08_test_kl0.0001 with VAE_config_config_v1_penta_input_large_latent.txt → [Errno 2] No such file or directory: '/home/zied/BA-code/Bachelor-Arbeit-VAE-State-Encoder/model_eval/logs/PPO_results/averaged_evaluation_rand_env_seed10_100k_nowrapper.npz'
+❌ ERROR: vae_1.08_test_kl0.01 with VAE_config_config_v1_penta_input_large_latent.txt → [Errno 2] No such file or directory: '/home/zied/BA-code/Bachelor-Arbeit-VAE-State-Encoder/model_eval/logs/PPO_results/averaged_evaluation_rand_env_seed10_100k_nowrapper.npz'
