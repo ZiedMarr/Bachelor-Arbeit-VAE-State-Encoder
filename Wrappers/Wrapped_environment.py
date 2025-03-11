@@ -7,7 +7,7 @@ import gymnasium as gym
 class VAEWrapperWithHistory(gym.ObservationWrapper):
     def __init__(self, env, vae_model, n, m, vae_optimizer):
         """
-        Wrapper to integrate VAE for state prediction and PPO training.
+        Wrapper to integrate VAE for state prediction and PPO_results training.
         :param env: Gymnasium environment.
         :param vae_model: VAE model for state encoding and prediction.
         :param n: Number of current states for VAE input.

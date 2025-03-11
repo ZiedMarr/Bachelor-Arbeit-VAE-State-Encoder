@@ -85,26 +85,28 @@ def calculate_timesteps_to_reward(base_log_dir, target_reward, output_path=None)
         mean_timesteps = np.mean(timesteps_to_target)
         std_timesteps = np.std(timesteps_to_target)
 
-    # Print results
-    print(f"Target Reward: {target_reward}")
-    print(f"Runs that reached target: {len(timesteps_to_target)}/{len(log_dirs)}")
-    print(f"Average timesteps to reach target: {mean_timesteps:.2f}")
-    print(f"Standard deviation: {std_timesteps:.2f}")
+        # Format results as text
+        results_text = f"Target Reward: {target_reward}\n"
+        results_text += f"Runs that reached target: {len(timesteps_to_target)}/{len(log_dirs)}\n"
+        results_text += f"Average timesteps to reach target: {mean_timesteps:.2f}\n"
+        results_text += f"Standard deviation: {std_timesteps:.2f}\n"
+
+        # Print results
+        print(results_text)
 
     # Save results if output path is provided
     if output_path:
         # Create directory if it doesn't exist
         os.makedirs(os.path.dirname(os.path.abspath(output_path)), exist_ok=True)
 
-        results = {
-            'target_reward': target_reward,
-            'mean_timesteps': mean_timesteps,
-            'std_timesteps': std_timesteps,
-            'num_reached': len(timesteps_to_target),
-            'total_runs': len(log_dirs),
-            'individual_timesteps': timesteps_to_target if timesteps_to_target else None
-        }
-        np.savez(output_path, **results)
+        with open(output_path, 'w') as f:
+            f.write(results_text)
+            # Add individual timesteps as additional information
+            if timesteps_to_target:
+                f.write("\nIndividual timesteps to reach target:\n")
+                for i, ts in enumerate(timesteps_to_target):
+                    f.write(f"Run {i + 1}: {ts:.2f}\n")
+
         print(f"Results saved to: {output_path}")
 
     return mean_timesteps, std_timesteps, len(timesteps_to_target), len(log_dirs)
@@ -158,9 +160,9 @@ if __name__ == "__main__":
     base_dir = os.path.dirname(os.path.abspath(__file__))
 
     # For a single target reward
-    vae_ppo_log_dir = "../VAE_PPO_train/logs/VAE_Version_1.08_vae_exp_0.3noise_10ep"
+    vae_ppo_log_dir = "../VAE_PPO_train/logs/batch_100k_VAE_Version_1.08_vae_exp_0.3noise_10ep_3"
 
-    output_path = os.path.join(".", "sample_efficiency", "PPO")
+    output_path = os.path.join(".", "sample_efficiency", "4_2", "v1.08")
 
     mean_timesteps, std_timesteps, runs_reached, total_runs = calculate_timesteps_to_reward(
         vae_ppo_log_dir,

@@ -130,7 +130,7 @@ def get_optimal_process_count() -> int:
     return max(1, int(cpu_count * 0.75))
 
 
-def main(vae_config, batch = "batch_V3.13_kl=0.002_evalconfig3_100k" ,   vae_model_path = os.path.join(script_dir, "..", "VAE_pretrain", "pretrained_vae","VAE_Version_3.13", "2_2", "KL-D_0.002", "vae_rand_500k")):
+def main(vae_config, batch = "batch_V3.13_kl=0.002_evalconfig3_100k" ,   vae_model_path = os.path.join(script_dir, "..", "VAE_pretrain", "pretrained_vae","VAE_Version_3.13", "5_2", "KL-D_0.002", "vae_rand_500k")):
 
 
     # Setup batch configuration
@@ -225,7 +225,7 @@ def safe_batch_train(vae_name, vae_config, vae_path, vae_version, in_out , kl):
 if __name__ == "__main__":
 
     vae_version = "VAE_Version_1.08"
-    in_out = "2_2"
+    in_out = "5_2"
     kl = "KL-D_0.00097"
     vae_path = os.path.join("..", "VAE_pretrain", "pretrained_vae", vae_version, in_out, kl)
     safe_batch_train(vae_name="vae_exp_0.3noise_10ep_2",

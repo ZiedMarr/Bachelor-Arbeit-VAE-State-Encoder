@@ -16,10 +16,10 @@ from Wrappers.RandomStartCartpoleEval import RandomStartCartPoleEval
 current_dir = os.getcwd()
 def evaluate_ppo_model(ppo_model_path, n_episodes=100, seed=42, save_path=None):
     """
-    Load PPO model and evaluate it over n episodes.
+    Load PPO_results model and evaluate it over n episodes.
 
     Args:
-        ppo_model_path: Path to the trained PPO model
+        ppo_model_path: Path to the trained PPO_results model
         n_episodes: Number of evaluation episodes
         seed: Random seed for reproducibility
         save_path: Directory to save results
@@ -29,7 +29,7 @@ def evaluate_ppo_model(ppo_model_path, n_episodes=100, seed=42, save_path=None):
         std_reward: Standard deviation of rewards
         all_rewards: List of rewards for each episode
     """
-    print(f"Evaluating PPO from: {ppo_model_path}")
+    print(f"Evaluating PPO_results from: {ppo_model_path}")
     print(f"Running {n_episodes} evaluation episodes...")
 
     # Set device
@@ -42,7 +42,7 @@ def evaluate_ppo_model(ppo_model_path, n_episodes=100, seed=42, save_path=None):
     env.reset(seed=seed)
     env.observation_space.seed(seed)
 
-    # Load PPO model
+    # Load PPO_results model
     ppo_model = PPO.load(ppo_model_path, device=device)
 
     # Run evaluation episodes
@@ -93,7 +93,7 @@ def evaluate_ppo_model(ppo_model_path, n_episodes=100, seed=42, save_path=None):
         # Save rewards to a text file
         rewards_txt_path = os.path.join(save_path, f"rewards_{ppo_name}_{timestamp}.txt")
         with open(rewards_txt_path, 'w') as f:
-            f.write(f"Evaluation of PPO: {ppo_model_path}\n")
+            f.write(f"Evaluation of PPO_results: {ppo_model_path}\n")
             f.write(f"Number of episodes: {n_episodes}\n")
             f.write(f"Seed: {seed}\n\n")
             f.write("-" * 50 + "\n")
@@ -137,11 +137,11 @@ def evaluate_ppo_model(ppo_model_path, n_episodes=100, seed=42, save_path=None):
 
 def evaluate_model(vae_model_path, ppo_model_path, n_episodes=100, seed=42, save_path=None):
     """
-    Load VAE and PPO models and evaluate them over n episodes.
+    Load VAE and PPO_results models and evaluate them over n episodes.
 
     Args:
         vae_model_path: Path to the trained VAE model
-        ppo_model_path: Path to the trained PPO model
+        ppo_model_path: Path to the trained PPO_results model
         n_episodes: Number of evaluation episodes
         seed: Random seed for reproducibility
         save_path: Directory to save results
@@ -152,7 +152,7 @@ def evaluate_model(vae_model_path, ppo_model_path, n_episodes=100, seed=42, save
         all_rewards: List of rewards for each episode
     """
     print(f"Evaluating VAE from: {vae_model_path}")
-    print(f"Evaluating PPO from: {ppo_model_path}")
+    print(f"Evaluating PPO_results from: {ppo_model_path}")
     print(f"Running {n_episodes} evaluation episodes...")
 
     # Set device
@@ -181,7 +181,7 @@ def evaluate_model(vae_model_path, ppo_model_path, n_episodes=100, seed=42, save
     m = config.OUTPUT_STATE_SIZE
     wrapped_env = VAEWrapperWithHistory(env, vae, n=n, m=m, vae_optimizer=vae_optimizer)
 
-    # Load PPO model
+    # Load PPO_results model
     ppo_model = PPO.load(ppo_model_path, device='cpu')
 
     # Run evaluation episodes
@@ -205,7 +205,7 @@ def evaluate_model(vae_model_path, ppo_model_path, n_episodes=100, seed=42, save
 
 def compute_and_save_results(all_rewards, output_path,batch_dir):
     """
-    Computes mean, std, min, max, median from multiple PPO evaluations and saves results.
+    Computes mean, std, min, max, median from multiple PPO_results evaluations and saves results.
 
     Args:
         all_rewards: List of lists, where each inner list contains episode rewards from one model
@@ -233,7 +233,7 @@ def compute_and_save_results(all_rewards, output_path,batch_dir):
     # Save summary as text file
     summary_file = os.path.join(output_path, f"summary_batch_{timestamp}.txt")
     with open(summary_file, 'w') as f:
-        f.write(f"Batch Evaluation of PPO models from {batch_dir}\n")
+        f.write(f"Batch Evaluation of PPO_results models from {batch_dir}\n")
         f.write(f"Number of models: {len(all_rewards)}\n")
         f.write(f"Number of episodes per model: {n_episodes}\n")
         f.write(f"Seed: {seed}\n\n")
@@ -252,7 +252,7 @@ def compute_and_save_results(all_rewards, output_path,batch_dir):
 
 # Set your parameters directly in the script using os.path.join
 if __name__ == "__main__":
-    ###########################VAE-PPO BLOCK ######################################
+    ###########################VAE-PPO_results BLOCK ######################################
 
     # Model paths using os.path.join
     vae_model_path = '../VAE_PPO_train/trained_vae/batch_100k_VAE_Version_1.08_vae_exp_0.3noise_10ep_3/100000_vae_exp_0.3noise_10ep_3_20250311_114322'
@@ -284,14 +284,14 @@ if __name__ == "__main__":
     # Compute and save final results
     compute_and_save_results(all_rewards, save_path, batch_dir=ppo_model_batch)
     '''
-    ###########################VAE-PPO BLOCK ######################################
-    # PPO Model path
-    ppo_model_path = '../PPO/logs/eval/batch_20_50k/process_18/logs_1000000/best_model/best_model.zip'
+    ###########################VAE-PPO_results BLOCK ######################################
+    # PPO_results Model path
+    ppo_model_path = '../PPO_results/logs/eval/batch_20_50k/process_18/logs_1000000/best_model/best_model.zip'
 
     # Evaluation parameters
     n_episodes = 100  # Number of episodes to evaluate
     seed = 43
-    save_path = os.path.join(".", "average_episodic_rewards", "PPO")  # Directory to save results
+    save_path = os.path.join(".", "average_episodic_rewards", "PPO_results")  # Directory to save results
     
     
     # Run evaluation

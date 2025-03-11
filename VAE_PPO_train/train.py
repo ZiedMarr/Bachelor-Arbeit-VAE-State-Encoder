@@ -66,7 +66,7 @@ def train(vae_model_path, vae_save_folder, log_batch_dir,total_timesteps = 20000
     #print("Wrapped environment observation space:", wrapped_env.observation_space)
     ##############test#######################
 
-    # Define PPO model
+    # Define PPO_results model
     ppo_model = PPO("MlpPolicy", wrapped_env, verbose=1, device=device)
     # Set up TensorBoard logger
     ppo_model.set_logger(configure(os.path.join(log_dir,"tensorboard_logs"), ["tensorboard"]))
@@ -92,7 +92,7 @@ def train(vae_model_path, vae_save_folder, log_batch_dir,total_timesteps = 20000
     #event_callback = EveryNTimesteps(n_steps=2048, callback=checkpoint_callback)
 
 
-    # Train PPO with VAE training in the callback
+    # Train PPO_results with VAE training in the callback
     #ppo_model.learn(total_timesteps=total_timesteps, callback=[vae_callback, eval_callback])
     ppo_model.learn(total_timesteps=total_timesteps, callback=[ eval_callback])
     # Create the directory if it does not exist

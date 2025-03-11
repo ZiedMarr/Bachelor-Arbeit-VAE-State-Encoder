@@ -11,7 +11,7 @@ from pathlib import Path
 # Define the base directory (directory of the current script)
 base_dir = os.path.dirname(os.path.abspath(__file__))
 
-def visualize(file_path = os.path.join(base_dir, "logs", "PPO" ,"averaged_evaluation_batch2.npz")):
+def visualize(file_path = os.path.join(base_dir, "logs", "PPO_results" ,"averaged_evaluation_batch2.npz")):
 
     data = np.load(file_path)
 
@@ -93,11 +93,11 @@ def two_graphs(ppo_file, vae_ppo_file):
     # Create a single figure with two subplots
     fig, axes = plt.subplots(1, 2, figsize=(16, 6))  # 1 row, 2 columns
 
-    # Visualize PPO data
-    visualize_2graphs(axes[0], ppo_file, title="PPO: Averaged Rewards Over Time")
+    # Visualize PPO_results data
+    visualize_2graphs(axes[0], ppo_file, title="PPO_results: Averaged Rewards Over Time")
 
-    # Visualize VAE-PPO data
-    visualize_2graphs(axes[1], vae_ppo_file, title="VAE-PPO: Averaged Rewards Over Time")
+    # Visualize VAE-PPO_results data
+    visualize_2graphs(axes[1], vae_ppo_file, title="VAE-PPO_results: Averaged Rewards Over Time")
 
     # Adjust layout and show the plots
     plt.tight_layout()
@@ -105,19 +105,19 @@ def two_graphs(ppo_file, vae_ppo_file):
 
 def visualize_combined(ppo_file, vae_ppo_file, save = False, show = True):
     """
-    Plot PPO and VAE-PPO rewards on the same graph with different colors.
+    Plot PPO_results and VAE-PPO_results rewards on the same graph with different colors.
 
     Args:
-        ppo_file (str): Path to the PPO results file.
-        vae_ppo_file (str): Path to the VAE-PPO results file.
+        ppo_file (str): Path to the PPO_results results file.
+        vae_ppo_file (str): Path to the VAE-PPO_results results file.
     """
-    # Load PPO data
+    # Load PPO_results data
     ppo_data = np.load(ppo_file)
     ppo_timesteps = ppo_data["timesteps"]
     ppo_mean_rewards = ppo_data["mean_rewards"]
     ppo_std_rewards = ppo_data["std_rewards"]
 
-    # Load VAE-PPO data
+    # Load VAE-PPO_results data
     vae_ppo_data = np.load(vae_ppo_file)
     vae_ppo_timesteps = vae_ppo_data["timesteps"]
     vae_ppo_mean_rewards = vae_ppo_data["mean_rewards"]
@@ -126,32 +126,32 @@ def visualize_combined(ppo_file, vae_ppo_file, save = False, show = True):
     # Create a single figure
     plt.figure(figsize=(10, 6))
 
-    # Plot PPO with color blue
-    sns.lineplot(x=ppo_timesteps, y=ppo_mean_rewards, label="PPO Mean Reward", color="blue")
+    # Plot PPO_results with color blue
+    sns.lineplot(x=ppo_timesteps, y=ppo_mean_rewards, label="PPO_results Mean Reward", color="blue")
     plt.fill_between(
         ppo_timesteps,
         ppo_mean_rewards - ppo_std_rewards,
         ppo_mean_rewards + ppo_std_rewards,
         alpha=0.2,
         color="blue",
-        label="PPO Std Dev"
+        label="PPO_results Std Dev"
     )
 
-    # Plot VAE-PPO with color red
-    sns.lineplot(x=vae_ppo_timesteps, y=vae_ppo_mean_rewards, label="VAE-PPO Mean Reward", color="red")
+    # Plot VAE-PPO_results with color red
+    sns.lineplot(x=vae_ppo_timesteps, y=vae_ppo_mean_rewards, label="VAE-PPO_results Mean Reward", color="red")
     plt.fill_between(
         vae_ppo_timesteps,
         vae_ppo_mean_rewards - vae_ppo_std_rewards,
         vae_ppo_mean_rewards + vae_ppo_std_rewards,
         alpha=0.2,
         color="red",
-        label="VAE-PPO Std Dev"
+        label="VAE-PPO_results Std Dev"
     )
 
     # Customize the plot
     plt.xlabel("Timesteps")
     plt.ylabel("Reward")
-    plt.title("Comparison of PPO and VAE-PPO: Averaged Rewards Over Time")
+    plt.title("Comparison of PPO_results and VAE-PPO_results: Averaged Rewards Over Time")
     plt.legend()
     plt.grid()
     if save :
@@ -163,19 +163,19 @@ def visualize_combined(ppo_file, vae_ppo_file, save = False, show = True):
 
 def visualize_combined_vaes( vae_ppo_no_tuning_average_file,vae_ppo_file, save = False, show = True):
     """
-    Plot PPO and VAE-PPO rewards on the same graph with different colors.
+    Plot PPO_results and VAE-PPO_results rewards on the same graph with different colors.
 
     Args:
-        ppo_file (str): Path to the PPO results file.
-        vae_ppo_file (str): Path to the VAE-PPO results file.
+        ppo_file (str): Path to the PPO_results results file.
+        vae_ppo_file (str): Path to the VAE-PPO_results results file.
     """
-    # Load PPO data
+    # Load PPO_results data
     ppo_data = np.load(vae_ppo_no_tuning_average_file)
     ppo_timesteps = ppo_data["timesteps"]
     ppo_mean_rewards = ppo_data["mean_rewards"]
     ppo_std_rewards = ppo_data["std_rewards"]
 
-    # Load VAE-PPO data
+    # Load VAE-PPO_results data
     vae_ppo_data = np.load(vae_ppo_file)
     vae_ppo_timesteps = vae_ppo_data["timesteps"]
     vae_ppo_mean_rewards = vae_ppo_data["mean_rewards"]
@@ -184,33 +184,33 @@ def visualize_combined_vaes( vae_ppo_no_tuning_average_file,vae_ppo_file, save =
     # Create a single figure
     plt.figure(figsize=(10, 6))
 
-    # Plot PPO with color blue
-    sns.lineplot(x=ppo_timesteps, y=ppo_mean_rewards, label="VAE-PPO without tuning Mean Reward", color="green")
+    # Plot PPO_results with color blue
+    sns.lineplot(x=ppo_timesteps, y=ppo_mean_rewards, label="VAE-PPO_results without tuning Mean Reward", color="green")
     plt.fill_between(
         ppo_timesteps,
         ppo_mean_rewards - ppo_std_rewards,
         ppo_mean_rewards + ppo_std_rewards,
         alpha=0.2,
         color="green",
-        label="VAE-PPO without tuning Mean Reward Std Dev"
+        label="VAE-PPO_results without tuning Mean Reward Std Dev"
     )
 
-    # Plot VAE-PPO with color red
-    sns.lineplot(x=vae_ppo_timesteps, y=vae_ppo_mean_rewards, label="VAE-PPO Mean Reward", color="red")
+    # Plot VAE-PPO_results with color red
+    sns.lineplot(x=vae_ppo_timesteps, y=vae_ppo_mean_rewards, label="VAE-PPO_results Mean Reward", color="red")
     plt.fill_between(
         vae_ppo_timesteps,
         vae_ppo_mean_rewards - vae_ppo_std_rewards,
         vae_ppo_mean_rewards + vae_ppo_std_rewards,
         alpha=0.2,
         color="red",
-        label="VAE-PPO Std Dev"
+        label="VAE-PPO_results Std Dev"
     )
 
 
     # Customize the plot
     plt.xlabel("Timesteps")
     plt.ylabel("Reward")
-    plt.title("Comparison of VAE-PPO without tuning and VAE-PPO: Averaged Rewards Over Time")
+    plt.title("Comparison of VAE-PPO_results without tuning and VAE-PPO_results: Averaged Rewards Over Time")
     plt.legend()
     plt.grid()
     if save :
@@ -232,7 +232,7 @@ def call_visualize_combined(vae_batch, vae_version, in_out , kl) :
     vae_ppo_file = os.path.join(vae_ppo_average_dir, f"{vae_batch}.npz")
 
     #define ppo average file :
-    ppo_average_dir = os.path.join(base_dir, "logs", "PPO")
+    ppo_average_dir = os.path.join(base_dir, "logs", "PPO_results")
     ppo_file = os.path.join(ppo_average_dir, "averaged_evaluation_rand_env_seed10_100k_nowrapper.npz")
 
 
@@ -243,7 +243,7 @@ def call_visualize_combined(vae_batch, vae_version, in_out , kl) :
 if __name__ == "__main__" :
 
     # define averaged files :
-    ppo_average_dir = os.path.join(base_dir, "logs", "PPO")
+    ppo_average_dir = os.path.join(base_dir, "logs", "PPO_results")
 
 
     vae_ppo_average_dir = './logs/VAE_PPO/VAE_Version_1.08/2_2/KL-D_0.00097/rand_env_1M'
@@ -260,7 +260,7 @@ if __name__ == "__main__" :
     '''
     # average the rewards :
     ppo_average(output_file=os.path.join(ppo_average_dir, "batch_size_10.npz"),
-                base_log_dir=os.path.join(base_dir, "..", "PPO", "logs", "eval", "batch_10_1M"))
+                base_log_dir=os.path.join(base_dir, "..", "PPO_results", "logs", "eval", "batch_10_1M"))
     vae_ppo_average(
         output_file=os.path.join(vae_ppo_average_dir, "batch_size_10.npz"),
         base_log_dir=os.path.join(base_dir, "..", "VAE_PPO_train", "logs", "batch_1M_VAE_Version_2.1_vae_mix_10ep_config_A_2"))

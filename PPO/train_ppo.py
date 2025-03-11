@@ -29,7 +29,7 @@ def train_ppo(log_batch_dir, total_timesteps=20000, seed=42,env_wrapper=RandomSt
     eval_env = env_wrapper(eval_env)
     eval_env = Monitor(eval_env)  # Monitor to log evaluation statistics
 
-    # Initialize the PPO model
+    # Initialize the PPO_results model
     model = PPO("MlpPolicy", eval_env, verbose=1, device="cpu")
 
     # Set up TensorBoard logger

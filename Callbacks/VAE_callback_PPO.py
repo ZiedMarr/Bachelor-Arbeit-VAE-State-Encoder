@@ -22,7 +22,7 @@ class VAETrainingCallback(BaseCallback):
         """
         self.vae.train()
 
-        rollout_buffer = self.model.rollout_buffer  # Access PPO's buffer
+        rollout_buffer = self.model.rollout_buffer  # Access PPO_results's buffer
         episode_starts = rollout_buffer.episode_starts
         #dones = ~episode_starts  # Invert episode_starts to get "dones"
         ###############################

@@ -9,7 +9,7 @@ from Wrappers.RandomStartCartpoleEval import RandomStartCartPoleEval
 batch_dir = "../PPO/logs/eval/batch_eval_100k_7"  # Change to your batch directory
 n_episodes = 10  # Number of episodes per model
 seed = 120  # Random seed for consistency
-save_path = os.path.join(".", "average_episodic_rewards", "PPO", "batch_result")  # Where to save results
+save_path = os.path.join(".", "average_episodic_rewards", "PPO_results", "batch_result")  # Where to save results
 
 # Ensure save directory exists
 os.makedirs(save_path, exist_ok=True)
@@ -24,10 +24,10 @@ print(f"Found {len(model_paths)} models.")
 
 def evaluate_model(ppo_model_path,  n_episodes, seed):
     """
-    Evaluates a PPO model over multiple episodes.
+    Evaluates a PPO_results model over multiple episodes.
 
     Args:
-        ppo_model_path: Path to the PPO model
+        ppo_model_path: Path to the PPO_results model
         env_name: Gym environment name
         n_episodes: Number of evaluation episodes
         seed: Random seed
@@ -35,9 +35,9 @@ def evaluate_model(ppo_model_path,  n_episodes, seed):
     Returns:
         rewards: List of episode rewards
     """
-    print(f"Evaluating PPO model: {ppo_model_path}")
+    print(f"Evaluating PPO_results model: {ppo_model_path}")
 
-    # Load PPO model
+    # Load PPO_results model
     model = PPO.load(ppo_model_path, device='cpu')
 
     # Create environment
@@ -66,7 +66,7 @@ def evaluate_model(ppo_model_path,  n_episodes, seed):
 
 def compute_and_save_results(all_rewards, output_path):
     """
-    Computes mean, std, min, max, median from multiple PPO evaluations and saves results.
+    Computes mean, std, min, max, median from multiple PPO_results evaluations and saves results.
 
     Args:
         all_rewards: List of lists, where each inner list contains episode rewards from one model
@@ -94,7 +94,7 @@ def compute_and_save_results(all_rewards, output_path):
     # Save summary as text file
     summary_file = os.path.join(output_path, f"summary_batch_{timestamp}.txt")
     with open(summary_file, 'w') as f:
-        f.write(f"Batch Evaluation of PPO models from {batch_dir}\n")
+        f.write(f"Batch Evaluation of PPO_results models from {batch_dir}\n")
         f.write(f"Number of models: {len(all_rewards)}\n")
         f.write(f"Number of episodes per model: {n_episodes}\n")
         f.write(f"Seed: {seed}\n\n")

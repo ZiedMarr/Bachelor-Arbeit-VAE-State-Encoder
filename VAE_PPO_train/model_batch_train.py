@@ -19,7 +19,7 @@ batch_size = eval_config.BATCH_SIZE
 total_timesteps = eval_config.TOTAL_TIMESTEPS
 
 #define vae model path
-vae_model_path = os.path.join(script_dir,"..","VAE_pretrain","pretrained_vae","VAE_Version_3.13","2_2","KL-D_0.002","vae_rand_500k")
+vae_model_path = os.path.join(script_dir,"..","VAE_pretrain","pretrained_vae","VAE_Version_3.13","5_2","KL-D_0.002","vae_rand_500k")
 #VAE_pretrain/pretrained_vae/5_in_2_out/vae_explore_17
 vae_model_name = os.path.basename(vae_model_path)  # Get the last element of the path
 

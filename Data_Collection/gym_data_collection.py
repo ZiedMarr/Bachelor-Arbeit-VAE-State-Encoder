@@ -270,7 +270,7 @@ def collect_data_from_model(model_path, index, num_episodes=50, output_path = os
     expert_collect(output_path=output_path, policy_path=model_path, num_episodes=num_episodes , env_wrapper=env_wrapper, noise=noise, noise_scale=noise_scale)
 
 
-def collect_from_batch(root_dir= os.path.join(base_dir,"..", "PPO","logs", "explore"), output_path  = os.path.join(base_dir, "explore_expert") , env_wrapper = None, noise=False, noise_scale=0.3, num_episodes=50):
+def collect_from_batch(root_dir= os.path.join(base_dir,"..", "PPO_results","logs", "explore"), output_path  = os.path.join(base_dir, "explore_expert") , env_wrapper = None, noise=False, noise_scale=0.3, num_episodes=50):
 
     # Initialize index
     index = 0
@@ -297,16 +297,16 @@ def collect_from_batch(root_dir= os.path.join(base_dir,"..", "PPO","logs", "expl
 
 if __name__ == "__main__":
     # Example calls for testing
-    #expert_collect(output_path = os.path.join(base_dir, "collected_data", "cartpole_expert_60"),policy_path = os.path.join(base_dir, "..", "PPO", "logs","batch2","logs_20000_20250123_151149","best_model", "best_model.zip"), num_episodes=60)
+    #expert_collect(output_path = os.path.join(base_dir, "collected_data", "cartpole_expert_60"),policy_path = os.path.join(base_dir, "..", "PPO_results", "logs","batch2","logs_20000_20250123_151149","best_model", "best_model.zip"), num_episodes=60)
 
     #random_collect(output_path=os.path.join("train","rand_pol_rand_env"), num_episodes=30, env_wrapper=None)
     #random_collect(output_path=os.path.join("train","rand_pol_rand_env"), num_episodes=50, env_wrapper=None)
 
 
-    collect_from_batch(root_dir= os.path.join(base_dir,"..", "PPO","logs", "eval", "batch_eval_1"),output_path=os.path.join(base_dir,"collected_data", "eval", "explore_policy_rand_env","ppo_no_noise"), noise=True, noise_scale=0.3 ,  num_episodes=20,env_wrapper=RandomStartCartPoleEval)
-    #collect_from_batch(root_dir= os.path.join(base_dir,"..", "PPO","logs", "explore", "batch_10_200k"),output_path=os.path.join(base_dir,"collected_data", "eval", "explore_pol_standard_env","ppo_200k_noise_0.5"), noise=True,noise_scale=0.5, num_episodes=10,env_wrapper=None)
+    collect_from_batch(root_dir= os.path.join(base_dir,"..", "PPO_results","logs", "eval", "batch_eval_1"),output_path=os.path.join(base_dir,"collected_data", "eval", "explore_policy_rand_env","ppo_no_noise"), noise=True, noise_scale=0.3 ,  num_episodes=20,env_wrapper=RandomStartCartPoleEval)
+    #collect_from_batch(root_dir= os.path.join(base_dir,"..", "PPO_results","logs", "explore", "batch_10_200k"),output_path=os.path.join(base_dir,"collected_data", "eval", "explore_pol_standard_env","ppo_200k_noise_0.5"), noise=True,noise_scale=0.5, num_episodes=10,env_wrapper=None)
 
 
 
-    #mixed_random_expert_collect(output_path="mixed_pol_rand_env", num_episodes=10000, env_wrapper=RandomStartCartPole, policy_path="../PPO/logs/explore_rand_env/batch_20000_timesteps_rand_env_100k_steps/logs_100000_20250210_110044/best_model/best_model.zip")
-    #collect_from_batch(root_dir='../PPO/logs/explore/', output_path= os.path.join(base_dir, "collected_data", "explore_rand_env"), env_wrapper=RandomStartCartPole)
+    #mixed_random_expert_collect(output_path="mixed_pol_rand_env", num_episodes=10000, env_wrapper=RandomStartCartPole, policy_path="../PPO_results/logs/explore_rand_env/batch_20000_timesteps_rand_env_100k_steps/logs_100000_20250210_110044/best_model/best_model.zip")
+    #collect_from_batch(root_dir='../PPO_results/logs/explore/', output_path= os.path.join(base_dir, "collected_data", "explore_rand_env"), env_wrapper=RandomStartCartPole)
