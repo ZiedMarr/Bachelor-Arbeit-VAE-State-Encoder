@@ -225,22 +225,15 @@ def safe_batch_train(vae_name, vae_config, vae_path, vae_version, in_out , kl):
 if __name__ == "__main__":
 
     vae_version = "VAE_Version_1.08"
-    in_out = "2_2"
+    in_out = "6_2"
     kl = "KL-D_0.0001"
     vae_path = os.path.join("..", "VAE_pretrain", "pretrained_vae", vae_version, in_out, kl)
-    safe_batch_train(vae_name="vae_1.08_test_kl0.0001",
-                     vae_config="VAE_config_config_v1_penta_input_large_latent.txt",
+    safe_batch_train(vae_name="vae_exp_0.3noise_6_2",
+                     vae_config="VAE_config_config_v1_penta_2.txt",
                      vae_path=vae_path, vae_version=vae_version, in_out=in_out, kl=kl)
-                     
 
-    vae_version = "VAE_Version_1.08"
-    in_out = "2_2"
-    kl = "KL-D_0.01"
-    vae_path = os.path.join("..", "VAE_pretrain", "pretrained_vae", vae_version, in_out, kl)
-    safe_batch_train(vae_name="vae_1.08_test_kl0.01",
-                     vae_config="VAE_config_config_v1_penta_input_large_latent.txt",
-                     vae_path=vae_path, vae_version=vae_version, in_out=in_out, kl=kl)
     '''
+
     # 1st VAE
     vae_version = "VAE_Version_1.02"
     in_out = "4_2"
