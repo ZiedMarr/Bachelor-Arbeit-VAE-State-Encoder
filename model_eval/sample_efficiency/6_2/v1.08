@@ -1,0 +1,16 @@
+Target Reward: 400
+Runs that reached target: 10/10
+Average timesteps to reach target: 22298.08
+Standard deviation: 4520.63
+
+Individual timesteps to reach target:
+Run 1: 19405.50
+Run 2: 12135.47
+Run 3: 24568.66
+Run 4: 18410.67
+Run 5: 26487.64
+Run 6: 24379.86
+Run 7: 24530.28
+Run 8: 28478.44
+Run 9: 24213.38
+Run 10: 20370.93
