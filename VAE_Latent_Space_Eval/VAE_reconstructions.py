@@ -27,9 +27,12 @@ def render_lunarlander_from_observations(observations,
     # Loop through each observation and render the environment
     for obs in observations:
         env.reset()  # Reset the environment for each observation
-        env.unwrapped.hull.position[0] = obs[0]  # x position
-        env.unwrapped.hull.position[1] = obs[1]  # y position
-        env.unwrapped.hull.angle = obs[2]  # hull angle
+        env.unwrapped.lander.position[0] = obs[0]  # x position
+        env.unwrapped.lander.position[1] = obs[1]  # y position
+        env.unwrapped.lander.linearVelocity[0] = obs[2]  # x velocity
+        env.unwrapped.lander.linearVelocity[1] = obs[3]  # y velocity
+        env.unwrapped.lander.angle = obs[4]  # angle
+        env.unwrapped.lander.angularVelocity = obs[5]  # angular velocity
 
         # Set joint angles and velocities
         for i, joint in enumerate(env.unwrapped.joints):
@@ -86,7 +89,7 @@ def main(data_path, vae_model_path):
 
     # Load pretrained weights
     if os.path.exists(vae_model_path):
-        vae.load_state_dict(torch.load(vae_model_path))
+        vae.load_state_dict(torch.load(vae_model_path,map_location=torch.device('cpu')))
         vae.eval()
         print("Loaded pretrained VAE model.")
     else:
@@ -151,8 +154,5 @@ def call_reconstruction(vae_name,
 
 
 if __name__ == "__main__":
-    main(data_path=os.path.join(base_dir, "..", "Data_Collection", "collected_data", "1000_rand_Eval",
-                                "lunarlander_random_1000.npz"),
-         vae_model_path=os.path.join(base_dir, "..", "VAE_pretrain", "pretrained_vae", config.VAE_Version,
-                                     f"{config.INPUT_STATE_SIZE}_{config.OUTPUT_STATE_SIZE}",
-                                     f"KL-D_{config.BETA_KL_DIV}", "vae_rand_100k"))
+    main(data_path="../Data_Collection/collected_data/eval/merged/merged.npz",
+         vae_model_path="../VAE_pretrain/pretrained_vae/VAE_Version_2/2_2/KL-D_0.001/vae_ppo_noisy_100ep_config_D_5")
