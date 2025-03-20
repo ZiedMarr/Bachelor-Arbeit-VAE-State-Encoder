@@ -252,21 +252,22 @@ if __name__ == "__main__":
     ###########################VAE-PPO BLOCK ######################################
 
     # Model paths using os.path.join
-    vae_model_path = '../VAE_PPO_train/trained_vae/batch_1M_VAE_Version_2.1_vae_random_100ep_config_M_2/1000000_vae_random_100ep_config_M_2_20250225_112505'
+    vae_model_path = '../VAE_PPO_train/trained_vae/VAE_6.23_vae_random_200ep_config_A/1M_vae_random_200ep_v6.23_config_A'
 
-    ppo_model_batch = '../VAE_PPO_train/logs/batch_1M_VAE_Version_2.1_vae_random_100ep_config_M_2'
+    ppo_model_batch = '../VAE_PPO_train/logs/VAE_6.23_vae_random_200ep_configA'
 
     model_paths = []
     for root, _, files in os.walk(ppo_model_batch):
         if "best_model.zip" in files:
             model_paths.append(os.path.join(root, "best_model.zip"))
 
+
     print(f"Found {len(model_paths)} models.")
 
     # Evaluation parameters
     n_episodes = 10  # Number of episodes to evaluate
     seed = 120
-    save_path = os.path.join(".", "average_episodic_rewards", "5_2_M_2")  # Directory to save results
+    save_path = os.path.join(".", "average_episodic_rewards", "6_2_v6.23")  # Directory to save results
     os.makedirs(save_path, exist_ok=True)
 
     # Run evaluation
