@@ -57,7 +57,7 @@ def plot_latent_space(
     num_observations = split_obs.shape[1] // num_input_states
 
     # Plot for each observation
-    for obs_idx in range():
+    for obs_idx in range(4):
         avg_obs_values = np.mean(split_obs[:, obs_idx::num_observations], axis=1)
 
         fig, ax = plt.subplots(figsize=(10, 8))

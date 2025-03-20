@@ -142,4 +142,4 @@ def call_reconstruction(vae_name, data_path=os.path.join(base_dir, "..", "Data_C
 
 
 if __name__ == "__main__":
-    main(data_path=os.path.join(base_dir, "..", "Data_collection", "collected_data", "1000_rand_Eval","random_1000_20250130_122312.npz"), vae_model_path=os.path.join(base_dir, "..", "VAE_pretrain", "pretrained_vae", config.VAE_Version, f"{config.INPUT_STATE_SIZE}_{config.OUTPUT_STATE_SIZE}", f"KL-D_{config.BETA_KL_DIV}", "vae_rand_100k"))
+    main(data_path='../Data_Collection/collected_data/train_dataset/ppo_0.3noise_merged.npz', vae_model_path='../VAE_pretrain/pretrained_vae/VAE_Version_1.08/2_2/KL-D_0.0001/vae_1.08_test_kl0.0001')
