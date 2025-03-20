@@ -160,9 +160,9 @@ if __name__ == "__main__":
     base_dir = os.path.dirname(os.path.abspath(__file__))
 
     # For a single target reward
-    vae_ppo_log_dir = "../VAE_PPO_train/logs/batch_1M_VAE_Version_2.1_vae_mix_10ep_config_K_2"
+    vae_ppo_log_dir = "../VAE_PPO_train/logs/batch_1M_VAE_Version_2.1_vae_mix_10ep_config_M_2"
 
-    output_path = os.path.join(".", "sample_efficiency", "4_2", "V2.1_K_2")
+    output_path = os.path.join(".", "sample_efficiency", "5_2", "V2.1")
 
     mean_timesteps, std_timesteps, runs_reached, total_runs = calculate_timesteps_to_reward(
         vae_ppo_log_dir,

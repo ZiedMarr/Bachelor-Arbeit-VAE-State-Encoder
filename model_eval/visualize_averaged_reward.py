@@ -246,8 +246,8 @@ def call_visualize_combined(vae_batch, vae_version, in_out , kl) :
 if __name__ == "__main__" :
 
     # define averaged files :
-    vae_ppo_no_tuning_average_dir = os.path.join("logs", "VAE_PPO", "V2", "rand_env_config1_1M")
-    vae_ppo_average_dir = os.path.join("logs", "VAE_PPO", "V2", "rand_env_config1_1M")
+    vae_ppo_no_tuning_average_dir = os.path.join("logs", "VAE_PPO", "V2.1", "rand_env_config1_1M")
+    vae_ppo_average_dir = os.path.join("logs", "VAE_PPO", "V2.1", "rand_env_config1_1M")
     os.makedirs(vae_ppo_no_tuning_average_dir, exist_ok=True)
     os.makedirs(vae_ppo_average_dir, exist_ok=True)
 
